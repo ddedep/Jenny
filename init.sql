@@ -36,6 +36,7 @@ CREATE TABLE users AS (
   verified boolean default false,
   verificationcode varchar(8) NOT NULL,
   points integer default 0,
+  address integer references cities.cityid,
   insertedon timestamp default now()
 );
 
@@ -56,6 +57,12 @@ CREATE TABLE regions AS (
   regionname varchar(16) NOT NULL
 );
 
+CREATE TABLE cities AS (
+  cityid integer primary key,
+  cityname varchar(32),
+  regionid integer references regions.regionid
+);
+
 CREATE TABLE ads AS (
   adid integer primary key,
   owner integer NOT NULL references users.userid,
@@ -64,7 +71,7 @@ CREATE TABLE ads AS (
   imagelink text,
   body text,
   categorid integer NOT NULL references categories.categoryid,
-  regionid integer NOT NULL references regions.regionid,
+  cityid integer NOT NULL references cities.cityid,
   insertedon timestamp default now()
 );
 
