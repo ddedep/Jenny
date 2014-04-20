@@ -37,6 +37,7 @@ CREATE TABLE users AS (
   verificationcode varchar(8) NOT NULL,
   points integer default 0,
   address integer references cities.cityid,
+  postalcode integer NOT NULL,
   insertedon timestamp default now()
 );
 
