@@ -1,4 +1,4 @@
-CREATE FUNCTION generate_salt(p_length integer) RETURNS text
+CREATE OR REPLACE FUNCTION generate_salt(p_length integer) RETURNS text
   AS $_$
     DECLARE
       characters text[] := '{0,1,2,3,4,5,6,7,8,9,A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z,a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z}';
@@ -17,7 +17,7 @@ CREATE FUNCTION generate_salt(p_length integer) RETURNS text
   $_$
 LANGUAGE plpgsql;
 
-CREATE TABLE persons AS (
+CREATE TABLE persons (
   personid integer primary key,
   lastname varchar(32) NOT NULL,
   firstname varchar(32) NOT NULL,
@@ -26,9 +26,20 @@ CREATE TABLE persons AS (
   insertedon timestamp default now()
 );
 
-CREATE TABLE users AS (
+CREATE TABLE regions (
+  regionid integer primary key,
+  regionname varchar(16) NOT NULL
+);
+
+CREATE TABLE cities (
+  cityid integer primary key,
+  cityname varchar(32),
+  regionid integer references regions(regionid)
+);
+
+CREATE TABLE users (
   userid integer primary key,
-  personid integer NOT NULL references users.userid,
+  personid integer NOT NULL references persons(personid),
   username varchar(16) NOT NULL,
   password varchar(32) NOT NULL,
   salt varchar(32) NOT NULL,
@@ -36,48 +47,37 @@ CREATE TABLE users AS (
   verified boolean default false,
   verificationcode varchar(8) NOT NULL,
   points integer default 0,
-  address integer references cities.cityid,
+  address integer references cities(cityid),
   postalcode integer NOT NULL,
   insertedon timestamp default now()
 );
 
-CREATE TABLE subscriptions AS (
+CREATE TABLE subscriptions (
   subscriptionid integer primary key,
-  subscriber integer NOT NULL references users.userid,
-  to integer NOT NULL references users.userid,
+  subscriber integer NOT NULL references users(userid),
+  subscribedto integer NOT NULL references users(userid),
   insertedon timestamp default now()
 );
 
-CREATE TABLE categories AS (
+CREATE TABLE categories (
   categoryid integer primary key,
   categoryname varchar(32)
 );
 
-CREATE TABLE regions AS (
-  regionid integer primary key,
-  regionname varchar(16) NOT NULL
-);
-
-CREATE TABLE cities AS (
-  cityid integer primary key,
-  cityname varchar(32),
-  regionid integer references regions.regionid
-);
-
-CREATE TABLE ads AS (
+CREATE TABLE ads (
   adid integer primary key,
-  owner integer NOT NULL references users.userid,
+  owner integer NOT NULL references users(userid),
   isfeatured boolean default false,
   duration interval NOT NULL,
   imagelink text,
   body text,
-  categorid integer NOT NULL references categories.categoryid,
-  cityid integer NOT NULL references cities.cityid,
+  categorid integer NOT NULL references categories(categoryid),
+  cityid integer NOT NULL references cities(cityid),
   insertedon timestamp default now()
 );
 
-CREATE TABLE wishes AS (
+CREATE TABLE wishes (
   wishid integer primary key,
-  userid integer NOT NULL references users.userid,
-  adid integer NOT NULL references ads.adid
+  userid integer NOT NULL references users(userid),
+  adid integer NOT NULL references ads(adid)
 );
