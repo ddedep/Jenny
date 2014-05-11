@@ -7,11 +7,24 @@
 		}
 		
 		
-		public function CreateAd($title,$description,$price,$expiration)
+		public function CreateAd($title,$userid,$duration,$price,$imagelink,$body,$categoryid,$cityid)
 		{	
-			$sql = "INSERT into users (username,first,last,email,birthdate,password,accountType) VALUES (?,?,?,?,?,?,?)";
+			$sql = "INSERT into ads (title,owner,duration,price,imagelink,body,categorid,cityid) VALUES (?,?,?,?,?,?,?,?)";
 			
-			$this->db->query($sql, array($user,$first,$last,$email,$birth,$password,1));
+			$this->db->query($sql, array($title,$userid,$duration,$price,$imagelink,$body,$categoryid,$cityid));
+		}
+
+		public function getAds()
+		{
+			$sql = "SELECT * FROM ads";
+			
+			return $this->db->query($sql);
+		}
+			public function getAd($adid)
+		{
+			$sql = "SELECT * FROM ads where adid=".$adid;
+			
+			return $this->db->query($sql);
 		}
 		
 }
