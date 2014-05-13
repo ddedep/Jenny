@@ -15,8 +15,12 @@
 	    <script src="<?php echo base_url(); ?>js/vendor/modernizr.js"></script>
 	</head>
 	<body>
-		<div class="row">
-		<div class="large-12 columns">
+
+
+		<div class= "large-12 columns">
+			<!-- header -->
+			<div class="row">
+		      <div class="large-12 columns">
 		        <div class = 'panel'>
 		        	<?php if($username!=NULL) echo "Welcome ".$username."!&nbsp;	&nbsp;"; 
 		        	else{
@@ -30,44 +34,10 @@
 		        	?>
 		        </div>
 		      </div>
-			<div class="large-12 column">
-				<div class="large-2 column">
-					<div class="panel">
-						<h5>Menu</h5>
-						<a href="<?php echo base_url() ?>index.php/user">Profile</a> <br/><br/>
-						<a href="<?php echo base_url() ?>index.php/ads/view">My Ads</a> <br/><br/>
-						<a href="">Expired Ads</a> <br/><br/>
-						<a href="">Subscription</a> <br/><br/>
-						<a href="">Subscription Ads</a> <br/><br/>
-						<a href="">My Favorites</a> <br/><br/>
-						<a href="">Buy Points</a> <br/><br/>
-						<a href="">Wish List</a> <br/><br/>
-					</div>
-				</div>
-				<div  class="large-10 column">
-					<div class="row">
-						<div class="large-4 column">
-						<div class="panel">
-						<?php
-							echo "<img src=".base_url()."images/".$profile['pic']." style='height:200px;width:200px;'><br/>";
-						?>
-						</div>
-						</div>
-						<div class= "large-12 column">
-						<div class="panel">
-						<?php
-							echo "Name: ".$profile['firstname']." ".$profile['middlename']." ".$profile['lastname']."<br/><br/>";
-							echo "Email: ".$profile['email']."<br/><br/>";
-							echo "Phone Number: ".$profile['phonenum']."<br/><br/>";
-						?>
-						</div>
-						</div>
-					</div>
-					<button>Edit</button>
-				</div>
-				
-			</div>
-			
+		    </div>
+		 	<div class= "row">
+		 		<h1>Page Does Not exist</h1>
+		 	</div>
 		</div>
 		<!--Scripts -->
 		<script src="<?php echo base_url(); ?>js/vendor/jquery.js"></script>
@@ -76,10 +46,10 @@
 	      $(document).foundation();
 	    </script>
 	    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
-		<script type="text/javascript" src="js/jquery.easing.1.3.js"></script>
+		<script type="text/javascript" src="<?php echo base_url(); ?>js/jquery.easing.1.3.js"></script>
 		<!-- the jScrollPane script -->
-		<script type="text/javascript" src="js/jquery.mousewheel.js"></script>
-		<script type="text/javascript" src="js/jquery.contentcarousel.js"></script>
+		<script type="text/javascript" src="<?php echo base_url(); ?>js/jquery.mousewheel.js"></script>
+		<script type="text/javascript" src="<?php echo base_url(); ?>js/jquery.contentcarousel.js"></script>
 		<script type="text/javascript">
 			$('#ca-container').contentcarousel();
 		</script>

@@ -7,11 +7,11 @@
 		}
 		
 		
-		public function createPerson($firstname,$middlename,$lastname,$phonenum)
+		public function createPerson($firstname,$middlename,$lastname,$phonenum,$picture)
 		{	
-			$sql = "INSERT into persons (firstname,lastname,middlename,phonenum) VALUES (?,?,?,?)";
+			$sql = "INSERT into persons (firstname,lastname,middlename,phonenum,picture) VALUES (?,?,?,?,?)";
 			
-			$this->db->query($sql, array($firstname,$middlename,$lastname,$phonenum));
+			$this->db->query($sql, array($firstname,$middlename,$lastname,$phonenum,$picture));
 		}
 		
 		public function createUser($username,$password,$email,$address,$postalcode)

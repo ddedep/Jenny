@@ -6,9 +6,9 @@
 	    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	    <link rel="stylesheet" href="<?php echo base_url(); ?>css/foundation.css" />
 	    <link rel="shortcut icon" href="../favicon.ico"> 
-        <link rel="stylesheet" type="text/css" href="css/demo.css" />
-		<link rel="stylesheet" type="text/css" href="css/style.css" />
-		<link rel="stylesheet" type="text/css" href="css/jquery.jscrollpane.css" media="all" />
+         <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>css/demo.css" />
+		<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>css/style.css" />
+		<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>css/jquery.jscrollpane.css" media="all" />
 		<link href='http://fonts.googleapis.com/css?family=PT+Sans+Narrow&v1' rel='stylesheet' type='text/css' />
 		<link href='http://fonts.googleapis.com/css?family=Coustard:900' rel='stylesheet' type='text/css' />
 		<link href='http://fonts.googleapis.com/css?family=Rochester' rel='stylesheet' type='text/css' />
@@ -38,7 +38,7 @@
 				<h3>Ad Details</h3>
 				<?php echo validation_errors(); echo $message;?>
 		    	</div>
-		    		<?php echo form_open('index.php/Ads'); ?>
+		    		<?php echo form_open_multipart('index.php/Ads'); ?>
 
 				<div class="row">
 					<div class="small-6 columns">
@@ -86,6 +86,13 @@
 					<div class="small-6 columns">
 						<label>Price</label>
 						<input type="text" name="price">
+					</div>
+				</div>
+				<div class="row">
+					<div class="small-6 columns">
+						<label>image</label>
+    					<label>upload photo</label>
+						<input type="file" name="userfile" size="20" />
 					</div>
 				</div>
 				<div class="row">

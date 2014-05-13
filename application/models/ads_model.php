@@ -7,11 +7,11 @@
 		}
 		
 		
-		public function CreateAd($title,$userid,$duration,$price,$imagelink,$body,$categoryid,$cityid)
+		public function CreateAd($title,$userid,$duration,$price,$video,$imagelink,$body,$categoryid,$cityid)
 		{	
-			$sql = "INSERT into ads (title,owner,duration,price,imagelink,body,categorid,cityid) VALUES (?,?,?,?,?,?,?,?)";
+			$sql = "INSERT into ads (title,owner,isFeatured,duration,price,videolink,imagelink,body,categorid,cityid) VALUES (?,?,?,?,?,?,?,?,?,?)";
 			
-			$this->db->query($sql, array($title,$userid,$duration,$price,$imagelink,$body,$categoryid,$cityid));
+			$this->db->query($sql, array($title,$userid,0,$duration,$price,$video,$imagelink,$body,$categoryid,$cityid));
 		}
 
 		public function getAds()
@@ -20,7 +20,13 @@
 			
 			return $this->db->query($sql);
 		}
-			public function getAd($adid)
+		public function getAdsOfUser($id)
+		{
+			$sql = "SELECT * FROM ads where owner=".$id;
+			
+			return $this->db->query($sql);
+		}
+		public function getAd($adid)
 		{
 			$sql = "SELECT * FROM ads where adid=".$adid;
 			

@@ -6,9 +6,9 @@
 	    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	    <link rel="stylesheet" href="<?php echo base_url(); ?>css/foundation.css" />
 	    <link rel="shortcut icon" href="../favicon.ico"> 
-        <link rel="stylesheet" type="text/css" href="css/demo.css" />
-		<link rel="stylesheet" type="text/css" href="css/style.css" />
-		<link rel="stylesheet" type="text/css" href="css/jquery.jscrollpane.css" media="all" />
+         <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>css/demo.css" />
+		<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>css/style.css" />
+		<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>css/jquery.jscrollpane.css" media="all" />
 		<link href='http://fonts.googleapis.com/css?family=PT+Sans+Narrow&v1' rel='stylesheet' type='text/css' />
 		<link href='http://fonts.googleapis.com/css?family=Coustard:900' rel='stylesheet' type='text/css' />
 		<link href='http://fonts.googleapis.com/css?family=Rochester' rel='stylesheet' type='text/css' />
@@ -47,7 +47,7 @@
 			</div>
 		    <div class = "row">
 		    	<div class ="large-12 columns">
-		    		<?php echo form_open('index.php/register'); ?>
+		    		<?php echo form_open_multipart('index.php/register'); ?>
 		    			<div class="medium-5 columns">
 			    			<label>First Name</label>
 			    			<input type="text" name="firstname">
@@ -67,10 +67,49 @@
     					<input type="text" name = "phonenumber">
     				</div>
     			</div>
-    			<div class="large-12 columns">
+    			<div class="medium-9 columns">
     				<div class="medium-4 columns">
     					<label>Birthdate</label>
-    					<input type="text" name = "birthdate">
+    					<select name="month">
+							<option value="1">January</option>
+							<option value="2">February</option>
+							<option value="3">March</option>
+							<option value="4">April</option>
+							<option value="5">May</option>
+							<option value="6">June</option>
+							<option value="7">July</option>
+							<option value="8">August</option>
+							<option value="9">September</option>
+							<option value="10">October</option>
+							<option value="11">November</option>
+							<option value="12">December</option>
+						</select>
+					</div>
+					<div class="medium-4 columns">
+						<label>Day</label>
+						<?php
+						$options = array();
+						for($i=1;$i<=31;$i++)
+						{
+							$options[''.$i] = $i;
+						}
+
+						echo form_dropdown('day', $options,'1');
+						?>
+					</div>
+					<div class="medium-3 columns">
+						<label>Year</label>
+						<?php
+						$option = array();
+						for($i=0;$i<=100;$i++)
+						{
+							$option[''.$i+1914] = $i+1914;
+						}
+						$selected = array('2000');
+
+						echo form_dropdown('year', $option,'2000');
+						?>
+    					
     				</div>
     			</div>
 
@@ -119,8 +158,12 @@
     					<input type="checkbox">
     					<label>Lorem ipsum</label>
     				</div>
+    				<div class="large-6 columns">
+    					<label>upload photo</label>
+						<input type="file" name="userfile" size="20" />
+    				</div>
     				<div class="large-8 columns">
-    					<input type="submit">
+    					<Button type="submit"> Register! </Button>
     				</div>
 
     				</form>

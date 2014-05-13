@@ -6,10 +6,13 @@ class Home extends CI_Controller {
 		parent::__construct();
 		$this->load->helper(array('form','url'));
 		$this->load->model('User_model');
+		$this->load->model('ads_model');
+		
 	}
 	public function index()
 	{
 		$data['username']=$this->session->userdata('username');
+		$data['query'] = $this->ads_model->getAds();
 		$this->load->view('home',$data);
 	}
 	public function login()

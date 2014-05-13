@@ -6,7 +6,7 @@
 	    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	    <link rel="stylesheet" href="<?php echo base_url(); ?>css/foundation.css" />
 	    <link rel="shortcut icon" href="../favicon.ico"> 
-        <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>css/demo.css" />
+         <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>css/demo.css" />
 		<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>css/style.css" />
 		<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>css/jquery.jscrollpane.css" media="all" />
 		<link href='http://fonts.googleapis.com/css?family=PT+Sans+Narrow&v1' rel='stylesheet' type='text/css' />
@@ -16,8 +16,11 @@
 	</head>
 	<body>
 		<div class="row">
-		<div class="large-12 columns">
-		        <div class = 'panel'>
+		
+			<div class="large-8 column">
+			<div class="row">
+		      <div class="large-12 columns">
+		       <div class = 'panel'>
 		        	<?php if($username!=NULL) echo "Welcome ".$username."!&nbsp;	&nbsp;"; 
 		        	else{
 		        		echo '<a href="';echo base_url().'index.php/home/login">'."Sign in or Register</a>&nbsp;	&nbsp";
@@ -29,45 +32,49 @@
 			        		}
 		        	?>
 		        </div>
+		      
+		      		
+		        	<?php
+
+		        	foreach($query->result_array() as $row):
+					
+						echo "<h1>".$row['title']."</h1>";
+					?>
+						<div style="height:300px;width:500px;background-color:black;">
+		      			
+		      			</div>
+					<?php
+						echo "<h4>Description</h4>";
+						echo "<div class= 'panel'>";
+						echo '<embed width="420" height="345"';
+						echo ' src="'.$row['videolink'].'" ';
+						echo 'type="application/x-shockwave-flash">';
+						echo '</embed><br/>';
+						echo "<img src=".base_url()."images/".$row['imagelink']." style='height:200px;width:200px;'><br/>";
+						echo "Title: ".$row['title']."<br/><br/>";
+						echo "Duration: ".$row['duration']." Days<br/><br/>";
+						echo "Price: ".$row['price']."<br/><br/>";
+						echo "About: ".$row['body']."<br/><br/>";
+						echo "</div>";
+					endforeach;
+					?>
+					<form>
+						<label>Name</label>
+						<input type="text" />
+						<label>Email</label>
+						<input type="text" />
+						<label>Contact Number</label>
+						<input type="text" />
+						<label>Message</label>
+						<textarea name="description"></textarea>
+						<button type="submit">Submit</button> 
+					</form>
+		       
+		        
+
 		      </div>
-			<div class="large-12 column">
-				<div class="large-2 column">
-					<div class="panel">
-						<h5>Menu</h5>
-						<a href="<?php echo base_url() ?>index.php/user">Profile</a> <br/><br/>
-						<a href="<?php echo base_url() ?>index.php/ads/view">My Ads</a> <br/><br/>
-						<a href="">Expired Ads</a> <br/><br/>
-						<a href="">Subscription</a> <br/><br/>
-						<a href="">Subscription Ads</a> <br/><br/>
-						<a href="">My Favorites</a> <br/><br/>
-						<a href="">Buy Points</a> <br/><br/>
-						<a href="">Wish List</a> <br/><br/>
-					</div>
-				</div>
-				<div  class="large-10 column">
-					<div class="row">
-						<div class="large-4 column">
-						<div class="panel">
-						<?php
-							echo "<img src=".base_url()."images/".$profile['pic']." style='height:200px;width:200px;'><br/>";
-						?>
-						</div>
-						</div>
-						<div class= "large-12 column">
-						<div class="panel">
-						<?php
-							echo "Name: ".$profile['firstname']." ".$profile['middlename']." ".$profile['lastname']."<br/><br/>";
-							echo "Email: ".$profile['email']."<br/><br/>";
-							echo "Phone Number: ".$profile['phonenum']."<br/><br/>";
-						?>
-						</div>
-						</div>
-					</div>
-					<button>Edit</button>
-				</div>
-				
+		    </div>
 			</div>
-			
 		</div>
 		<!--Scripts -->
 		<script src="<?php echo base_url(); ?>js/vendor/jquery.js"></script>

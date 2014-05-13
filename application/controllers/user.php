@@ -21,6 +21,7 @@ class user extends CI_Controller {
 						'lastname' => $row['lastname'],
 						'middlename' => $row['middlename'],
 						'phonenum' => $row['phonenum'],
+						'pic' =>$row['picture'],
 						'email' =>$this->session->userdata('email')
 			       );
 					$this->session->set_userdata($newdata);

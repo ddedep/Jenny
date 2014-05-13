@@ -6,9 +6,9 @@
 	    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	    <link rel="stylesheet" href="<?php echo base_url(); ?>css/foundation.css" />
 	    <link rel="shortcut icon" href="../favicon.ico"> 
-        <link rel="stylesheet" type="text/css" href="css/demo.css" />
-		<link rel="stylesheet" type="text/css" href="css/style.css" />
-		<link rel="stylesheet" type="text/css" href="css/jquery.jscrollpane.css" media="all" />
+         <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>css/demo.css" />
+		<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>css/style.css" />
+		<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>css/jquery.jscrollpane.css" media="all" />
 		<link href='http://fonts.googleapis.com/css?family=PT+Sans+Narrow&v1' rel='stylesheet' type='text/css' />
 		<link href='http://fonts.googleapis.com/css?family=Coustard:900' rel='stylesheet' type='text/css' />
 		<link href='http://fonts.googleapis.com/css?family=Rochester' rel='stylesheet' type='text/css' />
@@ -35,17 +35,17 @@
 		      </div>
 		    </div>
 		    	<div class="row">
-				<h3>Welcome</h3>
+				<h1>Welcome</h1>
 			    </div>
 			    <div class= "row">
 			    	<div class="large-6 column">
-			    		<h4>Sign in</h4>
+			    		<h2>Sign in</h2>
 			    		<?php echo form_open('index.php/home/login'); ?>
 			    		<label>Email or Username</label>
 			    		<input type="text" name="username">
 			    		<label>Password</label>
 			    		<input type="password" name="password">
-			    		<input type="submit">
+			    		<Button type="submit"> Sign in </Button>
 			    		</form>
 			    	</div>
 			    	<div class="large-6 column">
