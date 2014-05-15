@@ -52,10 +52,16 @@ class Home extends CI_Controller {
 			                'logged_in' => TRUE
 			       );
 					$this->session->set_userdata($newdata);
-					redirect('/index.php/ads');
-				} 
+					redirect('/index.php/user');
+				}
+				else
+				{
+					
+					break;
+				}
 			}
-
+			$data['username']=$this->session->userdata('username');
+			$this->load->view('login',$data);
 		}
 		
 	}

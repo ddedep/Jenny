@@ -81,9 +81,14 @@
 					<?php
 						foreach($query->result_array() as $row):
 					?>
-						<div class="ca-item ca-item-1">
+						<div class="ca-item">
 							<div class="ca-item-main">
-								<div class="ca-icon"></div>
+								<div class="ca-icon" style="width:233px;
+										height:189px;
+										position:relative;
+										margin:0 auto;
+										background:transparent url(<?php echo base_url()."images/".$row['imagelink']; ?>) no-repeat center center;">
+								</div>
 								<h3><?php echo $row['title']; ?></h3>
 								<h4>
 									<span class="ca-quote">&ldquo;</span>

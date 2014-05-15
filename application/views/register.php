@@ -154,14 +154,15 @@
     				<label>Confirm Password</label>
     				<input type="password" name="passwordconfirm">
     				</div>
-    				<div class="large-8 columns">
-    					<input type="checkbox">
-    					<label>Lorem ipsum</label>
-    				</div>
     				<div class="large-6 columns">
     					<label>upload photo</label>
 						<input type="file" name="userfile" size="20" />
     				</div>
+    				<div class="large-8 columns">
+    					<input type="checkbox">
+    					<label>Lorem ipsum</label>
+    				</div>
+    				
     				<div class="large-8 columns">
     					<Button type="submit"> Register! </Button>
     				</div>

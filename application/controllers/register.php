@@ -25,7 +25,7 @@ class Register extends CI_Controller {
 		$username=$this->input->post('username');
 		$password=$this->input->post('password');
 		$email=$this->input->post('email');
-
+		$birthdate = $this->input->post('year')."-".$this->input->post('month')."-".$this->input->post('day');
 		$config['upload_path'] = './images/';
 		$config['allowed_types'] = 'gif|jpg|png|jpeg';
 		$config['max_size']	= '10000';
@@ -54,7 +54,7 @@ class Register extends CI_Controller {
 				$data = array('upload_data' => $this->upload->data(),
 								'err' => "Registered!");
 				$dat = $this->upload->data();
-				$this->User_model->createPerson($firstname,$middlename,$lastname,$phonenum,$dat['file_name']);
+				$this->User_model->createPerson($firstname,$middlename,$lastname,$phonenum,$dat['file_name'],$birthdate);
 				$this->User_model->createUser($username,$password,$email,$address,$postalcode);
 			}
 			$data['username']=$this->session->userdata('username');

@@ -86,9 +86,9 @@
 				});
 			},
 			// show / hide the item's more button
-			toggleMore	: function( $item, show ) {
-				( show ) ? $item.find('a.ca-more').show() : $item.find('a.ca-more').hide();	
-			},
+		//	toggleMore	: function( $item, show ) {
+	//			( show ) ? $item.find('a.ca-more').show() : $item.find('a.ca-more').hide();	
+	//		},
 			// close all the items
 			// the current one is animated
 			closeItems	: function( $wrapper, $openedItem, opts, cache ) {
@@ -107,7 +107,7 @@
 				});
 				
 				// show more link
-				aux.toggleMore( $openedItem, true );
+		//		aux.toggleMore( $openedItem, true );
 				
 				$wrapper.find('div.ca-item').each(function(i) {
 					var $item	= $(this),
@@ -192,7 +192,7 @@
 						});
 						
 						// click to open the item(s)
-						$el.find('a.ca-more').live('click.contentcarousel', function( event ) {
+					/*	$el.find('a.ca-more').live('click.contentcarousel', function( event ) {
 							if( cache.isAnimating ) return false;
 							cache.isAnimating	= true;
 							$(this).hide();
@@ -200,7 +200,7 @@
 							aux.openItem( $wrapper, $item, settings, cache );
 							return false;
 						});
-						
+					*/
 						// click to close the item(s)
 						$el.find('a.ca-close').live('click.contentcarousel', function( event ) {
 							if( cache.isAnimating ) return false;

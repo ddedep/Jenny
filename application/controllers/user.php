@@ -6,6 +6,7 @@ class user extends CI_Controller {
 		parent::__construct();
 		$this->load->helper(array('form','url'));
 		$this->load->model('User_model');
+		$this->load->model('ads_model');
 	}
 	public function index()
 	{
@@ -35,6 +36,24 @@ class user extends CI_Controller {
 		else
 		{
 			redirect("/index.php/home");
+		}
+	}
+	public function subscription()
+	{
+		$adID= $this->uri->segment(3);
+		$data['username']=$this->session->userdata('username');
+		if($adID==null){
+			$data['query'] = $this->ads_model->getAdsOfUser($this->session->userdata('userid'));
+			$this->load->view('subscription',$data);
+		}
+		else
+		{
+			$query=$this->ads_model->getAd($adID);
+			$data['query'] =$query;
+			if($query->num_rows()>0)
+				$this->load->view('viewAd2',$data);
+			else
+				$this->load->view('notfound',$data);
 		}
 	}
 }

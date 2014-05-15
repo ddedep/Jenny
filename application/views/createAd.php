@@ -92,6 +92,7 @@
 					<div class="small-6 columns">
 						<label>image</label>
     					<label>upload photo</label>
+    					
 						<input type="file" name="userfile" size="20" />
 					</div>
 				</div>

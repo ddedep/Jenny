@@ -25,6 +25,10 @@ class Ads extends CI_Controller {
 					$this->load->view('notfound',$data);
 			}
 	}
+	public function subscribe()
+	{
+		
+	}
 	public function index()
 	{
 		$this->load->library('form_validation');
@@ -41,17 +45,22 @@ class Ads extends CI_Controller {
 			$duration=$this->input->post('duration');
 			$price=$this->input->post('price');
 			$video=$this->input->post('video');
+			$temp = explode("/",$video);
+			$video = $temp[count($temp)-1];
+			$temp = explode("=", $video);
+			$video = $temp[count($temp)-1];
 			$userid = $this->session->userdata('userid');
 
 			$config['upload_path'] = './images/';
-		$config['allowed_types'] = 'gif|jpg|png|jpeg';
-		$config['max_size']	= '10000';
-		$config['max_width']  = '1024';
-		$config['max_height']  = '768';
+			$config['allowed_types'] = 'gif|jpg|png|jpeg';
+			$config['max_size']	= '10000';
+			$config['max_width']  = '1024';
+			$config['max_height']  = '768';
 
-		$this->load->library('upload', $config);
+			$this->load->library('upload', $config);
 			if($this->form_validation->run()==FALSE){
 				$data['message'] ="";
+				$data['username']=$this->session->userdata('username');
 				$this->load->view('createAd',$data);
 			}
 			else
@@ -69,7 +78,8 @@ class Ads extends CI_Controller {
 				$dat = $this->upload->data();
 				$image = $dat['file_name'];
 				$this->ads_model->CreateAd($title,$userid,$duration,$price,$video,$image,$body,$categoryid,$cityid);
-				$data['message'] ="Ad Created!".$price;
+				$data['message'] ="Ad Created!";
+				$data['username']=$this->session->userdata('username');
 				$this->load->view('createAd',$data);
 			}
 

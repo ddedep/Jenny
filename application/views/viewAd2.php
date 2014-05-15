@@ -40,25 +40,27 @@
 					
 						echo "<h1>".$row['title']."</h1>";
 					?>
-						<div style="height:300px;width:500px;background-color:black;">
-		      			
-		      			</div>
 					<?php
 						echo "<h4>Description</h4>";
 						echo "<div class= 'panel'>";
-						echo '<embed width="420" height="345"';
-						echo ' src="'.$row['videolink'].'" ';
-						echo 'type="application/x-shockwave-flash">';
-						echo '</embed><br/>';
+						echo '<iframe width="420" height="345"';
+						echo ' src="//www.youtube.com/embed/'.$row['videolink'].'"" frameborder="0">';
+						echo '</iframe><br/>';
 						echo "<img src=".base_url()."images/".$row['imagelink']." style='height:200px;width:200px;'><br/>";
 						echo "Title: ".$row['title']."<br/><br/>";
 						echo "Duration: ".$row['duration']." Days<br/><br/>";
 						echo "Price: ".$row['price']."<br/><br/>";
 						echo "About: ".$row['body']."<br/><br/>";
 						echo "</div>";
-					endforeach;
+						endforeach;
 					?>
-					<form>
+					<?php
+						echo form_open_multipart('index.php/ads');
+						echo "<input name = 'owner' type='hidden' value='".$row['owner']."''></input>";
+					?>
+					<input type="submit" value='subscribe' />
+					</form>
+					<?php echo form_open_multipart('index.php/ads'); ?>
 						<label>Name</label>
 						<input type="text" />
 						<label>Email</label>

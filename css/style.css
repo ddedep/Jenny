@@ -60,6 +60,7 @@
 	-webkit-box-shadow:1px 1px 2px rgba(0,0,0,0.2);
 	box-shadow:1px 1px 2px rgba(0,0,0,0.2);
 }
+/*
 .ca-icon{
 	width:233px;
 	height:189px;
@@ -87,7 +88,7 @@
 }
 .ca-item-8 .ca-icon{
 	background-image:url(../images/animal8.png);
-}
+}*/
 .ca-item h3{
 	font-family: 'Coustard', sans-serif;
 	text-transform:uppercase;
