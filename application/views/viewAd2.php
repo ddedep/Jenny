@@ -54,10 +54,6 @@
 						echo "</div>";
 						endforeach;
 					?>
-					<?php
-						echo form_open_multipart('index.php/ads');
-						echo "<input name = 'owner' type='hidden' value='".$row['owner']."''></input>";
-					?>
 					<input type="submit" value='subscribe' />
 					</form>
 					<?php echo form_open_multipart('index.php/ads'); ?>

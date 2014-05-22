@@ -39,8 +39,9 @@
 			    <!-- Search -->
 			   	<div class="row">
 			   		<div class="large-9 columns">
+			   			<?php echo form_open('index.php/ads/search'); ?>
 				   		<div class="large-12 columns">
-					        <input type="text">
+					        <input type="text" name="search">
 					    </div>
 					      <div class="large-4 columns">
 						      <select>
@@ -68,8 +69,9 @@
 					      </div>
 				      </div>
 				       <div class="large-3 columns">
-				      	<a href="#" class="large button">Search</a>
+				      	<button type="submit">Search</button>
 				      </div>
+				      </form>
 		      </div>     		      
 		    </div>
 		    <!-- Carousel -->

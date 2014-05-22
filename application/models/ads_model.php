@@ -14,6 +14,15 @@
 			$this->db->query($sql, array($title,$userid,0,$duration,$price,$video,$imagelink,$body,$categoryid,$cityid));
 		}
 
+		public function getsubscribedAds($userid)
+		{
+			$this->db->select('*'); 
+			 $this->db->from('subscriptions');
+			 $this->db->where('subscriber',$userid);
+   			 $this->db->join('persons','persons.personid = subscriptions.subscribedto');
+    		 
+            return $this->db->get();
+		}
 		public function getAds()
 		{
 			$sql = "SELECT * FROM ads";
@@ -32,5 +41,9 @@
 			
 			return $this->db->query($sql);
 		}
-		
+		public function searchAds($search)
+		{
+			$sql = "SELECT * FROM ads WHERE MATCH(title, body) AGAINST ('".$search."')";
+			return $this->db->query($sql);
+		}
 }

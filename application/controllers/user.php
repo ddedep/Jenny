@@ -30,6 +30,7 @@ class user extends CI_Controller {
 				
 			}
 			$data['profile']=$newdata;
+			$data['hide'] = FALSE;
 			$data['username']=$this->session->userdata('username');
 			$this->load->view('profile',$data);
 		}
@@ -38,23 +39,56 @@ class user extends CI_Controller {
 			redirect("/index.php/home");
 		}
 	}
+	public function view()
+	{
+		$user= $this->uri->segment(3);
+		$data['username']=$this->session->userdata('username');
+		$data['userid'] = $this->session->userdata('userid');
+		$query=$this->User_model->getPerson($user);
+		foreach($query->result_array() as $row)
+		{
+				$newdata = array(
+					'firstname' => $row['firstname'],
+					'lastname' => $row['lastname'],
+					'middlename' => $row['middlename'],
+					'phonenum' => $row['phonenum'],
+					'pic' =>$row['picture'],
+					'email' =>$this->session->userdata('email')
+		       );
+				break;
+			
+		}
+		$data['profile']=$newdata;
+		$data['username']=$this->session->userdata('username');
+		$data['hide'] = TRUE;
+		$q = $this->User_model->getUserFromPerson($user);
+		foreach($q->result_array() as $row)
+		{
+				$data['userid'] = $row['userid'];
+			
+		}
+		$this->load->view('profile',$data);
+	}
 	public function subscription()
 	{
 		$adID= $this->uri->segment(3);
 		$data['username']=$this->session->userdata('username');
-		if($adID==null){
-			$data['query'] = $this->ads_model->getAdsOfUser($this->session->userdata('userid'));
-			$this->load->view('subscription',$data);
-		}
-		else
+		$userid = $this->session->userdata('userid');
+		$query=$this->ads_model->getsubscribedAds($userid);
+		foreach($query->result_array() as $row)
 		{
-			$query=$this->ads_model->getAd($adID);
-			$data['query'] =$query;
-			if($query->num_rows()>0)
-				$this->load->view('viewAd2',$data);
-			else
-				$this->load->view('notfound',$data);
+				$newdata = array(
+					'firstname' => $row['firstname'],
+					'lastname' => $row['lastname'],
+					'middlename' => $row['middlename'],
+					'phonenum' => $row['phonenum'],
+					'pic' =>$row['picture'],
+					'email' =>$this->session->userdata('email')
+		       );
+				break;
+			
 		}
+		$this->load->view('viewsubs',$data);
 	}
 }
 ?>

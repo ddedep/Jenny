@@ -6,7 +6,7 @@
 	    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	    <link rel="stylesheet" href="<?php echo base_url(); ?>css/foundation.css" />
 	    <link rel="shortcut icon" href="../favicon.ico"> 
-        <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>css/demo.css" />
+         <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>css/demo.css" />
 		<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>css/style.css" />
 		<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>css/jquery.jscrollpane.css" media="all" />
 		<link href='http://fonts.googleapis.com/css?family=PT+Sans+Narrow&v1' rel='stylesheet' type='text/css' />
@@ -16,8 +16,11 @@
 	</head>
 	<body>
 		<div class="row">
-		<div class="large-12 columns">
-		        <div class = 'panel'>
+		
+			<div class="large-8 column">
+			<div class="row">
+		      <div class="large-12 columns">
+		       <div class = 'panel'>
 		        	<?php if($username!=NULL) echo "Welcome ".$username."!&nbsp;	&nbsp;"; 
 		        	else{
 		        		echo '<a href="';echo base_url().'index.php/home/login">'."Sign in or Register</a>&nbsp;	&nbsp";
@@ -29,58 +32,30 @@
 			        		}
 		        	?>
 		        </div>
+		        <h1>Ads:</h1>
+		      
+		        	<?php
+		        	foreach($query->result_array() as $row)
+					{
+						echo "<h4>Description</h4>";
+						echo "<div class= 'panel'>";
+						echo '<iframe width="420" height="345"';
+						echo ' src="//www.youtube.com/embed/'.$row['videolink'].'"" frameborder="0">';
+						echo '</iframe><br/>';
+						echo "<img src=".base_url()."images/".$row['imagelink']." style='height:200px;width:200px;'><br/>";
+						echo "Title: ".$row['title']."<br/><br/>";
+						echo "Duration: ".$row['duration']." Days<br/><br/>";
+						echo "Price: ".$row['price']."<br/><br/>";
+						echo "<a href='".base_url()."index.php/ads/view/".$row['adid']."'>"."View Ad"."</a>";
+						echo "</div>";
+					}
+		        ?>
+		       
+		        
+
 		      </div>
-			<div class="large-12 column">
-				<div class="large-2 column">
-				<?php if(!$hide):?>
-					<div class="panel">
-						<h5>Menu</h5>
-						<a href="<?php echo base_url() ?>index.php/user">Profile</a> <br/><br/>
-						<a href="<?php echo base_url() ?>index.php/ads/view">My Ads</a> <br/><br/>
-						<a href="">Expired Ads</a> <br/><br/>
-						<a href="<?php echo base_url() ?>index.php/user/subscription">Subscription</a> <br/><br/>
-						<a href="">Subscription Ads</a> <br/><br/>
-						<a href="">My Favorites</a> <br/><br/>
-						<a href="">Buy Points</a> <br/><br/>
-						<a href="">Wish List</a> <br/><br/>
-					</div>
-				<?php endif;?>
-				</div>
-				<div  class="large-10 column">
-					<div class="row">
-						<div class="large-4 column">
-						<div class="panel">
-						<?php
-							echo "<img src=".base_url()."images/".$profile['pic']." style='height:200px;width:200px;'><br/>";
-						?>
-						</div>
-						</div>
-						<div class= "large-12 column">
-						<div class="panel">
-						<?php
-							echo "Name: ".$profile['firstname']." ".$profile['middlename']." ".$profile['lastname']."<br/><br/>";
-							echo "Email: ".$profile['email']."<br/><br/>";
-							echo "Phone Number: ".$profile['phonenum']."<br/><br/>";
-						?>
-						</div>
-						</div>
-						
-					</div>
-					<?php if($hide):
-						echo form_open_multipart('index.php/ads/subscribe');
-					?>
-					<input type="text" name = 'userid' value ='<?php echo $userid;?>'/>
-					<button type="submit">Subscribe</button>
-					</form>
-					<?php endif;?>
-					<?php if(!$hide){
-					echo "<button type='submit'>Edit</button>";
-					} ?>
-					
-				</div>
-				
+		    </div>
 			</div>
-			
 		</div>
 		<!--Scripts -->
 		<script src="<?php echo base_url(); ?>js/vendor/jquery.js"></script>

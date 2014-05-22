@@ -26,11 +26,20 @@
 			$sql = "INSERT into users (username,password,email,address,postalcode,personid) VALUES (?,?,?,?,?,?)";
 			$this->db->query($sql, array($username,$password,$email,$address,$postalcode,$id));
 		}
-
+		public function subscribe($owner,$subscriber)
+		{
+			$sql = "INSERT into subscriptions (subscriber,subscribedto) VALUES (?,?)";
+			$this->db->query($sql, array($owner,$subscriber));
+		}
 		public function getUser($username)
 		{
 			return $query=$this->db->query("SELECT * FROM users WHERE email ='".$username."' OR username='".$username."'");
 		}	
+		public function getUserFromPerson($personid)
+		{
+			return $query=$this->db->query("SELECT * FROM users WHERE personid ='".$personid."'");
+
+		}
 		public function getPerson($personid)
 		{
 			return $query=$this->db->query("SELECT * FROM persons WHERE personid ='".$personid."'");

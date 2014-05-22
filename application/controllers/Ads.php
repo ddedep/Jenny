@@ -6,11 +6,13 @@ class Ads extends CI_Controller {
 		parent::__construct();
 		$this->load->helper(array('form','url'));
 		$this->load->model('ads_model');
+		$this->load->model('User_model');
 	}
 	public function view()
 	{
 		$adID= $this->uri->segment(3);
 		$data['username']=$this->session->userdata('username');
+		$data['userid'] = $this->session->userdata('userid');
 			if($adID==null){
 				$data['query'] = $this->ads_model->getAdsOfUser($this->session->userdata('userid'));
 				$this->load->view('viewAd',$data);
@@ -25,9 +27,20 @@ class Ads extends CI_Controller {
 					$this->load->view('notfound',$data);
 			}
 	}
+	public function search()
+	{
+		$data['username']=$this->session->userdata('username');
+		$data['userid'] = $this->session->userdata('userid');
+		$search = $this->input->post('search');
+		$data['query']= $this->ads_model->searchAds($search);
+		$this->load->view('viewAd',$data);
+	}
 	public function subscribe()
 	{
-		
+		$owner = $this->input->post('userid');
+		$subscriber = $this->session->userdata('userid');
+		$this->User_model->subscribe($owner,$subscriber);
+		redirect('index.php/user');
 	}
 	public function index()
 	{
