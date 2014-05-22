@@ -54,8 +54,20 @@
 						echo "</div>";
 						endforeach;
 					?>
-					<input type="submit" value='subscribe' />
+					<a href="<?php echo base_url();?>index.php/user/view/<?php echo $row['personid'];?>"><button>Subscribe</button></a>
+					<input type="hidden" value='subscribe' />
 					</form>
+					<?php
+						if($row['owner']==$userid):
+						echo form_open('index.php/ads/delete')
+					?>
+
+						<input name ="owner" type="hidden" value="<?php echo $row['adid'];?>" /> &nbsp;
+						<button type ="submit">Delete Ad</button>
+						</form>
+					<?php
+						endif;
+					?>
 					<?php echo form_open_multipart('index.php/ads'); ?>
 						<label>Name</label>
 						<input type="text" />

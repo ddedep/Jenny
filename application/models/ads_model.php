@@ -13,14 +13,17 @@
 			
 			$this->db->query($sql, array($title,$userid,0,$duration,$price,$video,$imagelink,$body,$categoryid,$cityid));
 		}
-
+		public function delete($adid)
+		{
+			$sql = "DELETE FROM ads where adid=".$adid;
+			$this->db->query($sql);
+		}
 		public function getsubscribedAds($userid)
 		{
 			$this->db->select('*'); 
 			 $this->db->from('subscriptions');
-			 $this->db->where('subscriber',$userid);
-   			 $this->db->join('persons','persons.personid = subscriptions.subscribedto');
-    		 
+   			 $this->db->join('ads','ads.owner = subscriptions.subscribedto');
+    		 $this->db->where('subscriber',$userid);
             return $this->db->get();
 		}
 		public function getAds()
@@ -37,9 +40,14 @@
 		}
 		public function getAd($adid)
 		{
-			$sql = "SELECT * FROM ads where adid=".$adid;
-			
-			return $this->db->query($sql);
+			//$sql = "SELECT * FROM ads where adid=".$adid;
+			$this->db->select('*'); 
+			 $this->db->from('ads');
+			 
+   			 $this->db->join('users','users.userid = ads.owner');
+   			 $this->db->where('ads.adid',$adid);
+    		
+            return $this->db->get();
 		}
 		public function searchAds($search)
 		{

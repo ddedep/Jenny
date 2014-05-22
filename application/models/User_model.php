@@ -29,7 +29,7 @@
 		public function subscribe($owner,$subscriber)
 		{
 			$sql = "INSERT into subscriptions (subscriber,subscribedto) VALUES (?,?)";
-			$this->db->query($sql, array($owner,$subscriber));
+			$this->db->query($sql, array($subscriber,$owner));
 		}
 		public function getUser($username)
 		{

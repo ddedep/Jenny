@@ -74,20 +74,8 @@ class user extends CI_Controller {
 		$adID= $this->uri->segment(3);
 		$data['username']=$this->session->userdata('username');
 		$userid = $this->session->userdata('userid');
-		$query=$this->ads_model->getsubscribedAds($userid);
-		foreach($query->result_array() as $row)
-		{
-				$newdata = array(
-					'firstname' => $row['firstname'],
-					'lastname' => $row['lastname'],
-					'middlename' => $row['middlename'],
-					'phonenum' => $row['phonenum'],
-					'pic' =>$row['picture'],
-					'email' =>$this->session->userdata('email')
-		       );
-				break;
-			
-		}
+		$data['query']=$this->ads_model->getsubscribedAds($userid);
+		$query = $data['query'];
 		$this->load->view('viewsubs',$data);
 	}
 }
