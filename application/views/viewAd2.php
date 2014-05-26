@@ -55,13 +55,20 @@
 						endforeach;
 					?>
 					<a href="<?php echo base_url();?>index.php/user/view/<?php echo $row['personid'];?>"><button>Subscribe</button></a>
+					
 					<input type="hidden" value='subscribe' />
 					</form>
 					<?php
 						if($row['owner']==$userid):
+					?>
+				<a href="<?php echo base_url();?>index.php/ads/edit/<?php echo $row['adid'];?>"><button>Edit</button></a>
+					<?php
+						endif;
+					?>
+					<?php
+						if($row['owner']==$userid):
 						echo form_open('index.php/ads/delete')
 					?>
-
 						<input name ="owner" type="hidden" value="<?php echo $row['adid'];?>" />
 						<button type ="submit">Delete Ad</button>
 						</form>

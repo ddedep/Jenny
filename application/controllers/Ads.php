@@ -40,6 +40,7 @@ class Ads extends CI_Controller {
 	{
 		$this->load->library('form_validation');
 		$adID= $this->uri->segment(3);
+		$data['adID'] = $adID;
 		if($adID!=null){
 			if($this->session->userdata('logged_in')){
 				$data['username']=$this->session->userdata('username');
@@ -78,19 +79,29 @@ class Ads extends CI_Controller {
 					if ( ! $this->upload->do_upload())
 					{
 						$error = array('error' => $this->upload->display_errors());
+
+						$image = $this->input->post('imgname');;
+						$this->ads_model->EditAd($adID,$title,$userid,$duration,$price,$video,$image,$body,$categoryid,$cityid);
+						$data['message'] ="Ad Edited!";
+						$data['username']=$this->session->userdata('username');
+						$data['adID'] = $adID;
+						$this->load->view('editAd',$data);
 					}
 					else
 					{
 						$data = array('upload_data' => $this->upload->data(),
 										'err' => "Edited!");
+						$dat = $this->upload->data();
+						$data['query'] =$query;
+						$image = $dat['file_name'];
+						$data['adID'] = $adID;
+						$this->ads_model->EditAd($adID,$title,$userid,$duration,$price,$video,$image,$body,$categoryid,$cityid);
+						$data['message'] ="Ad Edited!";
+						$data['username']=$this->session->userdata('username');
+						$this->load->view('editAd',$data);
 						
 					}
-					$dat = $this->upload->data();
-					$image = $dat['file_name'];
-					$this->ads_model->CreateAd($title,$userid,$duration,$price,$video,$image,$body,$categoryid,$cityid);
-					$data['message'] ="Ad Edited!";
-					$data['username']=$this->session->userdata('username');
-					$this->load->view('editAd',$data);
+					
 				}
 
 			}

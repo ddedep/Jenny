@@ -17,4 +17,5 @@
 			$sql = "INSERT INTO support(title,body,owner) values (?,?,?)";
 			$this->db->query($sql,array($title,$body,$owner));
 		}
+		
 }

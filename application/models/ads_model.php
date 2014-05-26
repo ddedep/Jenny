@@ -13,6 +13,22 @@
 			
 			$this->db->query($sql, array($title,$userid,0,$duration,$price,$video,$imagelink,$body,$categoryid,$cityid));
 		}
+
+		public function EditAd($adID,$title,$userid,$duration,$price,$video,$imagelink,$body,$categoryid,$cityid)
+		{	
+			$data = array('title'=>$title,
+							'owner'=>$userid,
+							'isFeatured'=>0,
+							'duration'=>$duration,
+							'price' => $price,
+							'videolink' => $video,
+							'imagelink' =>$imagelink,
+							'body' =>$body,
+							'categorid' =>$categoryid,
+							'cityid' => $cityid);
+			$this->db->where('adid', $adID);
+			$this->db->update('ads', $data);
+		}
 		public function delete($adid)
 		{
 			$sql = "DELETE FROM ads where adid=".$adid;
