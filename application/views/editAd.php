@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 	<head>
@@ -32,30 +33,83 @@
 			        		}
 		        	?>
 		        </div>
-		        <h1>Ads:</h1>
-		      
-		        	<?php
-		        	foreach($query->result_array() as $row)
-					{
-						echo "<h4>Description</h4>";
-						echo "<div class= 'panel'>";
-						echo '<iframe width="420" height="345"';
-						echo ' src="//www.youtube.com/embed/'.$row['videolink'].'"" frameborder="0">';
-						echo '</iframe><br/>';
-						echo "<img src=".base_url()."images/".$row['imagelink']." style='height:200px;width:200px;'><br/>";
-						echo "Title: ".$row['title']."<br/><br/>";
-						echo "Duration: ".$row['duration']." Days<br/><br/>";
-						echo "Price: ".$row['price']."<br/><br/>";
-						echo "<a href='".base_url()."index.php/ads/view/".$row['adid']."'>"."View Ad"."</a>";
-						echo "</div>";
-					}
-		        ?>
-		       
-		        
-
 		      </div>
 		    </div>
+		    	<?php if($query!=null): 
+				foreach($query->result_array() as $row):
+			?>
+				<div class="row">
+				<h3>Ad Details</h3>
+				<?php echo validation_errors(); echo $message;?>
+		    	</div>
+		    		<?php echo form_open_multipart('index.php/Ads'); ?>
+
+				<div class="row">
+					<div class="small-6 columns">
+    					<label>Category</label>
+    					<select name="category">
+							<option value="1">Men</option>
+							<option value="2">Women</option>
+							<option value="3" selected="selected">Children</option>
+						</select>
+    				</div>
+				</div>
+				<div class="row">
+					<div class="small-4 columns">
+    					<label>City</label>
+    					<select name="city">
+							<option value="1">Makati</option>
+							<option value="2">Quezon City</option>
+							<option value="3" selected="selected">Manila</option>
+						</select>
+    				</div>
+				</div>
+				<div class="row">
+					<div class="small-6 columns">
+						<label>Ad Title</label>
+						<input type="text" name="title" value ="<?php echo $row['title']; ?>">
+					</div>
+				</div>
+				<div class="row">
+					<div class="small-4 columns">
+    					<label>Ad Duration</label>
+    					<select name="duration">
+							<option value="7">One Week</option>
+							<option value="15">15 Days</option>
+							<option value="30" selected="selected">30 Days</option>
+						</select>
+    				</div>
+				</div>
+				<div class="row">
+					<div class="small-8 columns">
+						<label>Description</label>
+						<textarea name="description" value =""><?php echo $row['body']; ?></textarea>
+					</div>
+				</div>
+				<div class="row">
+					<div class="small-6 columns">
+						<label>Price</label>
+						<input type="text" name="price" value ="<?php echo $row['price']; ?>">
+					</div>
+				</div>
+				<div class="row">
+					<div class="small-6 columns">
+						<label>image</label>
+    					<label>upload photo(leave blank if you do not wish to change)</label>
+    					
+						<input type="file" name="userfile" size="20" value="<?php echo $row['imagelink']; ?>" />
+					</div>
+				</div>
+				<div class="row">
+					<div class="small-6 columns">
+						<label>video link</label>
+						<input type="text" name ="video" value="https://www.youtube.com/watch?v=<?php echo $row['videolink']; ?>">
+					</div>
+				</div>
+				<input type="submit">
+				</form>
 			</div>
+			<?php break;endforeach;endif; ?>
 		</div>
 		<!--Scripts -->
 		<script src="<?php echo base_url(); ?>js/vendor/jquery.js"></script>

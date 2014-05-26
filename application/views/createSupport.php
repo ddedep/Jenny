@@ -24,7 +24,7 @@
 		        	<?php if($username!=NULL) echo "Welcome ".$username."!&nbsp;	&nbsp;"; 
 		        	else{
 		        		echo '<a href="';echo base_url().'index.php/home/login">'."Sign in or Register</a>&nbsp;	&nbsp";
-		        		}  ?>|&nbsp;	&nbsp;<a href="<?php echo base_url();?>index.php/user">Profile&nbsp;	&nbsp;</a>|&nbsp;	&nbsp;<a href="<?php echo base_url();?>index.php/support">Sell&nbsp;	&nbsp;</a>	|&nbsp;	&nbsp;<a href="<?php echo base_url();?>index.php/Ads">Customer Support</a>&nbsp;	&nbsp;|
+		        		}  ?>|&nbsp;	&nbsp;<a href="<?php echo base_url();?>index.php/user">Profile&nbsp;	&nbsp;</a>|&nbsp;	&nbsp;<a href="<?php echo base_url();?>index.php/Ads">Sell&nbsp;	&nbsp;</a>	|&nbsp;	&nbsp;<a href="<?php echo base_url();?>index.php/support">Customer Support</a>&nbsp;	&nbsp;|
 		        	<?php	
 			        	if($username==NULL) echo ""; 
 			        	else{
@@ -32,30 +32,31 @@
 			        		}
 		        	?>
 		        </div>
-		        <h1>Ads:</h1>
-		      
-		        	<?php
-		        	foreach($query->result_array() as $row)
-					{
-						echo "<h4>Description</h4>";
-						echo "<div class= 'panel'>";
-						echo '<iframe width="420" height="345"';
-						echo ' src="//www.youtube.com/embed/'.$row['videolink'].'"" frameborder="0">';
-						echo '</iframe><br/>';
-						echo "<img src=".base_url()."images/".$row['imagelink']." style='height:200px;width:200px;'><br/>";
-						echo "Title: ".$row['title']."<br/><br/>";
-						echo "Duration: ".$row['duration']." Days<br/><br/>";
-						echo "Price: ".$row['price']."<br/><br/>";
-						echo "<a href='".base_url()."index.php/ads/view/".$row['adid']."'>"."View Ad"."</a>";
-						echo "</div>";
-					}
-		        ?>
-		       
-		        
-
 		      </div>
 		    </div>
+		    	<div class="row">
+				<h3>Support Details</h3>
+				<?php echo validation_errors(); echo $message;?>
+		    	</div>
+		    		<?php echo form_open_multipart('index.php/support/createSupport'); ?>
+
+				<div class="row">
+					<div class="small-6 columns">
+						<label>Support Title</label>
+						<input type="text" name="title">
+					</div>
+				</div>
+				
+				<div class="row">
+					<div class="small-8 columns">
+						<label>Body</label>
+						<textarea name="body"></textarea>
+					</div>
+				</div>
+				<input type="submit" />
+				</form>
 			</div>
+			
 		</div>
 		<!--Scripts -->
 		<script src="<?php echo base_url(); ?>js/vendor/jquery.js"></script>

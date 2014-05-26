@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 	<head>
@@ -15,16 +16,15 @@
 	    <script src="<?php echo base_url(); ?>js/vendor/modernizr.js"></script>
 	</head>
 	<body>
-		<div class="row">
-		
-			<div class="large-8 column">
+		<!--Body -->
+		<div class="large-8 column">
 			<div class="row">
 		      <div class="large-12 columns">
 		       <div class = 'panel'>
 		        	<?php if($username!=NULL) echo "Welcome ".$username."!&nbsp;	&nbsp;"; 
 		        	else{
 		        		echo '<a href="';echo base_url().'index.php/home/login">'."Sign in or Register</a>&nbsp;	&nbsp";
-		        		}  ?>|&nbsp;	&nbsp;<a href="<?php echo base_url();?>index.php/user">Profile&nbsp;	&nbsp;</a>|&nbsp;	&nbsp;<a href="<?php echo base_url();?>index.php/support">Sell&nbsp;	&nbsp;</a>	|&nbsp;	&nbsp;<a href="<?php echo base_url();?>index.php/Ads">Customer Support</a>&nbsp;	&nbsp;|
+		        		}  ?>|&nbsp;	&nbsp;<a href="<?php echo base_url();?>index.php/user">Profile&nbsp;	&nbsp;</a>|&nbsp;	&nbsp;<a href="<?php echo base_url();?>index.php/Ads">Sell&nbsp;	&nbsp;</a>	|&nbsp;	&nbsp;<a href="<?php echo base_url();?>index.php/support">Customer Support</a>&nbsp;	&nbsp;|
 		        	<?php	
 			        	if($username==NULL) echo ""; 
 			        	else{
@@ -32,30 +32,20 @@
 			        		}
 		        	?>
 		        </div>
-		        <h1>Ads:</h1>
-		      
-		        	<?php
+		      </div>
+		      <a href="<?php echo base_url()?>index.php/support/createSupport"><button>Create Support</button></a>
+		     
+		      <?php
 		        	foreach($query->result_array() as $row)
 					{
-						echo "<h4>Description</h4>";
 						echo "<div class= 'panel'>";
-						echo '<iframe width="420" height="345"';
-						echo ' src="//www.youtube.com/embed/'.$row['videolink'].'"" frameborder="0">';
-						echo '</iframe><br/>';
-						echo "<img src=".base_url()."images/".$row['imagelink']." style='height:200px;width:200px;'><br/>";
+						echo "<h2>Support ".$row['support_id']."</h2>";
 						echo "Title: ".$row['title']."<br/><br/>";
-						echo "Duration: ".$row['duration']." Days<br/><br/>";
-						echo "Price: ".$row['price']."<br/><br/>";
-						echo "<a href='".base_url()."index.php/ads/view/".$row['adid']."'>"."View Ad"."</a>";
+						echo $row['body']."<br/><br/>";
 						echo "</div>";
 					}
-		        ?>
-		       
-		        
-
-		      </div>
+			?>
 		    </div>
-			</div>
 		</div>
 		<!--Scripts -->
 		<script src="<?php echo base_url(); ?>js/vendor/jquery.js"></script>
