@@ -13,7 +13,33 @@
 			
 			$this->db->query($sql, array($firstname,$middlename,$lastname,$phonenum,$picture,$birthdate));
 		}
+		public function updateAccount($userid,$firstname,$middlename,$lastname,$phonenum,$picture,$birthdate,$email, $address, $postalcode)
+		{	
+			$data = array(
+				'firstname' => $firstname,
+				'middlename'=> $middlename,
+				'lastname' => $lastname,
+				'phonenum' => $phonenum,
+				'picture' =>$picture,
+				'birthdate' =>$birthdate,
+				'email' => $email,
+				'address' => $address,
+				'postalcode' =>$postalcode
+			);
+			$this->db->where('userid', $userid);
+	//		$this->db->join('persons','persons.personid = users.personid');
+			$this->db->update('users join persons on persons.personid = users.personid',$data);
+		}
 		
+		public function getAccount($userid)
+		{
+			$this->db->select('*'); 
+			$this->db->from('users');
+			$this->db->join('persons','persons.personid = users.personid');
+			$this->db->where('userid',$userid);
+            return $this->db->get();
+		}
+
 		public function createUser($username,$password,$email,$address,$postalcode)
 		{	
 			

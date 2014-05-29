@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50611
 File Encoding         : 65001
 
-Date: 2014-05-22 13:17:35
+Date: 2014-05-29 13:28:27
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -32,13 +32,15 @@ CREATE TABLE `ads` (
   `categorid` int(11) NOT NULL,
   `cityid` int(11) NOT NULL,
   `insertedon` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `isexpired` int(11) NOT NULL,
   PRIMARY KEY (`adid`),
   FULLTEXT KEY `search_index` (`title`,`body`)
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of ads
 -- ----------------------------
+
 -- ----------------------------
 -- Table structure for `categories`
 -- ----------------------------
@@ -47,7 +49,7 @@ CREATE TABLE `categories` (
   `categoryid` int(11) NOT NULL AUTO_INCREMENT,
   `categoryname` varchar(32) DEFAULT NULL,
   PRIMARY KEY (`categoryid`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of categories
@@ -55,6 +57,7 @@ CREATE TABLE `categories` (
 INSERT INTO `categories` VALUES ('1', 'Men');
 INSERT INTO `categories` VALUES ('2', 'Women');
 INSERT INTO `categories` VALUES ('3', 'Children');
+INSERT INTO `categories` VALUES ('4', null);
 
 -- ----------------------------
 -- Table structure for `cities`
@@ -70,10 +73,6 @@ CREATE TABLE `cities` (
 -- ----------------------------
 -- Records of cities
 -- ----------------------------
-INSERT INTO `cities` VALUES ('1', 'Makati', '1');
-INSERT INTO `cities` VALUES ('2', 'Quezon City', '1');
-INSERT INTO `cities` VALUES ('3', 'Manila', '1');
-INSERT INTO `cities` VALUES ('4', null, null);
 
 -- ----------------------------
 -- Table structure for `favorites`
@@ -105,12 +104,11 @@ CREATE TABLE `persons` (
   `picture` varchar(255) NOT NULL,
   `insertedon` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`personid`)
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of persons
 -- ----------------------------
-
 -- ----------------------------
 -- Table structure for `regions`
 -- ----------------------------
@@ -157,12 +155,29 @@ CREATE TABLE `subscriptions` (
   KEY `subscribee` (`subscribedto`),
   CONSTRAINT `owner` FOREIGN KEY (`subscriber`) REFERENCES `users` (`userid`),
   CONSTRAINT `subscribee` FOREIGN KEY (`subscribedto`) REFERENCES `users` (`userid`)
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of subscriptions
 -- ----------------------------
 
+-- ----------------------------
+-- Table structure for `support`
+-- ----------------------------
+DROP TABLE IF EXISTS `support`;
+CREATE TABLE `support` (
+  `support_id` int(11) NOT NULL AUTO_INCREMENT,
+  `title` text,
+  `body` text,
+  `owner` int(11) DEFAULT NULL,
+  PRIMARY KEY (`support_id`),
+  KEY `support_owner` (`owner`),
+  CONSTRAINT `support_owner` FOREIGN KEY (`owner`) REFERENCES `users` (`userid`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+
+-- ----------------------------
+-- Records of support
+-- ----------------------------
 -- ----------------------------
 -- Table structure for `users`
 -- ----------------------------
@@ -174,13 +189,13 @@ CREATE TABLE `users` (
   `password` varchar(32) NOT NULL,
   `email` varchar(64) NOT NULL,
   `points` int(11) DEFAULT '0',
-  `address` int(11) DEFAULT NULL,
+  `address` varchar(255) DEFAULT NULL,
   `postalcode` int(11) NOT NULL,
   `insertedon` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`userid`),
   KEY `personRef` (`personid`),
   CONSTRAINT `personRef` FOREIGN KEY (`personid`) REFERENCES `persons` (`personid`)
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of users
@@ -200,3 +215,27 @@ CREATE TABLE `wishes` (
 -- ----------------------------
 -- Records of wishes
 -- ----------------------------
+
+-- ----------------------------
+-- Procedure structure for `expiration`
+-- ----------------------------
+DROP PROCEDURE IF EXISTS `expiration`;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `expiration`()
+BEGIN
+	#Routine body goes here...
+	 UPDATE ads
+   SET isexpired = 1
+    WHERE  TIMESTAMPDIFF(DAY, `insertedon`, NOW()) >  `duration`; 
+END
+;;
+DELIMITER ;
+
+-- ----------------------------
+-- Event structure for `exec`
+-- ----------------------------
+DROP EVENT IF EXISTS `exec`;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` EVENT `exec` ON SCHEDULE EVERY 5 SECOND STARTS '2013-02-10 00:00:00' ENDS '2016-02-28 00:00:00' ON COMPLETION NOT PRESERVE ENABLE DO call expiration()
+;;
+DELIMITER ;

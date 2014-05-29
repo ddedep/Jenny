@@ -74,7 +74,7 @@
 					</form>
 					<?php endif;?>
 					<?php if(!$hide){
-					echo "<button type='submit'>Edit</button>";
+						echo "<a href='".base_url()."index.php/user/edit'><button type='submit'>Edit</button></a>";
 					} ?>
 					
 				</div>
