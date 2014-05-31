@@ -37,7 +37,9 @@
 		        	<?php
 		        	foreach($query->result_array() as $row):
 					?>
-						<?php echo $row['firstname']; ?>
+						<div class="panel">
+							Username:<?php echo $row['username']; ?>
+						</div>
 					
 					<?php
 						endforeach;

@@ -37,7 +37,7 @@
 						<h5>Menu</h5>
 						<a href="<?php echo base_url() ?>index.php/user">Profile</a> <br/><br/>
 						<a href="<?php echo base_url() ?>index.php/ads/view">My Ads</a> <br/><br/>
-						<a href="">Expired Ads</a> <br/><br/>
+						<a href="<?php echo base_url() ?>index.php/ads/viewExpired">Expired Ads</a> <br/><br/>
 						<a href="<?php echo base_url() ?>index.php/user/userSubscription">Subscription</a> <br/><br/>
 						<a href="<?php echo base_url() ?>index.php/user/subscription">Subscription Ads</a> <br/><br/>
 						<a href="<?php echo base_url() ?>index.php/ads/viewFavorites">My Favorites</a> <br/><br/>

@@ -34,12 +34,22 @@
 			$sql = "DELETE FROM ads where adid=".$adid;
 			$this->db->query($sql);
 		}
+
+		public function getExpiredAds($userid)
+		{
+			$this->db->select("*");
+			$this->db->from('ads');
+			$this->db->where('owner',$userid);
+			$this->db->where('isexpired',1);
+			return $this->db->get();
+		}
 		public function getsubscribedAds($userid)
 		{
 			$this->db->select('*'); 
 			 $this->db->from('subscriptions');
    			 $this->db->join('ads','ads.owner = subscriptions.subscribedto');
     		 $this->db->where('subscriber',$userid);
+    		 $this->db->where('ads.isExpired',0);
             return $this->db->get();
 		}
 		public function getsubscribedUsers($userid)

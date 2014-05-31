@@ -28,6 +28,13 @@ class Ads extends CI_Controller {
 					$this->load->view('notfound',$data);
 			}
 	}
+	public function viewExpired()
+	{
+		$data['username']=$this->session->userdata('username');
+		$data['userid'] = $this->session->userdata('userid');
+		$data['query'] = $this->ads_model->getExpiredAds($this->session->userdata('userid'));
+		$this->load->view('viewAd',$data);
+	}
 	public function viewFavorites()
 	{
 		$data['username']=$this->session->userdata('username');
