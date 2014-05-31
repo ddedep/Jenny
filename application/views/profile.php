@@ -38,9 +38,9 @@
 						<a href="<?php echo base_url() ?>index.php/user">Profile</a> <br/><br/>
 						<a href="<?php echo base_url() ?>index.php/ads/view">My Ads</a> <br/><br/>
 						<a href="">Expired Ads</a> <br/><br/>
-						<a href="<?php echo base_url() ?>index.php/user/subscription">Subscription</a> <br/><br/>
-						<a href="">Subscription Ads</a> <br/><br/>
-						<a href="">My Favorites</a> <br/><br/>
+						<a href="<?php echo base_url() ?>index.php/user/userSubscription">Subscription</a> <br/><br/>
+						<a href="<?php echo base_url() ?>index.php/user/subscription">Subscription Ads</a> <br/><br/>
+						<a href="<?php echo base_url() ?>index.php/ads/viewFavorites">My Favorites</a> <br/><br/>
 						<a href="">Buy Points</a> <br/><br/>
 						<a href="">Wish List</a> <br/><br/>
 					</div>

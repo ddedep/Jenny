@@ -32,65 +32,16 @@
 			        		}
 		        	?>
 		        </div>
+		        <h1>Subscribed to:</h1>
 		      
-		      		
 		        	<?php
-
 		        	foreach($query->result_array() as $row):
+					?>
+						<?php echo $row['firstname']; ?>
 					
-						echo "<h1>".$row['title']."</h1>";
-					?>
 					<?php
-						echo "<h4>Description</h4>";
-						echo "<div class= 'panel'>";
-						echo '<iframe width="420" height="345"';
-						echo ' src="//www.youtube.com/embed/'.$row['videolink'].'"" frameborder="0">';
-						echo '</iframe><br/>';
-						echo "<img src=".base_url()."images/".$row['imagelink']." style='height:200px;width:200px;'><br/>";
-						echo "Title: ".$row['title']."<br/><br/>";
-						echo "Duration: ".$row['duration']." Days<br/><br/>";
-						echo "Price: ".$row['price']."<br/><br/>";
-						echo "About: ".$row['body']."<br/><br/>";
-						echo "</div>";
 						endforeach;
-					?>
-					<?php if($row['owner']!=$userid): ?>
-					<a href="<?php echo base_url();?>index.php/user/view/<?php echo $row['personid'];?>"><button>Subscribe</button></a>
-					<?php endif; ?>
-					<input type="hidden" value='subscribe' />
-					<?php if($hidefav==0 && $row['owner']!=$userid): echo form_open('index.php/Ads/favorite'); ?>
-						<input name ="favid" type="hidden" value="<?php echo $row['adid'];?>" />
-						<button type="submit">Favorite</button>
-					</form>
-					<?php endif; ?>
-					<?php
-						if($row['owner']==$userid):
-					?>
-						<a href="<?php echo base_url();?>index.php/ads/edit/<?php echo $row['adid'];?>"><button>Edit</button></a>
-					<?php
-						endif;
-					?>
-					<?php
-						if($row['owner']==$userid):
-						echo form_open('index.php/ads/delete')
-					?>
-						<input name ="owner" type="hidden" value="<?php echo $row['adid'];?>" />
-						<button type ="submit">Delete Ad</button>
-						</form>
-					<?php
-						endif;
-					?>
-					<?php echo form_open_multipart('index.php/ads'); ?>
-						<label>Name</label>
-						<input type="text" />
-						<label>Email</label>
-						<input type="text" />
-						<label>Contact Number</label>
-						<input type="text" />
-						<label>Message</label>
-						<textarea name="description"></textarea>
-						<button type="submit">Submit</button> 
-					</form>
+			        ?>
 		       
 		        
 

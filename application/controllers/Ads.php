@@ -20,12 +20,31 @@ class Ads extends CI_Controller {
 			else
 			{
 				$query=$this->ads_model->getAd($adID);
+				$data['hidefav'] = $this->ads_model->isFavorite($this->session->userdata('userid'),$adID);
 				$data['query'] =$query;
 				if($query->num_rows()>0)
 					$this->load->view('viewAd2',$data);
 				else
 					$this->load->view('notfound',$data);
 			}
+	}
+	public function viewFavorites()
+	{
+		$data['username']=$this->session->userdata('username');
+		$data['userid'] = $this->session->userdata('userid');
+		$data['query'] = $this->ads_model->getFavorites($this->session->userdata('userid'));
+		$this->load->view('viewAd',$data);
+	}
+	public function favorite()
+	{
+		$data['username']=$this->session->userdata('username');
+		$data['userid'] = $this->session->userdata('userid');
+		$query=$this->ads_model->getAd($adID);
+		$data['query'] =$query;
+		$adID = $this->input->post('favid');
+		$userid = $data['userid'];
+		$this->ads_model->favoriteAd($adID, $userid);
+		redirect("index.php/ads/viewFavorites");
 	}
 	public function delete()
 	{

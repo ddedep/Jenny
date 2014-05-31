@@ -78,6 +78,15 @@ class user extends CI_Controller {
 		$query = $data['query'];
 		$this->load->view('viewsubs',$data);
 	}
+	public function userSubscription()
+	{
+		$adID= $this->uri->segment(3);
+		$data['username']=$this->session->userdata('username');
+		$userid = $this->session->userdata('userid');
+		$data['query']=$this->ads_model->getsubscribedUsers($userid);
+		$query = $data['query'];
+		$this->load->view('viewusersubs',$data);
+	}
 	public function edit()
 	{
 		if(!$this->session->userdata('logged_in')){

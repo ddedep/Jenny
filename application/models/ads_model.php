@@ -42,6 +42,37 @@
     		 $this->db->where('subscriber',$userid);
             return $this->db->get();
 		}
+		public function getsubscribedUsers($userid)
+		{
+			$this->db->select('*'); 
+			 $this->db->from('users');
+   			 $this->db->join('subscriptions','users.userid = subscriptions.subscribedto');
+   			 $this->db->join('persons','persons.personid = users.personid');
+    		 $this->db->where('subscriptions.subscriber',$userid);
+            return $this->db->get();
+		}
+		public function isSubscribed()
+		{
+
+		}
+		public function getFavorites($userid)
+		{
+			$this->db->select('*'); 
+			$this->db->from('favorites');
+			$this->db->join('ads','ads.adid=favorites.favoriteAdid');
+			$this->db->where('favorites.ownerid',$userid);
+			return $this->db->get();
+		}
+		public function isFavorite($userid,$adid)
+		{
+			$sql= "SELECT * FROM favorites where ownerid=? AND favoriteAdid=?";
+			return $this->db->query($sql,array($userid,$adid))->num_rows();
+		}
+		public function favoriteAd($adID, $userid)
+		{
+			$sql = "INSERT INTO favorites (ownerid,favoriteAdid) values (?,?)";
+			$this->db->query($sql,array($userid,$adID));
+		}
 		public function getAds()
 		{
 			$sql = "SELECT * FROM ads";
