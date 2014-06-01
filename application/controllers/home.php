@@ -9,10 +9,23 @@ class Home extends CI_Controller {
 		$this->load->model('ads_model');
 		
 	}
+	public function getProvinces()
+	{
+		$regionid = $this->input->post('regionID');
+		$res=$this->ads_model->getProvinces($regionid);
+		$k ="";
+		foreach($res->result_array() as $row)
+		{
+			$k=$k."<option value='".$row['provinceid']."'>".$row['provincename']."</option>";
+		}
+		echo $k;
+		
+	}
 	public function index()
 	{
 		$data['username']=$this->session->userdata('username');
 		$data['query'] = $this->ads_model->getAds();
+		$data['regions'] = $this->ads_model->getRegions();
 		$this->load->view('home',$data);
 	}
 	public function login()

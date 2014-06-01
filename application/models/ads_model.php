@@ -95,6 +95,19 @@
 			
 			return $this->db->query($sql);
 		}
+		public function getProvinces($regionid)
+		{
+			$this->db->select('*'); 
+			$this->db->from('provinces');
+			$this->db->where('regionid',$regionid);
+			return $this->db->get();
+		}
+		public function getRegions()
+		{
+			$this->db->select('*'); 
+			$this->db->from('regions');
+			return $this->db->get();
+		}
 		public function getAd($adid)
 		{
 			//$sql = "SELECT * FROM ads where adid=".$adid;
