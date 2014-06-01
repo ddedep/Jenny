@@ -13,6 +13,7 @@
 		<link href='http://fonts.googleapis.com/css?family=PT+Sans+Narrow&v1' rel='stylesheet' type='text/css' />
 		<link href='http://fonts.googleapis.com/css?family=Coustard:900' rel='stylesheet' type='text/css' />
 		<link href='http://fonts.googleapis.com/css?family=Rochester' rel='stylesheet' type='text/css' />
+		 <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
 	    <script src="<?php echo base_url(); ?>js/vendor/modernizr.js"></script>
 	</head>
 	<body>
@@ -37,16 +38,45 @@
 		     
 		      <?php foreach($query->result_array() as $row):	?>
 						<div class= 'panel'>
-						<h2>Support <?php echo $row['support_id']; ?></h2>
-						Title: <?php echo $row['title']; ?><br/><br/>
-						<?php echo $row['body']; ?><br/><br/>
-						<a href="<?php echo base_url(); ?>/index.php/support/view/<?php echo $row['support_id'];?>">View Comments</a>
+							<h2>Support <?php echo $row['support_id']; ?></h2>
+							Title: <?php echo $row['title']; ?><br/><br/>
+							<?php echo $row['body']; ?><br/><br/>
 						</div><br />
-
+						<label>Comment</label>
+						<textarea id='comment'></textarea>
+						<button id='postComment'>Post</button>
 			<?php endforeach; ?>
+			<div class="row" id='commentArea'>
+				 <?php foreach($comments->result_array() as $comrow):	?>
+				 	<div class="panel">
+				 		<?php echo $comrow['username']; ?> wrote: <br/>
+				 		<i><?php echo $comrow['body'] ?></i> <br/>
+				 		&nbsp;<i><?php echo $comrow['cominsertedon']; ?></i>
+				 	</div>
+				 <?php endforeach; ?>
+		    </div>
 		    </div>
 		</div>
 		<!--Scripts -->
+		<script type="text/javascript">
+		var username = "<?php echo $this->session->userdata('username'); ?>";
+		var body = $('#comment').val();
+		//alert(body);
+	//	var time = $.now();
+		$('#postComment').click(function(){
+		//	alert(body);
+		   $.post( "../../support/comment", {threadid:<?php echo $row['support_id'];?>, body:$('#comment').val()} ).done(function( data ) {
+			//alert( "Data Loaded: " + data );
+			if(data=='added') alert('oheayh');
+			else{
+				
+		//	alert(data);
+				$('#commentArea').html("<div class='panel'>"+username+" wrote: <br/><i>"+$('#comment').val()+"<br/></i><i>"+data+"</i></div>"+$('#commentArea').html());
+				$('#comment').attr('value','');
+			}
+			});
+		});
+		</script>
 		<script src="<?php echo base_url(); ?>js/vendor/jquery.js"></script>
 	    <script src="<?php echo base_url(); ?>js/foundation.min.js"></script>
 	    <script>
