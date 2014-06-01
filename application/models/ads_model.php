@@ -91,7 +91,7 @@
 		}
 		public function getAdsOfUser($id)
 		{
-			$sql = "SELECT * FROM ads where owner=".$id;
+			$sql = "SELECT * FROM ads where owner=".$id." AND isexpired=0";
 			
 			return $this->db->query($sql);
 		}
@@ -100,8 +100,7 @@
 			//$sql = "SELECT * FROM ads where adid=".$adid;
 			$this->db->select('*'); 
 			 $this->db->from('ads');
-			 
-   			 $this->db->join('users','users.userid = ads.owner');
+   			 $this->db->join('users','ads.owner = users.userid','left');
    			 $this->db->where('ads.adid',$adid);
     		
             return $this->db->get();

@@ -116,16 +116,7 @@
     				<div class="medium-4 columns">
     					<label>Postal Code</label>
     					<input type="text" name ="postalcode">
-    				</div>
-    				<div class="medium-4 columns">
-    					<label>Region</label>
-    					<select></select>
-    				</div>
-    				<div class="medium-4 columns">
-    					<label>City</label>
-    					<select></select>
-    				</div>
-    			
+    				</div>   			
     			
     				<div class="large-12 columns">
     				<label>Address</label>
