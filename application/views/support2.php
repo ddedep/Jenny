@@ -42,10 +42,12 @@
 							Title: <?php echo $row['title']; ?><br/><br/>
 							<?php echo $row['body']; ?><br/><br/>
 						</div><br />
-						<label>Comment</label>
-						<textarea id='comment'></textarea>
-						<button id='postComment'>Post</button>
 			<?php endforeach; ?>
+			<?php if($this->session->userdata('logged_in')): ?>
+			<label>Comment</label>
+			<textarea id='comment'></textarea>
+			<button id='postComment'>Post</button>
+			<?php endif; ?>
 			<div class="row" id='commentArea'>
 				 <?php foreach($comments->result_array() as $comrow):	?>
 				 	<div class="panel">
@@ -65,7 +67,7 @@
 	//	var time = $.now();
 		$('#postComment').click(function(){
 		//	alert(body);
-		   $.post( "../../support/comment", {threadid:<?php echo $row['support_id'];?>, body:$('#comment').val()} ).done(function( data ) {
+		   $.post( "<?php echo base_url();?>index.php/support/comment", {threadid:<?php echo $row['support_id'];?>, body:$('#comment').val()} ).done(function( data ) {
 			//alert( "Data Loaded: " + data );
 			if(data=='added') alert('oheayh');
 			else{

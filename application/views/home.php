@@ -46,10 +46,10 @@
 					    </div>
 					      <div class="large-4 columns">
 						      <select>
-						        <option value="husker">Categories</option>
-						        <option value="starbuck">Starbuck</option>
-						        <option value="hotdog">Hot Dog</option>
-						        <option value="apollo">Apollo</option>
+						        <option value="0">Categories</option>
+						        <?php foreach ($categories->result_array() as $row):?>
+						       	 <option value="<?php echo $row['categoryid'];?>"><?php echo $row['categoryname']; ?></option>
+						    	<?php endforeach; ?>
 						      </select>
 					      </div>
 					      <div class="large-4 columns">
@@ -113,8 +113,8 @@
 		
 			$('#regions').change(function(){
 				var regionName = $('#regions').find(":selected").val();
-			//alert(regionName);
-		   $.post( "home/getProvinces", {regionID:regionName} ).done(function( data ) {
+			alert(regionName);
+		   $.post( "<?php echo base_url();?>index.php/home/getProvinces", {regionID:regionName} ).done(function( data ) {
 			//	alert(regionName+" Data Loaded: " + data );
 				if(data=='added') alert('oheayh');
 				else{

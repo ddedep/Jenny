@@ -26,6 +26,7 @@ class Home extends CI_Controller {
 		$data['username']=$this->session->userdata('username');
 		$data['query'] = $this->ads_model->getAds();
 		$data['regions'] = $this->ads_model->getRegions();
+		$data['categories'] = $this->ads_model->getCategories();
 		$this->load->view('home',$data);
 	}
 	public function login()

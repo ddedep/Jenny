@@ -123,4 +123,10 @@
 			$sql = "SELECT * FROM ads WHERE MATCH(title, body) AGAINST ('".$search."')";
 			return $this->db->query($sql);
 		}
+		public function getCategories()
+		{
+			$this->db->select("*");
+			$this->db->from('categories');
+			return $this->db->get();
+		}
 }
