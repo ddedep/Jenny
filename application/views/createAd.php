@@ -12,6 +12,7 @@
 		<link href='http://fonts.googleapis.com/css?family=PT+Sans+Narrow&v1' rel='stylesheet' type='text/css' />
 		<link href='http://fonts.googleapis.com/css?family=Coustard:900' rel='stylesheet' type='text/css' />
 		<link href='http://fonts.googleapis.com/css?family=Rochester' rel='stylesheet' type='text/css' />
+		<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
 	    <script src="<?php echo base_url(); ?>js/vendor/modernizr.js"></script>
 	</head>
 	<body>
@@ -45,21 +46,25 @@
 					<div class="small-6 columns">
     					<label>Category</label>
     					<select name="category">
-							<option value="1">Men</option>
-							<option value="2">Women</option>
-							<option value="3" selected="selected">Chilren</option>
+					        <?php foreach ($categories->result_array() as $row):?>
+					       	 <option value="<?php echo $row['categoryid'];?>"><?php echo $row['categoryname']; ?></option>
+					    	<?php endforeach; ?>
 						</select>
     				</div>
 				</div>
 				<div class="row">
-					<div class="small-4 columns">
-    					<label>City</label>
-    					<select name="city">
-							<option value="1">Makati</option>
-							<option value="2">Quezon City</option>
-							<option value="3" selected="selected">Manila</option>
-						</select>
-    				</div>
+					<div class="large-4 columns">
+						      <select id= 'regions'>
+						      	<?php foreach ($regions->result_array() as $row):?>
+						       	 <option value="<?php echo $row['regionid'];?>"><?php echo $row['regionname']; ?></option>
+						    	<?php endforeach; ?>
+						      </select>
+					      </div>
+					      <div class="large-4 columns">
+						      <select id ='provinces' name='provinces'>
+						      </select>
+					      </div>
+					</div>
 				</div>
 				<div class="row">
 					<div class="small-6 columns">
@@ -109,6 +114,22 @@
 			
 		</div>
 		<!--Scripts -->
+		<script type="text/javascript">
+		
+			$('#regions').change(function(){
+				var regionName = $('#regions').find(":selected").val();
+			//alert(regionName);
+		   $.post( "<?php echo base_url();?>index.php/home/getProvinces", {regionID:regionName} ).done(function( data ) {
+			//	alert(regionName+" Data Loaded: " + data );
+				if(data=='added') alert('oheayh');
+				else{
+			//	alert(data);
+				$('#provinces').html(data);
+				}
+				});
+		});
+		</script>
+
 		<script src="<?php echo base_url(); ?>js/vendor/jquery.js"></script>
 	    <script src="<?php echo base_url(); ?>js/foundation.min.js"></script>
 	    <script>

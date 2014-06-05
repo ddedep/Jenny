@@ -52,16 +52,23 @@
 						echo "Duration: ".$row['duration']." Days<br/><br/>";
 						echo "Price: ".$row['price']."<br/><br/>";
 						echo "About: ".$row['body']."<br/><br/>";
+						echo "Total Views: ".$row['view']."<br/><br/>";
 						echo "</div>";
 						endforeach;
 					?>
 					<?php if($row['owner']!=$userid): ?>
 					<a href="<?php echo base_url();?>index.php/user/view/<?php echo $row['personid'];?>"><button>Subscribe</button></a>
 					<?php endif; ?>
+
 					<input type="hidden" value='subscribe' />
 					<?php if($hidefav==0 && $row['owner']!=$userid): echo form_open('index.php/Ads/favorite'); ?>
 						<input name ="favid" type="hidden" value="<?php echo $row['adid'];?>" />
 						<button type="submit">Favorite</button>
+					</form>
+					<?php endif; ?>
+					<?php if($hidewish==0 && $row['owner']!=$userid): echo form_open('index.php/Ads/wish'); ?>
+						<input name ="wishid" type="hidden" value="<?php echo $row['adid'];?>" />
+						<button type="submit">Add to Wish List</button>
 					</form>
 					<?php endif; ?>
 					<?php
@@ -73,7 +80,7 @@
 					?>
 					<?php
 						if($row['owner']==$userid):
-						echo form_open('index.php/ads/delete')
+						echo form_open('index.php/ads/delete');
 					?>
 						<input name ="owner" type="hidden" value="<?php echo $row['adid'];?>" />
 						<button type ="submit">Delete Ad</button>

@@ -21,12 +21,34 @@ class Ads extends CI_Controller {
 			{
 				$query=$this->ads_model->getAd($adID);
 				$data['hidefav'] = $this->ads_model->isFavorite($this->session->userdata('userid'),$adID);
+				$data['hidewish'] = $this->ads_model->isWish($this->session->userdata('userid'),$adID);
 				$data['query'] =$query;
-				if($query->num_rows()>0)
+				if($query->num_rows()>0){
+					$this->ads_model->adViewed($adID);
 					$this->load->view('viewAd2',$data);
+				}					
 				else
 					$this->load->view('notfound',$data);
 			}
+	}
+
+	public function wish()
+	{
+		$data['username']=$this->session->userdata('username');
+		$data['userid'] = $this->session->userdata('userid');
+		$query=$this->ads_model->getAd($adID);
+		$data['query'] =$query;
+		$adID = $this->input->post('wishid');
+		$userid = $data['userid'];
+		$this->ads_model->wishAd($adID, $userid);
+		redirect("index.php/ads/viewWish");
+	}
+	public function viewWish()
+	{
+		$data['username']=$this->session->userdata('username');
+		$data['userid'] = $this->session->userdata('userid');
+		$data['query'] = $this->ads_model->getWishes($this->session->userdata('userid'));
+		$this->load->view('viewAd',$data);
 	}
 	public function viewExpired()
 	{
@@ -46,8 +68,6 @@ class Ads extends CI_Controller {
 	{
 		$data['username']=$this->session->userdata('username');
 		$data['userid'] = $this->session->userdata('userid');
-		$query=$this->ads_model->getAd($adID);
-		$data['query'] =$query;
 		$adID = $this->input->post('favid');
 		$userid = $data['userid'];
 		$this->ads_model->favoriteAd($adID, $userid);
@@ -147,7 +167,9 @@ class Ads extends CI_Controller {
 		$data['username']=$this->session->userdata('username');
 		$data['userid'] = $this->session->userdata('userid');
 		$search = $this->input->post('search');
-		$data['query']= $this->ads_model->searchAds($search);
+		$category = $this->input->post('category');
+		$province = $this->input->post('province');
+		$data['query']= $this->ads_model->searchAds($search,$province,$category);
 		$this->load->view('viewAd',$data);
 	}
 	public function subscribe()
@@ -157,17 +179,20 @@ class Ads extends CI_Controller {
 		$this->User_model->subscribe($owner,$subscriber);
 		redirect('index.php/user');
 	}
-	public function index()
+	public function index() // create ad
 	{
 		$this->load->library('form_validation');
-
+			$data['regions'] = $this->ads_model->getRegions();
+			$data['categories'] = $this->ads_model->getCategories();
 		if($this->session->userdata('logged_in')){
+			$data['regions'] = $this->ads_model->getRegions();
+			$data['categories'] = $this->ads_model->getCategories();
 			$data['username']=$this->session->userdata('username');
 			$this->form_validation->set_rules('title','title', 'required|xss_clean');
 			$this->form_validation->set_rules('description','description', 'required|xss_clean');
 			$this->form_validation->set_rules('price','price', 'required|xss_clean');
 			$categoryid=$this->input->post('category');
-			$cityid=$this->input->post('city');
+			$cityid=$this->input->post('provinces');
 			$title=$this->input->post('title');
 			$body=$this->input->post('description');
 			$duration=$this->input->post('duration');
@@ -180,7 +205,7 @@ class Ads extends CI_Controller {
 			$userid = $this->session->userdata('userid');
 
 			$config['upload_path'] = './images/';
-			$config['allowed_types'] = 'gif|jpg|png|jpeg';
+			$config['allowed_types'] = 'gif|jpg|png|jpeg|jpe';
 			$config['max_size']	= '10000';
 			$config['max_width']  = '1024';
 			$config['max_height']  = '768';
@@ -208,6 +233,8 @@ class Ads extends CI_Controller {
 				$this->ads_model->CreateAd($title,$userid,$duration,$price,$video,$image,$body,$categoryid,$cityid);
 				$data['message'] ="Ad Created!";
 				$data['username']=$this->session->userdata('username');
+				$data['regions'] = $this->ads_model->getRegions();
+			$data['categories'] = $this->ads_model->getCategories();
 				$this->load->view('createAd',$data);
 			}
 

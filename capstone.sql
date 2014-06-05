@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50611
 File Encoding         : 65001
 
-Date: 2014-06-02 09:24:28
+Date: 2014-06-05 09:31:40
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -29,16 +29,20 @@ CREATE TABLE `ads` (
   `videolink` text,
   `imagelink` tinytext,
   `body` text,
-  `categorid` int(11) NOT NULL,
-  `cityid` int(11) NOT NULL,
+  `categoryid` int(11) NOT NULL,
+  `provinceid` int(11) NOT NULL,
   `insertedon` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `view` int(11) NOT NULL,
   `isexpired` int(11) NOT NULL,
   PRIMARY KEY (`adid`),
   FULLTEXT KEY `search_index` (`title`,`body`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
--- Records of ads-- ----------------------------
+-- Records of ads
+-- ----------------------------
+
+-- ----------------------------
 -- Table structure for `categories`
 -- ----------------------------
 DROP TABLE IF EXISTS `categories`;
@@ -46,15 +50,20 @@ CREATE TABLE `categories` (
   `categoryid` int(11) NOT NULL AUTO_INCREMENT,
   `categoryname` varchar(32) DEFAULT NULL,
   PRIMARY KEY (`categoryid`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of categories
 -- ----------------------------
-INSERT INTO `categories` VALUES ('1', 'Men');
-INSERT INTO `categories` VALUES ('2', 'Women');
-INSERT INTO `categories` VALUES ('3', 'Children');
-INSERT INTO `categories` VALUES ('4', null);
+INSERT INTO `categories` VALUES ('1', 'Motors');
+INSERT INTO `categories` VALUES ('2', 'Fashion');
+INSERT INTO `categories` VALUES ('3', 'Electronics');
+INSERT INTO `categories` VALUES ('4', 'Collectibles & Art');
+INSERT INTO `categories` VALUES ('5', 'Home & Garden');
+INSERT INTO `categories` VALUES ('6', 'Sporting Goods');
+INSERT INTO `categories` VALUES ('7', 'Toys & Hobbies');
+INSERT INTO `categories` VALUES ('8', 'Deals & gifts');
+INSERT INTO `categories` VALUES ('9', 'Others');
 
 -- ----------------------------
 -- Table structure for `cities`
@@ -65,11 +74,15 @@ CREATE TABLE `cities` (
   `provincename` varchar(32) DEFAULT NULL,
   `regionid` int(11) DEFAULT NULL,
   PRIMARY KEY (`provinceid`)
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of cities
 -- ----------------------------
+INSERT INTO `cities` VALUES ('1', 'Makati', '1');
+INSERT INTO `cities` VALUES ('2', 'Quezon City', '1');
+INSERT INTO `cities` VALUES ('3', 'Manila', '1');
+INSERT INTO `cities` VALUES ('4', null, null);
 
 -- ----------------------------
 -- Table structure for `comments`
@@ -91,7 +104,6 @@ CREATE TABLE `comments` (
 -- ----------------------------
 -- Records of comments
 -- ----------------------------
-
 -- ----------------------------
 -- Table structure for `favorites`
 -- ----------------------------
@@ -299,7 +311,6 @@ CREATE TABLE `subscriptions` (
 -- Records of subscriptions
 -- ----------------------------
 
-
 -- ----------------------------
 -- Table structure for `support`
 -- ----------------------------
@@ -350,7 +361,7 @@ CREATE TABLE `wishes` (
   `userid` int(11) NOT NULL,
   `adid` int(11) NOT NULL,
   PRIMARY KEY (`wishid`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of wishes

@@ -107,7 +107,7 @@
 						<input type="text" name ="video" value="https://www.youtube.com/watch?v=<?php echo $row['videolink']; ?>">
 					</div>
 				</div>
-				<input type="hidden"  name="imgname" vale = "<?php echo $row['imagelink'] ?>" />
+				<input type="hidden"  name="imgname" value = "<?php echo $row['imagelink'] ?>" />
 				<input type="submit">
 				</form>
 			</div>

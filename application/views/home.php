@@ -46,7 +46,7 @@
 					        <input type="text" id ="search" name="search">
 					    </div>
 					      <div class="large-4 columns">
-						      <select>
+						      <select name="category">
 						        <option value="0">Categories</option>
 						        <?php foreach ($categories->result_array() as $row):?>
 						       	 <option value="<?php echo $row['categoryid'];?>"><?php echo $row['categoryname']; ?></option>
@@ -61,7 +61,7 @@
 						      </select>
 					      </div>
 					      <div class="large-4 columns">
-						      <select id ='provinces'>
+						      <select id ='provinces' name='province'>
 						      </select>
 					      </div>
 				      </div>
@@ -114,7 +114,7 @@
 		
 			$('#regions').change(function(){
 				var regionName = $('#regions').find(":selected").val();
-			alert(regionName);
+		//	alert(regionName);
 		   $.post( "<?php echo base_url();?>index.php/home/getProvinces", {regionID:regionName} ).done(function( data ) {
 			//	alert(regionName+" Data Loaded: " + data );
 				if(data=='added') alert('oheayh');
