@@ -6,7 +6,20 @@
 			$this->load->database();
 		}
 		
-		
+		public function getComments($adID)
+		{
+			$this->db->select('*');
+			$this->db->from('adComment');
+			$this->db->join('users','users.userid=comments.owner');
+			$this->db->where('adid',$adID);
+			$this->db->order_by("cominsertedon", "desc"); 
+			return $this->db->get();
+		}
+		public function addComment($body,$owner,$adid)
+		{
+			$sql = "INSERT INTO comments(body,owner,did) VALUES (?,?,?)";
+			$this->db->query($sql,array($body,$owner,$adid));
+		}
 		public function CreateAd($title,$userid,$duration,$price,$video,$imagelink,$body,$categoryid,$provinceid)
 		{	
 			$sql = "INSERT into ads (title,owner,isFeatured,duration,price,videolink,imagelink,body,categoryid,provinceid) VALUES (?,?,?,?,?,?,?,?,?,?)";
