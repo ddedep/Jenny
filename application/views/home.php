@@ -47,7 +47,7 @@
 					    </div>
 					      <div class="large-4 columns">
 						      <select name="category">
-						        <option value="0">Categories</option>
+						        <option value="0" selected="selected">Categories</option>
 						        <?php foreach ($categories->result_array() as $row):?>
 						       	 <option value="<?php echo $row['categoryid'];?>"><?php echo $row['categoryname']; ?></option>
 						    	<?php endforeach; ?>
@@ -62,6 +62,7 @@
 					      </div>
 					      <div class="large-4 columns">
 						      <select id ='provinces' name='province'>
+						      	<option value="0" selected="selected">provinces</option>
 						      </select>
 					      </div>
 				      </div>

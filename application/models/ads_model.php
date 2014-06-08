@@ -155,8 +155,24 @@
 		}
 		public function searchAds($search, $provinceid, $category)
 		{
-			$sql = "SELECT * FROM ads WHERE MATCH(title, body) AGAINST (?) AND provinceid=?  AND categoryid=?";
-			return $this->db->query($sql, array($search, $provinceid, $category));
+			if($provinceid==0 && $category>0){
+				$sql = "SELECT * FROM ads WHERE MATCH(title, body) AGAINST (?) AND categoryid=?";
+				return $this->db->query($sql, array($search, $category));
+			}
+			elseif($provinceid>0 && $category==0){
+				$sql = "SELECT * FROM ads WHERE MATCH(title, body) AGAINST (?) AND provinceid=?";
+				return $this->db->query($sql, array($search, $provinceid));
+			}
+			elseif($provinceid==0 && $category==0)
+			{
+				$sql = "SELECT * FROM ads WHERE MATCH(title, body) AGAINST (?)";
+				return $this->db->query($sql, array($search));
+			}
+			else
+			{
+				$sql = "SELECT * FROM ads WHERE MATCH(title, body) AGAINST (?) AND provinceid=?  AND categoryid=?";
+				return $this->db->query($sql, array($search, $provinceid, $category));
+			}
 		}
 		public function getCategories()
 		{
