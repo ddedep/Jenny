@@ -105,6 +105,19 @@
 				</div>
 				</div>
 		    </div>
+		    <div class="row">
+		    	<div class="large-12 columns">
+		    	<?php for ($i=0; $i < 4; $i++):?>
+		    		<div class="row">
+		    			<?php for ($i=0; $i <3 ; $i++):?> 
+		    			<div class="large-4 columns" style="background-color:black;height:400px;">
+		    			asdasd
+		    			</div>
+		    		<?php endfor; ?>
+		    		</div>
+		    	<?php endfor;?>
+		    	</div>
+		    </div>
 		    <!--footer -->
 		    <div class = "row">
 		    	

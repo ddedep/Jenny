@@ -10,11 +10,27 @@ Target Server Type    : MYSQL
 Target Server Version : 50611
 File Encoding         : 65001
 
-Date: 2014-06-05 09:31:40
+Date: 2014-06-08 12:33:13
 */
 
 SET FOREIGN_KEY_CHECKS=0;
 
+-- ----------------------------
+-- Table structure for `adcomment`
+-- ----------------------------
+DROP TABLE IF EXISTS `adcomment`;
+CREATE TABLE `adcomment` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `body` varchar(255) DEFAULT NULL,
+  `owner` int(11) DEFAULT NULL,
+  `adid` int(11) DEFAULT NULL,
+  `cominsertedon` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+
+-- ----------------------------
+-- Records of adcomment
+-- ----------------------------
 -- ----------------------------
 -- Table structure for `ads`
 -- ----------------------------
@@ -41,7 +57,6 @@ CREATE TABLE `ads` (
 -- ----------------------------
 -- Records of ads
 -- ----------------------------
-
 -- ----------------------------
 -- Table structure for `categories`
 -- ----------------------------
@@ -55,14 +70,14 @@ CREATE TABLE `categories` (
 -- ----------------------------
 -- Records of categories
 -- ----------------------------
-INSERT INTO `categories` VALUES ('1', 'Motors');
+INSERT INTO `categories` VALUES ('1', 'Health / Beauty');
 INSERT INTO `categories` VALUES ('2', 'Fashion');
-INSERT INTO `categories` VALUES ('3', 'Electronics');
-INSERT INTO `categories` VALUES ('4', 'Collectibles & Art');
-INSERT INTO `categories` VALUES ('5', 'Home & Garden');
-INSERT INTO `categories` VALUES ('6', 'Sporting Goods');
-INSERT INTO `categories` VALUES ('7', 'Toys & Hobbies');
-INSERT INTO `categories` VALUES ('8', 'Deals & gifts');
+INSERT INTO `categories` VALUES ('3', 'Jewellery / Watches');
+INSERT INTO `categories` VALUES ('4', 'Phones / Tables / Electronics');
+INSERT INTO `categories` VALUES ('5', 'Cameras');
+INSERT INTO `categories` VALUES ('6', 'Toys');
+INSERT INTO `categories` VALUES ('7', 'Home / Personal Items');
+INSERT INTO `categories` VALUES ('8', 'Leisure / Sports / Hobbies');
 INSERT INTO `categories` VALUES ('9', 'Others');
 
 -- ----------------------------
@@ -143,6 +158,18 @@ CREATE TABLE `persons` (
 -- ----------------------------
 -- Records of persons
 -- ----------------------------
+INSERT INTO `persons` VALUES ('1', 'Edep', 'dexter', 'Delacruz', '1993-10-31', '09261687667', 'WIN_20140526_2334329.JPG', '2014-04-24 17:22:56');
+INSERT INTO `persons` VALUES ('2', 'Dexter Enrick', 'asd', 'Edep', null, '09062321440', '', '2014-04-24 17:24:07');
+INSERT INTO `persons` VALUES ('3', 'Juan', 'edep', 'delacruz', null, '09062321440', '', '2014-04-24 17:25:23');
+INSERT INTO `persons` VALUES ('4', 'Juan', 'edep', 'delacruz', null, '09062321440', '', '2014-04-24 17:28:54');
+INSERT INTO `persons` VALUES ('5', 'Peter', 'John', 'Thomas', null, '1234567', '', '2014-04-28 09:31:29');
+INSERT INTO `persons` VALUES ('6', 'asd', 'Jenny', 'Miraflores', null, '095929529', '', '2014-04-28 15:42:58');
+INSERT INTO `persons` VALUES ('7', 'dasd', 'dexter', 'asdasd', null, '123545', '', '2014-05-13 11:20:15');
+INSERT INTO `persons` VALUES ('8', 'dasd', 'dexter', 'asdasd', null, '123545', '', '2014-05-13 11:22:50');
+INSERT INTO `persons` VALUES ('9', 'asd', 'dexter', 'asd', null, 'asd123123', '', '2014-05-13 11:23:37');
+INSERT INTO `persons` VALUES ('10', 'asd', 'dexter', 'asd', null, 'asd123123', 'qwe1.jpg', '2014-05-13 11:30:30');
+INSERT INTO `persons` VALUES ('11', 'dela cruz', 'Dexter Enrick', 'Edep', null, '09062321440', 'abs.jpg', '2014-05-15 08:58:56');
+INSERT INTO `persons` VALUES ('12', 'dela cruz', 'Dexter Enrick', 'Edep', '2000-10-31', '09062321440', 'abs1.jpg', '2014-05-15 08:59:34');
 
 -- ----------------------------
 -- Table structure for `provinces`
