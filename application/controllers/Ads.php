@@ -7,7 +7,23 @@ class Ads extends CI_Controller {
 		$this->load->helper(array('form','url'));
 		$this->load->model('ads_model');
 		$this->load->model('User_model');
+		$this->load->helper('date');
 	}
+
+	public function comment()
+	{
+		$adid=$this->input->post('adid');
+		$body=$this->input->post('body');
+		$userid = $this->session->userdata('userid');
+		if($body!=""){
+			$this->ads_model->addComment($body,$userid,$adid);
+			$datestring = "%Y-%m-%d %h:%i:%s";
+			$time = time();
+
+			echo mdate($datestring, $time);
+		}
+	}
+
 	public function view()
 	{
 		$adID= $this->uri->segment(3);
@@ -23,6 +39,7 @@ class Ads extends CI_Controller {
 				$data['hidefav'] = $this->ads_model->isFavorite($this->session->userdata('userid'),$adID);
 				$data['hidewish'] = $this->ads_model->isWish($this->session->userdata('userid'),$adID);
 				$data['query'] =$query;
+				$data['comments'] = $this->ads_model->getComments($adID);
 				if($query->num_rows()>0){
 					$this->ads_model->adViewed($adID);
 					$this->load->view('viewAd2',$data);

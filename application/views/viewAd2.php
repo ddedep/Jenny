@@ -12,9 +12,11 @@
 		<link href='http://fonts.googleapis.com/css?family=PT+Sans+Narrow&v1' rel='stylesheet' type='text/css' />
 		<link href='http://fonts.googleapis.com/css?family=Coustard:900' rel='stylesheet' type='text/css' />
 		<link href='http://fonts.googleapis.com/css?family=Rochester' rel='stylesheet' type='text/css' />
+		<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
 	    <script src="<?php echo base_url(); ?>js/vendor/modernizr.js"></script>
 	</head>
 	<body>
+
 		<div class="row">
 		
 			<div class="large-8 column">
@@ -122,22 +124,22 @@
 		</div>
 		<!--Scripts -->
 		<script type="text/javascript">
-		var username = "<?php echo $this->session->userdata('username'); ?>";
-		var body = $('#comment').val();
-		//alert(body);
-	//	var time = $.now();
-		$('#postComment').click(function(){
+			var username = "<?php echo $this->session->userdata('username'); ?>";
+			var body = $('#comment').val();
 		//	alert(body);
-		   $.post( "<?php echo base_url();?>index.php/ad/comment", {threadid:<?php echo $row['support_id'];?>, body:$('#comment').val()} ).done(function( data ) {
-			//alert( "Data Loaded: " + data );
-			if(data=='added') alert('oheayh');
-			else{
-				
-		//	alert(data);
-				$('#commentArea').html("<div class='panel'>"+username+" wrote: <br/><i>"+$('#comment').val()+"<br/></i><i>"+data+"</i></div>"+$('#commentArea').html());
-				$('#comment').attr('value','');
-			}
-			});
+		//	var time = $.now();
+			$('#postComment').click(function(){
+			//	alert(body);
+			   $.post( "<?php echo base_url();?>index.php/ads/comment", {adid:<?php echo $row['adid'];?>, body:$('#comment').val()} ).done(function( data ) {
+				//alert( "Data Loaded: " + data );
+				if(data=='added') alert('oheayh');
+				else{
+					
+			//	alert(data);
+					$('#commentArea').html("<div class='panel'>"+username+" wrote: <br/><i>"+$('#comment').val()+"<br/></i><i>"+data+"</i></div>"+$('#commentArea').html());
+					$('#comment').attr('value','');
+				}
+				});
 		});
 		</script>
 		<script src="<?php echo base_url(); ?>js/vendor/jquery.js"></script>
