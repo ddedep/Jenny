@@ -8,8 +8,10 @@
 		
 		public function getAllSupport()
 		{
-			$sql = "SELECT * FROM support";
-			return $this->db->query($sql);
+			$this->db->select('*');
+			$this->db->from('support');
+			$this->db->join('users', 'users.userid=support.owner');
+			return $this->db->get();
 		}
 
 		public function createSupport($title, $body,$owner)
@@ -21,6 +23,7 @@
 		{
 			$this->db->select('*');
 			$this->db->from('support');
+			$this->db->join('users', 'users.userid=support.owner');
 			$this->db->where('support_id',$supportID);
 			return $this->db->get();
 		}

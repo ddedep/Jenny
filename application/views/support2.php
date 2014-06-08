@@ -42,6 +42,7 @@
 							<h2>Support <?php echo $row['support_id']; ?></h2>
 							Title: <?php echo $row['title']; ?><br/><br/>
 							<?php echo $row['body']; ?><br/><br/>
+							By: <?php echo $row['username']; ?><br/><br/>
 						</div><br />
 			<?php endforeach; ?>
 			<?php if($this->session->userdata('logged_in')): ?>
