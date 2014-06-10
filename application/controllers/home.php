@@ -9,6 +9,10 @@ class Home extends CI_Controller {
 		$this->load->model('ads_model');
 		
 	}
+	public function terms()
+	{
+		$this->load->view('terms');
+	}
 	public function getProvinces()
 	{
 		$regionid = $this->input->post('regionID');
@@ -25,6 +29,7 @@ class Home extends CI_Controller {
 	{
 		$data['username']=$this->session->userdata('username');
 		$data['query'] = $this->ads_model->getAds();
+		$data['topAds'] = $this->ads_model->getTop();
 		$data['regions'] = $this->ads_model->getRegions();
 		$data['categories'] = $this->ads_model->getCategories();
 		$this->load->view('home',$data);

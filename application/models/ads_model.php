@@ -180,4 +180,11 @@
 			$this->db->from('categories');
 			return $this->db->get();
 		}
+		public function getTop()
+		{
+			$this->db->select('*');
+			$this->db->from('ads');
+			$this->db->order_by("view", "desc"); 
+			return $this->db->get();
+		}
 }

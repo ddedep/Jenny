@@ -23,11 +23,11 @@
 			<div class="row">
 		      <div class="large-12 columns">
 		        <div class = 'panel'>
-		        	<a href="<?php echo base_url();?>"><img src="<?php echo base_url(); ?>img/MIT-Seal.png" style="height:50px"></a>
+		       <a href="<?php echo base_url();?>"><img src="<?php echo base_url(); ?>img/MIT-Seal.png" style="height:50px"></a>
 		        	<?php if($username!=NULL) echo "Welcome ".$username."!&nbsp;	&nbsp;"; 
 		        	else{
 		        		echo '<a href="';echo base_url().'index.php/home/login">'."Sign in or Register</a>&nbsp;	&nbsp";
-		        		}  ?>|&nbsp;	&nbsp;<a href="<?php echo base_url();?>index.php/user">Profile&nbsp;	&nbsp;</a>|&nbsp;	&nbsp;<a href="<?php echo base_url();?>index.php/Ads">Sell&nbsp;	&nbsp;</a>	|&nbsp;	&nbsp;<a href="<?php echo base_url();?>index.php/support">Customer Support</a>&nbsp;	&nbsp;|
+		        		}  ?>|&nbsp;	&nbsp;<a href="<?php echo base_url();?>index.php/user">Profile&nbsp;	&nbsp;</a>|&nbsp;	&nbsp;<a href="<?php echo base_url();?>index.php/Ads">Sell&nbsp;	&nbsp;</a>	|&nbsp;	&nbsp;<a href="<?php echo base_url();?>index.php/support">Customer Support</a>&nbsp;	&nbsp;|&nbsp;	&nbsp;<a href="<?php echo base_url();?>index.php/faq">FAQ</a>&nbsp;	&nbsp;|
 		        	<?php	
 			        	if($username==NULL) echo ""; 
 			        	else{
@@ -75,7 +75,7 @@
 		    <!-- Carousel -->
 		    <div class = "row">
 			    <div class="container">
-				<h1>Your Top Ads Here</h1>
+				<h1>Featured Ads</h1>
 				<div id="ca-container" class="ca-container">
 					<div class="ca-wrapper">
 					<?php
@@ -106,14 +106,39 @@
 				</div>
 		    </div>
 		    <div class="row">
+		    <h1>Top Ads</h1>
 		    	<div class="large-12 columns">
+		    	<?php $i=0; $top=array(); ?>
+		    	<?php foreach ($topAds->result_array() as $toprow){
+		    		$top[$i] = $toprow;
+		    		$i++;
+		    	} ?>
 		    	<?php for ($i=0; $i < 4; $i++):?>
 		    		<div class="row">
-		    			<?php for ($i=0; $i <3 ; $i++):?> 
-		    			<div class="large-4 columns" style="background-color:black;height:400px;">
-		    			asdasd
+		    			<?php for ($j=0; $j <3 ; $j++):?> 
+		    			<div class="large-4 columns" style="height:450px; margin:0 auto;">
+		    				<div class="ca-item-main">
+		    				<div class="ca-icon" style="width:233px;
+										height:189px;
+										position:relative;
+										margin:0 auto;
+										background:transparent url(<?php echo base_url()."images/".$top[(($i*3))+($j)]['imagelink']; ?>) no-repeat center center;">
+							</div>
+							<div class="ca-item"><h3><?php echo $top[($i*3)+($j+1)]['title']; ?></h3>
+								<span><?php echo $top[($i*3)+($j+1)]['body']; ?></span><br/>
+								<a href="http://localhost/Jenny/index.php/ads/view/<?php echo $top[($i*3)+($j+1)]['adid'];?>" style="position: relative;
+										font-weight: bold;
+										background: #ccbda2;
+										text-align: center;
+										color: white;
+										font-family: 'Georgia','Times New Roman',serif;
+										font-style: italic;
+										text-shadow: 1px 1px 1px #897c63;">more...</a>
+							</div>
+							
+							</div>
 		    			</div>
-		    		<?php endfor; ?>
+		    			<?php endfor; ?>
 		    		</div>
 		    	<?php endfor;?>
 		    	</div>

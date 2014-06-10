@@ -7,6 +7,10 @@ class Register extends CI_Controller {
 		$this->load->helper(array('form','url'));
 		$this->load->model('User_model');
 	}
+	public function terms()
+	{
+		$this->load->view('terms');
+	}
 	public function index()
 	{
 		if($this->session->userdata('logged_in')){
