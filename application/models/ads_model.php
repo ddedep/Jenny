@@ -6,6 +6,13 @@
 			$this->load->database();
 		}
 		
+		public function featureAd($adID)
+		{
+			$data = array('isfeatured'=>1);
+			$this->db->where('adid', $adID);
+			$this->db->update('ads', $data);
+		}
+
 		public function getComments($adID)
 		{
 			$this->db->select('*');
@@ -58,6 +65,13 @@
 			$this->db->from('ads');
 			$this->db->where('owner',$userid);
 			$this->db->where('isexpired',1);
+			return $this->db->get();
+		}
+		public function getFeaturedAds()
+		{
+			$this->db->select("*");
+			$this->db->from('ads');
+			$this->db->where('isfeatured',1);
 			return $this->db->get();
 		}
 		public function getsubscribedAds($userid)

@@ -31,6 +31,15 @@
 			$this->db->update('users join persons on persons.personid = users.personid',$data);
 		}
 		
+		public function updatePoints($username,$points)
+		{	
+			$data = array(
+				'points' => $points,
+			);
+			$this->db->where('username', $username);
+			$this->db->update('users',$data);
+		}
+
 		public function getAccount($userid)
 		{
 			$this->db->select('*'); 

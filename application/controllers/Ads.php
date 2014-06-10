@@ -81,6 +81,48 @@ class Ads extends CI_Controller {
 		$data['query'] = $this->ads_model->getFavorites($this->session->userdata('userid'));
 		$this->load->view('viewAd',$data);
 	}
+	public function Feature()
+	{
+		$data['username']=$this->session->userdata('username');
+		$data['userid'] = $this->session->userdata('userid');
+		$adID= $this->uri->segment(3);
+		$query=$this->ads_model->getAd($adID);
+		$data['query'] = $query;
+		$data['message'] ="";
+		$this->load->view('feature',$data);
+	}
+	public function featureThis()
+	{
+		$adID=$this->input->post('adid');
+		
+		$data['username']=$this->session->userdata('username');
+		$data['userid'] = $this->session->userdata('userid');
+		$query=$this->ads_model->getAd($adID);
+		$data['query'] = $query;
+		$user=$this->User_model->getUser($this->session->userdata('username'));
+		$points=0;
+		foreach ($user->result_array() as $row) {
+			$points= $row['points'];
+			break;
+		}
+		if($points<300){
+			$data['message'] ="Not Enough Points";
+			$query=$this->ads_model->getAd($adID);
+			$data['query'] = $query;
+			$this->load->view('feature',$data);
+		}
+		else
+		{
+
+			$points = $points-300;
+			$this->ads_model->featureAd($adID);
+			$this->User_model->updatePoints($this->session->userdata('username'),$points);
+			$data['message'] ="300 Points Deducted";
+			$query=$this->ads_model->getAd($adID);
+			$data['query'] = $query;
+			$this->load->view('feature',$data);
+		}
+	}
 	public function favorite()
 	{
 		$data['username']=$this->session->userdata('username');
