@@ -181,6 +181,19 @@
     		
             return $this->db->get();
 		}
+        public function addSearch($userid,$body)
+        {
+            $sql = "INSERT INTO searches (searchbody,owner) values(?,?)";
+            $this->db->query($sql,array($body,$userid));
+        }
+        public function getSearches($userid)
+        {
+        	$this->db->select("*");
+        	$this->db->from('searches');
+        	$this->db->where('owner',$userid);
+        	$this->db->order_by("insertedon", "desc"); 
+        	return $this->db->get();
+        }
 		public function searchAds($search, $provinceid, $category)
 		{
 			if($provinceid==0 && $category>0){
@@ -201,6 +214,7 @@
 				$sql = "SELECT * FROM ads WHERE MATCH(title, body) AGAINST (?) AND provinceid=?  AND categoryid=?";
 				return $this->db->query($sql, array($search, $provinceid, $category));
 			}
+            
 		}
 		public function getCategories()
 		{

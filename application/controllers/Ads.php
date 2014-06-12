@@ -315,6 +315,9 @@ class Ads extends CI_Controller {
 		$category = $this->input->post('category');
 		$province = $this->input->post('province');
 		$data['query']= $this->ads_model->searchAds($search,$province,$category);
+		if($this->session->userdata('logged_in')){
+			$this->ads_model->addSearch($data['userid'],$search);
+		}		
 		$this->load->view('viewAd',$data);
 	}
 	public function subscribe()
@@ -333,6 +336,7 @@ class Ads extends CI_Controller {
 			$data['regions'] = $this->ads_model->getRegions();
 			$data['categories'] = $this->ads_model->getCategories();
 			$data['username']=$this->session->userdata('username');
+			$data['search'] = $this->ads_model->getSearches($this->session->userdata('userid'));
 			$this->form_validation->set_rules('title','title', 'required|xss_clean');
 			$this->form_validation->set_rules('description','description', 'required|xss_clean');
 			$this->form_validation->set_rules('price','price', 'required|xss_clean');

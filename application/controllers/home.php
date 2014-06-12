@@ -32,6 +32,7 @@ class Home extends CI_Controller {
 		$data['topAds'] = $this->ads_model->getTop();
 		$data['regions'] = $this->ads_model->getRegions();
 		$data['categories'] = $this->ads_model->getCategories();
+		$data['search'] = $this->ads_model->getSearches($this->session->userdata('userid'));
 		$this->load->view('home',$data);
 	}
 	public function login()
