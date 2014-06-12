@@ -62,8 +62,15 @@
 					<a href="<?php echo base_url();?>index.php/user/view/<?php echo $row['personid'];?>"><button>Subscribe</button></a>
 					<?php endif; ?>
 
-					<?php if($row['owner']==$userid): ?>
+					<?php if($row['owner']==$userid && $row['isexpired']!=1): ?>
 					<a href="<?php echo base_url();?>index.php/Ads/feature/<?php echo $row['adid'];?>"><button>Feature This Ad!</button></a>
+					<?php endif; ?>
+                   
+                    <?php if($row['owner']==$userid && $row['isexpired']!=1): ?>
+					<a href="<?php echo base_url();?>index.php/Ads/extend/<?php echo $row['adid'];?>"><button>Extend Duration</button></a>
+					<?php endif; ?>
+                    <?php if($row['owner']==$userid && $row['isexpired']==1): ?>
+					<a href="<?php echo base_url();?>index.php/Ads/repost/<?php echo $row['adid'];?>"><button>Repost</button></a>
 					<?php endif; ?>
 
 					<input type="hidden" value='subscribe' />
@@ -84,6 +91,7 @@
 					<?php
 						endif;
 					?>
+
 					<?php
 						if($row['owner']==$userid):
 						echo form_open('index.php/ads/delete');
@@ -120,8 +128,6 @@
 						<button type="submit">Submit</button> 
 					</form>
 		       
-		        `
-
 		      </div>
 		    </div>
 			</div>

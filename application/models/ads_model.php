@@ -5,7 +5,21 @@
 		{
 			$this->load->database();
 		}
-		
+			
+		public function extendAd($adID,$duration)
+		{
+            $duration = $duration +30;
+			$data = array('duration'=>$duration);
+			$this->db->where('adid', $adID);
+			$this->db->update('ads', $data);
+		}
+	    public function repostAd($adID)
+		{
+			$data = array('duration'=>30,'isexpired'=>0);
+			$this->db->where('adid', $adID);
+            $this->db->set('insertedon','NOW()',FALSE);
+			$this->db->update('ads', $data);
+		}
 		public function featureAd($adID)
 		{
 			$data = array('isfeatured'=>1);

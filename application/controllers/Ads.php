@@ -48,7 +48,6 @@ class Ads extends CI_Controller {
 					$this->load->view('notfound',$data);
 			}
 	}
-
 	public function wish()
 	{
 		$data['username']=$this->session->userdata('username');
@@ -81,7 +80,17 @@ class Ads extends CI_Controller {
 		$data['query'] = $this->ads_model->getFavorites($this->session->userdata('userid'));
 		$this->load->view('viewAd',$data);
 	}
-	public function Feature()
+	public function Extend()
+	{
+		$data['username']=$this->session->userdata('username');
+		$data['userid'] = $this->session->userdata('userid');
+		$adID= $this->uri->segment(3);
+		$query=$this->ads_model->getAd($adID);
+		$data['query'] = $query;
+		$data['message'] ="";
+		$this->load->view('extend',$data);
+	}
+    public function Feature()
 	{
 		$data['username']=$this->session->userdata('username');
 		$data['userid'] = $this->session->userdata('userid');
@@ -91,10 +100,53 @@ class Ads extends CI_Controller {
 		$data['message'] ="";
 		$this->load->view('feature',$data);
 	}
+    
+    public function repost()
+    {
+		$data['username']=$this->session->userdata('username');
+		$data['userid'] = $this->session->userdata('userid');
+		$adID= $this->uri->segment(3);
+		$query=$this->ads_model->getAd($adID);
+		$data['query'] = $query;
+		$data['message'] ="";
+		$this->load->view('repost',$data);
+    }
+    public function repostThis()
+	{
+		$adID=$this->input->post('adid');
+				
+		$data['username']=$this->session->userdata('username');
+		$data['userid'] = $this->session->userdata('userid');
+		$query=$this->ads_model->getAd($adID);
+		$data['query'] = $query;
+		$user=$this->User_model->getUser($this->session->userdata('username'));
+		$points=0;
+		foreach ($user->result_array() as $row) {
+			$points= $row['points'];
+			break;
+		}
+		if($points<150){
+			$data['message'] ="Not Enough Points";
+			$query=$this->ads_model->getAd($adID);
+			$data['query'] = $query;
+			$this->load->view('repost',$data);
+		}
+		else
+		{
+
+			$points = $points-150;
+			$this->ads_model->repostAd($adID);
+			$this->User_model->updatePoints($this->session->userdata('username'),$points);
+			$data['message'] ="150 Points Deducted";
+			$query=$this->ads_model->getAd($adID);
+			$data['query'] = $query;
+			$this->load->view('repost',$data);
+		}
+	}
 	public function featureThis()
 	{
 		$adID=$this->input->post('adid');
-		
+				
 		$data['username']=$this->session->userdata('username');
 		$data['userid'] = $this->session->userdata('userid');
 		$query=$this->ads_model->getAd($adID);
@@ -123,6 +175,40 @@ class Ads extends CI_Controller {
 			$this->load->view('feature',$data);
 		}
 	}
+
+    public function extendThis()
+    {
+       	$adID=$this->input->post('adid');
+		$duration = $this->input->post('duration');
+        $data['username']=$this->session->userdata('username');
+		$data['userid'] = $this->session->userdata('userid');
+		$query=$this->ads_model->getAd($adID);
+		$data['query'] = $query;
+		$user=$this->User_model->getUser($this->session->userdata('username'));
+		$points=0;
+		foreach ($user->result_array() as $row) {
+			$points= $row['points'];
+			break;
+		}
+		if($points<120){
+			$data['message'] ="Not Enough Points";
+			$query=$this->ads_model->getAd($adID);
+			$data['query'] = $query;
+			$this->load->view('extend',$data);
+		}
+		else
+		{
+
+			$points = $points-120;
+			$this->ads_model->extendAd($adID,$duration);
+			$this->User_model->updatePoints($this->session->userdata('username'),$points);
+			$data['message'] ="120 Points Deducted";
+			$query=$this->ads_model->getAd($adID);
+			$data['query'] = $query;
+			$this->load->view('extend',$data);
+		}
+    }
+	
 	public function favorite()
 	{
 		$data['username']=$this->session->userdata('username');
