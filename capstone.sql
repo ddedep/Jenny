@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50611
 File Encoding         : 65001
 
-Date: 2014-06-08 12:33:13
+Date: 2014-06-13 14:36:58
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -31,6 +31,7 @@ CREATE TABLE `adcomment` (
 -- ----------------------------
 -- Records of adcomment
 -- ----------------------------
+
 -- ----------------------------
 -- Table structure for `ads`
 -- ----------------------------
@@ -52,7 +53,7 @@ CREATE TABLE `ads` (
   `isexpired` int(11) NOT NULL,
   PRIMARY KEY (`adid`),
   FULLTEXT KEY `search_index` (`title`,`body`)
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of ads
@@ -70,14 +71,14 @@ CREATE TABLE `categories` (
 -- ----------------------------
 -- Records of categories
 -- ----------------------------
-INSERT INTO `categories` VALUES ('1', 'Health / Beauty');
+INSERT INTO `categories` VALUES ('1', 'Motors');
 INSERT INTO `categories` VALUES ('2', 'Fashion');
-INSERT INTO `categories` VALUES ('3', 'Jewellery / Watches');
-INSERT INTO `categories` VALUES ('4', 'Phones / Tables / Electronics');
-INSERT INTO `categories` VALUES ('5', 'Cameras');
-INSERT INTO `categories` VALUES ('6', 'Toys');
-INSERT INTO `categories` VALUES ('7', 'Home / Personal Items');
-INSERT INTO `categories` VALUES ('8', 'Leisure / Sports / Hobbies');
+INSERT INTO `categories` VALUES ('3', 'Electronics');
+INSERT INTO `categories` VALUES ('4', 'Collectibles & Art');
+INSERT INTO `categories` VALUES ('5', 'Home & Garden');
+INSERT INTO `categories` VALUES ('6', 'Sporting Goods');
+INSERT INTO `categories` VALUES ('7', 'Toys & Hobbies');
+INSERT INTO `categories` VALUES ('8', 'Deals & gifts');
 INSERT INTO `categories` VALUES ('9', 'Others');
 
 -- ----------------------------
@@ -119,6 +120,8 @@ CREATE TABLE `comments` (
 -- ----------------------------
 -- Records of comments
 -- ----------------------------
+
+
 -- ----------------------------
 -- Table structure for `favorites`
 -- ----------------------------
@@ -158,6 +161,7 @@ CREATE TABLE `persons` (
 -- ----------------------------
 -- Records of persons
 -- ----------------------------
+
 -- ----------------------------
 -- Table structure for `provinces`
 -- ----------------------------
@@ -306,6 +310,24 @@ INSERT INTO `regions` VALUES ('16', 'Region XIII');
 INSERT INTO `regions` VALUES ('17', 'ARMM');
 
 -- ----------------------------
+-- Table structure for `searches`
+-- ----------------------------
+DROP TABLE IF EXISTS `searches`;
+CREATE TABLE `searches` (
+  `searchid` int(11) NOT NULL AUTO_INCREMENT,
+  `searchbody` varchar(255) DEFAULT NULL,
+  `owner` int(11) DEFAULT NULL,
+  `insertedon` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`searchid`),
+  KEY `ownerid` (`owner`),
+  CONSTRAINT `ownerid` FOREIGN KEY (`owner`) REFERENCES `users` (`userid`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+
+-- ----------------------------
+-- Records of searches
+-- ----------------------------
+
+-- ----------------------------
 -- Table structure for `subscriptions`
 -- ----------------------------
 DROP TABLE IF EXISTS `subscriptions`;
@@ -342,7 +364,6 @@ CREATE TABLE `support` (
 -- ----------------------------
 -- Records of support
 -- ----------------------------
-
 -- ----------------------------
 -- Table structure for `users`
 -- ----------------------------
@@ -365,7 +386,6 @@ CREATE TABLE `users` (
 -- ----------------------------
 -- Records of users
 -- ----------------------------
-
 -- ----------------------------
 -- Table structure for `wishes`
 -- ----------------------------

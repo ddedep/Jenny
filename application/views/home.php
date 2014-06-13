@@ -174,7 +174,6 @@
 		<!-- the jScrollPane script -->
 		<script type="text/javascript" src="<?php echo base_url(); ?>js/jquery.mousewheel.js"></script>
 		<script type="text/javascript" src="<?php echo base_url(); ?>js/jquery.contentcarousel.js"></script>
-		<script type="text/javascript" src="<?php echo base_url(); ?>scripts/jquery-1.8.2.min.js"></script>
 	    <script type="text/javascript" src="<?php echo base_url(); ?>scripts/jquery.mockjax.js"></script>
 	    <script type="text/javascript" src="<?php echo base_url(); ?>src/jquery.autocomplete.js"></script>
 	    <script type="text/javascript" src="<?php echo base_url(); ?>scripts/countries.js"></script>
@@ -182,12 +181,6 @@
 			$('#ca-container').contentcarousel();
 		</script>
 		<script type="text/javascript">
-			/*jslint  browser: true, white: true, plusplus: true */
-/*global $, countries */
-
-		/*jslint  browser: true, white: true, plusplus: true */
-/*global $, countries */
-
 $(function () {
     'use strict';
     var searches = {
@@ -233,6 +226,7 @@ $(function () {
         }
     });
 });
+
 		</script>
 	</body>
 </html>
