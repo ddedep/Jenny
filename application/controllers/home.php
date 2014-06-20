@@ -69,7 +69,8 @@ class Home extends CI_Controller {
 			                'userid'	=> $row['userid'],
 			                'personid'	=> $row['personid'],
 			                'email'		=> $row['email'],
-			                'logged_in' => TRUE
+			                'logged_in' => TRUE,
+			                'points'	=> $row['points'],
 			       );
 					$this->session->set_userdata($newdata);
 					redirect('/index.php/user');

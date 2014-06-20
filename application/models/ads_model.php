@@ -148,13 +148,14 @@
 		}
 		public function getAds()
 		{
-			$sql = "SELECT * FROM ads";
-			
-			return $this->db->query($sql);
+			$this->db->select('*'); 
+			$this->db->from('ads');
+			$this->db->order_by('adid', 'asc');
+			return $this->db->get();
 		}
 		public function getAdsOfUser($id)
 		{
-			$sql = "SELECT * FROM ads where owner=".$id." AND isexpired=0";
+			$sql = "SELECT * FROM ads where owner=".$id." AND isexpired=0 ORDER BY adid DESC";
 			
 			return $this->db->query($sql);
 		}

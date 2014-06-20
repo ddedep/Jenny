@@ -62,6 +62,7 @@
 							echo "Name: ".$profile['firstname']." ".$profile['middlename']." ".$profile['lastname']."<br/><br/>";
 							echo "Email: ".$profile['email']."<br/><br/>";
 							echo "Phone Number: ".$profile['phonenum']."<br/><br/>";
+							echo "Points: ".$profile['points']."<br/><br/>";
 						?>
 						</div>
 						</div>

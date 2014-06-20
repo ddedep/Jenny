@@ -13,7 +13,7 @@ class user extends CI_Controller {
 		$this->load->library('session');
 		$newdata=array();
 		if($this->session->userdata('logged_in')){
-			$query=$this->User_model->getPerson($this->session->userdata('personid'));
+			$query=$this->User_model->getAccount($this->session->userdata('userid'));
 			
 			foreach($query->result_array() as $row)
 			{
@@ -23,7 +23,8 @@ class user extends CI_Controller {
 						'middlename' => $row['middlename'],
 						'phonenum' => $row['phonenum'],
 						'pic' =>$row['picture'],
-						'email' =>$this->session->userdata('email')
+						'email' =>$this->session->userdata('email'),
+						'points' =>$row['points'],
 			       );
 					$this->session->set_userdata($newdata);
 					break;

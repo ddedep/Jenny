@@ -140,6 +140,7 @@ class Ads extends CI_Controller {
 			$data['message'] ="150 Points Deducted";
 			$query=$this->ads_model->getAd($adID);
 			$data['query'] = $query;
+			//$this->session->userdata('points') = $this->session->userdata('points')-150;
 			$this->load->view('repost',$data);
 		}
 	}
@@ -172,6 +173,7 @@ class Ads extends CI_Controller {
 			$data['message'] ="300 Points Deducted";
 			$query=$this->ads_model->getAd($adID);
 			$data['query'] = $query;
+	//		$this->session->userdata('points') = $this->session->userdata('points')-300;
 			$this->load->view('feature',$data);
 		}
 	}
@@ -205,6 +207,7 @@ class Ads extends CI_Controller {
 			$data['message'] ="120 Points Deducted";
 			$query=$this->ads_model->getAd($adID);
 			$data['query'] = $query;
+	//		$this->session->userdata('points') = $this->session->userdata('points')-120;
 			$this->load->view('extend',$data);
 		}
     }
