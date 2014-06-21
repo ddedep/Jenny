@@ -533,8 +533,8 @@ DROP PROCEDURE IF EXISTS `expiration`;
 DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `expiration`()
 BEGIN
-  #Routine body goes here...
-   UPDATE ads
+	#Routine body goes here...
+	 UPDATE ads
    SET isexpired = 1
     WHERE  TIMESTAMPDIFF(DAY, `insertedon`, NOW()) >  `duration`; 
 END
@@ -549,4 +549,3 @@ DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` EVENT `exec` ON SCHEDULE EVERY 5 SECOND STARTS '2013-02-10 00:00:00' ENDS '2016-02-28 00:00:00' ON COMPLETION NOT PRESERVE ENABLE DO call expiration()
 ;;
 DELIMITER ;
-

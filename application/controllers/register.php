@@ -16,6 +16,11 @@ class Register extends CI_Controller {
 		if($this->session->userdata('logged_in')){
 			redirect('index.php/home');
 		}
+		//nexmo
+		$this->load->library('nexmo');
+        // set response format: xml or json, default json
+        $this->nexmo->set_format('json');
+
 		$this->load->library('form_validation');
 		$this->form_validation->set_rules('username','username', 'required|xss_clean');
 		$this->form_validation->set_rules('password','password', 'required|xss_clean');
@@ -63,6 +68,15 @@ class Register extends CI_Controller {
 			}
 			$data['username']=$this->session->userdata('username');
 			$this->load->view('register',$data);
+
+
+        // **********************************Text Message*************************************
+	        $from = 'dexter';
+	        $to = '+639062321440';
+	        $message = array(
+	            'text' => 'Verification Code: '.rand(1000,9999)
+	        );
+	        $response = $this->nexmo->send_message($from, $to, $message);
 		}
 	}
 }

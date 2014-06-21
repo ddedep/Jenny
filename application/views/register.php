@@ -65,7 +65,7 @@
 		    	
 		    	<div class="large-12 columns">
     				<div class="medium-4 columns">
-    					<label>Phone Number</label>
+    					<label>Cellphone Number(+639XXXXXXXXX)</label>
     					<input type="text" name = "phonenumber">
     				</div>
     			</div>
