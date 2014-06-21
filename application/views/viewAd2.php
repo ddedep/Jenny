@@ -23,7 +23,7 @@
 			<div class="row">
 		      <div class="large-12 columns">
 		       <div class = 'panel'>
-		       <a href="<?php echo base_url();?>"><img src="<?php echo base_url(); ?>img/MIT-Seal.png" style="height:50px"></a>
+		       <a href="<?php echo base_url();?>"><img src="<?php echo base_url(); ?>img/logo.jpg" style="height:50px"></a>
 		        	<?php if($username!=NULL) echo "Welcome ".$username."!&nbsp;	&nbsp;"; 
 		        	else{
 		        		echo '<a href="';echo base_url().'index.php/home/login">'."Sign in or Register</a>&nbsp;	&nbsp";
@@ -46,9 +46,11 @@
 					<?php
 						echo "<h4>Description</h4>";
 						echo "<div class= 'panel'>";
-						echo '<iframe width="420" height="345"';
-						echo ' src="//www.youtube.com/embed/'.$row['videolink'].'"" frameborder="0">';
-						echo '</iframe><br/>';
+						if($row['videolink']!= '') {
+							echo '<iframe width="420" height="345"';
+							echo ' src="//www.youtube.com/embed/'.$row['videolink'].'"" frameborder="0">';
+							echo '</iframe><br/>';
+						}
 						echo "<img src=".base_url()."images/".$row['imagelink']." style='height:200px;width:200px;'><br/>";
 						echo "Title: ".$row['title']."<br/><br/>";
 						echo "Duration: ".$row['duration']." Days<br/><br/>";

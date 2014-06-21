@@ -24,7 +24,7 @@ class Register extends CI_Controller {
 		$this->load->library('form_validation');
 		$this->form_validation->set_rules('username','username', 'required|xss_clean');
 		$this->form_validation->set_rules('password','password', 'required|xss_clean');
-		$this->form_validation->set_rules('passwordconfirm','passwordconfirm', 'required|min_length[6]|max_length[12]|xss_clean|matches[passwordconfirm]');
+		$this->form_validation->set_rules('passwordconfirm','passwordconfirm', 'required|min_length[6]|max_length[23]|xss_clean|matches[passwordconfirm]');
 		$firstname=$this->input->post('firstname');
 		$lastname=$this->input->post('lastname');
 		$middlename=$this->input->post('middlename');
@@ -44,9 +44,13 @@ class Register extends CI_Controller {
 		$this->load->library('upload', $config);
 
 		
-		if($this->form_validation->run() == FALSE)
+		if($this->form_validation->run() == FALSE || $this->User_model->emailExists($email) || $this->User_model->userExists($username))
 		{
 			$data['err'] ="";
+			if($this->User_model->userExists($username))
+				$data['err'] ="Username Already Exists!";
+			if($this->User_model->emailExists($email))
+				$data['err'] =$data['err']."\n"."Email Already Exists!";
 			$data['username']=$this->session->userdata('username');
 			$this->load->view('register',$data);
 		}

@@ -6,7 +6,24 @@
 			$this->load->database();
 		}
 		
-		
+		public function userExists($username)
+		{
+			$this->db->select("*");
+			$this->db->from('users');
+			$this->db->where('username',$username);
+			$count = $this->db->get()->num_rows();
+			if($count>0) return true;
+			else return false;
+		}
+		public function emailExists($email)
+		{
+			$this->db->select("*");
+			$this->db->from('users');
+			$this->db->where('email',$email);
+			$count = $this->db->get()->num_rows();
+			if($count>0) return true;
+			else return false;
+		}
 		public function createPerson($firstname,$middlename,$lastname,$phonenum,$picture,$birthdate)
 		{	
 			$sql = "INSERT into persons (firstname,lastname,middlename,phonenum,picture,birthdate) VALUES (?,?,?,?,?,?)";
