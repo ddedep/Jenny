@@ -8,7 +8,7 @@
 						Title: <?php echo $row['title']; ?><br/><br/>
 						<?php echo $row['body']; ?><br/><br/>
 						By: <?php echo $row['username']; ?><br/><br/>
-						<a href="<?php echo base_url(); ?>/index.php/support/view/<?php echo $row['support_id'];?>">View Comments</a>
+						<a href="<?php echo base_url(); ?>index.php/support/view/<?php echo $row['support_id'];?>">View Comments</a>
 						</div><br />
 
 			<?php endforeach; ?>

@@ -90,14 +90,7 @@
     					<label>Postal Code</label>
     					<input type="text" name ="postalcode" value="<?php echo $row['postalcode']; ?>">
     				</div>
-    				<div class="medium-4 columns">
-    					<label>Region</label>
-    					<select></select>
-    				</div>
-    				<div class="medium-4 columns">
-    					<label>City</label>
-    					<select></select>
-    				</div>
+    				
     			
     			
     				<div class="large-12 columns">
