@@ -88,6 +88,11 @@
 			$this->db->where('isfeatured',1);
 			return $this->db->get();
 		}
+		public function subcribe($subscriber, $adid)
+		{
+			$sql = "INSERT into subscriptions (subscriber,subscribedto) VALUES (?,?)";
+			$this->db->query($sql, array($subscriber,$owner));
+		}
 		public function getsubscribedAds($userid)
 		{
 			$this->db->select('*'); 
