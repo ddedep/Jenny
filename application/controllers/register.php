@@ -71,10 +71,11 @@ class Register extends CI_Controller {
 				$dat = $this->upload->data();
 				$this->User_model->createPerson($firstname,$middlename,$lastname,$phonenum,$dat['file_name'],$birthdate);
 				$this->User_model->createUser($username,$password,$email,$address,$postalcode);
+				$data['username']=$this->session->userdata('username');
+				$this->load->view('header',$data);
+				$this->load->view('register',$data);
 			}
-			$data['username']=$this->session->userdata('username');
-			$this->load->view('header',$data);
-			$this->load->view('register',$data);
+			
 
 
         // **********************************Text Message*************************************
