@@ -62,6 +62,7 @@ class Register extends CI_Controller {
 			if ( ! $this->upload->do_upload())
 			{
 				$error = array('error' => $this->upload->display_errors());
+				$data['err'] ="Please add a picture!";
 			}
 			else
 			{
