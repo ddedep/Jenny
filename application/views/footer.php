@@ -1,23 +1,4 @@
-
-        <h1>Subscribed to:</h1>
-      
-        	<?php
-        	foreach($query->result_array() as $row):
-			?>
-				<div class="panel">
-					Username:<?php echo $row['username']; ?>
-				</div>
-			
-			<?php
-				endforeach;
-	        ?>
-       
-		        
-
-		      
-			</div>
-		</div>
-		<!--Scripts -->
+<!--Scripts -->
 		<script src="<?php echo base_url(); ?>js/vendor/jquery.js"></script>
 	    <script src="<?php echo base_url(); ?>js/foundation.min.js"></script>
 	    <script>

@@ -33,6 +33,7 @@ class user extends CI_Controller {
 			$data['profile']=$newdata;
 			$data['hide'] = FALSE;
 			$data['username']=$this->session->userdata('username');
+			$this->load->view('header',$data);
 			$this->load->view('profile',$data);
 		}
 		else
@@ -68,6 +69,7 @@ class user extends CI_Controller {
 				$data['userid'] = $row['userid'];
 			
 		}
+		$this->load->view('header',$data);
 		$this->load->view('profile',$data);
 	}
 	public function subscription()
@@ -77,6 +79,7 @@ class user extends CI_Controller {
 		$userid = $this->session->userdata('userid');
 		$data['query']=$this->ads_model->getsubscribedAds($userid);
 		$query = $data['query'];
+		$this->load->view('header',$data);
 		$this->load->view('viewsubs',$data);
 	}
 	public function userSubscription()
@@ -86,6 +89,7 @@ class user extends CI_Controller {
 		$userid = $this->session->userdata('userid');
 		$data['query']=$this->ads_model->getsubscribedUsers($userid);
 		$query = $data['query'];
+		$this->load->view('header',$data);
 		$this->load->view('viewusersubs',$data);
 	}
 	public function edit()
@@ -121,6 +125,7 @@ class user extends CI_Controller {
 			$data['err'] ="";
 			$data['query']=$this->User_model->getAccount($this->session->userdata('userid'));
 			$data['username']=$this->session->userdata('username');
+			$this->load->view('header',$data);
 			$this->load->view('editUser',$data);
 			}
 		else
@@ -141,6 +146,7 @@ class user extends CI_Controller {
 			}
 			$data['query']=$this->User_model->getAccount($this->session->userdata('userid'));
 			$data['username']=$this->session->userdata('username');
+			$this->load->view('header',$data);
 			$this->load->view('editUser',$data);
 		}
 		

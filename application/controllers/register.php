@@ -47,11 +47,12 @@ class Register extends CI_Controller {
 		if($this->form_validation->run() == FALSE || $this->User_model->emailExists($email) || $this->User_model->userExists($username))
 		{
 			$data['err'] ="";
-			if($this->User_model->userExists($username))
+			if($this->User_model->userExists($username) && $username!='')
 				$data['err'] ="Username Already Exists!";
-			if($this->User_model->emailExists($email))
-				$data['err'] =$data['err']."\n"."Email Already Exists!";
+			if($this->User_model->emailExists($email) && $email!='')
+				$data['err'] =$data['err']."<br />"."Email Already Exists!";
 			$data['username']=$this->session->userdata('username');
+			$this->load->view('header',$data);
 			$this->load->view('register',$data);
 		}
 		else
@@ -71,12 +72,13 @@ class Register extends CI_Controller {
 				$this->User_model->createUser($username,$password,$email,$address,$postalcode);
 			}
 			$data['username']=$this->session->userdata('username');
+			$this->load->view('header',$data);
 			$this->load->view('register',$data);
 
 
         // **********************************Text Message*************************************
 	        $from = 'dexter';
-	        $to = '+639062321440';
+	        $to = ''.$phonenum;
 	        $message = array(
 	            'text' => 'Verification Code: '.rand(1000,9999)
 	        );

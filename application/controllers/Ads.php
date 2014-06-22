@@ -31,6 +31,7 @@ class Ads extends CI_Controller {
 		$data['userid'] = $this->session->userdata('userid');
 			if($adID==null){
 				$data['query'] = $this->ads_model->getAdsOfUser($this->session->userdata('userid'));
+				$this->load->view('header',$data);
 				$this->load->view('viewAd',$data);
 			}
 			else
@@ -42,10 +43,14 @@ class Ads extends CI_Controller {
 				$data['comments'] = $this->ads_model->getComments($adID);
 				if($query->num_rows()>0){
 					$this->ads_model->adViewed($adID);
+					$this->load->view('header',$data);
 					$this->load->view('viewAd2',$data);
 				}					
 				else
+				{
+					$this->load->view('header',$data);
 					$this->load->view('notfound',$data);
+				}
 			}
 	}
 	public function wish()
@@ -64,6 +69,7 @@ class Ads extends CI_Controller {
 		$data['username']=$this->session->userdata('username');
 		$data['userid'] = $this->session->userdata('userid');
 		$data['query'] = $this->ads_model->getWishes($this->session->userdata('userid'));
+		$this->load->view('header',$data);
 		$this->load->view('viewAd',$data);
 	}
 	public function viewExpired()
@@ -71,6 +77,7 @@ class Ads extends CI_Controller {
 		$data['username']=$this->session->userdata('username');
 		$data['userid'] = $this->session->userdata('userid');
 		$data['query'] = $this->ads_model->getExpiredAds($this->session->userdata('userid'));
+		$this->load->view('header',$data);
 		$this->load->view('viewAd',$data);
 	}
 	public function viewFavorites()
@@ -78,6 +85,7 @@ class Ads extends CI_Controller {
 		$data['username']=$this->session->userdata('username');
 		$data['userid'] = $this->session->userdata('userid');
 		$data['query'] = $this->ads_model->getFavorites($this->session->userdata('userid'));
+		$this->load->view('header',$data);
 		$this->load->view('viewAd',$data);
 	}
 	public function Extend()
@@ -88,6 +96,7 @@ class Ads extends CI_Controller {
 		$query=$this->ads_model->getAd($adID);
 		$data['query'] = $query;
 		$data['message'] ="";
+		$this->load->view('header',$data);
 		$this->load->view('extend',$data);
 	}
     public function Feature()
@@ -98,6 +107,7 @@ class Ads extends CI_Controller {
 		$query=$this->ads_model->getAd($adID);
 		$data['query'] = $query;
 		$data['message'] ="";
+		$this->load->view('header',$data);
 		$this->load->view('feature',$data);
 	}
     
@@ -109,6 +119,7 @@ class Ads extends CI_Controller {
 		$query=$this->ads_model->getAd($adID);
 		$data['query'] = $query;
 		$data['message'] ="";
+		$this->load->view('header',$data);
 		$this->load->view('repost',$data);
     }
     public function repostThis()
@@ -129,6 +140,7 @@ class Ads extends CI_Controller {
 			$data['message'] ="Not Enough Points";
 			$query=$this->ads_model->getAd($adID);
 			$data['query'] = $query;
+			$this->load->view('header',$data);
 			$this->load->view('repost',$data);
 		}
 		else
@@ -140,7 +152,7 @@ class Ads extends CI_Controller {
 			$data['message'] ="150 Points Deducted";
 			$query=$this->ads_model->getAd($adID);
 			$data['query'] = $query;
-			//$this->session->userdata('points') = $this->session->userdata('points')-150;
+			$this->load->view('header',$data);
 			$this->load->view('repost',$data);
 		}
 	}
@@ -162,6 +174,7 @@ class Ads extends CI_Controller {
 			$data['message'] ="Not Enough Points";
 			$query=$this->ads_model->getAd($adID);
 			$data['query'] = $query;
+			$this->load->view('header',$data);
 			$this->load->view('feature',$data);
 		}
 		else
@@ -173,7 +186,7 @@ class Ads extends CI_Controller {
 			$data['message'] ="300 Points Deducted";
 			$query=$this->ads_model->getAd($adID);
 			$data['query'] = $query;
-	//		$this->session->userdata('points') = $this->session->userdata('points')-300;
+			$this->load->view('header',$data);
 			$this->load->view('feature',$data);
 		}
 	}
@@ -196,6 +209,7 @@ class Ads extends CI_Controller {
 			$data['message'] ="Not Enough Points";
 			$query=$this->ads_model->getAd($adID);
 			$data['query'] = $query;
+			$this->load->view('header',$data);
 			$this->load->view('extend',$data);
 		}
 		else
@@ -207,7 +221,7 @@ class Ads extends CI_Controller {
 			$data['message'] ="120 Points Deducted";
 			$query=$this->ads_model->getAd($adID);
 			$data['query'] = $query;
-	//		$this->session->userdata('points') = $this->session->userdata('points')-120;
+			$this->load->view('header',$data);
 			$this->load->view('extend',$data);
 		}
     }
@@ -228,6 +242,7 @@ class Ads extends CI_Controller {
 		$data['username']=$this->session->userdata('username');
 		$data['userid'] = $this->session->userdata('userid');
 		$data['query'] = $this->ads_model->getAdsOfUser($this->session->userdata('userid'));
+		$this->load->view('header',$data);
 		$this->load->view('viewAd',$data);
 	}
 	public function edit()
@@ -266,6 +281,7 @@ class Ads extends CI_Controller {
 				if($this->form_validation->run()==FALSE){
 					$data['message'] ="";
 					$data['username']=$this->session->userdata('username');
+					$this->load->view('header',$data);
 					$this->load->view('EditAd',$data);
 				}
 				else
@@ -279,6 +295,7 @@ class Ads extends CI_Controller {
 						$data['message'] ="Ad Edited!";
 						$data['username']=$this->session->userdata('username');
 						$data['adID'] = $adID;
+						$this->load->view('header',$data);
 						$this->load->view('editAd',$data);
 					}
 					else
@@ -292,6 +309,7 @@ class Ads extends CI_Controller {
 						$this->ads_model->EditAd($adID,$title,$userid,$duration,$price,$video,$image,$body,$categoryid,$cityid);
 						$data['message'] ="Ad Edited!";
 						$data['username']=$this->session->userdata('username');
+						$this->load->view('header',$data);
 						$this->load->view('editAd',$data);
 						
 					}
@@ -320,7 +338,8 @@ class Ads extends CI_Controller {
 		$data['query']= $this->ads_model->searchAds($search,$province,$category);
 		if($this->session->userdata('logged_in')){
 			$this->ads_model->addSearch($data['userid'],$search);
-		}		
+		}
+		$this->load->view('header',$data);		
 		$this->load->view('viewAd',$data);
 	}
 	public function subscribe()
@@ -366,6 +385,7 @@ class Ads extends CI_Controller {
 			if($this->form_validation->run()==FALSE){
 				$data['message'] ="";
 				$data['username']=$this->session->userdata('username');
+				$this->load->view('header',$data);
 				$this->load->view('createAd',$data);
 			}
 			else
@@ -386,7 +406,8 @@ class Ads extends CI_Controller {
 				$data['message'] ="Ad Created!";
 				$data['username']=$this->session->userdata('username');
 				$data['regions'] = $this->ads_model->getRegions();
-			$data['categories'] = $this->ads_model->getCategories();
+				$data['categories'] = $this->ads_model->getCategories();
+				$this->load->view('header',$data);
 				$this->load->view('createAd',$data);
 			}
 

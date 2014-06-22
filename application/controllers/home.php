@@ -11,6 +11,7 @@ class Home extends CI_Controller {
 	}
 	public function terms()
 	{
+
 		$this->load->view('terms');
 	}
 	public function getProvinces()
@@ -33,6 +34,7 @@ class Home extends CI_Controller {
 		$data['regions'] = $this->ads_model->getRegions();
 		$data['categories'] = $this->ads_model->getCategories();
 		$data['search'] = $this->ads_model->getSearches($this->session->userdata('userid'));
+		$this->load->view('header',$data);
 		$this->load->view('home',$data);
 	}
 	public function login()
@@ -50,6 +52,7 @@ class Home extends CI_Controller {
 		{
 			if(!$this->session->userdata('logged_in')){
 				$data['username']=$this->session->userdata('username');
+				$this->load->view('header',$data);
 				$this->load->view('login',$data);
 				$this->session->set_userdata($newdata);
 			}
@@ -82,6 +85,7 @@ class Home extends CI_Controller {
 				}
 			}
 			$data['username']=$this->session->userdata('username');
+			$this->load->view('header',$data);
 			$this->load->view('login',$data);
 		}
 		

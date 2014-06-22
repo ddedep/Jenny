@@ -16,6 +16,7 @@ class Support extends CI_Controller {
 		$userid = $this->session->userdata('userid');
 		$data['username']=$this->session->userdata('username');
 		$data['query']=$this->support_model->getAllSupport();
+		$this->load->view('header',$data);
 		$this->load->view('support',$data);
 	}
 	public function comment()
@@ -39,6 +40,7 @@ class Support extends CI_Controller {
 		$data['userid'] = $userid;
 		$data['query']=$this->support_model->getSupport($supportID);
 		$data['comments'] = $this->support_model->getComments($supportID);
+		$this->load->view('header',$data);
 		$this->load->view('support2',$data);
 
 	}
@@ -55,12 +57,14 @@ class Support extends CI_Controller {
 			if($this->form_validation->run()==FALSE){
 				$data['message'] ="";
 				$data['username']=$this->session->userdata('username');
+				$this->load->view('header',$data);
 				$this->load->view('createSupport',$data);
 			}
 			else
 			{
 				$this->support_model->createSupport($title,$body,$userid);
 				$data['message'] ="Support created";
+				$this->load->view('header',$data);
 				$this->load->view('createSupport',$data);
 			}
 		}

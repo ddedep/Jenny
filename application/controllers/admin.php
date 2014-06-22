@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Faq extends CI_Controller {
+class Admin extends CI_Controller {
 	public function __construct()
 	{
 		parent::__construct();
@@ -10,13 +10,11 @@ class Faq extends CI_Controller {
 		$this->load->helper('date');
 	}
 
-	public function index() // create ad
+	public function index() 
 	{
-		$data['username']=$this->session->userdata('username');
-		$data['userid'] = $this->session->userdata('userid');
 		$this->load->view('header',$data);
-		$this->load->view('faq',$data);
-	}
+        $this->load->view('admin');   
+    }
 }
 ?>
 
