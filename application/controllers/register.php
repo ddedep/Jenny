@@ -80,7 +80,8 @@ class Register extends CI_Controller {
 		            'text' => 'Verification Code: '.rand(1000,9999)
 		        );
 		        $response = $this->nexmo->send_message($from, $to, $message);
-		        mail('dexter_edep@yahoo.com', 'hello', 'wazzup');
+		        $headers = "From: welcome@onestopdealph.com";
+		        mail($email, 'Thank you for signing up!','Welcome to onestopdealph.com!' $headers);
 			}
 			
 
