@@ -81,7 +81,7 @@ class Register extends CI_Controller {
 		        );
 		        $response = $this->nexmo->send_message($from, $to, $message);
 		        $headers = "From: welcome@onestopdealph.com";
-		        mail($email, 'Thank you for signing up!','Welcome to onestopdealph.com!' $headers);
+		        mail($email, 'Thank you for signing up!','Welcome to onestopdealph.com!',$headers);
 			}
 			
 
