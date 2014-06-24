@@ -5,7 +5,12 @@
 		{
 			$this->load->database();
 		}
-			
+		
+		public function isSold($adid)
+		{
+			$sql = "INSERT INTO sold(adid) values(?)";
+			$this->db->query($sql,$adid);
+		}
 		public function extendAd($adID,$duration)
 		{
             $duration = $duration +30;

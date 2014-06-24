@@ -38,12 +38,25 @@
 			<a href="<?php echo base_url();?>index.php/Ads/repost/<?php echo $row['adid'];?>"><button>Repost</button></a>
 			<?php endif; ?>
 
-			<input type="hidden" value='subscribe' />
+			
 			<?php if($hidefav==0 && $row['owner']!=$userid): echo form_open('index.php/Ads/favorite'); ?>
 				<input name ="favid" type="hidden" value="<?php echo $row['adid'];?>" />
 				<button type="submit">Favorite</button>
 			</form>
 			<?php endif; ?>
+
+			<?php if($isSold==0 && $row['owner']==$userid): echo form_open('index.php/Ads/sell'); ?>
+				<input name ="favid" type="hidden" value="<?php echo $row['adid'];?>" />
+				<button type="submit">Mark As Sold</button>
+			</form>
+			<?php endif; ?>
+
+			<?php if($isSold!=0):?>
+				<input name ="favid" type="hidden" value="<?php echo $row['adid'];?>" />
+				<button type="submit" enabled="false">Sold</button>
+			</form>
+			<?php endif; ?>
+
 			<?php if($hidewish==0 && $row['owner']!=$userid): echo form_open('index.php/Ads/wish'); ?>
 				<input name ="wishid" type="hidden" value="<?php echo $row['adid'];?>" />
 				<button type="submit">Add to Wish List</button>

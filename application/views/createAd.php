@@ -2,7 +2,7 @@
 		    	<div class="row">
 				<h3>Ad Details</h3>
 				<?php echo validation_errors(); echo $message;?>
-		    		<?php echo form_open_multipart('index.php/Ads'); ?>
+		    		<?php echo form_open_multipart('index.php/ads'); ?>
 
 				<div class="row">
 					<div class="small-6 columns">

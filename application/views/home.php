@@ -5,7 +5,7 @@
 			   		<div class="large-9 columns">
 			   			<?php echo form_open('index.php/ads/search'); ?>
 				   		<div class="large-12 columns">
-					        <input type="text" id ="tags" name="search">
+					        <input type="text" id ="autocomplete" name="search">
 					    </div>
 					      <div class="large-4 columns">
 						      <select name="category">
@@ -122,6 +122,58 @@
 		</div>
 		<!--Scripts -->
 		<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+
+	    <script type="text/javascript" src="<?php echo base_url(); ?>scripts/jquery.mockjax.js"></script>
+	    <script type="text/javascript" src="<?php echo base_url(); ?>src/jquery.autocomplete.js"></script>
+	    <script type="text/javascript" src="<?php echo base_url(); ?>scripts/countries.js"></script>
+		<script type="text/javascript">
+		$(function () {
+		    'use strict';
+		    var searches = {
+		    	<?php 
+		    	$count=0;
+		    	foreach ($search->result_array() as $row) {
+		    		echo '"'.$row['searchid'].'":"'.$row['searchbody'].'",';
+		    		$count++;
+		    		if($count==10) break;
+		    	} 
+		    	?>
+
+		    };
+		    var countriesArray = $.map(searches, function (value, key) { return { value: value, data: key }; });
+
+		    // Setup jQuery ajax mock:
+		    $.mockjax({
+		        url: '*',
+		        responseTime: 2000,
+		        response: function (settings) {
+		            var query = settings.data.query,
+		                queryLowerCase = query.toLowerCase(),
+		                re = new RegExp('\\b' + $.Autocomplete.utils.escapeRegExChars(queryLowerCase), 'gi'),
+		                suggestions = $.grep(countriesArray, function (country) {
+		                     // return country.value.toLowerCase().indexOf(queryLowerCase) === 0;
+		                    return re.test(country.value);
+		                }),
+		                response = {
+		                    query: query,
+		                    suggestions: suggestions
+		                };
+
+		            this.responseText = JSON.stringify(response);
+		        }
+		    });
+
+		    // Initialize autocomplete with local lookup:
+		    $('#autocomplete').autocomplete({
+		        lookup: countriesArray,
+		        minChars: 0,
+		        onSelect: function (suggestion) {
+		            $('#selection').html('You selected: ' + suggestion.value + ', ' + suggestion.data);
+		        }
+		    });
+		});
+
+		</script>
 		<script type="text/javascript">
 		
 			$('#regions').change(function(){
@@ -137,8 +189,6 @@
 				});
 		});
 		</script>
-		
-		 <script>
 		<script src="<?php echo base_url(); ?>js/vendor/jquery.js"></script>
 	    <script src="<?php echo base_url(); ?>js/foundation.min.js"></script>
 	    <script>

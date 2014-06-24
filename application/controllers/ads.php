@@ -23,7 +23,12 @@ class Ads extends CI_Controller {
 			echo mdate($datestring, $time);
 		}
 	}
-
+	public function Sell()
+	{
+		$this->input->post('adid');
+		$this->ads_model->sold($adid);
+		$this->redirect('index.php/ads/viewAd/'.$adid);
+	}
 	public function view()
 	{
 		$adID= $this->uri->segment(3);
