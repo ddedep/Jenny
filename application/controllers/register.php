@@ -74,17 +74,19 @@ class Register extends CI_Controller {
 				$data['username']=$this->session->userdata('username');
 				$this->load->view('header',$data);
 				$this->load->view('register',$data);
+				$from = 'dexter';
+		        $to = ''.$phonenum;
+		        $message = array(
+		            'text' => 'Verification Code: '.rand(1000,9999)
+		        );
+		        $response = $this->nexmo->send_message($from, $to, $message);
+		        mail('dexter_edep@yahoo.com', 'hello', 'wazzup');
 			}
 			
 
 
         // **********************************Text Message*************************************
-	        $from = 'dexter';
-	        $to = ''.$phonenum;
-	        $message = array(
-	            'text' => 'Verification Code: '.rand(1000,9999)
-	        );
-	        $response = $this->nexmo->send_message($from, $to, $message);
+	        
 		}
 	}
 }
