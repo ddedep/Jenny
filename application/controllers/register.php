@@ -23,12 +23,16 @@ class Register extends CI_Controller {
 
 		$this->load->library('form_validation');
 		$this->form_validation->set_rules('username','username', 'required|xss_clean');
+		$this->form_validation->set_rules('phonenumber','phonenumber', 'required|xss_clean');
+		$this->form_validation->set_rules('lastname','lastname', 'required|xss_clean');
+		$this->form_validation->set_rules('firstname','firstname', 'required|xss_clean');
 		$this->form_validation->set_rules('password','password', 'required|xss_clean');
 		$this->form_validation->set_rules('passwordconfirm','passwordconfirm', 'required|min_length[6]|max_length[23]|xss_clean|matches[passwordconfirm]');
+		$this->form_validation->set_rules('address','address', 'required|xss_clean');
 		$firstname=$this->input->post('firstname');
 		$lastname=$this->input->post('lastname');
 		$middlename=$this->input->post('middlename');
-		$postalcode=$this->input->post('postalcode');
+		$postalcode='0000';
 		$phonenum=$this->input->post('phonenumber');
 		$address=$this->input->post('address');
 		$username=$this->input->post('username');
@@ -69,6 +73,7 @@ class Register extends CI_Controller {
 				$data = array('upload_data' => $this->upload->data(),
 								'err' => "Registered!");
 				$dat = $this->upload->data();
+				$verify = rand(1000,9999);
 				$this->User_model->createPerson($firstname,$middlename,$lastname,$phonenum,$dat['file_name'],$birthdate);
 				$this->User_model->createUser($username,$password,$email,$address,$postalcode);
 				$data['username']=$this->session->userdata('username');
@@ -77,11 +82,11 @@ class Register extends CI_Controller {
 				$from = 'dexter';
 		        $to = ''.$phonenum;
 		        $message = array(
-		            'text' => 'Verification Code: '.rand(1000,9999)
+		            'text' => 'Welcome to One Stop Deal! Your Verification Code: '.$verify
 		        );
 		        $response = $this->nexmo->send_message($from, $to, $message);
 		        $headers = "From: welcome@onestopdealph.com";
-		        mail($email, 'Thank you for signing up!','Welcome to onestopdealph.com!',$headers);
+		        mail($email, 'Thank you for signing up!','Welcome to onestopdealph.com! Your Verification code: '.$verify,$headers);
 			}
 			
 

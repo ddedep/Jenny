@@ -1,14 +1,14 @@
 			<div class="row">
  			<div class="large-8 columns" style="margin-left: 20%;">
 
-		      <a href="<?php echo base_url()?>index.php/support/createSupport"><button>Create Support</button></a>
+		      <a href="<?php echo base_url()?>index.php/support/createSupport"><button>Create Thread</button></a>
 		     
 		      <?php foreach($query->result_array() as $row):	?>
 						<div class= 'panel'>
-							<h2>Support <?php echo $row['support_id']; ?></h2>
 							Title: <?php echo $row['title']; ?><br/><br/>
 							<?php echo $row['body']; ?><br/><br/>
 							By: <?php echo $row['username']; ?><br/><br/>
+							On: <?php echo $row['insertedon']; ?><br/><br/>
 						</div><br />
 			<?php endforeach; ?>
 			<?php if($this->session->userdata('logged_in')): ?>

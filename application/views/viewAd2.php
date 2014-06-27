@@ -24,7 +24,7 @@
 				endforeach;
 			?>
 			<?php if($row['owner']!=$userid): ?>
-			<a href="<?php echo base_url();?>index.php/user/view/<?php echo $row['personid'];?>"><button>Subscribe</button></a>
+			<a href="<?php echo base_url();?>index.php/user/view/<?php echo $row['owner'];?>"><button>View Profile</button></a>
 			<?php endif; ?>
 
 			<?php if($row['owner']==$userid && $row['isexpired']!=1): ?>
@@ -37,7 +37,7 @@
             <?php if($row['owner']==$userid && $row['isexpired']==1): ?>
 			<a href="<?php echo base_url();?>index.php/Ads/repost/<?php echo $row['adid'];?>"><button>Repost</button></a>
 			<?php endif; ?>
-
+			<?php $isSold = $row['issold'] ?>
 			
 			<?php if($hidefav==0 && $row['owner']!=$userid): echo form_open('index.php/Ads/favorite'); ?>
 				<input name ="favid" type="hidden" value="<?php echo $row['adid'];?>" />

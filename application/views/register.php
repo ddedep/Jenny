@@ -13,7 +13,7 @@
 		    	<div class ="large-12 columns">
 		    		<?php echo form_open_multipart('index.php/register'); ?>
 		    			<div class="medium-5 columns">
-			    			<label>First Name</label>
+			    			<label>First Name<span style="color:red;font-size:20px;">*</span></label>
 			    			<input type="text" name="firstname">
 		    			</div>
 		    			<div class="medium-3 columns">
@@ -21,19 +21,19 @@
 			    			<input type="text" name="middlename">
 		    			</div>
 		    			<div class="medium-4 columns">
-			    			<label>Last Name</label>
+			    			<label>Last Name<span style="color:red;font-size:20px;">*</span></label>
 			    			<input type="text" name="lastname">	
 		    			</div>
 		    	
 		    	<div class="large-12 columns">
     				<div class="medium-4 columns">
-    					<label>Cellphone Number(+639XXXXXXXXX)</label>
+    					<label>Cellphone Number(+639XXXXXXXXX)<span style="color:red;font-size:20px;">*</span></label>
     					<input type="text" name = "phonenumber">
     				</div>
     			</div>
     			<div class="medium-9 columns">
     				<div class="medium-4 columns">
-    					<label>Birthdate</label>
+    					<label>Birthmonth<span style="color:red;font-size:20px;">*</span></label>
     					<select name="month">
 							<option value="1">January</option>
 							<option value="2">February</option>
@@ -50,7 +50,7 @@
 						</select>
 					</div>
 					<div class="medium-4 columns">
-						<label>Day</label>
+						<label>Day<span style="color:red;font-size:20px;">*</span></label>
 						<?php
 						$options = array();
 						for($i=1;$i<=31;$i++)
@@ -62,7 +62,7 @@
 						?>
 					</div>
 					<div class="medium-3 columns">
-						<label>Year</label>
+						<label>Year<span style="color:red;font-size:20px;">*</span></label>
 						<?php
 						$option = array();
 						for($i=0;$i<=100;$i++)
@@ -76,41 +76,37 @@
     					
     				</div>
     			</div>
-
-    				<div class="medium-4 columns">
-    					<label>Postal Code</label>
-    					<input type="text" name ="postalcode">
-    				</div>   			
+  			
     			
     				<div class="large-12 columns">
-    				<label>Address</label>
+    				<label>Address<span style="color:red;font-size:20px;">*</span></label>
     				<input type="text" name ="address">
     				</div>
     			
     				<div class="large-6 columns">
-    				<label>Username</label>
+    				<label>Username<span style="color:red;font-size:20px;">*</span></label>
     				<input type="text" name="username">
     				</div>
     			
     			
     				<div class="large-8 columns">
-    				<label>Email</label>
+    				<label>Email<span style="color:red;font-size:20px;">*</span></label>
     				<input type="text" name="email">
     				</div>
 
     			
     				<div class="large-6 columns">
-    				<label>Password</label>
+    				<label>Password(minimum 6 characters)<span style="color:red;font-size:20px;">*</span></label>
     				<input type="password" name="password">
     				</div>
     			
     			
     				<div class="large-6 columns">
-    				<label>Confirm Password</label>
+    				<label>Confirm Password<span style="color:red;font-size:20px;">*</span></label>
     				<input type="password" name="passwordconfirm">
     				</div>
     				<div class="large-6 columns">
-    					<label>upload photo</label>
+    					<label>upload photo(10 mb max size)</label>
 						<input type="file" name="userfile" size="20" />
     				</div>
     				<div class="large-8 columns">
@@ -119,18 +115,20 @@
     				</div>
     				
     				<div class="large-8 columns">
-    					<Button id="register" type="submit" disabled> Register! </Button>
+    					<Button id="register" type="submit" disabled='false'> Register! </Button>
     				</div>
 
     				</form>
+
     			</div>
+    			<span style="color:red;font-size:20px;">*</span> = Required
 		    </div>
 		</div>
 		<!--Scripts -->
 			<!-- Terms and Agreements -->
 			<script type="text/javascript">
 				$('#terms').click(function() {
-						$('#register').removeAttr('disabled')
+					$("#register").attr("disabled", !this.checked);
 				});
 			// Popup window code
 			function newPopup(url) {

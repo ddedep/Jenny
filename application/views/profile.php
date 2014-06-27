@@ -4,7 +4,6 @@
 				<?php if(!$hide):?>
 					<div class="panel">
 						<h5>Menu</h5>
-						<a href="<?php echo base_url() ?>index.php/user">Profile</a> <br/><br/>
 						<a href="<?php echo base_url() ?>index.php/ads/view">My Ads</a> <br/><br/>
 						<a href="<?php echo base_url() ?>index.php/ads/viewExpired">Expired Ads</a> <br/><br/>
 						<a href="<?php echo base_url() ?>index.php/user/userSubscription">Subscription</a> <br/><br/>
@@ -31,17 +30,25 @@
 							echo "Email: ".$profile['email']."<br/><br/>";
 							echo "Phone Number: ".$profile['phonenum']."<br/><br/>";
 							echo "Points: ".$profile['points']."<br/><br/>";
+							if($own){
+							echo "Total Ads: ".($actAds+$exAds)."<br/><br/>";
+							echo "Active Ads: ".$actAds."<br/><br/>";
+							echo "Expired Ads: ".$exAds."<br/><br/>";
+						}
 						?>
 						</div>
 						</div>
 						
 					</div>
-					<?php if($hide):
+					<?php if(!$subscribed && !$own):
 						echo form_open_multipart('index.php/ads/subscribe');
 					?>
-					<input type="text" name = 'userid' value ='<?php echo $userid;?>'/>
+					<input type="hidden" name = 'userid' value ='<?php echo $profile['userid'];?>'/>
 					<button type="submit">Subscribe</button>
 					</form>
+					<?php endif;?>
+					<?php if($subscribed && !$own): ?>
+						<button type="submit" disabled="true">Already Subscribed!</button>
 					<?php endif;?>
 					<?php if(!$hide){
 						echo "<a href='".base_url()."index.php/user/edit'><button type='submit'>Edit</button></a>";

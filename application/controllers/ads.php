@@ -349,6 +349,7 @@ class Ads extends CI_Controller {
 	}
 	public function subscribe()
 	{
+		if(!$this->session->userdata('logged_in')) redirect('index.php/register');
 		$owner = $this->input->post('userid');
 		$subscriber = $this->session->userdata('userid');
 		$this->User_model->subscribe($owner,$subscriber);
@@ -408,6 +409,15 @@ class Ads extends CI_Controller {
 				$dat = $this->upload->data();
 				$image = $dat['file_name'];
 				$this->ads_model->CreateAd($title,$userid,$duration,$price,$video,$image,$body,$categoryid,$cityid);
+				$userz=$this->User_model->getUser($this->session->userdata('username'));
+				$points=0;
+				foreach ($userz->result_array() as $row) {
+					$points= $row['points'];
+					break;
+				}
+
+				$points = $points+1;
+				$this->User_model->updatePoints($this->session->userdata('username'),$points);
 				$data['message'] ="Ad Created!";
 				$data['username']=$this->session->userdata('username');
 				$data['regions'] = $this->ads_model->getRegions();

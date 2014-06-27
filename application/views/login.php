@@ -4,6 +4,7 @@
 			    </div>
 			    <div class= "row">
 			    	<div class="large-6 column">
+			    		<span style= "color: red;"><?php echo $err; ?></span>
 			    		<h2>Sign in</h2>
 			    		<?php echo form_open('index.php/home/login'); ?>
 			    		<label>Email or Username</label>

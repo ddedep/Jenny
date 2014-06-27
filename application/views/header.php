@@ -24,11 +24,11 @@
 			<div class="row">
 		      <div class="large-12 columns">
 		       <div class = 'panel'>
-		       <a href="<?php echo base_url();?>"><img src="<?php echo base_url(); ?>img/logo.jpg" style="height:50px"></a>
-		        	<?php if($username!=NULL) echo "Welcome ".$username."!&nbsp;	&nbsp;"; 
+		       <a href="<?php echo base_url();?>"><img src="<?php echo base_url(); ?>img/logo.png" style="height:50px"></a>
+		        	<?php if($username!=NULL) echo "<a href=".base_url()."index.php/user>"."Welcome ".$username."!&nbsp;	&nbsp;</a>"; 
 		        	else{
 		        		echo '<a href="';echo base_url().'index.php/home/login">'."Sign in or Register</a>&nbsp;	&nbsp";
-		        		}  ?>|&nbsp;	&nbsp;<a href="<?php echo base_url();?>index.php/user">Profile&nbsp;	&nbsp;</a>|&nbsp;	&nbsp;<a href="<?php echo base_url();?>index.php/ads">Sell&nbsp;	&nbsp;</a>	|&nbsp;	&nbsp;<a href="<?php echo base_url();?>index.php/support">Customer Support</a>&nbsp;	&nbsp;|&nbsp;	&nbsp;<a href="<?php echo base_url();?>index.php/faq">FAQ</a>&nbsp;	&nbsp;|
+		        		}  ?>|&nbsp;	&nbsp;<a href="<?php echo base_url();?>index.php/ads">Sell&nbsp;	&nbsp;</a>	|&nbsp;	&nbsp;<a href="<?php echo base_url();?>index.php/support">Forum</a>&nbsp;	&nbsp;|&nbsp;	&nbsp;<a href="<?php echo base_url();?>index.php/faq">FAQ</a>&nbsp;	&nbsp;|
 		        	<?php	
 			        	if($username==NULL) echo ""; 
 			        	else{

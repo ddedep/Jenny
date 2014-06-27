@@ -58,7 +58,7 @@
 									<span class="ca-quote">&ldquo;</span>
 									<span><?php echo $row['body'];?></span>
 								</h4>
-									<a href="<?php echo base_url(); ?>/index.php/ads/view/<?php echo $row['adid']; ?>" class="ca-more">more...</a>
+									<a href="<?php echo base_url(); ?>index.php/ads/view/<?php echo $row['adid']; ?>" class="ca-more">more...</a>
 							</div>
 							
 						</div>
@@ -142,26 +142,6 @@
 		    };
 		    var countriesArray = $.map(searches, function (value, key) { return { value: value, data: key }; });
 
-		    // Setup jQuery ajax mock:
-		    $.mockjax({
-		        url: '*',
-		        responseTime: 2000,
-		        response: function (settings) {
-		            var query = settings.data.query,
-		                queryLowerCase = query.toLowerCase(),
-		                re = new RegExp('\\b' + $.Autocomplete.utils.escapeRegExChars(queryLowerCase), 'gi'),
-		                suggestions = $.grep(countriesArray, function (country) {
-		                     // return country.value.toLowerCase().indexOf(queryLowerCase) === 0;
-		                    return re.test(country.value);
-		                }),
-		                response = {
-		                    query: query,
-		                    suggestions: suggestions
-		                };
-
-		            this.responseText = JSON.stringify(response);
-		        }
-		    });
 
 		    // Initialize autocomplete with local lookup:
 		    $('#autocomplete').autocomplete({

@@ -14,6 +14,10 @@ class user extends CI_Controller {
 		$this->load->library('session');
 		$newdata=array();
 		if($this->session->userdata('logged_in')){
+			$exAds = $this->ads_model->getExpiredAds($this->session->userdata('userid'));
+			$actAds = $this->ads_model->getAdsOfUser($this->session->userdata('userid'));
+			$data['actAds'] = $actAds->num_rows();
+			$data['exAds']= $exAds->num_rows();
 			$query=$this->User_model->getAccount($this->session->userdata('userid'));
 			
 			foreach($query->result_array() as $row)
@@ -26,6 +30,7 @@ class user extends CI_Controller {
 						'pic' =>$row['picture'],
 						'email' =>$this->session->userdata('email'),
 						'points' =>$row['points'],
+						'userid' =>$row['userid'],
 			       );
 					$this->session->set_userdata($newdata);
 					break;
@@ -33,6 +38,8 @@ class user extends CI_Controller {
 			}
 			$data['profile']=$newdata;
 			$data['hide'] = FALSE;
+			$data['subscribed'] = TRUE;
+			$data['own'] = TRUE;
 			$data['username']=$this->session->userdata('username');
 			$this->load->view('header',$data);
 			$this->load->view('profile',$data);
@@ -47,7 +54,11 @@ class user extends CI_Controller {
 		$user= $this->uri->segment(3);
 		$data['username']=$this->session->userdata('username');
 		$data['userid'] = $this->session->userdata('userid');
-		$query=$this->User_model->getPerson($user);
+		$exAds = $this->ads_model->getExpiredAds($user);
+		$actAds = $this->ads_model->getAdsOfUser($user);
+		$data['actAds'] = $actAds->num_rows();
+		$data['exAds']= $exAds->num_rows();
+		$query=$this->User_model->getAccount($user);
 		foreach($query->result_array() as $row)
 		{
 				$newdata = array(
@@ -56,7 +67,9 @@ class user extends CI_Controller {
 					'middlename' => $row['middlename'],
 					'phonenum' => $row['phonenum'],
 					'pic' =>$row['picture'],
-					'email' =>$this->session->userdata('email')
+					'email' =>$this->session->userdata('email'),
+					'points' => $row['points'],
+					'userid' =>$row['userid'],
 		       );
 				break;
 			
@@ -64,6 +77,18 @@ class user extends CI_Controller {
 		$data['profile']=$newdata;
 		$data['username']=$this->session->userdata('username');
 		$data['hide'] = TRUE;
+		$data['subscribed'] = FALSE;
+		$data['own'] = FALSE;
+		if($this->session->userdata('userid')==$user){
+			$data['own'] =TRUE;
+			$data['hide'] = FALSE;
+			$data['subscribed'] = FALSE;
+		} 
+		$subs=$this->ads_model->getsubscribedUsers($data['userid']);
+		foreach ($subs->result_array() as $row) {
+			if($row['subscribedto'] == $user)
+				$data['subscribed'] = TRUE;
+		}
 		$q = $this->User_model->getUserFromPerson($user);
 		foreach($q->result_array() as $row)
 		{

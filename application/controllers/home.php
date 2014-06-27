@@ -45,6 +45,7 @@ class Home extends CI_Controller {
 		$this->form_validation->set_rules('password','password', 'required|xss_clean');
 		$username=$this->input->post('username');
 		$password=$this->input->post('password');
+		$data['err'] = "";
 		$newdata = array(
                 'logged_in' => FALSE
        );
@@ -80,7 +81,7 @@ class Home extends CI_Controller {
 				}
 				else
 				{
-					
+					$data['err'] = "Incorrect username/email or password";
 					break;
 				}
 			}
