@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50611
 File Encoding         : 65001
 
-Date: 2014-06-13 14:36:58
+Date: 2014-06-28 15:52:06
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -51,9 +51,10 @@ CREATE TABLE `ads` (
   `insertedon` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `view` int(11) NOT NULL,
   `isexpired` int(11) NOT NULL,
+  `issold` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`adid`),
   FULLTEXT KEY `search_index` (`title`,`body`)
-) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of ads
@@ -66,7 +67,7 @@ CREATE TABLE `categories` (
   `categoryid` int(11) NOT NULL AUTO_INCREMENT,
   `categoryname` varchar(32) DEFAULT NULL,
   PRIMARY KEY (`categoryid`)
-) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of categories
@@ -90,7 +91,7 @@ CREATE TABLE `cities` (
   `provincename` varchar(32) DEFAULT NULL,
   `regionid` int(11) DEFAULT NULL,
   PRIMARY KEY (`provinceid`)
-) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of cities
@@ -115,13 +116,11 @@ CREATE TABLE `comments` (
   KEY `thread` (`threadid`),
   CONSTRAINT `commentowner` FOREIGN KEY (`owner`) REFERENCES `users` (`userid`),
   CONSTRAINT `thread` FOREIGN KEY (`threadid`) REFERENCES `support` (`support_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of comments
 -- ----------------------------
-
-
 -- ----------------------------
 -- Table structure for `favorites`
 -- ----------------------------
@@ -136,12 +135,31 @@ CREATE TABLE `favorites` (
   KEY `favid` (`favoriteAdid`),
   CONSTRAINT `favid` FOREIGN KEY (`favoriteAdid`) REFERENCES `ads` (`adid`),
   CONSTRAINT `fordid` FOREIGN KEY (`ownerid`) REFERENCES `users` (`userid`)
-) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of favorites
 -- ----------------------------
 
+-- ----------------------------
+-- Table structure for `messages`
+-- ----------------------------
+DROP TABLE IF EXISTS `messages`;
+CREATE TABLE `messages` (
+  `messageid` int(11) NOT NULL AUTO_INCREMENT,
+  `body` varchar(255) DEFAULT NULL,
+  `mfrom` int(11) DEFAULT NULL,
+  `mto` int(11) DEFAULT NULL,
+  PRIMARY KEY (`messageid`),
+  KEY `mto` (`mto`),
+  KEY `mfrom` (`mfrom`),
+  CONSTRAINT `mfrom` FOREIGN KEY (`mfrom`) REFERENCES `users` (`userid`),
+  CONSTRAINT `mto` FOREIGN KEY (`mto`) REFERENCES `users` (`userid`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+
+-- ----------------------------
+-- Records of messages
+-- ----------------------------
 -- ----------------------------
 -- Table structure for `persons`
 -- ----------------------------
@@ -156,7 +174,7 @@ CREATE TABLE `persons` (
   `picture` varchar(255) NOT NULL,
   `insertedon` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`personid`)
-) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of persons
@@ -173,7 +191,7 @@ CREATE TABLE `provinces` (
   PRIMARY KEY (`provinceid`),
   KEY `region` (`regionid`),
   CONSTRAINT `region` FOREIGN KEY (`regionid`) REFERENCES `regions` (`regionid`)
-) ENGINE=MyISAM AUTO_INCREMENT=103 DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
+) ENGINE=InnoDB AUTO_INCREMENT=103 DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
 
 -- ----------------------------
 -- Records of provinces
@@ -275,7 +293,7 @@ INSERT INTO `provinces` VALUES ('98', 'Mandaluyong City', '1');
 INSERT INTO `provinces` VALUES ('99', 'Malabon City', '1');
 INSERT INTO `provinces` VALUES ('100', 'Makati City', '1');
 INSERT INTO `provinces` VALUES ('101', 'Las Pinas City', '1');
-INSERT INTO `provinces` VALUES ('102', 'Caloocan City', null);
+INSERT INTO `provinces` VALUES ('102', 'Caloocan City', '1');
 
 -- ----------------------------
 -- Table structure for `regions`
@@ -285,12 +303,11 @@ CREATE TABLE `regions` (
   `regionid` int(11) NOT NULL AUTO_INCREMENT,
   `regionname` varchar(16) NOT NULL,
   PRIMARY KEY (`regionid`)
-) ENGINE=MyISAM AUTO_INCREMENT=18 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of regions
 -- ----------------------------
-INSERT INTO `regions` VALUES ('0', 'Region');
 INSERT INTO `regions` VALUES ('1', 'NCR');
 INSERT INTO `regions` VALUES ('2', 'CAR');
 INSERT INTO `regions` VALUES ('3', 'Region I');
@@ -308,6 +325,7 @@ INSERT INTO `regions` VALUES ('14', 'Region XI');
 INSERT INTO `regions` VALUES ('15', 'Region XII');
 INSERT INTO `regions` VALUES ('16', 'Region XIII');
 INSERT INTO `regions` VALUES ('17', 'ARMM');
+INSERT INTO `regions` VALUES ('18', 'Region');
 
 -- ----------------------------
 -- Table structure for `searches`
@@ -321,12 +339,11 @@ CREATE TABLE `searches` (
   PRIMARY KEY (`searchid`),
   KEY `ownerid` (`owner`),
   CONSTRAINT `ownerid` FOREIGN KEY (`owner`) REFERENCES `users` (`userid`)
-) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of searches
 -- ----------------------------
-
 -- ----------------------------
 -- Table structure for `subscriptions`
 -- ----------------------------
@@ -341,7 +358,7 @@ CREATE TABLE `subscriptions` (
   KEY `subscribee` (`subscribedto`),
   CONSTRAINT `owner` FOREIGN KEY (`subscriber`) REFERENCES `users` (`userid`),
   CONSTRAINT `subscribee` FOREIGN KEY (`subscribedto`) REFERENCES `users` (`userid`)
-) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of subscriptions
@@ -359,7 +376,7 @@ CREATE TABLE `support` (
   PRIMARY KEY (`support_id`),
   KEY `support_owner` (`owner`),
   CONSTRAINT `support_owner` FOREIGN KEY (`owner`) REFERENCES `users` (`userid`)
-) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of support
@@ -376,12 +393,14 @@ CREATE TABLE `users` (
   `email` varchar(64) NOT NULL,
   `points` int(11) DEFAULT '0',
   `address` varchar(255) DEFAULT NULL,
+  `verification` int(11) NOT NULL,
+  `isVerified` int(11) NOT NULL,
   `postalcode` int(11) NOT NULL,
   `insertedon` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`userid`),
   KEY `personRef` (`personid`),
   CONSTRAINT `personRef` FOREIGN KEY (`personid`) REFERENCES `persons` (`personid`)
-) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of users
@@ -395,7 +414,7 @@ CREATE TABLE `wishes` (
   `userid` int(11) NOT NULL,
   `adid` int(11) NOT NULL,
   PRIMARY KEY (`wishid`)
-) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of wishes
@@ -408,8 +427,8 @@ DROP PROCEDURE IF EXISTS `expiration`;
 DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `expiration`()
 BEGIN
-  #Routine body goes here...
-   UPDATE ads
+	#Routine body goes here...
+	 UPDATE ads
    SET isexpired = 1
     WHERE  TIMESTAMPDIFF(DAY, `insertedon`, NOW()) >  `duration`; 
 END
