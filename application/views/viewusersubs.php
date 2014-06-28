@@ -1,5 +1,20 @@
-
-        <h1>Subscribed to:</h1>
+			<div class="large-12 column">
+			<div class="large-2 column">
+				<?php if(!$hide):?>
+					<div class="panel">
+						<h5>Menu</h5>
+						<a href="<?php echo base_url() ?>index.php/ads/view">My Ads</a> <br/><br/>
+						<a href="<?php echo base_url() ?>index.php/ads/viewExpired">Expired Ads</a> <br/><br/>
+						<a href="<?php echo base_url() ?>index.php/user/userSubscription">Subscription</a> <br/><br/>
+						<a href="<?php echo base_url() ?>index.php/user/subscription">Subscription Ads</a> <br/><br/>
+						<a href="<?php echo base_url() ?>index.php/ads/viewFavorites">My Favorites</a> <br/><br/>
+						<a href="">Buy Points</a> <br/><br/>
+						<a href="<?php echo base_url() ?>index.php/ads/viewWish">Looking for</a> <br/><br/>
+					</div>
+				<?php endif;?>
+			</div>
+			<div class="large-8 column">
+        	<h1>Subscribed to:</h1>
       
         	<?php
         	foreach($query->result_array() as $row):
@@ -11,10 +26,10 @@
 			<?php
 				endforeach;
 	        ?>
-       
+       		</div>
 		        
 
-		      
+		    </div>
 			</div>
 		</div>
 		<!--Scripts -->

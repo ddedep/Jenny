@@ -16,7 +16,7 @@
 						      </select>
 					      </div>
 					      <div class="large-4 columns">
-						      <select id= 'regions'>
+						      <select id= 'regions' name = 'region'>
 
 						      	<option value="0" selected="selected">Regions</option>
 						      	<?php foreach ($regions->result_array() as $row):?>

@@ -11,6 +11,28 @@ class Register extends CI_Controller {
 	{
 		$this->load->view('terms');
 	}
+	public function verify()
+	{
+		$code=$this->input->post('code');
+		$userid=$this->session->userdata('userid');
+		$query=$this->User_model->getAccount($userid);
+		$verified=FALSE;
+		foreach($query->result_array() as $row)
+		{
+			if($row['verification']==$code)
+			{
+				$verified=TRUE;
+			}
+			else
+			{
+				break;
+			}
+		}
+		if($verified)
+		{
+			
+		}
+	}
 	public function index()
 	{
 		if($this->session->userdata('logged_in')){
@@ -75,10 +97,7 @@ class Register extends CI_Controller {
 				$dat = $this->upload->data();
 				$verify = rand(1000,9999);
 				$this->User_model->createPerson($firstname,$middlename,$lastname,$phonenum,$dat['file_name'],$birthdate);
-				$this->User_model->createUser($username,$password,$email,$address,$postalcode);
-				$data['username']=$this->session->userdata('username');
-				$this->load->view('header',$data);
-				$this->load->view('register',$data);
+				$this->User_model->createUser($username,$password,$email,$address,$postalcode,$verify);
 				$from = 'dexter';
 		        $to = ''.$phonenum;
 		        $message = array(
@@ -87,7 +106,11 @@ class Register extends CI_Controller {
 		        $response = $this->nexmo->send_message($from, $to, $message);
 		        $headers = "From: welcome@onestopdealph.com";
 		        mail($email, 'Thank you for signing up!','Welcome to onestopdealph.com! Your Verification code: '.$verify,$headers);
-			}
+			
+				$data['username']=$this->session->userdata('username');
+				$this->load->view('header',$data);
+				$this->load->view('verify',$data);
+				}
 			
 
 

@@ -18,7 +18,7 @@ class Home extends CI_Controller {
 	{
 		$regionid = $this->input->post('regionID');
 		$res=$this->ads_model->getProvinces($regionid);
-		$k ="";
+		$k ="<option value='1'>----------</option>";
 		foreach($res->result_array() as $row)
 		{
 			$k=$k."<option value='".$row['provinceid']."'>".$row['provincename']."</option>";
@@ -36,6 +36,10 @@ class Home extends CI_Controller {
 		$data['search'] = $this->ads_model->getSearches($this->session->userdata('userid'));
 		$this->load->view('header',$data);
 		$this->load->view('home',$data);
+	}
+	public function verify()
+	{
+		
 	}
 	public function login()
 	{

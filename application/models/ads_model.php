@@ -205,13 +205,23 @@
         	$this->db->order_by("insertedon", "desc"); 
         	return $this->db->get();
         }
-		public function searchAds($search, $provinceid, $category)
+		public function searchAds($search, $provinceid, $category,$region)
 		{
 			if($provinceid==0 && $category>0){
 				$sql = "SELECT * FROM ads WHERE MATCH(title, body) AGAINST (?) AND categoryid=?";
 				return $this->db->query($sql, array($search, $category));
 			}
-			elseif($provinceid>0 && $category==0){
+			elseif($provinceid==1 && $category==0)
+			{
+				$sql = "SELECT * FROM ads JOIN (provinces) where  (ads.provinceid= provinces.provinceid and provinces.regionid=?) and MATCH(title, body) AGAINST (?) ";
+				return $this->db->query($sql, array($region,$search));
+			}
+			elseif($provinceid==1 && $category>0)
+			{
+				$sql = "SELECT * FROM ads JOIN (provinces) where  (ads.provinceid= provinces.provinceid and provinces.regionid=?) and MATCH(title, body) AGAINST (?) and categoryid=?";
+				return $this->db->query($sql, array($region,$search,$category));
+			}
+			elseif($provinceid>1 && $category==0){
 				$sql = "SELECT * FROM ads WHERE MATCH(title, body) AGAINST (?) AND provinceid=?";
 				return $this->db->query($sql, array($search, $provinceid));
 			}
@@ -220,6 +230,7 @@
 				$sql = "SELECT * FROM ads WHERE MATCH(title, body) AGAINST (?)";
 				return $this->db->query($sql, array($search));
 			}
+			
 			else
 			{
 				$sql = "SELECT * FROM ads WHERE MATCH(title, body) AGAINST (?) AND provinceid=?  AND categoryid=?";

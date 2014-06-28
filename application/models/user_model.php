@@ -66,7 +66,7 @@
             return $this->db->get();
 		}
 
-		public function createUser($username,$password,$email,$address,$postalcode)
+		public function createUser($username,$password,$email,$address,$postalcode,$verify)
 		{	
 			
 			$query=$this->db->query("SELECT * FROM persons");
@@ -75,8 +75,8 @@
 			{
 				$id=$row['personid'];
 			}
-			$sql = "INSERT into users (username,password,email,address,postalcode,personid) VALUES (?,?,?,?,?,?)";
-			$this->db->query($sql, array($username,$password,$email,$address,$postalcode,$id));
+			$sql = "INSERT into users (username,password,email,address,postalcode,personid,verification) VALUES (?,?,?,?,?,?,?)";
+			$this->db->query($sql, array($username,$password,$email,$address,$postalcode,$id,$verify));
 		}
 		public function subscribe($owner,$subscriber)
 		{

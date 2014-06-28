@@ -36,6 +36,7 @@ class Ads extends CI_Controller {
 		$data['userid'] = $this->session->userdata('userid');
 			if($adID==null){
 				$data['query'] = $this->ads_model->getAdsOfUser($this->session->userdata('userid'));
+				$data['hide'] = FALSE;
 				$this->load->view('header',$data);
 				$this->load->view('viewAd',$data);
 			}
@@ -73,6 +74,7 @@ class Ads extends CI_Controller {
 	{
 		$data['username']=$this->session->userdata('username');
 		$data['userid'] = $this->session->userdata('userid');
+		$data['hide'] = FALSE;
 		$data['query'] = $this->ads_model->getWishes($this->session->userdata('userid'));
 		$this->load->view('header',$data);
 		$this->load->view('viewAd',$data);
@@ -82,6 +84,7 @@ class Ads extends CI_Controller {
 		$data['username']=$this->session->userdata('username');
 		$data['userid'] = $this->session->userdata('userid');
 		$data['query'] = $this->ads_model->getExpiredAds($this->session->userdata('userid'));
+		$data['hide'] = FALSE;
 		$this->load->view('header',$data);
 		$this->load->view('viewAd',$data);
 	}
@@ -89,6 +92,7 @@ class Ads extends CI_Controller {
 	{
 		$data['username']=$this->session->userdata('username');
 		$data['userid'] = $this->session->userdata('userid');
+		$data['hide'] = FALSE;
 		$data['query'] = $this->ads_model->getFavorites($this->session->userdata('userid'));
 		$this->load->view('header',$data);
 		$this->load->view('viewAd',$data);
@@ -340,7 +344,9 @@ class Ads extends CI_Controller {
 		$search = $this->input->post('search');
 		$category = $this->input->post('category');
 		$province = $this->input->post('province');
-		$data['query']= $this->ads_model->searchAds($search,$province,$category);
+		$region = $this->input->post('region');
+		$data['hide'] = TRUE;
+		$data['query']= $this->ads_model->searchAds($search,$province,$category,$region);
 		if($this->session->userdata('logged_in')){
 			$this->ads_model->addSearch($data['userid'],$search);
 		}

@@ -102,6 +102,7 @@ class user extends CI_Controller {
 	{
 		$adID= $this->uri->segment(3);
 		$data['username']=$this->session->userdata('username');
+		$data['hide'] = FALSE;
 		$userid = $this->session->userdata('userid');
 		$data['query']=$this->ads_model->getsubscribedAds($userid);
 		$query = $data['query'];
@@ -111,6 +112,7 @@ class user extends CI_Controller {
 	public function userSubscription()
 	{
 		$adID= $this->uri->segment(3);
+		$data['hide'] = FALSE;
 		$data['username']=$this->session->userdata('username');
 		$userid = $this->session->userdata('userid');
 		$data['query']=$this->ads_model->getsubscribedUsers($userid);
