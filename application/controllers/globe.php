@@ -11,7 +11,7 @@ class Globe extends CI_Controller {
 	{
 		if($this->session->userdata('logged_in'))
 		{
-			require ('http://onestopdealph.com/src/GlobeApi.php');
+			require ('var/www/html/Jenny/src/GlobeApi.php');
 			$globe = new GlobeApi();
 		    $auth = $globe->auth(
 		        'qAdAgFoGraoIx5Tq8KcrkKIX9d9EFLbj',
@@ -41,7 +41,7 @@ class Globe extends CI_Controller {
 	{
 		if($this->session->userdata('logged_in'))
 		{
-			require ('http://onestopdealph.com/src/GlobeApi.php');
+			require ('/var/www/html/Jenny/src/GlobeApi.php');
 			session_start();
 		    $globe = new GlobeApi();
 		    $auth = $globe->auth(
