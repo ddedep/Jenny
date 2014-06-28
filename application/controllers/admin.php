@@ -12,6 +12,7 @@ class Admin extends CI_Controller {
 
 	public function index() 
 	{
+		$data['username']=$this->session->userdata('username');
 		$this->load->view('header',$data);
         $this->load->view('admin');   
     }

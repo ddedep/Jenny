@@ -16,6 +16,9 @@
 				}
 				echo "<img src=".base_url()."images/".$row['imagelink']." style='height:200px;width:200px;'><br/>";
 				echo "Title: ".$row['title']."<br/><br/>";
+				if($row['owner']!=$userid):
+			 		echo "Posted by: <a href='".base_url()."index.php/user/view/".$row['owner']."'>".$row['username']."</a><br/><br/>";
+				endif;
 				echo "Duration: ".$row['duration']." Days<br/><br/>";
 				echo "Price: ".$row['price']."<br/><br/>";
 				echo "About: ".$row['body']."<br/><br/>";
@@ -23,10 +26,7 @@
 				echo "</div>";
 				endforeach;
 			?>
-			<?php if($row['owner']!=$userid): ?>
-			<a href="<?php echo base_url();?>index.php/user/view/<?php echo $row['owner'];?>"><button>View Profile</button></a>
-			<?php endif; ?>
-
+			
 			<?php if($row['owner']==$userid && $row['isexpired']!=1): ?>
 			<a href="<?php echo base_url();?>index.php/Ads/feature/<?php echo $row['adid'];?>"><button>Feature This Ad!</button></a>
 			<?php endif; ?>
