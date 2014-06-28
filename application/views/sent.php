@@ -6,7 +6,8 @@
 					<?php foreach ($messages->result_array() as $row): ?>
 						<div class="panel">
 						From: <?php echo $row['username']; ?> <br/>
-						Message:<br/><?php echo $row['body']; ?>
+						Message:<br/><?php echo $row['body']; ?><br />
+						<?php echo $row['isnertedon']; ?>
 						</div>
 					<?php endforeach; ?>
 					
