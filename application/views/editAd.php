@@ -6,7 +6,7 @@
 				<h3>Ad Details</h3>
 				<?php echo validation_errors(); echo $message;?>
 		    	</div>
-		    		<?php echo form_open_multipart('index.php/Ads/edit/'.$adID); ?>
+		    		<?php echo form_open_multipart('index.php/ads/edit/'.$adID); ?>
 
 				<div class="row">
 					<div class="small-6 columns">
@@ -69,9 +69,13 @@
 						<label>video link</label>
 						<input type="text" name ="video" value="https://www.youtube.com/watch?v=<?php echo $row['videolink']; ?>">
 					</div>
+
 				</div>
-				<input type="hidden"  name="imgname" value = "<?php echo $row['imagelink'] ?>" />
-				<input type="submit">
+				<div class="row">
+					<input type="hidden"  name="imgname" value = "<?php echo $row['imagelink'] ?>" />
+					<button type="Submit">Submit</button>
+				</div>
+				
 				</form>
 			</div>
 			<?php break;endforeach;endif; ?>
