@@ -7,7 +7,7 @@
 						<div class="panel">
 						From: <?php echo $row['username']; ?> <br/>
 						Message:<br/><?php echo $row['body']; ?><br />
-						<?php echo $row['isnertedon']; ?>
+						<?php echo $row['insertedon']; ?>
 						</div>
 					<?php endforeach; ?>
 					
