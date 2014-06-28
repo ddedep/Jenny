@@ -351,7 +351,7 @@ class Ads extends CI_Controller {
 			$this->ads_model->addSearch($data['userid'],$search);
 		}
 		$this->load->view('header',$data);		
-		$this->load->view('viewAd',$data);
+		$this->load->view('viewAd3',$data);
 	}
 	public function subscribe()
 	{
