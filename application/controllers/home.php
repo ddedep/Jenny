@@ -37,10 +37,6 @@ class Home extends CI_Controller {
 		$this->load->view('header',$data);
 		$this->load->view('home',$data);
 	}
-	public function verify()
-	{
-		
-	}
 	public function login()
 	{
 		$this->load->library('form_validation');
@@ -78,6 +74,7 @@ class Home extends CI_Controller {
 			                'personid'	=> $row['personid'],
 			                'email'		=> $row['email'],
 			                'logged_in' => TRUE,
+			                'verified'	=> $row['isVerified'],
 			                'points'	=> $row['points'],
 			       );
 					$this->session->set_userdata($newdata);

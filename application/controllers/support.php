@@ -35,6 +35,11 @@ class Support extends CI_Controller {
 	public function view()
 	{
 		$supportID= $this->uri->segment(3);
+		$this->load->library('session');
+		if($this->session->userdata('verified')==0) 
+		{
+			redirect('index.php/register/verify');
+		}
 		$userid = $this->session->userdata('userid');
 		$data['username']=$this->session->userdata('username');
 		$data['userid'] = $userid;
@@ -48,6 +53,11 @@ class Support extends CI_Controller {
 	{
 		$this->load->library('form_validation');
 		if($this->session->userdata('logged_in')){
+			$this->load->library('session');
+			if($this->session->userdata('verified')==0) 
+			{
+				redirect('index.php/register/verify');
+			}
 			$userid = $this->session->userdata('userid');
 			$data['username']=$this->session->userdata('username');
 			$this->form_validation->set_rules('title','title', 'required|xss_clean');

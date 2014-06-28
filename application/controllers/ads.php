@@ -12,6 +12,7 @@ class Ads extends CI_Controller {
 
 	public function comment()
 	{
+
 		$adid=$this->input->post('adid');
 		$body=$this->input->post('body');
 		$userid = $this->session->userdata('userid');
@@ -256,7 +257,12 @@ class Ads extends CI_Controller {
 	}
 	public function edit()
 	{
+
 		$this->load->library('form_validation');
+		if($this->session->userdata('verified')==0) 
+		{
+			redirect('index.php/user');
+		}
 		$adID= $this->uri->segment(3);
 		$data['adID'] = $adID;
 		if($adID!=null){
@@ -367,6 +373,10 @@ class Ads extends CI_Controller {
 			$data['regions'] = $this->ads_model->getRegions();
 			$data['categories'] = $this->ads_model->getCategories();
 		if($this->session->userdata('logged_in')){
+			if($this->session->userdata('verified')==0) 
+			{
+				redirect('index.php/register/verify');
+			}
 			$data['regions'] = $this->ads_model->getRegions();
 			$data['categories'] = $this->ads_model->getCategories();
 			$data['username']=$this->session->userdata('username');

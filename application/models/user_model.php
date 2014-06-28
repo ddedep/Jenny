@@ -5,7 +5,12 @@
 		{
 			$this->load->database();
 		}
-		
+		public function verify($userid)
+		{
+			$data = array('isVerified' => 1);
+			$this->db->where('userid', $userid);
+			$this->db->update('users',$data);
+		}
 		public function userExists($username)
 		{
 			$this->db->select("*");

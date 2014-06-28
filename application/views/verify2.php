@@ -1,15 +1,17 @@
 n
 		    	<div class="row">
-				<h1>Please enter the verification code sent to your mobile phone and E-mail</h1>
+				<h1>Please Login and enter the verification code sent to your mobile phone and E-mail</h1>
 			    </div>
 			    <div class= "row">
 			    	<div class="large-6 column">
 			    		<span style= "color: red;"><?php echo $err; ?></span>
-			    		<h2>Enter Verification code:</h2>
-			    		<?php echo form_open('index.php/register/verify'); ?>
-			    		<label>Verification Code</label>
-			    		<input type="text" name="code">
-			    		<Button type="submit"> Verify </Button>
+			    		<h2>Sign in</h2>
+			    		<?php echo form_open('index.php/home/login'); ?>
+			    		<label>Email or Username</label>
+			    		<input type="text" name="username">
+			    		<label>Password</label>
+			    		<input type="password" name="password">
+			    		<Button type="submit"> Sign in </Button>
 			    		</form>
 			    	</div>
 			    </div>

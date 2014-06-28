@@ -13,6 +13,11 @@ class Messages extends CI_Controller {
 
 	public function index() 
 	{
+		$this->load->library('session');
+		if($this->session->userdata('verified')==0) 
+		{
+			redirect('index.php/register/verify');
+		}
 		$data['username']=$this->session->userdata('username');
 		$userid = $this->session->userdata('userid');
 		$data['messages']=$this->Messages_model->getInbox($userid);
@@ -20,8 +25,15 @@ class Messages extends CI_Controller {
         $this->load->view('inbox',$data);   
     }
 
+
+
     public function sent() 
 	{
+		$this->load->library('session');
+		if($this->session->userdata('verified')==0) 
+		{
+			redirect('index.php/register/verify');
+		}
 		$data['username']=$this->session->userdata('username');
 		$userid = $this->session->userdata('userid');
 		$data['messages']=$this->Messages_model->getSent($userid);
@@ -32,12 +44,18 @@ class Messages extends CI_Controller {
 
     public function compose()
     {
+    	$this->load->library('session');
+		if($this->session->userdata('verified')==0) 
+		{
+			redirect('index.php/register/verify');
+		}
     	$this->load->library('form_validation');
 		$this->load->library('session');
     	$userid= $this->uri->segment(3);
     	$data['query'] = $this->User_model->getAccount($userid);
     	$data['Message'] = "";
     	$this->form_validation->set_rules('message','message', 'required|xss_clean');
+    	$this->form_validation->set_rules('recipient','recipient', 'required|xss_clean');
     	if($this->form_validation->run()==FALSE)
 		{
 			if($this->session->userdata('logged_in')){
@@ -54,10 +72,23 @@ class Messages extends CI_Controller {
 		{
 			$message = $this->input->post('message');
 			$from = $this->session->userdata('userid');
-			$to = $this->input->post('to');
-			$this->Messages_model->sendMessage($message,$from, $to);
+			$k = $this->input->post('recipient');
+			$recipient=$this->User_model->getUser($k);
 			$data['username']=$this->session->userdata('username');
-			$data['Message'] = "Messsage Sent!";
+			if($recipient->num_rows()>0){
+				$to=0;
+				foreach ($recipient->result_array() as $row) {
+					$to = $row['userid'];
+					break;
+				}
+				$this->Messages_model->sendMessage($message,$from, $to);
+				
+				$data['Message'] = "Messsage Sent!";
+			}	
+			else
+			{
+				$data['Message'] = "Invalid Recipient!";
+			}
 			$this->load->view('header',$data);
 			$this->load->view('composeMessage',$data);
 		}

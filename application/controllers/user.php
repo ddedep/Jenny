@@ -14,6 +14,11 @@ class user extends CI_Controller {
 		$this->load->library('session');
 		$newdata=array();
 		if($this->session->userdata('logged_in')){
+			$this->load->library('session');
+		if($this->session->userdata('verified')==0) 
+		{
+			redirect('index.php/register/verify');
+		}
 			$exAds = $this->ads_model->getExpiredAds($this->session->userdata('userid'));
 			$actAds = $this->ads_model->getAdsOfUser($this->session->userdata('userid'));
 			$data['actAds'] = $actAds->num_rows();
@@ -100,6 +105,11 @@ class user extends CI_Controller {
 	}
 	public function subscription()
 	{
+		$this->load->library('session');
+		if($this->session->userdata('verified')==0) 
+		{
+			redirect('index.php/register/verify');
+		}
 		$adID= $this->uri->segment(3);
 		$data['username']=$this->session->userdata('username');
 		$data['hide'] = FALSE;
@@ -111,6 +121,11 @@ class user extends CI_Controller {
 	}
 	public function userSubscription()
 	{
+		$this->load->library('session');
+		if($this->session->userdata('verified')==0) 
+		{
+			redirect('index.php/register/verify');
+		}
 		$adID= $this->uri->segment(3);
 		$data['hide'] = FALSE;
 		$data['username']=$this->session->userdata('username');
@@ -124,6 +139,11 @@ class user extends CI_Controller {
 	{
 		if(!$this->session->userdata('logged_in')){
 			redirect('index.php/home');
+		}
+		$this->load->library('session');
+		if($this->session->userdata('verified')==0) 
+		{
+			redirect('index.php/register/verify');
 		}
 		$this->load->library('form_validation');
 		$this->form_validation->set_rules('firstname','firstname', 'required|xss_clean');

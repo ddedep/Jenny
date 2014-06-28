@@ -13,24 +13,53 @@ class Register extends CI_Controller {
 	}
 	public function verify()
 	{
+		$this->load->library('form_validation');
+		$this->load->library('session');
+		if($this->session->userdata('verified')>0) 
+		{
+			redirect('index.php/user');
+		}
+		
+		$this->form_validation->set_rules('code','code', 'required|xss_clean');
+		$data['username']=$this->session->userdata('username');
+		$data['err'] = "Enter Code";
 		$code=$this->input->post('code');
 		$userid=$this->session->userdata('userid');
 		$query=$this->User_model->getAccount($userid);
 		$verified=FALSE;
-		foreach($query->result_array() as $row)
+		if($this->form_validation->run()==FALSE)
 		{
-			if($row['verification']==$code)
+			$this->load->view('header',$data);
+			$this->load->view('verify',$data);
+		}
+		else{
+			foreach($query->result_array() as $row)
 			{
-				$verified=TRUE;
+				if($row['verification']==$code)
+				{
+					$verified=TRUE;
+				}
+				else
+				{
+					break;
+				}
+			}
+			if($verified)
+			{
+				$this->User_model->verify($userid);
+				$newdata = array(
+                   'verified' => 1,
+               );
+
+				$this->session->set_userdata($newdata);
+					redirect('index.php/user');
 			}
 			else
 			{
-				break;
+				$data['err'] = "Wrong code!";
+				$this->load->view('header',$data);
+				$this->load->view('verify',$data);
 			}
-		}
-		if($verified)
-		{
-			
 		}
 	}
 	public function index()
@@ -109,7 +138,7 @@ class Register extends CI_Controller {
 			
 				$data['username']=$this->session->userdata('username');
 				$this->load->view('header',$data);
-				$this->load->view('verify',$data);
+				$this->load->view('verify2',$data);
 				}
 			
 

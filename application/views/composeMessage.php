@@ -1,14 +1,27 @@
 
 		<div class="row">
 			<div style="margin-left:25%">
-				<?php echo $Message; ?>
+				<?php echo $Message; 
+					echo validation_errors();
+				?>
 				<?php echo form_open("index.php/messages/compose"); ?>
-				<?php foreach ($query->result_array() as $row):
-					echo "To: ".$row['username']."<br/><br/>";?>
-				<input  type="hidden" name="to" value='<?php echo $row['userid']; ?>'>
-				<textarea name="message" style="height:300px;width:60%"></textarea>
-				<button type="submit" style="margin-left:25%">Submit</button>
-				<?php endforeach;?>
+				<?php if($query->num_rows>0){
+				foreach ($query->result_array() as $row):
+					echo "To: <input type='text' name='recipient'>".$row['username']."</input><br/>";?>
+					Message: <br/>
+					<textarea name="message" style="height:300px;width:60%"></textarea>
+					<button type="submit" style="margin-left:25%">Submit</button>
+				<?php 
+					endforeach;
+					}
+					else
+					{
+				?>
+						To: <input type='text' name='recipient' style="width:60%;"></input><br/>
+						Message: <br/>
+						<textarea name="message" style="height:300px;width:60%"></textarea>
+						<button type="submit" style="margin-left:25%">Submit</button>
+					<?php }?>
 				</form>
 			</div>
 		</div>

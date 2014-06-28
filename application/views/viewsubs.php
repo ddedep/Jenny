@@ -1,5 +1,6 @@
 					<div class="large-2 column">
 						<?php if(!$hide):?>
+						<div style="large-2 column">
 							<div class="panel">
 								<h5>Menu</h5>
 								<a href="<?php echo base_url() ?>index.php/ads/view">My Ads</a> <br/><br/>
@@ -9,7 +10,10 @@
 								<a href="<?php echo base_url() ?>index.php/ads/viewFavorites">My Favorites</a> <br/><br/>
 								<a href="">Buy Points</a> <br/><br/>
 								<a href="<?php echo base_url() ?>index.php/ads/viewWish">Looking for</a> <br/><br/>
+								<a href="<?php echo base_url() ?>index.php/messages">Inbox</a> <br/><br/>
+								<a href="<?php echo base_url() ?>index.php/messages/sent">Sent</a> <br/><br/>
 							</div>
+					</div>
 						<?php endif;?>
 					</div>
 		        <h1>Ads:</h1>
