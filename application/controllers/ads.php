@@ -224,7 +224,6 @@ class Ads extends CI_Controller {
 		}
 		else
 		{
-
 			$points = $points-120;
 			$this->ads_model->extendAd($adID,$duration);
 			$this->User_model->updatePoints($this->session->userdata('username'),$points);

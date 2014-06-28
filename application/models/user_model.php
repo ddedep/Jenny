@@ -5,6 +5,14 @@
 		{
 			$this->load->database();
 		}
+		public function updateToken($username,$token)
+		{	
+			$data = array(
+				'access_token' => $token,
+			);
+			$this->db->where('username', $username);
+			$this->db->update('users',$data);
+		}
 		public function verify($userid)
 		{
 			$data = array('isVerified' => 1);

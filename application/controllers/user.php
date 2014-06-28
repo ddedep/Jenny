@@ -9,6 +9,14 @@ class user extends CI_Controller {
 		$this->load->model('User_model');
 		$this->load->model('ads_model');
 	}
+	public function getUsername()
+	{
+		$name = $this->input->post('username');
+		if($this->User_model->userExists($name))
+		{
+			echo "TRUE";
+		}
+	}
 	public function index()
 	{
 		$this->load->library('session');
