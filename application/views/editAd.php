@@ -19,6 +19,7 @@
 				</div>
 				<div class="row">
 							<div class="large-4 columns">
+							<label>Regions</label>
 						      <select id= 'regions'>
 						      	<?php foreach ($regions->result_array() as $row):?>
 						       	 <option value="<?php echo $row['regionid'];?>"><?php echo $row['regionname']; ?></option>
@@ -26,6 +27,7 @@
 						      </select>
 					      </div>
 					      <div class="large-4 columns">
+					      	<label>Provinces/City</label>
 						      <select id ='provinces' name='provinces'>
 						      	<option value="0">-------</option>
 						      </select>
