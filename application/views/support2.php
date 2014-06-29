@@ -1,6 +1,6 @@
 			<div class="row">
 			<div class="large-2 column">
-				<?php if(!$hide):?>
+				<?php if($this->session->userdata('logged_in')):?>
 					<div class="panel">
 						<h5>Menu</h5>
 						<a href="<?php echo base_url() ?>index.php/ads/view">My Ads</a> <br/><br/>
@@ -17,9 +17,9 @@
 				<?php endif;?>
 			</div>
  			<div class="large-8 columns">
-
+ 				<?php if($this->session->userdata('logged_in')): ?>
 		      <a href="<?php echo base_url()?>index.php/support/createSupport"><button>Create Thread</button></a>
-		     
+		     	<?php endif ?>
 		      <?php foreach($query->result_array() as $row):	?>
 						<div class= 'panel'>
 							Title: <?php echo $row['title']; ?><br/><br/>

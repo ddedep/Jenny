@@ -65,11 +65,11 @@
 						<label>Year<span style="color:red;font-size:20px;">*</span></label>
 						<?php
 						$option = array();
-						for($i=0;$i<=100;$i++)
+						for($i=0;$i<=84;$i++)
 						{
 							$option[''.$i+1914] = $i+1914;
 						}
-						$selected = array('2000');
+						$selected = array('1998');
 
 						echo form_dropdown('year', $option,'2000');
 						?>
