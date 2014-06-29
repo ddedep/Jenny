@@ -28,7 +28,7 @@ class Globe extends CI_Controller {
 		    echo $_SESSION['access_token'];
 		    $respo = $charge->charge(
 			    1,
-			    "51391000001"
+			    "51391000002"
 			);
 		   	
 			//   $this->User_model->updateToken($this->session->userdata('username'),$_SESSION['access_token']);

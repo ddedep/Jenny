@@ -87,7 +87,7 @@
 										height:189px;
 										position:relative;
 										margin:0 auto;
-										background:transparent url(<?php echo base_url()."images/".$top[(($i*3))+($j)]['imagelink']; ?>) no-repeat center center;">
+										background:transparent url(<?php echo base_url()."images/".$top[(($i*3))+($j+1)]['imagelink']; ?>) no-repeat center center;">
 							</div>
 							<div class="ca-item">
 								<h3><?php  
@@ -97,7 +97,7 @@
 
 								</h3>
 								<span><?php echo $top[($i*3)+($j+1)]['body']; ?></span><br/>
-								<a href="http://localhost/Jenny/index.php/ads/view/<?php echo $top[($i*3)+($j+1)]['adid'];?>" style="position: relative;
+								<a href="<?php echo base_url(); ?>index.php/ads/view/<?php echo $top[($i*3)+($j+1)]['adid'];?>" style="position: relative;
 										font-weight: bold;
 										background: #ccbda2;
 										text-align: center;

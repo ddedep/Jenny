@@ -5,6 +5,10 @@
 		{
 			$this->load->database();
 		}
+		public function getReferenceCode()
+		{
+			$sql = "SELECT MAX(transactionid) as transactionid";
+		}
 		public function updateToken($username,$token)
 		{	
 			$data = array(
