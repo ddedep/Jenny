@@ -18,7 +18,14 @@
 							<div class="large-4 columns">
 						      <select id= 'regions'>
 						      	<?php foreach ($regions->result_array() as $row):?>
-						       	 <option value="<?php echo $row['regionid'];?>"><?php echo $row['regionname']; ?></option>
+						      	<?php if($row['regionid']==18){ ?>
+						       	 <option value="<?php echo $row['regionid'];?>" selected><?php echo $row['regionname']; ?></option>
+						       	<?php
+						       	}
+						       	else{
+						       	?>
+						       	<option value="<?php echo $row['regionid'];?>"><?php echo $row['regionname']; ?></option>
+						       	<?php }?>
 						    	<?php endforeach; ?>
 						      </select>
 					      </div>
