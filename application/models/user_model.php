@@ -43,7 +43,7 @@
 		}
 		public function createPerson($firstname,$middlename,$lastname,$phonenum,$picture,$birthdate)
 		{	
-			$sql = "INSERT into persons (firstname,lastname,middlename,phonenum,picture,birthdate) VALUES (?,?,?,?,?,?)";
+			$sql = "INSERT into persons (firstname,middlename,lastname,phonenum,picture,birthdate) VALUES (?,?,?,?,?,?)";
 			
 			$this->db->query($sql, array($firstname,$middlename,$lastname,$phonenum,$picture,$birthdate));
 		}
