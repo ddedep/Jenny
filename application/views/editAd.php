@@ -63,7 +63,7 @@
 						<input type="text" name ="video" value="https://www.youtube.com/watch?v=<?php echo $rowz['videolink']?>">
 					</div>
 				</div>
-				<input type="hidden" value="<?php echo $rowz['duration']?>">
+				<input type="hidden" name='duration' value="<?php echo $rowz['duration']?>">
 				<Button type="submit">Submit</Button>
 				</form>
 			</div>
