@@ -92,11 +92,11 @@
 							<div class="ca-item">
 								<h3><?php  
 									
-									echo $top[($i*3)+($j+1)]['title']; 
+									echo $top[($i*3)+($j)]['title']; 
 								?>
 
 								</h3>
-								<span><?php echo $top[($i*3)+($j+1)]['body']; ?></span><br/>
+								<span><?php echo $top[($i*3)+($j)]['body']; ?></span><br/>
 								<a href="<?php echo base_url(); ?>index.php/ads/view/<?php echo $top[($i*3)+($j)]['adid'];?>" style="position: relative;
 										font-weight: bold;
 										background: #ccbda2;

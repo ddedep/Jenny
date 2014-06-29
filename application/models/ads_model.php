@@ -248,6 +248,7 @@
 		{
 			$this->db->select('*');
 			$this->db->from('ads');
+			$this->db->where('isexpired','0');
 			$this->db->order_by("view", "desc"); 
 			return $this->db->get();
 		}
