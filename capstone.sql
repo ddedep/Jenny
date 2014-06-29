@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50611
 File Encoding         : 65001
 
-Date: 2014-06-29 18:57:25
+Date: 2014-06-30 01:33:25
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -26,11 +26,12 @@ CREATE TABLE `adcomment` (
   `adid` int(11) DEFAULT NULL,
   `cominsertedon` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=MYISAM AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of adcomment
 -- ----------------------------
+
 -- ----------------------------
 -- Table structure for `ads`
 -- ----------------------------
@@ -53,11 +54,12 @@ CREATE TABLE `ads` (
   `issold` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`adid`),
   FULLTEXT KEY `search_index` (`title`,`body`)
-) ENGINE=MYISAM AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of ads
 -- ----------------------------
+
 -- ----------------------------
 -- Table structure for `categories`
 -- ----------------------------
@@ -66,7 +68,7 @@ CREATE TABLE `categories` (
   `categoryid` int(11) NOT NULL AUTO_INCREMENT,
   `categoryname` varchar(32) DEFAULT NULL,
   PRIMARY KEY (`categoryid`)
-) ENGINE=MYISAM AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of categories
@@ -90,7 +92,7 @@ CREATE TABLE `cities` (
   `provincename` varchar(32) DEFAULT NULL,
   `regionid` int(11) DEFAULT NULL,
   PRIMARY KEY (`provinceid`)
-) ENGINE=MYISAM AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of cities
@@ -112,10 +114,8 @@ CREATE TABLE `comments` (
   `cominsertedon` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`commentid`),
   KEY `commentowner` (`owner`),
-  KEY `thread` (`threadid`),
-  CONSTRAINT `commentowner` FOREIGN KEY (`owner`) REFERENCES `users` (`userid`),
-  CONSTRAINT `thread` FOREIGN KEY (`threadid`) REFERENCES `support` (`support_id`)
-) ENGINE=MYISAM AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+  KEY `thread` (`threadid`)
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of comments
@@ -132,10 +132,8 @@ CREATE TABLE `favorites` (
   `insertedon` time NOT NULL,
   PRIMARY KEY (`favoriteid`),
   KEY `fordid` (`ownerid`),
-  KEY `favid` (`favoriteAdid`),
-  CONSTRAINT `favid` FOREIGN KEY (`favoriteAdid`) REFERENCES `ads` (`adid`),
-  CONSTRAINT `fordid` FOREIGN KEY (`ownerid`) REFERENCES `users` (`userid`)
-) ENGINE=MYISAM AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+  KEY `favid` (`favoriteAdid`)
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of favorites
@@ -150,13 +148,13 @@ CREATE TABLE `messages` (
   `body` varchar(255) DEFAULT NULL,
   `mfrom` int(11) DEFAULT NULL,
   `mto` int(11) DEFAULT NULL,
-  `insertedon` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `inboxdeleted` int(11) NOT NULL,
+  `sentdeleted` int(11) NOT NULL,
+  `senton` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`messageid`),
   KEY `mto` (`mto`),
-  KEY `mfrom` (`mfrom`),
-  CONSTRAINT `mfrom` FOREIGN KEY (`mfrom`) REFERENCES `users` (`userid`),
-  CONSTRAINT `mto` FOREIGN KEY (`mto`) REFERENCES `users` (`userid`)
-) ENGINE=MYISAM AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+  KEY `mfrom` (`mfrom`)
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of messages
@@ -172,9 +170,8 @@ CREATE TABLE `payments` (
   `userid` int(11) NOT NULL,
   `insertedon` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`transactionid`),
-  KEY `payer` (`userid`),
-  CONSTRAINT `payer` FOREIGN KEY (`userid`) REFERENCES `users` (`userid`)
-) ENGINE=MYISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+  KEY `payer` (`userid`)
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of payments
@@ -195,7 +192,7 @@ CREATE TABLE `persons` (
   `picture` varchar(255) NOT NULL,
   `insertedon` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`personid`)
-) ENGINE=MYISAM AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of persons
@@ -210,9 +207,8 @@ CREATE TABLE `provinces` (
   `provincename` varchar(32) DEFAULT NULL,
   `regionid` int(11) DEFAULT NULL,
   PRIMARY KEY (`provinceid`),
-  KEY `region` (`regionid`),
-  CONSTRAINT `region` FOREIGN KEY (`regionid`) REFERENCES `regions` (`regionid`)
-) ENGINE=MYISAM AUTO_INCREMENT=103 DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
+  KEY `region` (`regionid`)
+) ENGINE=MyISAM AUTO_INCREMENT=103 DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
 
 -- ----------------------------
 -- Records of provinces
@@ -324,11 +320,12 @@ CREATE TABLE `regions` (
   `regionid` int(11) NOT NULL AUTO_INCREMENT,
   `regionname` varchar(16) NOT NULL,
   PRIMARY KEY (`regionid`)
-) ENGINE=MYISAM AUTO_INCREMENT=18 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=19 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of regions
 -- ----------------------------
+INSERT INTO `regions` VALUES ('18', 'Region');
 INSERT INTO `regions` VALUES ('1', 'NCR');
 INSERT INTO `regions` VALUES ('2', 'CAR');
 INSERT INTO `regions` VALUES ('3', 'Region I');
@@ -346,7 +343,6 @@ INSERT INTO `regions` VALUES ('14', 'Region XI');
 INSERT INTO `regions` VALUES ('15', 'Region XII');
 INSERT INTO `regions` VALUES ('16', 'Region XIII');
 INSERT INTO `regions` VALUES ('17', 'ARMM');
-INSERT INTO `regions` VALUES ('18', 'Region');
 
 -- ----------------------------
 -- Table structure for `searches`
@@ -358,9 +354,8 @@ CREATE TABLE `searches` (
   `owner` int(11) DEFAULT NULL,
   `insertedon` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`searchid`),
-  KEY `ownerid` (`owner`),
-  CONSTRAINT `ownerid` FOREIGN KEY (`owner`) REFERENCES `users` (`userid`)
-) ENGINE=MYISAM AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+  KEY `ownerid` (`owner`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of searches
@@ -377,10 +372,8 @@ CREATE TABLE `subscriptions` (
   `insertedon` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`subscriptionid`),
   KEY `owner` (`subscriber`),
-  KEY `subscribee` (`subscribedto`),
-  CONSTRAINT `owner` FOREIGN KEY (`subscriber`) REFERENCES `users` (`userid`),
-  CONSTRAINT `subscribee` FOREIGN KEY (`subscribedto`) REFERENCES `users` (`userid`)
-) ENGINE=MYISAM AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+  KEY `subscribee` (`subscribedto`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of subscriptions
@@ -396,9 +389,8 @@ CREATE TABLE `support` (
   `body` text,
   `owner` int(11) DEFAULT NULL,
   PRIMARY KEY (`support_id`),
-  KEY `support_owner` (`owner`),
-  CONSTRAINT `support_owner` FOREIGN KEY (`owner`) REFERENCES `users` (`userid`)
-) ENGINE=MYISAM AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+  KEY `support_owner` (`owner`)
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of support
@@ -423,9 +415,8 @@ CREATE TABLE `users` (
   `access_token` varchar(255) DEFAULT NULL,
   `insertedon` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`userid`),
-  KEY `personRef` (`personid`),
-  CONSTRAINT `personRef` FOREIGN KEY (`personid`) REFERENCES `persons` (`personid`)
-) ENGINE=MYISAM AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+  KEY `personRef` (`personid`)
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of users
@@ -440,7 +431,7 @@ CREATE TABLE `wishes` (
   `userid` int(11) NOT NULL,
   `adid` int(11) NOT NULL,
   PRIMARY KEY (`wishid`)
-) ENGINE=MYISAM AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of wishes
