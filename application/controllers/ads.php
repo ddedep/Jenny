@@ -340,7 +340,7 @@ class Ads extends CI_Controller {
 		}
 		else
 		{
-			redirect("index.php/Ads/view");
+			redirect("index.php/ads/view");
 		}
 	
 	}
