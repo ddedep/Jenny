@@ -33,6 +33,7 @@ class Ads extends CI_Controller {
 	public function view()
 	{
 		$adID= $this->uri->segment(3);
+		$data['hide'] = FALSE;
 		$data['username']=$this->session->userdata('username');
 		$data['userid'] = $this->session->userdata('userid');
 		$data['message'] = "";
@@ -63,6 +64,7 @@ class Ads extends CI_Controller {
 	}
 	public function wish()
 	{
+		$data['hide'] = FALSE;
 		$data['username']=$this->session->userdata('username');
 		$data['userid'] = $this->session->userdata('userid');
 		$query=$this->ads_model->getAd($adID);
@@ -74,6 +76,7 @@ class Ads extends CI_Controller {
 	}
 	public function viewWish()
 	{
+		$data['hide'] = FALSE;
 		$data['username']=$this->session->userdata('username');
 		$data['userid'] = $this->session->userdata('userid');
 		$data['hide'] = FALSE;
@@ -83,6 +86,7 @@ class Ads extends CI_Controller {
 	}
 	public function viewExpired()
 	{
+		$data['hide'] = FALSE;
 		$data['username']=$this->session->userdata('username');
 		$data['userid'] = $this->session->userdata('userid');
 		$data['query'] = $this->ads_model->getExpiredAds($this->session->userdata('userid'));
@@ -101,6 +105,7 @@ class Ads extends CI_Controller {
 	}
 	public function Extend()
 	{
+		$data['hide'] = FALSE;
 		$data['username']=$this->session->userdata('username');
 		$data['userid'] = $this->session->userdata('userid');
 		$adID= $this->uri->segment(3);
@@ -112,6 +117,7 @@ class Ads extends CI_Controller {
 	}
     public function Feature()
 	{
+		$data['hide'] = FALSE;
 		$data['username']=$this->session->userdata('username');
 		$data['userid'] = $this->session->userdata('userid');
 		$adID= $this->uri->segment(3);
@@ -124,6 +130,7 @@ class Ads extends CI_Controller {
     
     public function repost()
     {
+    	$data['hide'] = FALSE;
 		$data['username']=$this->session->userdata('username');
 		$data['userid'] = $this->session->userdata('userid');
 		$adID= $this->uri->segment(3);
@@ -238,6 +245,7 @@ class Ads extends CI_Controller {
 	
 	public function favorite()
 	{
+		$data['hide'] = FALSE;
 		$data['username']=$this->session->userdata('username');
 		$data['userid'] = $this->session->userdata('userid');
 		$adID = $this->input->post('favid');
@@ -247,6 +255,7 @@ class Ads extends CI_Controller {
 	}
 	public function delete()
 	{
+		$data['hide'] = FALSE;
 		$adID = $this->input->post('owner');
 		$this->ads_model->delete($adID);
 		$data['username']=$this->session->userdata('username');
@@ -256,6 +265,7 @@ class Ads extends CI_Controller {
 	}
 	public function edit()
 	{
+		$data['hide'] = FALSE;
 
 		$data['regions'] = $this->ads_model->getRegions();
 		$data['categories'] = $this->ads_model->getCategories();
@@ -370,6 +380,7 @@ class Ads extends CI_Controller {
 	}
 	public function index() // create ad
 	{
+		$data['hide'] = FALSE;
 		$this->load->library('form_validation');
 			$data['regions'] = $this->ads_model->getRegions();
 			$data['categories'] = $this->ads_model->getCategories();

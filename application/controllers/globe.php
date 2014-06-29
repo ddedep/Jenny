@@ -9,6 +9,7 @@ class Globe extends CI_Controller {
 	}
 	public function index()
 	{
+		$data['hide'] = FALSE;
 		if($this->session->userdata('logged_in'))
 		{
 			require ('/var/www/html/Jenny/src/GlobeApi.php');
@@ -39,6 +40,7 @@ class Globe extends CI_Controller {
 	}
 	public function charge()
 	{
+		$data['hide'] = FALSE;
 		if($this->session->userdata('logged_in'))
 		{
 			require ('/var/www/html/Jenny/src/GlobeApi.php');

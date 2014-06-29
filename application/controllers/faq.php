@@ -12,6 +12,8 @@ class Faq extends CI_Controller {
 
 	public function index() // create ad
 	{
+		if($this->session->userdata('logged_in'))
+			$data['hide'] = FALSE;
 		$data['username']=$this->session->userdata('username');
 		$data['userid'] = $this->session->userdata('userid');
 		$this->load->view('header',$data);

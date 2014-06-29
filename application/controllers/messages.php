@@ -18,6 +18,7 @@ class Messages extends CI_Controller {
 		{
 			redirect('index.php/register/verify');
 		}
+		$data['hide'] = FALSE;
 		$data['username']=$this->session->userdata('username');
 		$userid = $this->session->userdata('userid');
 		$data['messages']=$this->Messages_model->getInbox($userid);
@@ -25,10 +26,38 @@ class Messages extends CI_Controller {
         $this->load->view('inbox',$data);   
     }
 
-
-
+    public function view()
+    {
+    	$messageid= $this->uri->segment(3);
+    	$data['hide'] = FALSE;
+    	if($this->session->userdata('logged_in'))
+    	{
+    		$data['username']=$this->session->userdata('username');
+    		$data['query']=$this->Messages_model->getInboxMessage($messageid,$this->session->userdata('userid'));
+    		$data['query2']=$this->Messages_model->getSentMessage($messageid,$this->session->userdata('userid'));
+    		$this->load->view('header',$data);
+    		$this->load->view('viewMessage',$data);
+    	}
+    	else
+    	{
+    		redirect('index.php/register');
+    	}
+    }
+    public function deleteInbox()
+    {
+    	$messageid=$this->input->post('messageid');
+    	$this->Messages_model->deleteInbox($messageid);
+    	redirect('index.php/messages');
+    }
+    public function deleteSent()
+    {
+    	$messageid=$this->input->post('messageid');
+    	$this->Messages_model->deleteSent($messageid);
+    	redirect('index.php/messages/sent');
+    }
     public function sent() 
 	{
+		$data['hide'] = FALSE;
 		$this->load->library('session');
 		if($this->session->userdata('verified')==0) 
 		{
@@ -44,6 +73,7 @@ class Messages extends CI_Controller {
 
     public function compose()
     {
+    	$data['hide'] = FALSE;
     	$this->load->library('session');
 		if($this->session->userdata('verified')==0) 
 		{

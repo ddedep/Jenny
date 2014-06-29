@@ -21,9 +21,8 @@
 					<?php foreach ($messages->result_array() as $row): ?>
 						<div class="panel">
 						From: <?php echo $row['username']; ?> <br/>
-						Message:<br/><?php echo $row['body']; ?> <br/>
-						<?php echo $row['insertedon']; ?> <br/><br/>
-						<a href="<?php echo base_url();?>index.php/messages/compose/<?php echo $row['userid']; ?>">Reply</a>
+						<?php echo $row['senton']; ?> <br/><br/>
+						<a href="<?php echo base_url();?>index.php/messages/view/<?php echo $row['messageid']; ?>">View Message</a>
 						</div>
 
 					<?php endforeach; ?>

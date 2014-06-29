@@ -1,5 +1,23 @@
 
 			    <div class="row">
+			    <div class="large-2 column">
+					<?php if(!$hide):?>
+						<div class="panel">
+							<h5>Menu</h5>
+							<a href="<?php echo base_url() ?>index.php/ads/view">My Ads</a> <br/><br/>
+							<a href="<?php echo base_url() ?>index.php/ads/viewExpired">Expired Ads</a> <br/><br/>
+							<a href="<?php echo base_url() ?>index.php/user/userSubscription">Subscription</a> <br/><br/>
+							<a href="<?php echo base_url() ?>index.php/user/subscription">Subscription Ads</a> <br/><br/>
+							<a href="<?php echo base_url() ?>index.php/ads/viewFavorites">My Favorites</a> <br/><br/>
+							<a href="<?php echo base_url() ?>index.php/globe/charge">Buy Points</a> <br/><br/>
+							<a href="<?php echo base_url() ?>index.php/ads/viewWish">Looking for</a> <br/><br/>
+							<a href="<?php echo base_url(); ?>index.php/messages/compose">Compose message</a><br/><br/>
+							<a href="<?php echo base_url() ?>index.php/messages">Inbox</a> <br/><br/>
+							<a href="<?php echo base_url() ?>index.php/messages/sent">Sent</a> <br/><br/>
+						</div>
+					<?php endif;?>
+				</div>
+				<div class="large-8 column">
 			    	<h1>Frequently Asked Questions</h1>
 			    		<h3>How to register?</h3><br/>
 						&nbsp;1.	Go to “Sign In or Register” at the top of the OneStopDeal page. <br/>
@@ -37,7 +55,7 @@
 						&nbsp;If you find a seller that is selling fake items or determined that an ad is using fraudulent identity, please report the ad to Customer Service so we can take action and investigate the concern.<br/><br/>
 						<h3>How can I upload a video?</h3>
 						&nbsp;Just enter the video link in the field and it would automatically save on your ad.<br/><br/>
-
+					</div>
 			    </div>
 			</div>
 			

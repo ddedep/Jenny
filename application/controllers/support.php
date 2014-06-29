@@ -12,15 +12,21 @@ class Support extends CI_Controller {
 	}
 	public function index()
 	{
+		$data['hide'] = FALSE;
 		$supportID= $this->uri->segment(3);
 		$userid = $this->session->userdata('userid');
 		$data['username']=$this->session->userdata('username');
 		$data['query']=$this->support_model->getAllSupport();
+		$data['comments'] = array();
+		foreach ($data['query']->result_array() as $row) {
+			$data['comments'][$row['support_id']] = $this->support_model->getComments($row['support_id']);
+		}
 		$this->load->view('header',$data);
 		$this->load->view('support',$data);
 	}
 	public function comment()
 	{
+
 		$threadid=$this->input->post('threadid');
 		$body=$this->input->post('body');
 		$userid = $this->session->userdata('userid');
@@ -35,6 +41,7 @@ class Support extends CI_Controller {
 	public function view()
 	{
 		$supportID= $this->uri->segment(3);
+		$data['hide'] = FALSE;
 		$this->load->library('session');
 		if($this->session->userdata('verified')==0) 
 		{
@@ -51,6 +58,7 @@ class Support extends CI_Controller {
 	}
 	public function createSupport()
 	{
+		$data['hide'] = FALSE;
 		$this->load->library('form_validation');
 		if($this->session->userdata('logged_in')){
 			$this->load->library('session');
@@ -73,9 +81,7 @@ class Support extends CI_Controller {
 			else
 			{
 				$this->support_model->createSupport($title,$body,$userid);
-				$data['message'] ="Support created";
-				$this->load->view('header',$data);
-				$this->load->view('createSupport',$data);
+				redirect('index.php/support');
 			}
 		}
 		else

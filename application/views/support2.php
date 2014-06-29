@@ -1,5 +1,22 @@
 			<div class="row">
- 			<div class="large-8 columns" style="margin-left: 20%;">
+			<div class="large-2 column">
+				<?php if(!$hide):?>
+					<div class="panel">
+						<h5>Menu</h5>
+						<a href="<?php echo base_url() ?>index.php/ads/view">My Ads</a> <br/><br/>
+						<a href="<?php echo base_url() ?>index.php/ads/viewExpired">Expired Ads</a> <br/><br/>
+						<a href="<?php echo base_url() ?>index.php/user/userSubscription">Subscription</a> <br/><br/>
+						<a href="<?php echo base_url() ?>index.php/user/subscription">Subscription Ads</a> <br/><br/>
+						<a href="<?php echo base_url() ?>index.php/ads/viewFavorites">My Favorites</a> <br/><br/>
+						<a href="<?php echo base_url() ?>index.php/globe/charge">Buy Points</a> <br/><br/>
+						<a href="<?php echo base_url() ?>index.php/ads/viewWish">Looking for</a> <br/><br/>
+						<a href="<?php echo base_url(); ?>index.php/messages/compose">Compose message</a><br/><br/>
+						<a href="<?php echo base_url() ?>index.php/messages">Inbox</a> <br/><br/>
+						<a href="<?php echo base_url() ?>index.php/messages/sent">Sent</a> <br/><br/>
+					</div>
+				<?php endif;?>
+			</div>
+ 			<div class="large-8 columns">
 
 		      <a href="<?php echo base_url()?>index.php/support/createSupport"><button>Create Thread</button></a>
 		     
@@ -37,16 +54,23 @@
 	//	var time = $.now();
 		$('#postComment').click(function(){
 		//	alert(body);
-		   $.post( "<?php echo base_url();?>index.php/support/comment", {threadid:<?php echo $row['support_id'];?>, body:$('#comment').val()} ).done(function( data ) {
+			if($('#comment').val() == '')
+			{
+			      alert('Comment can not be left blank!');
+			 }
+			 else{
+		   		$.post( "<?php echo base_url();?>index.php/support/comment", {threadid:<?php echo $row['support_id'];?>, body:$('#comment').val()} ).done(function( data ) {
 			//alert( "Data Loaded: " + data );
-			if(data=='added') alert('oheayh');
-			else{
-				
-		//	alert(data);
-				$('#commentArea').html("<div class='panel'>"+username+" wrote: <br/><i>"+$('#comment').val()+"<br/></i><i>"+data+"</i></div>"+$('#commentArea').html());
-				$('#comment').attr('value','');
-			}
+				if(data=='added') alert('oheayh');
+				else{
+					
+			//	alert(data);
+					$('#commentArea').html("<div class='panel'>"+username+" wrote: <br/><i>"+$('#comment').val()+"<br/></i><i>"+data+"</i></div>"+$('#commentArea').html());
+					$('#comment').attr('value','');
+				}
+			
 			});
+		   	}
 		});
 		</script>
 		<script src="<?php echo base_url(); ?>js/vendor/jquery.js"></script>

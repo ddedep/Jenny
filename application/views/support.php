@@ -1,14 +1,30 @@
 				<div class="row">
- 			<div class="large-8 columns" style="margin-left: 20%;">
+				<div class="large-2 column">
+				<?php if(!$hide):?>
+					<div class="panel">
+						<h5>Menu</h5>
+						<a href="<?php echo base_url() ?>index.php/ads/view">My Ads</a> <br/><br/>
+						<a href="<?php echo base_url() ?>index.php/ads/viewExpired">Expired Ads</a> <br/><br/>
+						<a href="<?php echo base_url() ?>index.php/user/userSubscription">Subscription</a> <br/><br/>
+						<a href="<?php echo base_url() ?>index.php/user/subscription">Subscription Ads</a> <br/><br/>
+						<a href="<?php echo base_url() ?>index.php/ads/viewFavorites">My Favorites</a> <br/><br/>
+						<a href="<?php echo base_url() ?>index.php/globe/charge">Buy Points</a> <br/><br/>
+						<a href="<?php echo base_url() ?>index.php/ads/viewWish">Looking for</a> <br/><br/>
+						<a href="<?php echo base_url(); ?>index.php/messages/compose">Compose message</a><br/><br/>
+						<a href="<?php echo base_url() ?>index.php/messages">Inbox</a> <br/><br/>
+						<a href="<?php echo base_url() ?>index.php/messages/sent">Sent</a> <br/><br/>
+					</div>
+				<?php endif;?>
+				</div>
+ 			<div class="large-8 columns">
 		      <a href="<?php echo base_url()?>index.php/support/createSupport"><button>Create Thread</button></a>
 		     
 		      <?php foreach($query->result_array() as $row):	?>
 						<div class= 'panel'>
-						Title: <?php echo $row['title']; ?><br/><br/>
-						<?php echo $row['body']; ?><br/><br/>
+						Title: <a href="<?php echo base_url(); ?>index.php/support/view/<?php echo $row['support_id'];?>"><?php echo $row['title']; ?></a><br/><br/>
 						By: <a href="<?php echo base_url()."index.php/user/view/".$row['userid'] ?>"><?php echo $row['username']; ?></a><br/><br/>
 						On: <?php echo $row['insertedon']; ?><br/><br/>
-						<a href="<?php echo base_url(); ?>index.php/support/view/<?php echo $row['support_id'];?>">View Comments</a>
+						Comments: <?php echo $comments[$row['support_id']]->num_rows();?>
 						</div><br />
 
 			<?php endforeach; ?>
