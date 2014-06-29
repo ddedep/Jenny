@@ -104,7 +104,7 @@
 			$this->db->select('*'); 
 			 $this->db->from('subscriptions');
    			 $this->db->join('ads','ads.owner = subscriptions.subscribedto');
-   			 $this->db->where('isexpired',0);
+   			 $this->db->join('users', 'users.userid = ads.owner');
     		 $this->db->where('subscriber',$userid);
     		 $this->db->where('ads.isExpired',0);
             return $this->db->get();
@@ -115,6 +115,7 @@
 			 $this->db->from('users');
    			 $this->db->join('subscriptions','users.userid = subscriptions.subscribedto');
    			 $this->db->join('persons','persons.personid = users.personid');
+   		//	 $this->db->join('ads', 'ads.owner =  subscriptions.subscribedto');
     		 $this->db->where('subscriptions.subscriber',$userid);
             return $this->db->get();
 		}

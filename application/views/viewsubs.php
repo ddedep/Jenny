@@ -1,3 +1,5 @@
+					<div class="row">
+					<div class="large-12 column">
 					<div class="large-2 column">
 						<?php if(!$hide):?>
 						<div style="large-2 column">
@@ -16,25 +18,33 @@
 					</div>
 						<?php endif;?>
 					</div>
-		        <h1>Ads:</h1>
-		      
-		        	<?php
-		        	foreach($query->result_array() as $row)
-					{
-						echo "<h4>Description</h4>";
-						echo "<div class= 'panel'>";
-						echo '<iframe width="420" height="345"';
-						echo ' src="//www.youtube.com/embed/'.$row['videolink'].'"" frameborder="0">';
-						echo '</iframe><br/>';
-						echo "<img src=".base_url()."images/".$row['imagelink']." style='height:200px;width:200px;'><br/>";
-						echo "Title: ".$row['title']."<br/><br/>";
-						echo "Duration: ".$row['duration']." Days<br/><br/>";
-						echo "Price: ".$row['price']."<br/><br/>";
-						echo "<a href='".base_url()."index.php/ads/view/".$row['adid']."'>"."View Ad"."</a>";
-						echo "</div>";
-					}
-		        ?>
-		       
+					<div class="large-10 columns">
+		        	<h1>Ads:</h1>
+		        		<?php
+
+
+				        	foreach($query->result_array() as $row):
+				        		$startDate = $row['insertedon'];
+								$endDate = strtotime("+".$row['duration']." days",time($startDate));
+								$formatted = date('m/d/Y',$endDate);
+				        ?>
+			      		<div class="large-4 columns">
+								<div class= 'panel'>
+								<img src="<?php echo base_url(); ?>images/<?php echo$row['imagelink']?>" style='height:200px;width:200px;'><br/>
+								Title: <?php echo $row['title']?><br/><br/>
+								Owner: <a href="<?php echo base_url()."index.php/user/view/".$row['userid']; ?>"><?php echo $row['username']?></a><br/><br/>
+								Expires on: <?php echo $formatted; ?><br/><br/>
+								Price: <?php echo $row['price'] ?> <br/><br/>
+								<a href="<?php echo base_url()?>index.php/ads/view/<?php echo $row['adid'];?>">View Ad</a>
+								</div>
+						
+			        	</div>
+			        	<?php
+							endforeach;
+				        ?>
+		        	</div>
+		       		</div>
+		       		</div>
 		        
 
 		      

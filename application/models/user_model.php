@@ -17,6 +17,23 @@
 			$this->db->where('username', $username);
 			$this->db->update('users',$data);
 		}
+		public function addView($userid)
+		{
+			$this->db->select("*");
+			$this->db->from('users');
+			$this->db->where('userid',$userid);
+			$query=$this->db->get();
+			$views=0;
+			foreach ($query->result_array as $row) 
+			{
+				$views = $row['views'];
+				break;
+			}
+			$views = $views+1;
+			//$data = array('views' =>$views);
+			$sql = "UPDATE users set views=? where userid=?";
+			$this->db->query($sql,array($views,$userid));
+		}
 		public function verify($userid)
 		{
 			$data = array('isVerified' => 1);
@@ -40,6 +57,20 @@
 			$count = $this->db->get()->num_rows();
 			if($count>0) return true;
 			else return false;
+		}
+		public function getSubscribers($userid)
+		{
+			$this->db->select("*");
+			$this->db->from('subscriptions');
+			$this->db->where('subscribedto',$userid);
+			return $this->db->get();
+		}
+		public function getSubscriptions($userid)
+		{
+			$this->db->select("*");
+			$this->db->from('subscriptions');
+			$this->db->where('subscriber',$userid);
+			return $this->db->get();
 		}
 		public function createPerson($firstname,$middlename,$lastname,$phonenum,$picture,$birthdate)
 		{	

@@ -18,19 +18,24 @@
 					</div>
 				<?php endif;?>
 			</div>
-			<div class="large-8 column">
-        	<h1>Subscribed to:</h1>
-      
-        	<?php
-        	foreach($query->result_array() as $row):
-			?>
-				<div class="panel">
-					Username:<?php echo $row['username']; ?>
-				</div>
-			
-			<?php
-				endforeach;
-	        ?>
+			<div class="large-9 column">
+	        	<h1>Subscribed to:</h1>
+	      
+	        	<?php
+	        	foreach($query->result_array() as $row):
+				?>
+					<div class="large-4 column">
+						<div class="panel">
+							<?php echo "<img src=".base_url()."images/".$row['picture']." style='height:200px;width:200px;'><br/>"; ?>
+							Username:<?php echo $row['username']; ?><br/>
+							Number of Ads: <?php echo $totalAds[$row['userid']]; ?> <br/>
+							<a href="<?php echo base_url();?>index.php/messages/compose/<?php echo $row['userid']; ?>">Message</a>
+						</div>
+					</div>
+				
+				<?php
+					endforeach; 
+		        ?>
        		</div>
 		        
 

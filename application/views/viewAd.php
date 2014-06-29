@@ -1,42 +1,51 @@
-		        
-		        
-		      	<div class="row">
-		      	<div class="large-12 column">
-		      		<div class="large-2 column">
-					<?php if(!$hide):?>
-						<div class="panel">
-							<h5>Menu</h5>
-							<a href="<?php echo base_url() ?>index.php/ads/view">My Ads</a> <br/><br/>
-							<a href="<?php echo base_url() ?>index.php/ads/viewExpired">Expired Ads</a> <br/><br/>
-							<a href="<?php echo base_url() ?>index.php/user/userSubscription">Subscription</a> <br/><br/>
-							<a href="<?php echo base_url() ?>index.php/user/subscription">Subscription Ads</a> <br/><br/>
-							<a href="<?php echo base_url() ?>index.php/ads/viewFavorites">My Favorites</a> <br/><br/>
-							<a href="">Buy Points</a> <br/><br/>
-							<a href="<?php echo base_url() ?>index.php/ads/viewWish">Looking for</a> <br/><br/>
-							<a href="<?php echo base_url() ?>index.php/messages">Inbox</a> <br/><br/>
-							<a href="<?php echo base_url() ?>index.php/messages/sent">Sent</a> <br/><br/>
-						</div>
-					<?php endif;?>
+					<div class="row">
+					<div class="large-12 column">
+					<div class="large-2 column">
+						<?php if(!$hide):?>
+						<div style="large-2 column">
+							<div class="panel">
+								<h5>Menu</h5>
+								<a href="<?php echo base_url() ?>index.php/ads/view">My Ads</a> <br/><br/>
+								<a href="<?php echo base_url() ?>index.php/ads/viewExpired">Expired Ads</a> <br/><br/>
+								<a href="<?php echo base_url() ?>index.php/user/userSubscription">Subscription</a> <br/><br/>
+								<a href="<?php echo base_url() ?>index.php/user/subscription">Subscription Ads</a> <br/><br/>
+								<a href="<?php echo base_url() ?>index.php/ads/viewFavorites">My Favorites</a> <br/><br/>
+								<a href="">Buy Points</a> <br/><br/>
+								<a href="<?php echo base_url() ?>index.php/ads/viewWish">Looking for</a> <br/><br/>
+								<a href="<?php echo base_url() ?>index.php/messages">Inbox</a> <br/><br/>
+								<a href="<?php echo base_url() ?>index.php/messages/sent">Sent</a> <br/><br/>
+							</div>
 					</div>
- 				<div class="large-8 columns">
+						<?php endif;?>
+					</div>
+					<div class="large-10 columns">
+		        	<h1>My Ads:</h1>
+		        		<?php
 
-		      	<h1>Ads:</h1>
-		        	<?php
-		        	foreach($query->result_array() as $row)
-					{
-						echo "<h4>Description</h4>";
-						echo "<div class= 'panel'>";
-						echo "<img src=".base_url()."images/".$row['imagelink']." style='height:200px;width:200px;'><br/>";
-						echo "Title: ".$row['title']."<br/><br/>";
-						echo "Duration: ".$row['duration']." Days<br/><br/>";
-						echo "Price: ".$row['price']."<br/><br/>";
-						echo "<a href='".base_url()."index.php/ads/view/".$row['adid']."'>"."View Ad"."</a>";
-						echo "</div>";
-					}
-		        ?>
-		       </div>
+
+				        	foreach($query->result_array() as $row):
+				        		$startDate = $row['insertedon'];
+								$endDate = strtotime("+".$row['duration']." days",time($startDate));
+								$formatted = date('m/d/Y',$endDate);
+				        ?>
+			      		<div class="large-4 columns">
+								<div class= 'panel'>
+								<img src="<?php echo base_url(); ?>images/<?php echo$row['imagelink']?>" style='height:200px;width:200px;'><br/>
+								Title: <?php echo $row['title']?><br/><br/>
+								Expires on: <?php echo $formatted; ?><br/><br/>
+								Price: <?php echo $row['price'] ?> <br/><br/>
+								<a href="<?php echo base_url()?>index.php/ads/view/<?php echo $row['adid'];?>">View Ad</a>
+								</div>
+						
+			        	</div>
+			        	<?php
+							endforeach;
+				        ?>
+		        	</div>
+		       		</div>
+		       		</div>
 		        
-		       </div>
+
 		      
 			</div>
 		</div>

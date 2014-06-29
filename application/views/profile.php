@@ -36,6 +36,8 @@
 							echo "Total Ads: ".($actAds+$exAds)."<br/><br/>";
 							echo "Active Ads: ".$actAds."<br/><br/>";
 							echo "Expired Ads: ".$exAds."<br/><br/>";
+							echo "Total Subscibers: ".$subscribers->num_rows()."<br/><br/>";
+							echo "Total Subsciptions: ".$subscribedTo->num_rows()."<br/><br/>";
 						}
 						?>
 						</div>

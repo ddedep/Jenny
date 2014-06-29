@@ -35,6 +35,7 @@ class Ads extends CI_Controller {
 		$adID= $this->uri->segment(3);
 		$data['username']=$this->session->userdata('username');
 		$data['userid'] = $this->session->userdata('userid');
+		$data['message'] = "";
 			if($adID==null){
 				$data['query'] = $this->ads_model->getAdsOfUser($this->session->userdata('userid'));
 				$data['hide'] = FALSE;
@@ -251,8 +252,7 @@ class Ads extends CI_Controller {
 		$data['username']=$this->session->userdata('username');
 		$data['userid'] = $this->session->userdata('userid');
 		$data['query'] = $this->ads_model->getAdsOfUser($this->session->userdata('userid'));
-		$this->load->view('header',$data);
-		$this->load->view('viewAd',$data);
+		redirect('index.php/ads/view');
 	}
 	public function edit()
 	{

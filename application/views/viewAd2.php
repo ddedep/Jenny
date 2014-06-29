@@ -1,9 +1,11 @@
  			<div class="row">
  			<div class="large-8 columns" style="margin-left: 17%;">
  			<?php
-
+ 			$ownerid=0;
+ 			$adid=0;
+ 			echo $message;
         	foreach($query->result_array() as $row):
-			
+				$adid=$row['adid'];
 				echo "<h1>".$row['title']."</h1>";
 			?>
 			<?php
@@ -19,7 +21,15 @@
 				if($row['owner']!=$userid):
 			 		echo "Posted by: <a href='".base_url()."index.php/user/view/".$row['owner']."'>".$row['username']."</a><br/><br/>";
 				endif;
-				echo "Duration: ".$row['duration']." Days<br/><br/>";
+				
+
+				$startDate = $row['insertedon'];
+				$endDate = strtotime("+".$row['duration']." days",time($startDate));
+				$formatted = date('m/d/Y',$endDate);
+
+				$ownerid = $row['owner'];
+
+				echo "Expires on: ".$formatted."<br/><br/>";
 				echo "Price: ".$row['price']."<br/><br/>";
 				echo "About: ".$row['body']."<br/><br/>";
 				echo "Total Views: ".$row['view']."<br/><br/>";
@@ -56,12 +66,13 @@
 				<button type="submit" enabled="false">Sold</button>
 			</form>
 			<?php endif; ?>
-
-			<?php if($hidewish==0 && $row['owner']!=$userid): echo form_open('index.php/ads/wish'); ?>
-				<input name ="wishid" type="hidden" value="<?php echo $row['adid'];?>" />
-				<button type="submit">Add to Wish List</button>
-			</form>
-			<?php endif; ?>
+			<?php
+				if($row['owner']!=$userid):
+			?>
+				<a href="<?php echo base_url();?>index.php/messages/compose/<?php echo $row['owner'];?>"><button>Message Owner</button></a>
+			<?php
+				endif;
+			?>
 			<?php
 				if($row['owner']==$userid):
 			?>
@@ -94,16 +105,18 @@
 				 	</div>
 				 <?php endforeach; ?>
 		    </div>
-			<?php echo form_open_multipart('index.php/ads'); ?>
+			<?php echo form_open_multipart('index.php/user/email'); ?>
 				<label>Name</label>
-				<input type="text" />
+				<input type="text" name="name" />
 				<label>Email</label>
-				<input type="text" />
+				<input type="text" name="email"/>
 				<label>Contact Number</label>
-				<input type="text" />
+				<input type="text" name="contact"/>
 				<label>Message</label>
-				<textarea name="description"></textarea>
-				<button type="submit">Submit</button> 
+				<textarea name="body"></textarea>
+				<input type="hidden" name="to" value="<?php echo $ownerid ?>"/>
+				<input type="hidden" name="adid" value="<?php echo $adid; ?>" />
+				<button type="submit" >Submit</button> 
 			</form>
 		       
 		      

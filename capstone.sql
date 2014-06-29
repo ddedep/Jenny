@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50611
 File Encoding         : 65001
 
-Date: 2014-06-28 16:28:08
+Date: 2014-06-29 18:57:25
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -140,6 +140,7 @@ CREATE TABLE `favorites` (
 -- ----------------------------
 -- Records of favorites
 -- ----------------------------
+
 -- ----------------------------
 -- Table structure for `messages`
 -- ----------------------------
@@ -160,6 +161,25 @@ CREATE TABLE `messages` (
 -- ----------------------------
 -- Records of messages
 -- ----------------------------
+
+-- ----------------------------
+-- Table structure for `payments`
+-- ----------------------------
+DROP TABLE IF EXISTS `payments`;
+CREATE TABLE `payments` (
+  `transactionid` int(11) NOT NULL AUTO_INCREMENT,
+  `transactionCode` bigint(20) DEFAULT NULL,
+  `userid` int(11) NOT NULL,
+  `insertedon` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`transactionid`),
+  KEY `payer` (`userid`),
+  CONSTRAINT `payer` FOREIGN KEY (`userid`) REFERENCES `users` (`userid`)
+) ENGINE=MYISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+
+-- ----------------------------
+-- Records of payments
+-- ----------------------------
+INSERT INTO `payments` VALUES ('1', '51391000002', '3', '2014-06-29 03:11:31');
 
 -- ----------------------------
 -- Table structure for `persons`
@@ -304,7 +324,7 @@ CREATE TABLE `regions` (
   `regionid` int(11) NOT NULL AUTO_INCREMENT,
   `regionname` varchar(16) NOT NULL,
   PRIMARY KEY (`regionid`)
-) ENGINE=MYISAM AUTO_INCREMENT=19 DEFAULT CHARSET=latin1;
+) ENGINE=MYISAM AUTO_INCREMENT=18 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of regions
@@ -326,7 +346,7 @@ INSERT INTO `regions` VALUES ('14', 'Region XI');
 INSERT INTO `regions` VALUES ('15', 'Region XII');
 INSERT INTO `regions` VALUES ('16', 'Region XIII');
 INSERT INTO `regions` VALUES ('17', 'ARMM');
-INSERT INTO `regions` VALUES ('18', 'Region');
+INSERT INTO `regions` VALUES ('0', 'Region');
 
 -- ----------------------------
 -- Table structure for `searches`
@@ -396,9 +416,11 @@ CREATE TABLE `users` (
   `email` varchar(64) NOT NULL,
   `points` int(11) DEFAULT '0',
   `address` varchar(255) DEFAULT NULL,
+  `views` int(11) NOT NULL,
   `verification` int(11) NOT NULL,
   `isVerified` int(11) NOT NULL,
   `postalcode` int(11) NOT NULL,
+  `access_token` varchar(255) DEFAULT NULL,
   `insertedon` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`userid`),
   KEY `personRef` (`personid`),

@@ -9,6 +9,48 @@ class user extends CI_Controller {
 		$this->load->model('User_model');
 		$this->load->model('ads_model');
 	}
+
+	public function email()
+	{
+		$data['username']=$this->session->userdata('username');
+		$data['userid'] = $this->session->userdata('userid');
+		$this->load->library('form_validation');
+		$this->form_validation->set_rules('name','name', 'required|xss_clean');
+		$this->form_validation->set_rules('email','email', 'required|xss_clean');
+		$this->form_validation->set_rules('contact','contact', 'required|xss_clean');
+		$this->form_validation->set_rules('body','body', 'required|xss_clean');
+		$name = $this->input->post('name');
+		$email = $this->input->post('email');
+		$contact = $this->input->post('contact');
+		$body = $this->input->post('body');
+		$to = $this->input->post('to');
+		$adID = $this->input->post('adid');
+		$query=$this->ads_model->getAd($adID);
+		$data['hidefav'] = $this->ads_model->isFavorite($this->session->userdata('userid'),$adID);
+		$data['hidewish'] = $this->ads_model->isWish($this->session->userdata('userid'),$adID);
+		$data['query'] =$query;
+		$data['comments'] = $this->ads_model->getComments($adID);
+		if($query->num_rows()>0){
+			$this->ads_model->adViewed($adID);
+		}
+		if($this->form_validation->run() == FALSE)
+		{
+			$data['message'] = "Message Not Sent!";
+			$this->load->view('header',$data);
+			$this->load->view('ViewAd2',$data);
+		}
+		else
+		{
+			$message = "Name: ".$name."\n"."Email: ".$email."\n"."Contact number: ".$contact."\n"."Message: \n".$body."\n";
+			$headers = "From: messages@onestopdealph.com";
+			mail($to,"Somebody Sent you a Message on onestopdealph.com", $message,$headers);
+			$data['message'] = "Message Sent!";
+			$this->load->view('header',$data);
+			$this->load->view('ViewAd2',$data);
+			
+		}
+	}
+
 	public function getUsername()
 	{
 		$name = $this->input->post('username');
@@ -31,6 +73,8 @@ class user extends CI_Controller {
 			$actAds = $this->ads_model->getAdsOfUser($this->session->userdata('userid'));
 			$data['actAds'] = $actAds->num_rows();
 			$data['exAds']= $exAds->num_rows();
+			$data['subscribers'] = $this->User_model->getSubscribers($this->session->userdata('userid'));
+			$data['subscribedTo'] = $this->User_model->getSubscriptions($this->session->userdata('userid'));
 			$query=$this->User_model->getAccount($this->session->userdata('userid'));
 			
 			foreach($query->result_array() as $row)
@@ -72,6 +116,10 @@ class user extends CI_Controller {
 		$data['actAds'] = $actAds->num_rows();
 		$data['exAds']= $exAds->num_rows();
 		$query=$this->User_model->getAccount($user);
+		if($user!=$this->session->userdata('userid'));
+		{
+			$this->User_model->addView($user);
+		}
 		foreach($query->result_array() as $row)
 		{
 				$newdata = array(
@@ -140,6 +188,11 @@ class user extends CI_Controller {
 		$userid = $this->session->userdata('userid');
 		$data['query']=$this->ads_model->getsubscribedUsers($userid);
 		$query = $data['query'];
+		$totalAds= array();
+		foreach ($query->result_array() as $row) {
+			$totalAds[$row['userid']] = $this->ads_model->getAdsOfUser($row['userid'])->num_rows();
+		}
+		$data['totalAds'] = $totalAds;
 		$this->load->view('header',$data);
 		$this->load->view('viewusersubs',$data);
 	}

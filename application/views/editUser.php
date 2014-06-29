@@ -38,6 +38,7 @@
     					<label>Birthdate</label>
     					<?php 
     						$bdate=explode("-", $row['birthdate']);
+    						
 							//echo $as[1];
     						$months = array(
 			                  '1' => 'January',
@@ -54,8 +55,7 @@
 			                  '12' => 'December',
 			                );
 
-							echo form_dropdown('month', $months, $bdate[1]);
-							
+							echo form_dropdown('month', $months, $bdate[0]);
     					?>
 					</div>
 					<div class="medium-4 columns">
@@ -67,7 +67,7 @@
 							$options[''.$i] = $i;
 						}
 
-						echo form_dropdown('day', $options,$bdate[2]);
+						echo form_dropdown('day', $options,$bdate[0]);
 						?>
 					</div>
 					<div class="medium-3 columns">
