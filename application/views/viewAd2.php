@@ -28,24 +28,24 @@
 			?>
 			
 			<?php if($row['owner']==$userid && $row['isexpired']!=1): ?>
-			<a href="<?php echo base_url();?>index.php/Ads/feature/<?php echo $row['adid'];?>"><button>Feature This Ad!</button></a>
+			<a href="<?php echo base_url();?>index.php/ads/feature/<?php echo $row['adid'];?>"><button>Feature This Ad!</button></a>
 			<?php endif; ?>
            
             <?php if($row['owner']==$userid && $row['isexpired']!=1): ?>
-			<a href="<?php echo base_url();?>index.php/Ads/extend/<?php echo $row['adid'];?>"><button>Extend Duration</button></a>
+			<a href="<?php echo base_url();?>index.php/ads/extend/<?php echo $row['adid'];?>"><button>Extend Duration</button></a>
 			<?php endif; ?>
             <?php if($row['owner']==$userid && $row['isexpired']==1): ?>
-			<a href="<?php echo base_url();?>index.php/Ads/repost/<?php echo $row['adid'];?>"><button>Repost</button></a>
+			<a href="<?php echo base_url();?>index.php/ads/repost/<?php echo $row['adid'];?>"><button>Repost</button></a>
 			<?php endif; ?>
 			<?php $isSold = $row['issold'] ?>
 			
-			<?php if($hidefav==0 && $row['owner']!=$userid): echo form_open('index.php/Ads/favorite'); ?>
+			<?php if($hidefav==0 && $row['owner']!=$userid): echo form_open('index.php/ads/favorite'); ?>
 				<input name ="favid" type="hidden" value="<?php echo $row['adid'];?>" />
 				<button type="submit">Favorite</button>
 			</form>
 			<?php endif; ?>
 
-			<?php if($isSold==0 && $row['owner']==$userid): echo form_open('index.php/Ads/sell'); ?>
+			<?php if($isSold==0 && $row['owner']==$userid): echo form_open('index.php/ads/sell'); ?>
 				<input name ="favid" type="hidden" value="<?php echo $row['adid'];?>" />
 				<button type="submit">Mark As Sold</button>
 			</form>
@@ -57,7 +57,7 @@
 			</form>
 			<?php endif; ?>
 
-			<?php if($hidewish==0 && $row['owner']!=$userid): echo form_open('index.php/Ads/wish'); ?>
+			<?php if($hidewish==0 && $row['owner']!=$userid): echo form_open('index.php/ads/wish'); ?>
 				<input name ="wishid" type="hidden" value="<?php echo $row['adid'];?>" />
 				<button type="submit">Add to Wish List</button>
 			</form>

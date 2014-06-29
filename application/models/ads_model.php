@@ -83,7 +83,7 @@
 			$this->db->select("*");
 			$this->db->from('ads');
 			$this->db->where('owner',$userid);
-			$this->db->where('isexpired',0);
+			$this->db->where('isexpired',1);
 			return $this->db->get();
 		}
 		public function getFeaturedAds()

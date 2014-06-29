@@ -257,6 +257,8 @@ class Ads extends CI_Controller {
 	public function edit()
 	{
 
+		$data['regions'] = $this->ads_model->getRegions();
+		$data['categories'] = $this->ads_model->getCategories();
 		$this->load->library('form_validation');
 		if($this->session->userdata('verified')==0) 
 		{

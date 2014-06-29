@@ -25,7 +25,8 @@
 		<input name ='adid' type="hidden" value=<?php echo $row['adid'] ?> />
 		<?php 
 		if($row['owner']==$userid && $row['isfeatured']==0){
-			echo "<button id='Feature' type='submit'>Feature Ad(costs 300 points)</button>";
+
+			echo "<button id='Feature' type='submit'>Feature Ad</button>";
 		}
 		else if($row['isfeatured']==1)
 		{

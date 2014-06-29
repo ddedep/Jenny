@@ -7,7 +7,7 @@
 				<?php echo form_open("index.php/messages/compose"); ?>
 				<?php if($query->num_rows>0){
 				foreach ($query->result_array() as $row):
-					echo "To: <input type='text' name='recipient'>".$row['username']."</input><br/>";?>
+					echo "To: <input type='text' name='recipient' value=".$row['username'].">"."</input><br/>";?>
 					Message: <br/>
 					<textarea name="message" style="height:300px;width:60%"></textarea>
 					<button type="submit" style="margin-left:25%">Submit</button>

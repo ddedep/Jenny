@@ -1,86 +1,91 @@
 
-		    	<?php if($query!=null): 
-				foreach($query->result_array() as $row):
+		    	<?php if($query->num_rows()>0): 
+				foreach($query->result_array() as $rowz):
 				?>
 				<div class="row">
 				<h3>Ad Details</h3>
 				<?php echo validation_errors(); echo $message;?>
-		    	</div>
-		    		<?php echo form_open_multipart('index.php/ads/edit/'.$adID); ?>
+		    		<?php echo form_open_multipart('index.php/ads'); ?>
 
 				<div class="row">
 					<div class="small-6 columns">
     					<label>Category</label>
     					<select name="category">
-							<option value="1">Men</option>
-							<option value="2">Women</option>
-							<option value="3" selected="selected">Children</option>
+					        <?php foreach ($categories->result_array() as $row):?>
+					       	 <option value="<?php echo $row['categoryid'];?>"><?php echo $row['categoryname']; ?></option>
+					    	<?php endforeach; ?>
 						</select>
     				</div>
 				</div>
 				<div class="row">
-					<div class="small-4 columns">
-    					<label>City</label>
-    					<select name="city">
-							<option value="1">Makati</option>
-							<option value="2">Quezon City</option>
-							<option value="3" selected="selected">Manila</option>
-						</select>
-    				</div>
+							<div class="large-4 columns">
+						      <select id= 'regions'>
+						      	<?php foreach ($regions->result_array() as $row):?>
+						       	 <option value="<?php echo $row['regionid'];?>"><?php echo $row['regionname']; ?></option>
+						    	<?php endforeach; ?>
+						      </select>
+					      </div>
+					      <div class="large-4 columns">
+						      <select id ='provinces' name='provinces'>
+						      	<option value="0">-------</option>
+						      </select>
+					      </div>
 				</div>
 				<div class="row">
 					<div class="small-6 columns">
 						<label>Ad Title</label>
-						<input type="text" name="title" value ="<?php echo $row['title']; ?>">
+						<input type="text" name="title" value = "<?php echo $rowz['title']?>">
 					</div>
-				</div>
-				<div class="row">
-					<div class="small-4 columns">
-    					<label>Ad Duration</label>
-    					<select name="duration">
-							<option value="7">One Week</option>
-							<option value="15">15 Days</option>
-							<option value="30" selected="selected">30 Days</option>
-						</select>
-    				</div>
 				</div>
 				<div class="row">
 					<div class="small-8 columns">
 						<label>Description</label>
-						<textarea name="description" value =""><?php echo $row['body']; ?></textarea>
+						<textarea name="description"><?php echo $rowz['body']?></textarea>
 					</div>
 				</div>
 				<div class="row">
 					<div class="small-6 columns">
 						<label>Price</label>
-						<input type="text" name="price" value ="<?php echo $row['price']; ?>">
+						<input type="text" name="price" value="<?php echo $rowz['price']?>">
 					</div>
 				</div>
 				<div class="row">
 					<div class="small-6 columns">
 						<label>image</label>
-    					<label>upload photo(leave blank if you do not wish to change)</label>
+    					<label>upload photo</label>
     					
-						<input type="file" name="userfile" size="20" value="<?php echo $row['imagelink']; ?>" />
+						<input type="file" name="userfile" size="20" />
 					</div>
 				</div>
 				<div class="row">
 					<div class="small-6 columns">
 						<label>video link</label>
-						<input type="text" name ="video" value="https://www.youtube.com/watch?v=<?php echo $row['videolink']; ?>">
+						<input type="text" name ="video" value="https://www.youtube.com/watch?v=<?php echo $rowz['videolink']?>">
 					</div>
-
 				</div>
-				<div class="row">
-					<input type="hidden"  name="imgname" value = "<?php echo $row['imagelink'] ?>" />
-					<button type="Submit">Submit</button>
-				</div>
-				
+				<input type="hidden" value="<?php echo $rowz['duration']?>">
+				<Button type="submit">Submit</Button>
 				</form>
 			</div>
 			<?php break;endforeach;endif; ?>
 		</div>
 		<!--Scripts -->
+		<script type="text/javascript">
+		
+			$('#regions').change(function(){
+				var regionName = $('#regions').find(":selected").val();
+			//alert(regionName);
+		   $.post( "<?php echo base_url();?>index.php/home/getProvinces", {regionID:regionName} ).done(function( data ) {
+			//	alert(regionName+" Data Loaded: " + data );
+				if(data=='added') alert('oheayh');
+				else{
+			//	alert(data);
+				$('#provinces').html(data);
+				}
+				});
+		});
+		</script>
+
 		<script src="<?php echo base_url(); ?>js/vendor/jquery.js"></script>
 	    <script src="<?php echo base_url(); ?>js/foundation.min.js"></script>
 	    <script>
