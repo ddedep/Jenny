@@ -41,7 +41,7 @@ class user extends CI_Controller {
 		}
 		else
 		{
-			$message = "Name: ".$name."\n"."Email: ".$email."\n"."Contact number: ".$contact."\n"."Message: \n\n".$body."\n";
+			$message = "Name: ".$name."\n"."Email: ".$email."\n"."Contact number: ".$contact."\n\n"."Message: ".$body."\n";
 			$headers = "From: messages@onestopdealph.com";
 			mail($to,"Somebody Sent you a Message on onestopdealph.com", $message,$headers);
 			$data['message'] = "Message Sent!";
