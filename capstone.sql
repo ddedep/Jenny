@@ -346,7 +346,7 @@ INSERT INTO `regions` VALUES ('14', 'Region XI');
 INSERT INTO `regions` VALUES ('15', 'Region XII');
 INSERT INTO `regions` VALUES ('16', 'Region XIII');
 INSERT INTO `regions` VALUES ('17', 'ARMM');
-INSERT INTO `regions` VALUES ('0', 'Region');
+INSERT INTO `regions` VALUES ('18', 'Region');
 
 -- ----------------------------
 -- Table structure for `searches`

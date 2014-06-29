@@ -1,7 +1,7 @@
  			<div class="row">
  			<div class="large-8 columns" style="margin-left: 17%;">
  			<?php
- 			$ownerid=0;
+ 			$owner="";
  			$adid=0;
  			echo $message;
         	foreach($query->result_array() as $row):
@@ -27,7 +27,7 @@
 				$endDate = strtotime("+".$row['duration']." days",time($startDate));
 				$formatted = date('m/d/Y',$endDate);
 
-				$ownerid = $row['owner'];
+				$owner = $row['email'];
 
 				echo "Expires on: ".$formatted."<br/><br/>";
 				echo "Price: ".$row['price']."<br/><br/>";
@@ -114,7 +114,7 @@
 				<input type="text" name="contact"/>
 				<label>Message</label>
 				<textarea name="body"></textarea>
-				<input type="hidden" name="to" value="<?php echo $ownerid ?>"/>
+				<input type="hidden" name="to" value="<?php echo $owner ?>"/>
 				<input type="hidden" name="adid" value="<?php echo $adid; ?>" />
 				<button type="submit" >Submit</button> 
 			</form>
