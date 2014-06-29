@@ -5,7 +5,7 @@
 				<div class="row">
 				<h3>Ad Details</h3>
 				<?php echo validation_errors(); echo $message;?>
-		    		<?php echo form_open_multipart('index.php/ads/edit'); ?>
+		    		<?php echo form_open_multipart('index.php/ads/edit/'.$adID); ?>
 
 				<div class="row">
 					<div class="small-6 columns">
