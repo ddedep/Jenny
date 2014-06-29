@@ -83,13 +83,14 @@
 			$this->db->select("*");
 			$this->db->from('ads');
 			$this->db->where('owner',$userid);
-			$this->db->where('isexpired',1);
+			$this->db->where('isexpired',0);
 			return $this->db->get();
 		}
 		public function getFeaturedAds()
 		{
 			$this->db->select("*");
 			$this->db->from('ads');
+			$this->db->where('isexpired',0);
 			$this->db->where('isfeatured',1);
 			return $this->db->get();
 		}
@@ -103,6 +104,7 @@
 			$this->db->select('*'); 
 			 $this->db->from('subscriptions');
    			 $this->db->join('ads','ads.owner = subscriptions.subscribedto');
+   			 $this->db->where('isexpired',0);
     		 $this->db->where('subscriber',$userid);
     		 $this->db->where('ads.isExpired',0);
             return $this->db->get();
@@ -125,6 +127,7 @@
 			$this->db->select('*'); 
 			$this->db->from('favorites');
 			$this->db->join('ads','ads.adid=favorites.favoriteAdid');
+			$this->db->where('ads.isexpired',0);
 			$this->db->where('favorites.ownerid',$userid);
 			return $this->db->get();
 		}
@@ -133,6 +136,7 @@
 			$this->db->select('*'); 
 			$this->db->from('wishes');
 			$this->db->join('ads','ads.adid=wishes.adid');
+			$this->db->where('ads.isexpired',0);
 			$this->db->where('wishes.userid',$userid);
 			return $this->db->get();
 		}
@@ -248,7 +252,7 @@
 		{
 			$this->db->select('*');
 			$this->db->from('ads');
-			$this->db->where('isexpired','0');
+			$this->db->where('isexpired',0);
 			$this->db->order_by("view", "desc"); 
 			return $this->db->get();
 		}
