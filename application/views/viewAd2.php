@@ -34,6 +34,10 @@
 					echo '</iframe><br/>';
 				}
 				echo "<img src=".base_url()."images/".$row['imagelink']." style='height:200px;width:200px;'><br/>";
+				echo "Images:<br/>";
+				foreach ($images->result_array() as $rowk) {
+					echo "<img src=".base_url()."images/".$rowk['imagelink']." style='height:200px;width:200px;'><br/>";
+				}
 				echo "Title: ".$row['title']."<br/><br/>";
 				if($row['owner']!=$userid):
 			 		echo "Posted by: <a href='".base_url()."index.php/user/view/".$row['owner']."'>".$row['username']."</a><br/><br/>";

@@ -41,16 +41,39 @@
 			$this->db->order_by("cominsertedon", "desc"); 
 			return $this->db->get();
 		}
+		public function getImages($adid)
+		{
+			$this->db->select("*");
+			$this->db->from("images");
+			$this->db->where("ad",$adid);
+			return $this->db->get();
+		}
+		public function upload_photo($imagelink,$adid)
+		{
+			$sql = "INSERT INTO images(imagelink,ad) VALUES(?,?)";
+			$this->db->query($sql,array($imagelink,$adid));
+		}
+
+		public function getLatest($userid)
+		{
+			$this->db->select_max("adid");
+			$this->db->from("ads");
+			$this->db->where("owner",$userid);
+			$q =$this->db->get();
+			foreach ($q->result_array() as $row) {
+				return $row['adid'];
+			}
+		}
 		public function addComment($body,$owner,$adid)
 		{
 			$sql = "INSERT INTO adcomment(body,owner,adid) VALUES (?,?,?)";
 			$this->db->query($sql,array($body,$owner,$adid));
 		}
-		public function CreateAd($title,$userid,$duration,$price,$video,$imagelink,$body,$categoryid,$provinceid)
+		public function CreateAd($title,$userid,$duration,$price,$video,$image,$body,$categoryid,$provinceid)
 		{	
 			$sql = "INSERT into ads (title,owner,isFeatured,duration,price,videolink,imagelink,body,categoryid,provinceid) VALUES (?,?,?,?,?,?,?,?,?,?)";
 			
-			$this->db->query($sql, array($title,$userid,0,$duration,$price,$video,$imagelink,$body,$categoryid,$provinceid));
+			$this->db->query($sql, array($title,$userid,0,$duration,$price,$video,$image,$body,$categoryid,$provinceid));
 		}
 		public function adViewed($adid)
 		{

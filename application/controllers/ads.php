@@ -50,6 +50,7 @@ class Ads extends CI_Controller {
 				$data['hidewish'] = $this->ads_model->isWish($this->session->userdata('userid'),$adID);
 				$data['query'] =$query;
 				$data['comments'] = $this->ads_model->getComments($adID);
+				$data['images'] = $this->ads_model->getImages($adID);
 				if($query->num_rows()>0){
 					$this->ads_model->adViewed($adID);
 					$this->load->view('header',$data);
@@ -304,6 +305,7 @@ class Ads extends CI_Controller {
 				$config['max_height']  = '768';
 
 				$this->load->library('upload', $config);
+
 				if($this->form_validation->run()==FALSE){
 					$data['message'] ="";
 					$data['username']=$this->session->userdata('username');
@@ -312,7 +314,16 @@ class Ads extends CI_Controller {
 				}
 				else
 				{
-					if ( ! $this->upload->do_upload())
+					$this->upload->initialize(array(
+			            "upload_path"   => "./images/",
+			            'allowed_types' => 'gif|jpg|png|jpeg',
+						'max_size'	=>'10000',
+						'max_width' => '1024',
+						'max_height'  => '768'
+			        ));
+
+			        //Perform upload.
+					if ( ! $this->upload->do_multi_upload("files"))
 					{
 						$error = array('error' => $this->upload->display_errors());
 
@@ -414,8 +425,15 @@ class Ads extends CI_Controller {
 			$config['max_size']	= '10000';
 			$config['max_width']  = '1024';
 			$config['max_height']  = '768';
-
 			$this->load->library('upload', $config);
+			$this->upload->initialize(array(
+           		"upload_path"   => "./images/",
+           		'allowed_types' => 'gif|jpg|png|jpeg|jpe',
+				'max_size'	=> '10000',
+				'max_width' => '1024',
+				'max_height'  => '768',
+        	));
+			
 			if($this->form_validation->run()==FALSE){
 				$data['message'] ="";
 				$data['username']=$this->session->userdata('username');
@@ -424,7 +442,7 @@ class Ads extends CI_Controller {
 			}
 			else
 			{
-				if ( ! $this->upload->do_upload())
+				if ( ! $this->upload->do_multi_upload("files"))
 				{
 					$error = array('error' => $this->upload->display_errors());
 				}
@@ -434,10 +452,19 @@ class Ads extends CI_Controller {
 									'err' => "Registered!");
 					
 				}
-				$dat = $this->upload->data();
-				$image = $dat['file_name'];
+				$dat= $this->upload->get_multi_upload_data();
+				$image="";
+				foreach ($dat as $row) {
+					$image=$row['file_name'];
+					break;
+				}
+
 				$this->ads_model->CreateAd($title,$userid,$duration,$price,$video,$image,$body,$categoryid,$cityid);
 				$userz=$this->User_model->getUser($this->session->userdata('username'));
+				$latest = $this->ads_model->getLatest($this->session->userdata('userid'));
+				foreach ($dat as $row) {
+					$this->ads_model->upload_photo($row['file_name'],$latest);
+				}
 				$points=0;
 				foreach ($userz->result_array() as $row) {
 					$points= $row['points'];

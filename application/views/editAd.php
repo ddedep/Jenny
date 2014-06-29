@@ -56,7 +56,13 @@
 						<label>image</label>
     					<label>upload photo</label>
     					
-						<input type="file" name="userfile" size="20" />
+						<input type="file" name="files[]" />
+			            <input type="file" name="files[]" />
+			            <input type="file" name="files[]" />
+			            <input type="file" name="files[]" />
+			            <input type="file" name="files[]" />
+			            <input type="file" name="files[]" />
+			 
 					</div>
 				</div>
 				<div class="row">
