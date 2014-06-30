@@ -19,7 +19,7 @@
 					
 					<?php foreach ($messages->result_array() as $row): ?>
 						<div class="panel">
-						From: <?php echo $row['username']; ?> <br/>
+						To: <?php echo $row['username']; ?> <br/>
 						<?php echo $row['senton']; ?> <br/><br/>
 						<a href="<?php echo base_url();?>index.php/messages/view/<?php echo $row['messageid']; ?>">View Message</a>
 						</div>
