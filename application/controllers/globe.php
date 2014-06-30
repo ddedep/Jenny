@@ -16,8 +16,8 @@ class Globe extends CI_Controller {
 			require ('/var/www/html/Jenny/src/GlobeApi.php');
 			$globe = new GlobeApi();
 		    $auth = $globe->auth(
-		        'jrdA6C5Ra8RfA7izkpTa6EfaEdXdCbRp',
-		        '19d8c5e751dfdf8f19c2f9a478792dd61e40cfd2f1af581917818bc4128b57d3'
+		        'qAdAgFoGraoIx5Tq8KcrkKIX9d9EFLbj',
+		        '64729180b8c47423d06e4d1de69117e7a37fea62354ef2e46a639f4f53b7a5bb'
 		    );
 			$code = $this->input->get('code');
 			$response = $auth->getAccessToken($code);
@@ -29,7 +29,7 @@ class Globe extends CI_Controller {
 		    );
 		    echo $_SESSION['access_token'];
 		    $code=$this->ads_model->getReferenceCode();
-		    $trans = "6491".($code+1);
+		    $trans = "5139".($code+1);
 		    $respo = $charge->charge(
 			    50,
 			    $trans
@@ -52,8 +52,8 @@ class Globe extends CI_Controller {
 			session_start();
 		    $globe = new GlobeApi();
 		    $auth = $globe->auth(
-		        'jrdA6C5Ra8RfA7izkpTa6EfaEdXdCbRp',
-		        '19d8c5e751dfdf8f19c2f9a478792dd61e40cfd2f1af581917818bc4128b57d3'
+		        'qAdAgFoGraoIx5Tq8KcrkKIX9d9EFLbj',
+		        '64729180b8c47423d06e4d1de69117e7a37fea62354ef2e46a639f4f53b7a5bb'
 		    );
 		    
 		    if(!isset($_SESSION['code'])) {

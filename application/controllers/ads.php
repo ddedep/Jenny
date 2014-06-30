@@ -177,6 +177,7 @@ class Ads extends CI_Controller {
 	}
 	public function featureThis()
 	{
+		$data['hide'] = FALSE;
 		$adID=$this->input->post('adid');
 				
 		$data['username']=$this->session->userdata('username');
