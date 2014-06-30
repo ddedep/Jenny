@@ -81,6 +81,7 @@ class user extends CI_Controller {
 			$actAds = $this->ads_model->getAdsOfUser($this->session->userdata('userid'));
 			$data['actAds'] = $actAds->num_rows();
 			$data['exAds']= $exAds->num_rows();
+			$data['soldAds'] = $this->ads_model->getSold($this->session->userdata('userid'))->num_rows();
 			$data['subscribers'] = $this->User_model->getSubscribers($this->session->userdata('userid'));
 			$data['subscribedTo'] = $this->User_model->getSubscriptions($this->session->userdata('userid'));
 			$query=$this->User_model->getAccount($this->session->userdata('userid'));

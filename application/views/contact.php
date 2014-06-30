@@ -1,7 +1,5 @@
-
-		<div class="row">
-			<div class="large-12 column">
-				<div class="large-2 column">
+ 			<div class="row">
+ 			<div class="large-2 column">
 				<?php if(!$hide):?>
 					<div class="panel">
 						<h5>Menu</h5>
@@ -19,24 +17,43 @@
 					</div>
 				<?php endif;?>
 				</div>
-				<div class="large-9 column">
-					<div class="large-6 column">
-					
-					<?php foreach ($messages->result_array() as $row): ?>
-						<div class="panel">
-						From: <?php echo $row['username']; ?> <br/>
-						<?php echo $row['senton']; ?> <br/><br/>
-						<a href="<?php echo base_url();?>index.php/messages/view/<?php echo $row['messageid']; ?>">View Message</a>
-						</div>
-
-					<?php endforeach; ?>
-					</div> 
-				</div>
+ 			<div class="large-8 columns" >
+ 				<?php echo validation_errors(); echo $message;?>
+			<?php echo form_open_multipart('index.php/home/contactUs'); ?>
+				<label>Name</label>
+				<input type="text" name="name" />
+				<label>Email</label>
+				<input type="text" name="email"/>
+				<label>Contact Number</label>
+				<input type="text" name="contact"/>
+				<label>Message</label>
+				<textarea name="body"></textarea>
+				<button type="submit" >Submit</button> 
+			</form>
+		       
+		      
 			</div>
 		</div>
-		</div>
-    </body>
 		<!--Scripts -->
+		<script type="text/javascript">
+			var username = "<?php echo $this->session->userdata('username'); ?>";
+			var body = $('#comment').val();
+		//	alert(body);
+		//	var time = $.now();
+			$('#postComment').click(function(){
+			//	alert(body);
+			   $.post( "<?php echo base_url();?>index.php/ads/comment", {adid:<?php echo $row['adid'];?>, body:$('#comment').val()} ).done(function( data ) {
+				//alert( "Data Loaded: " + data );
+				if(data=='added') alert('oheayh');
+				else{
+					
+			//	alert(data);
+					$('#commentArea').html("<div class='panel'>"+username+" wrote: <br/><i>"+$('#comment').val()+"<br/></i><i>"+data+"</i></div>"+$('#commentArea').html());
+					$('#comment').attr('value','');
+				}
+				});
+		});
+		</script>
 		<script src="<?php echo base_url(); ?>js/vendor/jquery.js"></script>
 	    <script src="<?php echo base_url(); ?>js/foundation.min.js"></script>
 	    <script>

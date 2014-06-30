@@ -126,6 +126,16 @@ class Ads extends CI_Controller {
 		$this->load->view('header',$data);
 		$this->load->view('viewAd',$data);
 	}
+	public function viewSold()
+	{
+		$data['hide'] = FALSE;
+		$data['username']=$this->session->userdata('username');
+		$data['userid'] = $this->session->userdata('userid');
+		$data['query'] = $this->ads_model->getSold($this->session->userdata('userid'));
+		$data['hide'] = FALSE;
+		$this->load->view('header',$data);
+		$this->load->view('viewAd',$data);
+	}
 	public function viewFavorites()
 	{
 		$data['username']=$this->session->userdata('username');

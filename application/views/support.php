@@ -1,12 +1,13 @@
 				<div class="row">
-				<div class="large-2 column">
-				<?php if($this->session->userdata('logged_in')):?>
+				<<div class="large-2 column">
+				<?php if($this->session->userdata(logged_in)):?>
 					<div class="panel">
 						<h5>Menu</h5>
 						<a href="<?php echo base_url() ?>index.php/ads/view">My Ads</a> <br/><br/>
 						<a href="<?php echo base_url() ?>index.php/ads/viewExpired">Expired Ads</a> <br/><br/>
+						<a href="<?php echo base_url() ?>index.php/ads/viewSold">Sold Ads</a> <br/><br/>
 						<a href="<?php echo base_url() ?>index.php/user/userSubscription">Subscription</a> <br/><br/>
-						<a href="<?php echo base_url() ?>index.php/user/subscription">Subscription Ads</a> <br/><br/>
+						<a href="<?php echo base_url() ?>index.php/user/subscription">Subscribed Ads</a> <br/><br/>
 						<a href="<?php echo base_url() ?>index.php/ads/viewFavorites">My Favorites</a> <br/><br/>
 						<a href="<?php echo base_url() ?>index.php/globe/charge">Buy Points</a> <br/><br/>
 						<a href="<?php echo base_url() ?>index.php/ads/viewWish">Looking for</a> <br/><br/>

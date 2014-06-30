@@ -6,6 +6,15 @@
 			$this->load->database();
 		}
 		
+		public function getSold($userid)
+		{
+			$this->db->select("*");
+			$this->db->from("ads");
+			$this->db->where("owner",$userid);
+			$this->db->where("issold",1);
+			return $this->db->get();
+		}
+
 		public function addLookingFor($userid,$search)
 		{
 			$sql = "INSERT INTO lookingfor(body,owner) VALUES(?,?)";

@@ -9,6 +9,36 @@ class Home extends CI_Controller {
 		$this->load->model('ads_model');
 		
 	}
+	public function contactUs()
+	{
+		$data['hide'] = TRUE;
+		$data['username']=$this->session->userdata('username');
+		$data['userid'] = $this->session->userdata('userid');
+		$this->load->library('form_validation');
+		$this->form_validation->set_rules('name','name', 'required|xss_clean');
+		$this->form_validation->set_rules('email','email', 'required|xss_clean');
+		$this->form_validation->set_rules('contact','contact', 'required|xss_clean');
+		$this->form_validation->set_rules('body','body', 'required|xss_clean');
+		if($this->form_validation->run() == FALSE)
+		{
+			$data['message'] = "";
+		}
+		else
+		{
+			$name = $this->input->post('name');
+			$email = $this->input->post('email');
+			$contact = $this->input->post('contact');
+			$body = $this->input->post('body');
+			$to="dexter_edep@yahoo.com";
+			$message = "Name: ".$name."\n"."Email: ".$email."\n"."Contact number: ".$contact."\n\n"."Message: ".$body."\n";
+			$headers = "From: messages@onestopdealph.com";
+			mail($to,"Somebody Sent you a Message on onestopdealph.com", $message,$headers);
+			$data['message'] = "Message Sent!";
+			
+		}
+		$this->load->view('header',$data);
+		$this->load->view('contact',$data);
+	}
 	public function forget()
 	{
 		$this->load->library('form_validation');
