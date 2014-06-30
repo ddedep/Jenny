@@ -12,7 +12,7 @@
 		public function addTrans($userid,$trans)
 		{
 			$data = array(
-				'transactionid' => $trans,
+				'transactioncode' => $trans,
 				'userid' =>$userid
 			);
 			$this->db->insert('payments',$data);
