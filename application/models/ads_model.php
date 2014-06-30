@@ -6,6 +6,12 @@
 			$this->load->database();
 		}
 		
+		public function addLookingFor($userid,$search)
+		{
+			$sql = "INSERT INTO lookingfor(body,owner) VALUES(?,?)";
+			$this->db->query($sql,array($search,$userid));
+		}
+
 		public function isSold($adid)
 		{
 			$sql = "INSERT INTO sold(adid) values(?)";
@@ -142,9 +148,10 @@
     		 $this->db->where('subscriptions.subscriber',$userid);
             return $this->db->get();
 		}
-		public function isSubscribed()
+		public function lookAt($search,$adid)
 		{
-
+			$sql = "SELECT * FROM ads WHERE MATCH(title, body) AGAINST (? IN BOOLEAN MODE)  AND adid=?";
+			return $this->db->query($sql,array($search,$adid));
 		}
 		public function getFavorites($userid)
 		{
@@ -158,12 +165,20 @@
 		public function getWishes($userid)
 		{
 			$this->db->select('*'); 
-			$this->db->from('wishes');
-			$this->db->join('ads','ads.adid=wishes.adid');
-			$this->db->where('ads.isexpired',0);
-			$this->db->where('wishes.userid',$userid);
+			$this->db->from('lookingfor');
+			$this->db->where('owner',$userid);
 			return $this->db->get();
 		}
+
+		public function getAllWish()
+		{
+			$this->db->select("*");
+			$this->db->from("lookingfor");
+			$this->db->join('users','users.userid=lookingfor.owner');
+			$this->db->join('persons','persons.personid=users.personid');
+			return $this->db->get();
+		}
+
 		public function isFavorite($userid,$adid)
 		{
 			$sql= "SELECT * FROM favorites where ownerid=? AND favoriteAdid=?";

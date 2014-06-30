@@ -83,7 +83,7 @@ class Ads extends CI_Controller {
 		$data['hide'] = FALSE;
 		$data['query'] = $this->ads_model->getWishes($this->session->userdata('userid'));
 		$this->load->view('header',$data);
-		$this->load->view('viewAd',$data);
+		$this->load->view('viewAd4',$data);
 	}
 	public function viewExpired()
 	{
@@ -265,6 +265,40 @@ class Ads extends CI_Controller {
 		$data['query'] = $this->ads_model->getAdsOfUser($this->session->userdata('userid'));
 		redirect('index.php/ads/view');
 	}
+
+	public function search()
+	{
+		$data['username']=$this->session->userdata('username');
+		$data['userid'] = $this->session->userdata('userid');
+		$search = $this->input->post('search');
+		$category = $this->input->post('category');
+		$province = $this->input->post('province');
+		$region = $this->input->post('region');
+		$data['hide'] = FALSE;
+		$data['lookingFor'] = TRUE;
+		$data['search'] =$search;
+		$data['query']= $this->ads_model->searchAds($search,$province,$category,$region);
+		if($this->session->userdata('logged_in')){
+			$this->ads_model->addSearch($data['userid'],$search);
+		}
+		$this->load->view('header',$data);		
+		$this->load->view('viewAd3',$data);
+	}
+	public function addToLookingFor()
+	{
+		$userid = $this->session->userdata('userid');
+		$body = $this->input->post('search');
+		$this->ads_model->addLookingFor($userid,$body);
+		redirect('index.php/ads/viewWish');
+	}
+	public function subscribe()
+	{
+		if(!$this->session->userdata('logged_in')) redirect('index.php/register');
+		$owner = $this->input->post('userid');
+		$subscriber = $this->session->userdata('userid');
+		$this->User_model->subscribe($owner,$subscriber);
+		redirect('index.php/user');
+	}
 	public function edit()
 	{
 		$data['hide'] = FALSE;
@@ -306,8 +340,14 @@ class Ads extends CI_Controller {
 				$config['max_height']  = '768';
 
 				$this->load->library('upload', $config);
-
-				if($this->form_validation->run()==FALSE){
+				$this->upload->initialize(array(
+			            "upload_path"   => "./images/",
+			            'allowed_types' => 'gif|jpg|png|jpeg',
+						'max_size'	=>'10000',
+						'max_width' => '1024',
+						'max_height'  => '768'
+						));
+			        				if($this->form_validation->run()==FALSE){
 					$data['message'] ="";
 					$data['username']=$this->session->userdata('username');
 					$this->load->view('header',$data);
@@ -315,22 +355,16 @@ class Ads extends CI_Controller {
 				}
 				else
 				{
-					$this->upload->initialize(array(
-			            "upload_path"   => "./images/",
-			            'allowed_types' => 'gif|jpg|png|jpeg',
-						'max_size'	=>'10000',
-						'max_width' => '1024',
-						'max_height'  => '768'
-			        ));
+					
 
 			        //Perform upload.
 					if ( ! $this->upload->do_multi_upload("files"))
 					{
 						$error = array('error' => $this->upload->display_errors());
 
-						$image = $this->input->post('imgname');;
+					//	$image = $this->input->post('imgname');;
 						$this->ads_model->EditAd($adID,$title,$userid,$duration,$price,$video,$image,$body,$categoryid,$cityid);
-						$data['message'] ="Ad Edited!";
+						$data['message'] ="Ad not Edited! ".$error['error'];
 						$data['username']=$this->session->userdata('username');
 						$data['adID'] = $adID;
 						$this->load->view('header',$data);
@@ -338,8 +372,6 @@ class Ads extends CI_Controller {
 					}
 					else
 					{
-						$data = array('upload_data' => $this->upload->data(),
-										'err' => "Edited!");
 
 						$dat= $this->upload->get_multi_upload_data();
 						$image="";
@@ -348,11 +380,10 @@ class Ads extends CI_Controller {
 							break;
 						}
 
-						$this->ads_model->CreateAd($title,$userid,$duration,$price,$video,$image,$body,$categoryid,$cityid);
 						$userz=$this->User_model->getUser($this->session->userdata('username'));
-						$latest = $this->ads_model->getLatest($this->session->userdata('userid'));
+						$latest = $adID;
 						foreach ($dat as $row) {
-							$this->ads_model->upload_photo($row['file_name'],$adID);
+							$this->ads_model->upload_photo($row['file_name'],$latest);
 						}
 						
 						$data['query'] =$query;
@@ -379,30 +410,6 @@ class Ads extends CI_Controller {
 			redirect("index.php/ads/view");
 		}
 	
-	}
-	public function search()
-	{
-		$data['username']=$this->session->userdata('username');
-		$data['userid'] = $this->session->userdata('userid');
-		$search = $this->input->post('search');
-		$category = $this->input->post('category');
-		$province = $this->input->post('province');
-		$region = $this->input->post('region');
-		$data['hide'] = TRUE;
-		$data['query']= $this->ads_model->searchAds($search,$province,$category,$region);
-		if($this->session->userdata('logged_in')){
-			$this->ads_model->addSearch($data['userid'],$search);
-		}
-		$this->load->view('header',$data);		
-		$this->load->view('viewAd3',$data);
-	}
-	public function subscribe()
-	{
-		if(!$this->session->userdata('logged_in')) redirect('index.php/register');
-		$owner = $this->input->post('userid');
-		$subscriber = $this->session->userdata('userid');
-		$this->User_model->subscribe($owner,$subscriber);
-		redirect('index.php/user');
 	}
 	public function index() // create ad
 	{
@@ -486,6 +493,28 @@ class Ads extends CI_Controller {
 					break;
 				}
 
+				$this->load->library('nexmo');
+		        // set response format: xml or json, default json
+		        $this->nexmo->set_format('json');
+		        $data['mess'] = "";
+				$wish = $this->ads_model->getAllWish();
+				foreach ($wish->result_array() as $row) {
+					$q = $this->ads_model->lookAt($row['body'],$latest);
+					if($q->num_rows()>0)
+					{
+						$mess="dexter";
+						$from = 'dexter';
+				        $to = ''.$row['phonenum'];
+				        $message = array(
+				            'text' => 'An item from your wish list with the title '.$title.' is now available in the website. Please check your email for the link'
+				            );
+				        $response = $this->nexmo->send_message($from, $to, $message);
+				        $headers = "From: genie@onestopdealph.com";
+				        mail($row['email'], 'An item from your wish list with the title '.$title.' is now available in the website. Please click this link to be redirected: onestopdealph.com/index.php/ads/view/'.$latest,$headers);
+			
+					}
+
+				}
 				$points = $points+1;
 				$this->User_model->updatePoints($this->session->userdata('username'),$points);
 				$data['message'] ="Ad Created!";
@@ -494,6 +523,7 @@ class Ads extends CI_Controller {
 				$data['categories'] = $this->ads_model->getCategories();
 				$this->load->view('header',$data);
 				$this->load->view('createAd',$data);
+
 			}
 
 		}

@@ -32,6 +32,7 @@
 			$this->db->where("messageid",$messageid);
 			$this->db->where('inboxdeleted',0);
 			$this->db->where("mto",$userid);
+			$this->db->order_by("messageid", "desc"); 
 			return $this->db->get();
 		}
 		public function getSentMessage($messageid, $userid)
@@ -42,6 +43,7 @@
 			$this->db->where("messageid",$messageid);
 			$this->db->where('sentdeleted',0);
 			$this->db->where("mfrom",$userid);
+			$this->db->order_by("messageid", "desc");
 			return $this->db->get();
 		}
 		public function getInbox($userid)
@@ -51,6 +53,7 @@
 			$this->db->join('users','users.userid=messages.mfrom');
 			$this->db->where('inboxdeleted',0);
 			$this->db->where('mto',$userid);
+			$this->db->order_by("messageid", "desc");
 			return $this->db->get();
 		}
 		public function getSent($userid)
@@ -60,6 +63,7 @@
 			$this->db->join('users','users.userid=messages.mto');
 			$this->db->where('mfrom',$userid);
 			$this->db->where('sentdeleted',0);
+			$this->db->order_by("messageid", "desc");
 			return $this->db->get();
 		}
 

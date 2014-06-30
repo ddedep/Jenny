@@ -55,7 +55,6 @@
 					<div class="small-6 columns">
 						<label>image</label>
     					<label>upload photo</label>
-    					
 						<input type="file" name="files[]" />
 			            <input type="file" name="files[]" />
 			            <input type="file" name="files[]" />

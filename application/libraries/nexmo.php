@@ -90,7 +90,7 @@ class Nexmo {
             case 'text':
                 $data = array(
                     'text' => (isset($message['text'])) ? $message['text'] : '',
-                    'type' => (isset($message['type'])) ? $message['type'] : 'unicode'
+                    'type' => (isset($message['type'])) ? $message['type'] : 'text'
                 );
             break;
             case 'binary':

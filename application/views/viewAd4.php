@@ -1,7 +1,6 @@
-		        
-		        
-		      	<div class="row">
-		      	<div class="large-2 column">
+					<div class="row">
+					<div class="large-12 column">
+					<div class="large-2 column">
 				<?php if(!$hide):?>
 					<div class="panel">
 						<h5>Menu</h5>
@@ -18,40 +17,21 @@
 					</div>
 				<?php endif;?>
 				</div>
-		      	<div class="large-8 column">
-
-		      	<h1>Ads:</h1>
-		      		<?php if($query->num_rows()==0):
-		      				echo form_open("index.php/ads/addToLookingFor");  
-		      		 ?>
-		      		 		<span style="font-size:30px;">No Ads for <span style="color:red"><?php echo $search; ?></span> yet</span> <br/>
-		      		 		<input type="hidden" name="search" value="<?php echo $search;?>">
-		      				<button type="submit">Add To Looking For</button>
-		      			</form>
-
-		      		<?php 
-		      			endif;
-		      		?>
-		        	<?php
-		        	foreach($query->result_array() as $row)
-					{
-						echo "<h4>Description</h4>";
-						echo "<div class= 'panel'>";
-						if($row['videolink']!= '') {
-							echo '<iframe width="420" height="345"';
-							echo ' src="//www.youtube.com/embed/'.$row['videolink'].'"" frameborder="0">';
-							echo '</iframe><br/>';
-						}
-						echo "<img src=".base_url()."images/".$row['imagelink']." style='height:200px;width:200px;'><br/>";
-						echo "Title: ".$row['title']."<br/><br/>";
-						echo "Duration: ".$row['duration']." Days<br/><br/>";
-						echo "Price: ".$row['price']."<br/><br/>";
-						echo "<a href='".base_url()."index.php/ads/view/".$row['adid']."'>"."View Ad"."</a>";
-						echo "</div>";
-					}
-		        ?>
+					<div class="large-10 columns">
+		        	<h1>Looking For:</h1>
+		        		<?php
+				        	foreach($query->result_array() as $row):
+				        		
+				        ?>
+			      			<div class="panel"><span style="font-size:20px"><?php echo $row['body'];?></span></div><br/><br/>
+			        	<?php
+							endforeach;
+				        ?>
+		        	</div>
+		       		</div>
+		       		</div>
 		        
-		       </div>
+
 		      
 			</div>
 		</div>
