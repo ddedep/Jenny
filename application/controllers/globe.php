@@ -32,7 +32,7 @@ class Globe extends CI_Controller {
 		    $code = $code+1;
 		    $trans = "5139".($code);
 		    $respo = $charge->charge(
-			    50,
+			    1,
 			    $trans
 			);
 		   	
