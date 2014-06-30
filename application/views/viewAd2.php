@@ -77,14 +77,14 @@
 			<?php endif; ?>
 
 			<?php if($isSold==0 && $row['owner']==$userid): echo form_open('index.php/ads/sell'); ?>
-				<input name ="favid" type="hidden" value="<?php echo $row['adid'];?>" />
+				<input name ="adid" type="hidden" value="<?php echo $row['adid'];?>" />
 				<button type="submit">Mark As Sold</button>
 			</form>
 			<?php endif; ?>
 
 			<?php if($isSold!=0):?>
 				<input name ="favid" type="hidden" value="<?php echo $row['adid'];?>" />
-				<button type="submit" enabled="false">Sold</button>
+				<button type="submit" disabled="">Ad Already Sold</button>
 			</form>
 			<?php endif; ?>
 			<?php

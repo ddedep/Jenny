@@ -26,9 +26,9 @@ class Ads extends CI_Controller {
 	}
 	public function Sell()
 	{
-		$this->input->post('adid');
+		$adid=$this->input->post('adid');
 		$this->ads_model->sold($adid);
-		$this->redirect('index.php/ads/viewAd/'.$adid);
+		redirect('index.php/ads/view/'.$adid);
 	}
 	public function view()
 	{
@@ -72,7 +72,7 @@ class Ads extends CI_Controller {
 				}
 				if($this->form_validation->run() == FALSE)
 				{
-					$data['message'] = "Message Not Sent!";
+					$data['message'] = "";
 					$this->load->view('header',$data);
 					$this->load->view('ViewAd2',$data);
 				}
@@ -308,18 +308,29 @@ class Ads extends CI_Controller {
 
 	public function search()
 	{
+		$search= $this->uri->segment(3);
 		$data['username']=$this->session->userdata('username');
 		$data['userid'] = $this->session->userdata('userid');
-		$search = $this->input->post('search');
-		$category = $this->input->post('category');
-		$province = $this->input->post('province');
-		$region = $this->input->post('region');
-		$data['hide'] = FALSE;
-		$data['lookingFor'] = TRUE;
-		$data['search'] =$search;
-		$data['query']= $this->ads_model->searchAds($search,$province,$category,$region);
-		if($this->session->userdata('logged_in')){
-			$this->ads_model->addSearch($data['userid'],$search);
+		if($search==null){
+			
+			$search = $this->input->post('search');
+			$category = $this->input->post('category');
+			$province = $this->input->post('province');
+			$region = $this->input->post('region');
+			$data['hide'] = FALSE;
+			$data['lookingFor'] = TRUE;
+			$data['search'] =$search;
+			$data['query']= $this->ads_model->searchAds($search,$province,$category,$region);
+			if($this->session->userdata('logged_in')){
+				$this->ads_model->addSearch($data['userid'],$search);
+			}
+		}
+		else
+		{
+			$data['hide'] = FALSE;
+			$data['lookingFor'] = TRUE;
+			$data['search'] =$search;
+			$data['query']= $this->ads_model->searchAds($search,0,0,0);
 		}
 		$this->load->view('header',$data);		
 		$this->load->view('viewAd3',$data);

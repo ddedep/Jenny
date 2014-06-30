@@ -1,4 +1,18 @@
-
+			<div class="large-2 column">
+		    		<div class="panel">
+		    			<label>Recent Searches:</label>
+				    	<?php 
+				    	$count=0;
+				    	foreach ($search->result_array() as $row) {
+				    		if($row['searchbody']!=''){
+					    		echo "<a href='".base_url()."index.php/ads/search/".$row['searchbody']."'>".$row['searchbody']."</a><br />";
+					    		$count++;
+					    	}
+				    		if($count==5) break;
+				    	} 
+				    	?>
+		    		</div>
+		    	</div>
 		    <div class="row">
 			    <!-- Search -->
 			   	<div class="row">
@@ -34,40 +48,43 @@
 				      	<button type="submit">Search</button>
 				      </div>
 				      </form>
-		      </div>     		      
+		      	</div>     		      
 		    </div>
 		    <!-- Carousel -->
 		    <div class = "row">
-			    <div class="container">
-				<h1>Featured Ads</h1>
-				<div id="ca-container" class="ca-container">
-					<div class="ca-wrapper">
-					<?php
-						foreach($query->result_array() as $row):
-					?>
-						<div class="ca-item">
-							<div class="ca-item-main">
-								<div class="ca-icon" style="width:233px;
-										height:189px;
-										position:relative;
-										margin:0 auto;
-										background:transparent url(<?php echo base_url()."images/".$row['imagelink']; ?>) no-repeat center center;">
-								</div>
-								<h3><?php echo $row['title']; ?></h3>
-								<h4>
-									<span>Price:<?php echo $row['price'];?></span>
-									<span>By:<a href="<?php echo base_url();?>index.php/user/view/<?php echo $row['userid'];?>" style="color:blue;"><?php echo $row['username'];?></a></span>
+		    	
+		    	<div class="large-12">
+				    <div class="container">
+						<h1>Featured Ads</h1>
+						<div id="ca-container" class="ca-container">
+							<div class="ca-wrapper">
+								<?php
+									foreach($query->result_array() as $row):
+								?>
+								<div class="ca-item">
+									<div class="ca-item-main">
+										<div class="ca-icon" style="width:233px;
+												height:189px;
+												position:relative;
+												margin:0 auto;
+												background:transparent url(<?php echo base_url()."images/".$row['imagelink']; ?>) no-repeat center center;">
+										</div>
+										<h3><?php echo $row['title']; ?></h3>
+										<h4>
+											<span>Price:<?php echo $row['price'];?></span>
+											<span>By:<a href="<?php echo base_url();?>index.php/user/view/<?php echo $row['userid'];?>" style="color:blue;"><?php echo $row['username'];?></a></span>
 
-								</h4>
-									<a href="<?php echo base_url(); ?>index.php/ads/view/<?php echo $row['adid']; ?>" class="ca-more">more...</a>
+										</h4>
+											<a href="<?php echo base_url(); ?>index.php/ads/view/<?php echo $row['adid']; ?>" class="ca-more">more...</a>
+									</div>
+									
+								</div>
+							<?php
+							endforeach;
+							?>
 							</div>
-							
 						</div>
-					<?php
-					endforeach;
-					?>
 					</div>
-				</div>
 				</div>
 		    </div>
 		    <div class="row">

@@ -12,10 +12,10 @@
 			$this->db->query($sql,array($search,$userid));
 		}
 
-		public function isSold($adid)
+		public function sold($adid)
 		{
-			$sql = "INSERT INTO sold(adid) values(?)";
-			$this->db->query($sql,$adid);
+			$sql = "UPDATE ads SET issold=1 WHERE adid=?";
+			$this->db->query($sql,array($adid));
 		}
 		public function extendAd($adID,$duration)
 		{
@@ -252,32 +252,32 @@
 		public function searchAds($search, $provinceid, $category,$region)
 		{
 			if($provinceid==0 && $category>0){
-				$sql = "SELECT * FROM ads WHERE MATCH(title, body) AGAINST (? IN BOOLEAN MODE)  AND categoryid=?";
+				$sql = "SELECT * FROM ads JOIN users on users.userid=ads.owner WHERE MATCH(title, body) AGAINST (? IN BOOLEAN MODE)  AND categoryid=?";
 				return $this->db->query($sql, array($search, $category));
 			}
 			elseif($provinceid==1 && $category==0)
 			{
-				$sql = "SELECT * FROM ads JOIN (provinces) where  (ads.provinceid= provinces.provinceid and provinces.regionid=?) and MATCH(title, body ) AGAINST (? IN BOOLEAN MODE) ";
+				$sql = "SELECT * FROM ads JOIN users on users.userid=ads.owner JOIN (provinces)  where  (ads.provinceid= provinces.provinceid and provinces.regionid=?) and MATCH(title, body ) AGAINST (? IN BOOLEAN MODE) ";
 				return $this->db->query($sql, array($region,$search));
 			}
 			elseif($provinceid==1 && $category>0)
 			{
-				$sql = "SELECT * FROM ads JOIN (provinces) where  (ads.provinceid= provinces.provinceid and provinces.regionid=?) and MATCH(title, body) AGAINST (? IN BOOLEAN MODE) and categoryid=?";
+				$sql = "SELECT * FROM ads JOIN users on users.userid=ads.owner JOIN (provinces) where  (ads.provinceid= provinces.provinceid and provinces.regionid=?) and MATCH(title, body) AGAINST (? IN BOOLEAN MODE) and categoryid=?";
 				return $this->db->query($sql, array($region,$search,$category));
 			}
 			elseif($provinceid>1 && $category==0){
-				$sql = "SELECT * FROM ads WHERE MATCH(title, body) AGAINST (? IN BOOLEAN MODE) AND provinceid=?";
+				$sql = "SELECT * FROM ads JOIN users on users.userid=ads.owner WHERE MATCH(title, body) AGAINST (? IN BOOLEAN MODE) AND provinceid=?";
 				return $this->db->query($sql, array($search, $provinceid));
 			}
 			elseif($provinceid==0 && $category==0)
 			{
-				$sql = "SELECT * FROM ads WHERE MATCH(title, body) AGAINST (? IN BOOLEAN MODE)";
+				$sql = "SELECT * FROM ads JOIN users on users.userid=ads.owner WHERE MATCH(title, body) AGAINST (? IN BOOLEAN MODE)";
 				return $this->db->query($sql, array($search));
 			}
 			
 			else
 			{
-				$sql = "SELECT * FROM ads WHERE MATCH(title, body) AGAINST (? IN BOOLEAN MODE) AND provinceid=?  AND categoryid=?";
+				$sql = "SELECT * FROM ads JOIN users on users.userid=ads.owner WHERE MATCH(title, body) AGAINST (? IN BOOLEAN MODE) AND provinceid=?  AND categoryid=?";
 				return $this->db->query($sql, array($search, $provinceid, $category));
 			}
             
