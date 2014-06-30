@@ -27,9 +27,8 @@ CREATE TABLE `lookingfor` (
   `insertedon` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`lookingid`),
   KEY `user` (`owner`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of lookingfor
 -- ----------------------------
-INSERT INTO `lookingfor` VALUES ('1', 'hallelujah', '1', '0', '2014-06-30 22:05:31');
