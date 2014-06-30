@@ -9,6 +9,36 @@ class Home extends CI_Controller {
 		$this->load->model('ads_model');
 		
 	}
+	public function forget()
+	{
+		$this->load->library('form_validation');
+		$this->form_validation->set_rules('email','email', 'required|xss_clean');
+		$email=$this->input->post('email');
+		$data['username']=$this->session->userdata('username');
+		$data['message'] = "";
+		if($this->form_validation->run()!=FALSE)
+		{
+			$query=$this->User_model->getUser($email);
+
+			$password="";
+
+			foreach ($query->result_array() as $row) {
+				$password = $row['password'];
+			}
+			if($query->num_rows()){
+				$headers = "From: forget@onestopdealph.com";
+				mail($email, 'You have requested your password: : '.$password."\nPlease Ignore if you didn't request it.",$headers);
+				$data['message'] = "Password Sent!";
+			}
+			else
+			{
+				$data['message'] = "Password Not Sent! Email does not exist";
+			}
+		}
+		$this->load->view('header',$data);
+		$this->load->view('forget',$data);
+
+	}
 	public function terms()
 	{
 

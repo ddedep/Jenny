@@ -119,6 +119,7 @@
 		{
 			$this->db->select("*");
 			$this->db->from('ads');
+			$this->db->join('users','users.userid=ads.owner');
 			$this->db->where('isexpired',0);
 			$this->db->where('isfeatured',1);
 			return $this->db->get();
@@ -291,6 +292,7 @@
 		{
 			$this->db->select('*');
 			$this->db->from('ads');
+			$this->db->join('users','users.userid=ads.owner');
 			$this->db->where('isexpired',0);
 			$this->db->order_by("view", "desc"); 
 			return $this->db->get();

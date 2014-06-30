@@ -12,6 +12,13 @@ class user extends CI_Controller {
 
 	public function email()
 	{
+		$data['hide'] = FALSE;
+		$query=$this->ads_model->getAd($adID);
+		$data['hidefav'] = $this->ads_model->isFavorite($this->session->userdata('userid'),$adID);
+		$data['hidewish'] = $this->ads_model->isWish($this->session->userdata('userid'),$adID);
+		$data['query'] =$query;
+		$data['comments'] = $this->ads_model->getComments($adID);
+		$data['images'] = $this->ads_model->getImages($adID);
 		$data['username']=$this->session->userdata('username');
 		$data['userid'] = $this->session->userdata('userid');
 		$this->load->library('form_validation');
@@ -49,6 +56,7 @@ class user extends CI_Controller {
 			$this->load->view('viewAd2',$data);
 			
 		}
+		redirect('index.php/');
 	}
 
 	public function getUsername()
@@ -109,6 +117,10 @@ class user extends CI_Controller {
 	public function view()
 	{
 		$user= $this->uri->segment(3);
+		if($user==$this->session->userdata('userid'))
+		{
+			redirect('index.php/user');
+		}
 		$data['username']=$this->session->userdata('username');
 		$data['userid'] = $this->session->userdata('userid');
 		$exAds = $this->ads_model->getExpiredAds($user);
@@ -156,6 +168,10 @@ class user extends CI_Controller {
 				$data['userid'] = $row['userid'];
 			
 		}
+
+		
+
+
 		$this->load->view('header',$data);
 		$this->load->view('profile',$data);
 	}

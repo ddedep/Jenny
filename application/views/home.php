@@ -26,7 +26,7 @@
 					      </div>
 					      <div class="large-4 columns">
 						      <select id ='provinces' name='province'>
-						      	<option value="0" selected="selected">provinces</option>
+						      	<option value="0" selected="selected">Provinces/City</option>
 						      </select>
 					      </div>
 				      </div>
@@ -55,8 +55,9 @@
 								</div>
 								<h3><?php echo $row['title']; ?></h3>
 								<h4>
-									<span class="ca-quote">&ldquo;</span>
-									<span><?php echo $row['body'];?></span>
+									<span>Price:<?php echo $row['price'];?></span>
+									<span>By:<a href="<?php echo base_url();?>index.php/user/view/<?php echo $row['userid'];?>" style="color:blue;"><?php echo $row['username'];?></a></span>
+
 								</h4>
 									<a href="<?php echo base_url(); ?>index.php/ads/view/<?php echo $row['adid']; ?>" class="ca-more">more...</a>
 							</div>
@@ -78,26 +79,25 @@
 		    		$count++;
 		    	} ?>
 		    	<?php for ($i=0; $i < 4; $i++):?>
-		    		<div class="row">
-		    			<?php for ($j=0; $j <3 ; $j++):?> 
-		    			<?php if(($i*3)+($j)<$count): ?>
-		    			<div class="large-4 columns" style="height:450px; margin:0 auto;">
+		 
+		    			<div class="large-3 columns" style="height:300px; margin:0 auto;">
 		    				<div class="ca-item-main">
 		    				<div class="ca-icon" style="width:233px;
 										height:189px;
 										position:relative;
 										margin:0 auto;
-										background:transparent url(<?php echo base_url()."images/".$top[(($i*3))+($j)]['imagelink']; ?>) no-repeat center center;">
+										background:transparent url(<?php echo base_url()."images/".$top[$i]['imagelink']; ?>) no-repeat center center;">
 							</div>
 							<div class="ca-item">
-								<h3><?php  
+								<h4 style="font-weight:bold;"><?php  
 									
-									echo $top[($i*3)+($j)]['title']; 
+									echo $top[$i]['title']; 
 								?>
-
-								</h3>
-								<span><?php echo $top[($i*3)+($j)]['body']; ?></span><br/>
-								<a href="<?php echo base_url(); ?>index.php/ads/view/<?php echo $top[($i*3)+($j)]['adid'];?>" style="position: relative;
+								</h4>
+								<span>Price:Php <?php echo $top[$i]['price'];?></span><br/>
+								<span>By:<a href="<?php echo base_url();?>index.php/user/view/<?php echo $row['userid'];?>" style="color:blue;"><?php echo $row['username'];?></a></span><br/>
+								<a href="<?php echo base_url(); ?>index.php/ads/view/<?php echo $top[$i]['adid'];?>" style="position: relative;
+										margin-left: 75px;
 										font-weight: bold;
 										background: #ccbda2;
 										text-align: center;
@@ -105,13 +105,11 @@
 										font-family: 'Georgia','Times New Roman',serif;
 										font-style: italic;
 										text-shadow: 1px 1px 1px #897c63;">more...</a>
-									<?php endif; ?>
 							</div>
 							
 							</div>
 		    			</div>
-		    			<?php endfor; ?>
-		    		</div>
+		    		
 		    	<?php endfor;?>
 		    	</div>
 		    </div>

@@ -37,31 +37,62 @@ class Ads extends CI_Controller {
 		$data['username']=$this->session->userdata('username');
 		$data['userid'] = $this->session->userdata('userid');
 		$data['message'] = "";
-			if($adID==null){
-				$data['query'] = $this->ads_model->getAdsOfUser($this->session->userdata('userid'));
-				$data['hide'] = FALSE;
-				$this->load->view('header',$data);
-				$this->load->view('viewAd',$data);
-			}
-			else
-			{
-				$query=$this->ads_model->getAd($adID);
-				$data['hidefav'] = $this->ads_model->isFavorite($this->session->userdata('userid'),$adID);
-				$data['hidewish'] = $this->ads_model->isWish($this->session->userdata('userid'),$adID);
-				$data['query'] =$query;
-				$data['comments'] = $this->ads_model->getComments($adID);
-				$data['images'] = $this->ads_model->getImages($adID);
+		if($adID==null){
+			$data['query'] = $this->ads_model->getAdsOfUser($this->session->userdata('userid'));
+			$data['hide'] = FALSE;
+			$this->load->view('header',$data);
+			$this->load->view('viewAd',$data);
+		}
+		else
+		{
+			$query=$this->ads_model->getAd($adID);
+			$data['hidefav'] = $this->ads_model->isFavorite($this->session->userdata('userid'),$adID);
+			$data['hidewish'] = $this->ads_model->isWish($this->session->userdata('userid'),$adID);
+			$data['query'] =$query;
+			$data['comments'] = $this->ads_model->getComments($adID);
+			$data['images'] = $this->ads_model->getImages($adID);
+			if($query->num_rows()>0){
+				$this->ads_model->adViewed($adID);
+
+
+				//email
+				$this->load->library('form_validation');
+				$this->form_validation->set_rules('name','name', 'required|xss_clean');
+				$this->form_validation->set_rules('email','email', 'required|xss_clean');
+				$this->form_validation->set_rules('contact','contact', 'required|xss_clean');
+				$this->form_validation->set_rules('body','body', 'required|xss_clean');
+				$name = $this->input->post('name');
+				$email = $this->input->post('email');
+				$contact = $this->input->post('contact');
+				$body = $this->input->post('body');
+				$to = $this->input->post('to');
+				$adID = $this->input->post('adid');
 				if($query->num_rows()>0){
 					$this->ads_model->adViewed($adID);
+				}
+				if($this->form_validation->run() == FALSE)
+				{
+					$data['message'] = "Message Not Sent!";
 					$this->load->view('header',$data);
-					$this->load->view('viewAd2',$data);
-				}					
+					$this->load->view('ViewAd2',$data);
+				}
 				else
 				{
+					$message = "Name: ".$name."\n"."Email: ".$email."\n"."Contact number: ".$contact."\n\n"."Message: ".$body."\n";
+					$headers = "From: messages@onestopdealph.com";
+					mail($to,"Somebody Sent you a Message on onestopdealph.com", $message,$headers);
+					$data['message'] = "Message Sent!";
 					$this->load->view('header',$data);
-					$this->load->view('notfound',$data);
+					$this->load->view('viewAd2',$data);
+					
 				}
+			}					
+			else
+			{
+				$this->load->view('header',$data);
+				$this->load->view('notfound',$data);
 			}
+		}
 	}
 	public function wish()
 	{
@@ -199,15 +230,24 @@ class Ads extends CI_Controller {
 		}
 		else
 		{
-
-			$points = $points-300;
-			$this->ads_model->featureAd($adID);
-			$this->User_model->updatePoints($this->session->userdata('username'),$points);
-			$data['message'] ="300 Points Deducted";
-			$query=$this->ads_model->getAd($adID);
-			$data['query'] = $query;
+			if($this->ads_model->getFeaturedAds()->num_rows()<30)
+			{
+				$points = $points-300;
+				$this->ads_model->featureAd($adID);
+				$this->User_model->updatePoints($this->session->userdata('username'),$points);
+				$data['message'] ="300 Points Deducted";
+				$query=$this->ads_model->getAd($adID);
+				$data['query'] = $query;
+			}
+			else
+			{
+				$query=$this->ads_model->getAd($adID);
+				$data['query'] = $query;
+				$data['message'] = "Maximum Featured Ads on Display";
+			}
 			$this->load->view('header',$data);
 			$this->load->view('feature',$data);
+
 		}
 	}
 
@@ -510,7 +550,7 @@ class Ads extends CI_Controller {
 				            );
 				        $response = $this->nexmo->send_message($from, $to, $message);
 				        $headers = "From: genie@onestopdealph.com";
-				        mail($row['email'], 'An item from your wish list with the title '.$title.' is now available in the website. Please click this link to be redirected: onestopdealph.com/index.php/ads/view/'.$latest,$headers);
+				        mail($row['email'],'Looking For', 'An item from your wish list with the title '.$title.' is now available in the website. Please click this link to be redirected: onestopdealph.com/index.php/ads/view/'.$latest,$headers);
 			
 					}
 

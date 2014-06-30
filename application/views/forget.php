@@ -1,24 +1,19 @@
 
 		    	<div class="row">
-				<h1>Welcome</h1>
+		    	<?php echo validation_errors();?>
 			    </div>
 			    <div class= "row">
 			    	<div class="large-6 column">
-			    		<span style= "color: red;"><?php echo $err; ?></span>
-			    		<h2>Sign in</h2>
-			    		<?php echo form_open('index.php/home/login'); ?>
-			    		<label>Email or Username</label>
-			    		<input type="text" name="username">
-			    		<label>Password</label>
-			    		<input type="password" name="password">
-			    		<Button type="submit"> Sign in </Button>
+			    		<span  style= "font-size:20px;color: red;"><?php echo $message; ?></span>
+			    		<h2>Forgot Password</h2>
+			    		<?php echo form_open('index.php/home/forget'); ?>
+			    		<label>Enter Email</label>
+			    		<input type="text" name="email">
+			    		<Button type="submit"> Email Password </Button>
 			    		</form>
-			    		<a href="<?php echo base_url(); ?>index.php/home/forget"><button>Forgot Password</button></a>
 			    	</div>
 			    	<div class="large-6 column">
-			    		<h4>New?</h4>
-			    		<a href="<?php echo base_url(); ?>index.php/register"><button>Register</button></a>
-
+			    		
 			    	</div>
 			    </div>
 			</div>

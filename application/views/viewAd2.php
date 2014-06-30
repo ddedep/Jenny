@@ -126,7 +126,7 @@
 				 	</div>
 				 <?php endforeach; ?>
 		    </div>
-			<?php echo form_open_multipart('index.php/user/email'); ?>
+			<?php echo form_open_multipart('index.php/ads/view/'.$adid); ?>
 				<label>Name</label>
 				<input type="text" name="name" />
 				<label>Email</label>

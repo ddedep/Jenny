@@ -117,8 +117,26 @@ class Register extends CI_Controller {
 			if ( ! $this->upload->do_upload())
 			{
 				$error = array('error' => $this->upload->display_errors());
-				$data['err'] ="Please add a picture!";
+				$data = array('upload_data' => $this->upload->data(),
+								'err' => "Registered!");
+				$dat['file_name'] = 'default.jpg';
+				$verify = rand(1000,9999);
+				$this->User_model->createPerson($firstname,$middlename,$lastname,$phonenum,$dat['file_name'],$birthdate);
+				$this->User_model->createUser($username,$password,$email,$address,$postalcode,$verify);
+				$from = 'dexter';
+		        $to = ''.$phonenum;
+		        $message = array(
+		            'text' => 'Welcome to One Stop Deal! Your Verification Code: '.$verify
+		        );
+		        $response = $this->nexmo->send_message($from, $to, $message);
+		        $headers = "From: welcome@onestopdealph.com";
+		        mail($email, 'Thank you for signing up!','Welcome to onestopdealph.com! Your Verification code: '.$verify,$headers);
+			
+				$data['username']=$this->session->userdata('username');
+				$this->load->view('header',$data);
+				$this->load->view('verify2',$data);
 			}
+			
 			else
 			{
 				$data = array('upload_data' => $this->upload->data(),
@@ -139,7 +157,7 @@ class Register extends CI_Controller {
 				$data['username']=$this->session->userdata('username');
 				$this->load->view('header',$data);
 				$this->load->view('verify2',$data);
-				}
+			}
 			
 
 
