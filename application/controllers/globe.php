@@ -39,7 +39,7 @@ class Globe extends CI_Controller {
 		    $points = $this->session->userdata('points') + 50;
 		    $this->User_model->updatePoints($this->session->userdata('username'),$points);
 		    $this->User_model->updateToken($this->session->userdata('username'),$_SESSION['access_token']);
-		    $this->User_model->updateTrans($this->session->userdata('userid'),($code+1));
+		    $this->User_model->addTrans($this->session->userdata('userid'),($code+1));
 		    redirect('index.php/user');
     	}
 	}
