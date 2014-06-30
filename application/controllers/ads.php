@@ -74,7 +74,7 @@ class Ads extends CI_Controller {
 				{
 					$data['message'] = "";
 					$this->load->view('header',$data);
-					$this->load->view('ViewAd2',$data);
+					$this->load->view('viewAd2',$data);
 				}
 				else
 				{
