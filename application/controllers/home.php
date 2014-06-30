@@ -28,6 +28,7 @@ class Home extends CI_Controller {
 	}
 	public function index()
 	{
+	//	$data['mess'] ="sex ".$this->User_model->getReferenceCode();
 		$data['username']=$this->session->userdata('username');
 		$data['query'] = $this->ads_model->getfeaturedAds();
 		$data['topAds'] = $this->ads_model->getTop();
@@ -36,6 +37,7 @@ class Home extends CI_Controller {
 		$data['search'] = $this->ads_model->getSearches($this->session->userdata('userid'));
 		$this->load->view('header',$data);
 		$this->load->view('home',$data);
+
 	}
 	public function login()
 	{

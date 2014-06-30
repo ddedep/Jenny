@@ -7,8 +7,10 @@
 		}
 		public function getReferenceCode()
 		{
-			$sql = "SELECT MAX(transactionCode) from payments";
-			$query=$this->db->query($sql);
+			$this->db->select("*");
+			$this->db->from("payments");
+			$this->db->order_by('transactionCode', 'desc');
+			$query=$this->db->get();
 			$ret = 1000000;
 			foreach ($query->result_array() as $row) {
 				$ret= $row['transactionCode'];
@@ -19,7 +21,7 @@
 		public function addTrans($userid,$trans)
 		{
 			$data = array(
-				'transactioncode' => $trans,
+				'transactionCode' => $trans,
 				'userid' =>$userid
 			);
 			$this->db->insert('payments',$data);
