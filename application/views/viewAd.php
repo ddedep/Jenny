@@ -40,7 +40,12 @@
 			        	</div>
 			        	<?php
 							endforeach;
+							if($query->num_rows() == 0)
+							{
+								echo "<span style='font-size:20px;'>No Ads found!</span>";
+							}
 				        ?>
+
 		        	</div>
 		       		</div>
 		       		</div>

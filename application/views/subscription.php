@@ -16,6 +16,10 @@
 						echo "<a href='".base_url()."index.php/ads/view/".$row['adid']."'>"."View Ad"."</a>";
 						echo "</div>";
 					}
+					if($query->num_rows() == 0)
+					{
+						echo "<span style='font-size:20px;'>No Subscriptions found!</span>";
+					}
 		        ?>
 		       
 		        
