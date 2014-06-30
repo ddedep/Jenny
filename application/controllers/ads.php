@@ -431,7 +431,7 @@ class Ads extends CI_Controller {
 					{
 						$error = array('error' => $this->upload->display_errors());
 
-					//	$image = $this->input->post('imgname');;
+						$image = "default.jpg";
 						$this->ads_model->EditAd($adID,$title,$userid,$duration,$price,$video,$image,$body,$categoryid,$cityid);
 						$data['message'] ="Ad not Edited! ".$error['error'];
 						$data['username']=$this->session->userdata('username');

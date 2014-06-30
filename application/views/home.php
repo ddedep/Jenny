@@ -112,7 +112,7 @@
 								?>
 								</h4>
 								<span>Price:Php <?php echo $top[$i]['price'];?></span><br/>
-								<span>By:<a href="<?php echo base_url();?>index.php/user/view/<?php echo $row['userid'];?>" style="color:blue;"><?php echo $row['username'];?></a></span><br/>
+								<span>By:<a href="<?php echo base_url();?>index.php/user/view/<?php echo $top[$i]['userid'];?>" style="color:blue;"><?php echo $top[$i]['username'];?></a></span><br/>
 								<a href="<?php echo base_url(); ?>index.php/ads/view/<?php echo $top[$i]['adid'];?>" style="position: relative;
 										margin-left: 75px;
 										font-weight: bold;

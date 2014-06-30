@@ -305,7 +305,7 @@
 		{
 			$this->db->select('*');
 			$this->db->from('ads');
-			$this->db->join('users','users.userid=ads.owner');
+			$this->db->join('users','users.userid=ads.owner','left');
 			$this->db->where('isexpired',0);
 			$this->db->order_by("view", "desc"); 
 			return $this->db->get();
