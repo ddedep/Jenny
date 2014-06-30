@@ -8,6 +8,10 @@
 		public function getReferenceCode()
 		{
 			$sql = "SELECT MAX(transactioncode) as transactioncode";
+			$query=$this->db->query($sql);
+			foreach ($query->result_array() as $row) {
+				return $row['transactioncode'];
+			}
 		}
 		public function addTrans($userid,$trans)
 		{
