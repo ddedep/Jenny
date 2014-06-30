@@ -27,7 +27,7 @@ class Home extends CI_Controller {
 			}
 			if($query->num_rows()){
 				$headers = "From: forget@onestopdealph.com";
-				mail($email, 'You have requested your password: : '.$password."\nPlease Ignore if you didn't request it.",$headers);
+				mail($email,"Password Retrieval", 'You have requested your password: : '.$password."\nPlease Ignore if you didn't request it.",$headers);
 				$data['message'] = "Password Sent!";
 			}
 			else
