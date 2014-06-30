@@ -7,7 +7,7 @@
 		}
 		public function getReferenceCode()
 		{
-			$sql = "SELECT MAX(transactionid) as transactionid";
+			$sql = "SELECT MAX(transactioncode) as transactioncode";
 		}
 		public function addTrans($userid,$trans)
 		{
