@@ -14,7 +14,11 @@
 			$this->db->where("issold",1);
 			return $this->db->get();
 		}
-
+		public function deleteWish($wishid)
+		{
+			$sql = "DELETE FROM lookingfor where lookingid=?";
+			$this->db->query($sql,array($wishid));
+		}
 		public function addLookingFor($userid,$search)
 		{
 			$sql = "INSERT INTO lookingfor(body,owner) VALUES(?,?)";

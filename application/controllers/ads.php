@@ -113,8 +113,16 @@ class Ads extends CI_Controller {
 		$data['userid'] = $this->session->userdata('userid');
 		$data['hide'] = FALSE;
 		$data['query'] = $this->ads_model->getWishes($this->session->userdata('userid'));
+		
 		$this->load->view('header',$data);
 		$this->load->view('viewAd4',$data);
+	}
+
+	public function deleteWish()
+	{
+		$wishid=$this->input->post('wishid');
+		$this->ads_model->deleteWish($wishid);
+		redirect('index.php/ads/viewWish');
 	}
 	public function viewExpired()
 	{

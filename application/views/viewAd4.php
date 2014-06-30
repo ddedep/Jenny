@@ -24,7 +24,13 @@
 				        	foreach($query->result_array() as $row):
 				        		
 				        ?>
-			      			<div class="panel"><span style="font-size:20px"><?php echo $row['body'];?></span></div><br/><br/>
+			      			<div class="panel">
+			      			<?php echo form_open('index.php/ads/deleteWish')?>
+			      			<span style="font-size:20px"><?php echo $row['body'];?>
+			      			<input type="hidden" name="wishid" value="<?php echo $row['lookingid']; ?>"/>
+			      			<button type="submit">Delete</button>
+			      			</form>
+			      			</span></div><br/><br/>
 			        	<?php
 							endforeach;
 				        ?>
