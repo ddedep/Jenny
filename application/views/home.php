@@ -1,4 +1,4 @@
-			<div class="large-2 column">
+			<div class="large-1 column" style="width:140px;">
 		    		<div class="panel">
 		    			<label>Recent Searches:</label>
 				    	<?php 
