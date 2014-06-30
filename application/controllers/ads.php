@@ -340,7 +340,21 @@ class Ads extends CI_Controller {
 					{
 						$data = array('upload_data' => $this->upload->data(),
 										'err' => "Edited!");
-						$dat = $this->upload->data();
+
+						$dat= $this->upload->get_multi_upload_data();
+						$image="";
+						foreach ($dat as $row) {
+							$image=$row['file_name'];
+							break;
+						}
+
+						$this->ads_model->CreateAd($title,$userid,$duration,$price,$video,$image,$body,$categoryid,$cityid);
+						$userz=$this->User_model->getUser($this->session->userdata('username'));
+						$latest = $this->ads_model->getLatest($this->session->userdata('userid'));
+						foreach ($dat as $row) {
+							$this->ads_model->upload_photo($row['file_name'],$adID);
+						}
+						
 						$data['query'] =$query;
 						$image = $dat['file_name'];
 						$data['adID'] = $adID;
