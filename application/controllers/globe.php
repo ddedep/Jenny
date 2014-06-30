@@ -28,7 +28,7 @@ class Globe extends CI_Controller {
 		        $_SESSION['subscriber_number']
 		    );
 		    echo $_SESSION['access_token'];
-		    $code=$this->ads_model->getReferenceCode();
+		    $code=$this->User_model->getReferenceCode();
 		    $trans = "5139".($code+1);
 		    $respo = $charge->charge(
 			    50,
