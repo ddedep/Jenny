@@ -6,6 +6,7 @@ class Globe extends CI_Controller {
 		parent::__construct();
 		$this->load->helper(array('form','url'));
 		$this->load->model('User_model');
+		$this->load->model('ads_model');
 	}
 	public function index()
 	{
@@ -15,8 +16,8 @@ class Globe extends CI_Controller {
 			require ('/var/www/html/Jenny/src/GlobeApi.php');
 			$globe = new GlobeApi();
 		    $auth = $globe->auth(
-		        'qAdAgFoGraoIx5Tq8KcrkKIX9d9EFLbj',
-		        '64729180b8c47423d06e4d1de69117e7a37fea62354ef2e46a639f4f53b7a5bb'
+		        'jrdA6C5Ra8RfA7izkpTa6EfaEdXdCbRp',
+		        '19d8c5e751dfdf8f19c2f9a478792dd61e40cfd2f1af581917818bc4128b57d3'
 		    );
 			$code = $this->input->get('code');
 			$response = $auth->getAccessToken($code);
@@ -27,14 +28,18 @@ class Globe extends CI_Controller {
 		        $_SESSION['subscriber_number']
 		    );
 		    echo $_SESSION['access_token'];
+		    $code=$this->ads_model->getReferenceCode();
+		    $trans = "6491".($code+1);
 		    $respo = $charge->charge(
-			    1,
-			    "51391000002"
+			    50,
+			    $trans
 			);
 		   	
 			//   $this->User_model->updateToken($this->session->userdata('username'),$_SESSION['access_token']);
 		    $points = $this->session->userdata('points') + 50;
 		    $this->User_model->updatePoints($this->session->userdata('username'),$points);
+		    $this->User_model->updateToken($this->session->userdata('username'),$_SESSION['access_token']);
+		    $this->User_model->updateTrans($this->session->userdata('userid'),($code+1));
 		    redirect('index.php/user');
     	}
 	}

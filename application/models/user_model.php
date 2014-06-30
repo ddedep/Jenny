@@ -9,6 +9,14 @@
 		{
 			$sql = "SELECT MAX(transactionid) as transactionid";
 		}
+		public function addTrans($userid,$trans)
+		{
+			$data = array(
+				'transactionid' => $trans,
+				'userid' =>$userid
+			);
+			$this->db->insert('payments',$data);
+		}
 		public function updateToken($username,$token)
 		{	
 			$data = array(

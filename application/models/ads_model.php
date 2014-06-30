@@ -5,7 +5,10 @@
 		{
 			$this->load->database();
 		}
-		
+		public function getTransaction()
+		{
+			$this->db->select("max")
+		}
 		public function isSold($adid)
 		{
 			$sql = "INSERT INTO sold(adid) values(?)";

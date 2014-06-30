@@ -176,7 +176,7 @@ CREATE TABLE `payments` (
 -- ----------------------------
 -- Records of payments
 -- ----------------------------
-INSERT INTO `payments` VALUES ('1', '51391000002', '3', '2014-06-29 03:11:31');
+INSERT INTO `payments` VALUES ('1', '1000001', '1', '2014-06-29 03:11:31');
 
 -- ----------------------------
 -- Table structure for `persons`
