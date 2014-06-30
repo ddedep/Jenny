@@ -7,7 +7,7 @@
 		}
 		public function getReferenceCode()
 		{
-			$sql = "SELECT MAX(transactionCode) as transactionCode";
+			$sql = "SELECT MAX(transactionCode) from payments as transactionCode";
 			$query=$this->db->query($sql);
 			foreach ($query->result_array() as $row) {
 				return $row['transactionCode'];
