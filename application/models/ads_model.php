@@ -134,6 +134,7 @@
 			$this->db->from('ads');
 			$this->db->join('users','users.userid=ads.owner');
 			$this->db->where('isexpired',0);
+			$this->db->where('issold',0);
 			$this->db->where('isfeatured',1);
 			return $this->db->get();
 		}
@@ -307,6 +308,7 @@
 			$this->db->from('ads');
 			$this->db->join('users','users.userid=ads.owner','left');
 			$this->db->where('isexpired',0);
+			$this->db->where('issold',0);
 			$this->db->order_by("view", "desc"); 
 			return $this->db->get();
 		}
