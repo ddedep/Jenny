@@ -222,7 +222,7 @@
 		}
 		public function getAdsOfUser($id)
 		{
-			$sql = "SELECT * FROM ads where owner=".$id." AND isexpired=0 ORDER BY adid DESC";
+			$sql = "SELECT * FROM ads where owner=".$id." AND isexpired=0 AND issold=0 ORDER BY adid DESC";
 			
 			return $this->db->query($sql);
 		}
@@ -265,32 +265,32 @@
 		public function searchAds($search, $provinceid, $category,$region)
 		{
 			if($provinceid==0 && $category>0){
-				$sql = "SELECT * FROM ads JOIN users on users.userid=ads.owner WHERE MATCH(title, body) AGAINST (? IN BOOLEAN MODE)  AND categoryid=?";
+				$sql = "SELECT * FROM ads JOIN users on users.userid=ads.owner WHERE MATCH(title, body) AGAINST (? IN BOOLEAN MODE)  AND categoryid=? AND issold=0 AND isExpired=0";
 				return $this->db->query($sql, array($search, $category));
 			}
 			elseif($provinceid==1 && $category==0)
 			{
-				$sql = "SELECT * FROM ads JOIN users on users.userid=ads.owner JOIN (provinces)  where  (ads.provinceid= provinces.provinceid and provinces.regionid=?) and MATCH(title, body ) AGAINST (? IN BOOLEAN MODE) ";
+				$sql = "SELECT * FROM ads JOIN users on users.userid=ads.owner JOIN (provinces)  where  (ads.provinceid= provinces.provinceid and provinces.regionid=?) and MATCH(title, body ) AGAINST (? IN BOOLEAN MODE) AND issold=0 AND isExpired=0";
 				return $this->db->query($sql, array($region,$search));
 			}
 			elseif($provinceid==1 && $category>0)
 			{
-				$sql = "SELECT * FROM ads JOIN users on users.userid=ads.owner JOIN (provinces) where  (ads.provinceid= provinces.provinceid and provinces.regionid=?) and MATCH(title, body) AGAINST (? IN BOOLEAN MODE) and categoryid=?";
+				$sql = "SELECT * FROM ads JOIN users on users.userid=ads.owner JOIN (provinces) where  (ads.provinceid= provinces.provinceid and provinces.regionid=?) and MATCH(title, body) AGAINST (? IN BOOLEAN MODE) and categoryid=? AND issold=0 AND isExpired=0";
 				return $this->db->query($sql, array($region,$search,$category));
 			}
 			elseif($provinceid>1 && $category==0){
-				$sql = "SELECT * FROM ads JOIN users on users.userid=ads.owner WHERE MATCH(title, body) AGAINST (? IN BOOLEAN MODE) AND provinceid=?";
+				$sql = "SELECT * FROM ads JOIN users on users.userid=ads.owner WHERE MATCH(title, body) AGAINST (? IN BOOLEAN MODE) AND provinceid=? AND issold=0 AND isExpired=0";
 				return $this->db->query($sql, array($search, $provinceid));
 			}
 			elseif($provinceid==0 && $category==0)
 			{
-				$sql = "SELECT * FROM ads JOIN users on users.userid=ads.owner WHERE MATCH(title, body) AGAINST (? IN BOOLEAN MODE)";
+				$sql = "SELECT * FROM ads JOIN users on users.userid=ads.owner WHERE MATCH(title, body) AGAINST (? IN BOOLEAN MODE) AND issold=0 AND isExpired=0";
 				return $this->db->query($sql, array($search));
 			}
 			
 			else
 			{
-				$sql = "SELECT * FROM ads JOIN users on users.userid=ads.owner WHERE MATCH(title, body) AGAINST (? IN BOOLEAN MODE) AND provinceid=?  AND categoryid=?";
+				$sql = "SELECT * FROM ads JOIN users on users.userid=ads.owner WHERE MATCH(title, body) AGAINST (? IN BOOLEAN MODE) AND provinceid=?  AND categoryid=? AND issold=0 AND isExpired=0";
 				return $this->db->query($sql, array($search, $provinceid, $category));
 			}
             

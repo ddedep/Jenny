@@ -1,6 +1,6 @@
 				<div class="row">
 				<<div class="large-2 column">
-				<?php if($this->session->userdata(logged_in)):?>
+				<?php if($this->session->userdata('logged_in')):?>
 					<div class="panel">
 						<h5>Menu</h5>
 						<a href="<?php echo base_url() ?>index.php/ads/view">My Ads</a> <br/><br/>
