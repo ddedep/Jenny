@@ -11,6 +11,7 @@
 			$this->db->select('*');
 			$this->db->from('support');
 			$this->db->join('users', 'users.userid=support.owner');
+			$this->db->order_by("supportinsertedon", "desc"); 
 			return $this->db->get();
 		}
 

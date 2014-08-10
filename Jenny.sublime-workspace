@@ -1,0 +1,890 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"user",
+				"userdata"
+			],
+			[
+				"searc",
+				"searchbody"
+			],
+			[
+				"owne",
+				"ownerid"
+			],
+			[
+				"qu",
+				"query"
+			],
+			[
+				"ads",
+				"ads_model"
+			],
+			[
+				"trans",
+				"transactionid"
+			],
+			[
+				"delet",
+				"deleteInbox"
+			],
+			[
+				"message",
+				"Messages_model"
+			],
+			[
+				"mes",
+				"messageid"
+			],
+			[
+				"own",
+				"ownerid"
+			],
+			[
+				"q",
+				"query"
+			],
+			[
+				"sub",
+				"subscribedto"
+			],
+			[
+				"subscr",
+				"subscriptions"
+			],
+			[
+				"User",
+				"User_model"
+			],
+			[
+				"Message",
+				"Messages_model"
+			],
+			[
+				"categ",
+				"categoryid"
+			],
+			[
+				"pr",
+				"provinceid"
+			],
+			[
+				"pro",
+				"provinces"
+			],
+			[
+				"cat",
+				"categoryid"
+			],
+			[
+				"ver",
+				"verified"
+			],
+			[
+				"fo",
+				"foreach	foreach …"
+			],
+			[
+				"end",
+				"endif"
+			],
+			[
+				"true",
+				"m_transinqueue"
+			],
+			[
+				"use",
+				"userdata"
+			],
+			[
+				"endf",
+				"endforeach"
+			],
+			[
+				"for",
+				"foreach	foreach …"
+			],
+			[
+				"region",
+				"regionName"
+			],
+			[
+				"regio",
+				"regiondID"
+			],
+			[
+				"comm",
+				"commentArea"
+			],
+			[
+				"com",
+				"comrow"
+			],
+			[
+				"support",
+				"support_id"
+			],
+			[
+				"su",
+				"supportID"
+			],
+			[
+				"favorite",
+				"favoriteAdid"
+			],
+			[
+				"form",
+				"form_open"
+			],
+			[
+				"exp",
+				"explode"
+			],
+			[
+				"ti",
+				"title"
+			],
+			[
+				"p",
+				"polygon"
+			],
+			[
+				"commen",
+				"commentID"
+			],
+			[
+				"upload",
+				"upload_data"
+			],
+			[
+				"commi",
+				"committee"
+			],
+			[
+				"margin",
+				"margin-left"
+			],
+			[
+				"base",
+				"base_url"
+			],
+			[
+				"h",
+				"href	Attr"
+			],
+			[
+				"crea",
+				"createAds"
+			],
+			[
+				"name",
+				"name1"
+			],
+			[
+				"on",
+				"onclick	Attr"
+			],
+			[
+				"script",
+				"script	Tag"
+			],
+			[
+				"post",
+				"post"
+			],
+			[
+				"in",
+				"input"
+			],
+			[
+				"op",
+				"options"
+			],
+			[
+				"e",
+				"elseif	elseif …"
+			],
+			[
+				"bo",
+				"bottles"
+			],
+			[
+				"fun",
+				"function"
+			],
+			[
+				"even",
+				"event_model"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "/C/Users/dededep/Downloads/To Do.txt",
+			"settings":
+			{
+				"buffer_size": 2357,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "application/models/messages_model.php",
+			"settings":
+			{
+				"buffer_size": 2333,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "application/controllers/messages.php",
+			"settings":
+			{
+				"buffer_size": 3842,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "application/views/inbox.php",
+			"settings":
+			{
+				"buffer_size": 2394,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "application/views/header.php",
+			"settings":
+			{
+				"buffer_size": 2221,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "application/models/ads_model.php",
+			"settings":
+			{
+				"buffer_size": 10317,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "application/views/viewAd3.php",
+			"settings":
+			{
+				"buffer_size": 4050,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "capstone.sql",
+			"settings":
+			{
+				"buffer_size": 17461,
+				"line_ending": "Windows"
+			}
+		}
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 311.0,
+		"selected_items":
+		[
+			[
+				"Package Control: ",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 400.0
+	},
+	"console":
+	{
+		"height": 126.0,
+		"history":
+		[
+			"import urllib.request,os,hashlib; h = '7183a2d3e96f11eeadd761d777e62404' + 'e330c659d4bb41d3bdf022e94cab3cd0'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://sublime.wbond.net/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by) "
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/C/cygwin64/home/dededep/Jenny/application/controllers/ads.php",
+		"/C/cygwin64/home/dededep/Jenny/application/models/user_model.php",
+		"/C/cygwin64/home/dededep/Jenny/application/controllers/user.php",
+		"/C/cygwin64/home/dededep/Jenny/application/views/verify.php",
+		"/C/cygwin64/home/dededep/Jenny/application/models/support_model.php",
+		"/C/cygwin64/home/dededep/Jenny/application/views/viewAd3.php",
+		"/C/cygwin64/home/dededep/Jenny/application/views/home.php",
+		"/C/cygwin64/home/dededep/Jenny/application/views/viewAd.php",
+		"/C/cygwin64/home/dededep/Jenny/application/controllers/home.php",
+		"/C/cygwin64/home/dededep/Jenny/css/style.css",
+		"/C/cygwin64/home/dededep/Jenny/application/views/support.php",
+		"/C/cygwin64/home/dededep/Jenny/application/views/login.php",
+		"/C/cygwin64/home/dededep/Jenny/application/views/profile.php",
+		"/C/cygwin64/home/dededep/Jenny/application/views/composeMessage.php",
+		"/C/cygwin64/home/dededep/Jenny/application/views/faq.php",
+		"/C/Users/dededep/AppData/Local/Temp/New-1.txt",
+		"/C/cygwin64/home/dededep/Jenny/application/views/viewusersubs.php",
+		"/C/cygwin64/home/dededep/Jenny/application/views/viewsubs.php",
+		"/C/cygwin64/home/dededep/Jenny/application/views/header.php",
+		"/C/Users/dededep/Desktop/archive/sub.txt",
+		"/C/Users/dededep/Desktop/archive/asd.sql",
+		"/C/Users/dededep/AppData/Local/Temp/BIG NAMES-1.txt",
+		"/C/Users/dededep/AppData/Local/Temp/Notification Contents.txt",
+		"/C/cygwin64/home/dededep/Jenny/application/models/ads_model.php",
+		"/C/cygwin64/home/dededep/Jenny/application/views/viewAd4.php",
+		"/C/cygwin64/home/dededep/Jenny/application/views/contact.php",
+		"/C/cygwin64/home/dededep/Jenny/application/views/subscription.php",
+		"/C/cygwin64/home/dededep/Jenny/application/views/feature.php",
+		"/C/cygwin64/home/dededep/Jenny/application/views/inbox.php",
+		"/C/cygwin64/home/dededep/Jenny/application/views/sent.php",
+		"/C/cygwin64/home/dededep/Jenny/application/views/support2.php",
+		"/C/cygwin64/home/dededep/Jenny/application/views/viewAd2.php",
+		"/C/cygwin64/home/dededep/Jenny/application/views/viewMessage.php",
+		"/C/cygwin64/home/dededep/Jenny/application/controllers/register.php",
+		"/C/cygwin64/home/dededep/Jenny/application/views/editAd.php",
+		"/C/cygwin64/home/dededep/Jenny/application/views/forget.php",
+		"/C/cygwin64/home/dededep/Jenny/lookingfor.sql",
+		"/C/Users/dededep/AppData/Local/Temp/New.txt",
+		"/C/cygwin64/home/dededep/Jenny/application/models/messages_model.php",
+		"/C/Users/dededep/AppData/Local/Temp/New Paki Ayos.txt",
+		"/C/cygwin64/home/dededep/Jenny/application/views/createAd.php",
+		"/C/cygwin64/home/dededep/Jenny/application/libraries/nexmo.php",
+		"/C/cygwin64/home/dededep/Jenny/application/controllers/globe.php",
+		"/C/cygwin64/home/dededep/Jenny/application/views/createSupport.php",
+		"/C/cygwin64/home/dededep/Jenny/capstone.sql",
+		"/C/cygwin64/home/dededep/Jenny/application/views/register.php",
+		"/C/cygwin64/home/dededep/Jenny/application/views/editUser.php",
+		"/C/cygwin64/home/dededep/Jenny/application/controllers/faq.php",
+		"/C/cygwin64/home/dededep/Jenny/application/controllers/messages.php",
+		"/C/cygwin64/home/dededep/Jenny/application/controllers/support.php",
+		"/C/Users/dededep/AppData/Local/Temp/important.txt",
+		"/C/cygwin64/home/dededep/Jenny/application/views/payflow_demo.php",
+		"/C/Users/dededep/Documents/GitHub/api/PHP/test/index.php",
+		"/C/Users/dededep/Desktop/paypal-codeigniter-master/instructions.html",
+		"/C/Users/dededep/Documents/GitHub/api/PHP/src/Payment.php",
+		"/C/cygwin64/home/dededep/Jenny/application/config/paypal-sample.php",
+		"/C/Users/dededep/Documents/GitHub/api/PHP/test/src/Payment.php",
+		"/C/cygwin64/home/dededep/Jenny/application/views/verify2.php",
+		"/C/cygwin64/home/dededep/Jenny/messages.sql",
+		"/C/cygwin64/home/dededep/Jenny/application/controllers/admin.php",
+		"/C/cygwin64/home/dededep/Jenny/src/jquery.autocomplete.js",
+		"/C/cygwin64/home/dededep/Jenny/application/views/extend.php",
+		"/C/Users/dededep/AppData/Local/Temp/BIG NAMES.txt",
+		"/C/cygwin64/home/dededep/Jenny/js/typeahead.js",
+		"/C/cygwin64/home/dededep/try.html",
+		"/C/cygwin64/home/dededep/Jenny/js/hogan.js",
+		"/C/Users/dededep/Documents/GitHub/Jenny/application/controllers/home.php",
+		"/C/cygwin64/home/dededep/Test/Jenny/application/config/database.php",
+		"/C/cygwin64/home/dededep/try.html.txt",
+		"/C/cygwin64/home/dededep/Test/Jenny/application/views/home.php",
+		"/C/Users/dededep/Documents/GitHub/Jenny/application/views/home.php",
+		"/C/cygwin64/home/dededep/Jenny/application/config/database.php",
+		"/C/xampp2/mysql/bin/mysql_secure_installation.pl",
+		"/C/cygwin64/home/dededep/Jenny/application/controllers/Ads.php",
+		"/C/Users/dededep/Documents/GitHub/Jenny/application/views/register.php",
+		"/C/cygwin64/home/dededep/Jenny/application/views/repost.php",
+		"/C/cygwin64/home/dededep/Jenny/application/views/notfound.php",
+		"/C/cygwin64/home/dededep/Jenny/application/views/admin.php",
+		"/C/cygwin64/home/dededep/Jenny/application/views/footer.php",
+		"/C/cygwin64/home/dededep/Jenny/application/controllers/example.php",
+		"/C/cygwin64/home/dededep/Jenny/application/config/nexmo.php",
+		"/C/xampp/php/php.ini",
+		"/C/cygwin64/home/dededep/.vimrc",
+		"/C/Program Files (x86)/Vim/_vimrc",
+		"/C/cygwin64/home/dededep/Jenny/application/third_party/Twilio.php",
+		"/C/cygwin64/home/dededep/Jenny/capstone2.sql",
+		"/C/cygwin64/home/dededep/Jenny/application/models/User_model.php",
+		"/C/Users/dededep/Desktop/jQuery-Autocomplete-master/index.htm",
+		"/C/Users/dededep/Desktop/mintty-quake-console-master/mintty-quake-console.ini",
+		"/C/xampp/apache/conf/httpd.conf",
+		"/C/Users/dededep/Documents/GitHub/Jenny/application/views/viewusersubs.php",
+		"/C/Users/dededep/Documents/GitHub/Jenny/application/views/viewAd2.php",
+		"/C/Users/dededep/Documents/GitHub/Jenny/application/controllers/Ads.php",
+		"/C/Users/dededep/Documents/GitHub/Jenny/application/models/ads_model.php",
+		"/C/Users/dededep/Documents/GitHub/Jenny/application/views/support2.php",
+		"/C/Users/dededep/Desktop/mintty-quake-console-master/README.md",
+		"/C/cygwin64/bin/mintty-quake-console.ini",
+		"/C/Users/dededep/Documents/GitHub/Jenny/application/views/feature.php",
+		"/C/Users/dededep/AppData/Local/Temp/Rar$DIa0.770/mintty-quake-console.ini",
+		"/C/Users/dededep/Documents/GitHub/Jenny/application/models/User_model.php",
+		"/C/Users/dededep/Documents/GitHub/Jenny/application/views/createAd.php",
+		"/C/Users/dededep/Documents/GitHub/Jenny/application/views/createSupport.php",
+		"/C/Users/dededep/Documents/GitHub/Jenny/application/views/editAd.php",
+		"/C/Users/dededep/Documents/GitHub/Jenny/application/views/editUser.php",
+		"/C/Users/dededep/Documents/GitHub/Jenny/application/views/login.php",
+		"/C/Users/dededep/Documents/GitHub/Jenny/application/views/notfound.php",
+		"/C/Users/dededep/Documents/GitHub/Jenny/application/views/profile.php",
+		"/C/Users/dededep/Documents/GitHub/Jenny/application/views/support.php",
+		"/C/Users/dededep/Documents/GitHub/Jenny/application/views/viewAd.php",
+		"/C/Users/dededep/Documents/GitHub/Jenny/application/views/viewsubs.php",
+		"/C/Users/dededep/Documents/GitHub/Jenny/application/views/subscription.php",
+		"/C/Users/dededep/Documents/GitHub/Jenny/application/controllers/faq.php",
+		"/C/Users/dededep/Documents/GitHub/Jenny/application/views/faq.php",
+		"/C/Users/dededep/Documents/GitHub/Jenny/application/views/terms.php",
+		"/C/Users/dededep/Documents/GitHub/Jenny/application/controllers/register.php",
+		"/C/Users/dededep/Documents/GitHub/Jenny/application/models/support_model.php",
+		"/C/Users/dededep/Documents/GitHub/Jenny/capstone.sql",
+		"/C/Users/dededep/AppData/Local/Temp/form.php",
+		"/C/Users/dededep/AppData/Local/Temp/onestopdeal.html",
+		"/C/Users/dededep/Desktop/tadhack2014/changer/urls.py",
+		"/C/Users/dededep/Desktop/Python/test/uri.py",
+		"/C/Users/dededep/Desktop/tadhack2014/changer/views.py",
+		"/C/Users/dededep/Desktop/Hermosa/src/manage.py",
+		"/C/Users/dededep/Documents/GitHub/api/Python/docs/payment.md",
+		"/C/Users/dededep/Desktop/tadhack2014/Procfile",
+		"/C/Users/dededep/Documents/GitHub/api/Python/test/index.py",
+		"/C/Users/dededep/Desktop/Python/test/index.py",
+		"/C/Users/dededep/Desktop/Python/src/Auth.py"
+	],
+	"find":
+	{
+		"height": 34.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": true,
+		"find_history":
+		[
+			"this->User_model->addView",
+			"view",
+			"views",
+			"ViewAd",
+			"ViewAd2",
+			"viewAd2",
+			"view",
+			"dele",
+			"viewWi",
+			"$this\n",
+			"$this-\n",
+			"));\n",
+			"feature",
+			"libra",
+			"InnoDB",
+			"Ads",
+			"InnoDB",
+			"tags",
+			"$this->load->view('header');",
+			"delimiter",
+			"user_mode",
+			"\"",
+			"pgsq",
+			"comment",
+			" Metro Manila - (NCR)",
+			" ",
+			"handler",
+			"gate",
+			"ca-more",
+			"var",
+			"[",
+			"14.",
+			"[",
+			"14.",
+			"[",
+			"14.",
+			"[",
+			"14.",
+			"[",
+			"\"0\",14.",
+			"[",
+			"14.",
+			"[",
+			"14.",
+			"[",
+			"14.",
+			"[",
+			"]",
+			"14.",
+			"[",
+			"14.",
+			"[",
+			"14.",
+			"]",
+			"14.",
+			"[",
+			"14",
+			"loadf",
+			"file",
+			"loadfile"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"MYISAM",
+			"$this->load->view('header',$data);",
+			"1",
+			",",
+			"],[",
+			"[14.",
+			"],[",
+			"[14.",
+			"],[",
+			"[14.",
+			"[",
+			"],[",
+			"[14.",
+			"],[",
+			"[14.",
+			"],[",
+			"[14.",
+			"],[",
+			"[14.",
+			"],[",
+			"[14.",
+			"[",
+			"],[",
+			"[14.",
+			"[",
+			"],[",
+			"[14.",
+			"],[",
+			"[14.",
+			"],[",
+			"[14"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "/C/Users/dededep/Downloads/To Do.txt",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2357,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								520,
+								520
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "application/models/messages_model.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2333,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1902,
+								1902
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 649.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "application/controllers/messages.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 3842,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								702,
+								702
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 90.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "application/views/inbox.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2394,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1071,
+								1071
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 222.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "application/views/header.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2221,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1059,
+								1059
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "application/models/ads_model.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 10317,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								10201,
+								10201
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 78.0,
+						"translation.y": 4366.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "application/views/viewAd3.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 4050,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								641,
+								641
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 975.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 6,
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "capstone.sql",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 17461,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1416,
+								1416
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/SQL/SQL.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 443.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 7,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 22.0
+	},
+	"input":
+	{
+		"height": 31.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"project": "Jenny.sublime-project",
+	"replace":
+	{
+		"height": 62.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 181.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

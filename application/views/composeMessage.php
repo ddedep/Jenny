@@ -27,8 +27,8 @@
 				foreach ($query->result_array() as $row):
 					echo "To: <input type='text' name='recipient' value=".$row['username'].">"."</input><br/>";?>
 					Message: <br/>
-					<textarea name="message" style="height:300px;width:60%"></textarea>
-					<button type="submit" style="margin-left:25%">Submit</button>
+					<textarea name="message" style="height:300px;width:60%"></textarea><br/><br/>
+					<button type="submit" style="margin-left:25%">Send</button>
 				<?php 
 					endforeach;
 					}
@@ -37,8 +37,8 @@
 				?>
 						To: <input type='text' name='recipient' style="width:60%;"></input><br/>
 						Message: <br/>
-						<textarea name="message" style="height:300px;width:60%"></textarea>
-						<button type="submit" style="margin-left:25%">Submit</button>
+						<textarea name="message" style="height:300px;width:60%"></textarea><br/><br/>
+						<button type="submit" style="margin-left:25%">Send</button>
 					<?php }?>
 				</form>
 			</div>

@@ -1,26 +1,40 @@
 		        
 		        
 		      	<div class="row">
-		      	<div class="large-2 column">
-				<?php if(!$hide):?>
-					<div class="panel">
-						<h5>Menu</h5>
-						<a href="<?php echo base_url() ?>index.php/ads/view">My Ads</a> <br/><br/>
-						<a href="<?php echo base_url() ?>index.php/ads/viewExpired">Expired Ads</a> <br/><br/>
-						<a href="<?php echo base_url() ?>index.php/ads/viewSold">Sold Ads</a> <br/><br/>
-						<a href="<?php echo base_url() ?>index.php/user/userSubscription">Subscription</a> <br/><br/>
-						<a href="<?php echo base_url() ?>index.php/user/subscription">Subscribed Ads</a> <br/><br/>
-						<a href="<?php echo base_url() ?>index.php/ads/viewFavorites">My Favorites</a> <br/><br/>
-						<a href="<?php echo base_url() ?>index.php/globe/charge">Buy Points</a> <br/><br/>
-						<a href="<?php echo base_url() ?>index.php/ads/viewWish">Looking for</a> <br/><br/>
-						<a href="<?php echo base_url(); ?>index.php/messages/compose">Compose message</a><br/><br/>
-						<a href="<?php echo base_url() ?>index.php/messages">Inbox</a> <br/><br/>
-						<a href="<?php echo base_url() ?>index.php/messages/sent">Sent</a> <br/><br/>
-					</div>
-				<?php endif;?>
-				</div>
-		      	<div class="large-10 column">
+		      	
+		      		<div class="large-12 columns">
+			   			<?php echo form_open('index.php/ads/search'); ?>
+					   		<div class="large-10 columns">
+						        <input type="text" id ="autocomplete" name="search">
+						    </div>
+					     	 <div class="large-3 columns">
+						      <select name="category">
+						        <option value="0" selected="selected">Categories</option>
+						        <?php foreach ($categories->result_array() as $row):?>
+						       	 <option value="<?php echo $row['categoryid'];?>"><?php echo $row['categoryname']; ?></option>
+						    	<?php endforeach; ?>
+						      </select>
+					      </div>
+					      <div class="large-3 columns">
+						      <select id= 'regions' name = 'region'>
 
+						      	<option value="0" selected="selected">Regions</option>
+						      	<?php foreach ($regions->result_array() as $row):?>
+						       	 <option value="<?php echo $row['regionid'];?>"><?php echo $row['regionname']; ?></option>
+						    	<?php endforeach; ?>
+						      </select>
+					      </div>
+					      <div class="large-3 columns">
+						      <select id ='provinces' name='province'>
+						      	<option value="0" selected="selected">Provinces/City</option>
+						      </select>
+					      </div>
+					      <div class="large-3 columns">
+					      	<button type="submit">Search</button>
+					      </div>
+				      	</form>
+				    </div>
+					       
 		      	<h1>Ads:</h1>
 		      		<?php if($query->num_rows()==0):
 		      				echo form_open("index.php/ads/addToLookingFor");  
@@ -46,7 +60,7 @@
 								<img src="<?php echo base_url(); ?>images/<?php echo$row['imagelink']?>" style='height:200px;width:200px;'><br/>
 								Title: <?php echo $row['title']?><br/><br/>
 								Owner: <a href="<?php echo base_url()."index.php/user/view/".$row['userid']; ?>"><?php echo $row['username']?></a><br/><br/>
-								Expires on: <?php echo $formatted; ?><br/><br/>
+								
 								Price: <?php echo $row['price'] ?> <br/><br/>
 								<a href="<?php echo base_url()?>index.php/ads/view/<?php echo $row['adid'];?>">View Ad</a>
 								</div>
@@ -62,6 +76,21 @@
 			</div>
 		</div>
 		<!--Scripts -->
+		<script type="text/javascript">
+		
+			$('#regions').change(function(){
+				var regionName = $('#regions').find(":selected").val();
+		//	alert(regionName);
+		   $.post( "<?php echo base_url();?>index.php/home/getProvinces", {regionID:regionName} ).done(function( data ) {
+			//	alert(regionName+" Data Loaded: " + data );
+				if(data=='added') alert('oheayh');
+				else{
+			//	alert(data);
+				$('#provinces').html(data);
+				}
+				});
+		});
+		</script>
 		<script src="<?php echo base_url(); ?>js/vendor/jquery.js"></script>
 	    <script src="<?php echo base_url(); ?>js/foundation.min.js"></script>
 	    <script>

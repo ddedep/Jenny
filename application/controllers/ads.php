@@ -329,6 +329,9 @@ class Ads extends CI_Controller {
 		$search= $this->uri->segment(3);
 		$data['username']=$this->session->userdata('username');
 		$data['userid'] = $this->session->userdata('userid');
+		$data['categories'] = $this->ads_model->getCategories();
+		$data['regions'] = $this->ads_model->getRegions();
+		$data['search'] = $this->ads_model->getSearches($this->session->userdata('userid'));
 		if($search==null){
 			
 			$search = $this->input->post('search');

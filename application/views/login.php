@@ -8,10 +8,10 @@
 			    		<h2>Sign in</h2>
 			    		<?php echo form_open('index.php/home/login'); ?>
 			    		<label>Email or Username</label>
-			    		<input type="text" name="username">
+			    		<input type="text" name="username" required>
 			    		<label>Password</label>
-			    		<input type="password" name="password">
-			    		<Button type="submit"> Sign in </Button>
+			    		<input type="password" name="password" required>
+			    		<Button id="login" type="submit"> Sign in </Button>
 			    		</form>
 			    		<a href="<?php echo base_url(); ?>index.php/home/forget"><button>Forgot Password</button></a>
 			    	</div>
@@ -24,6 +24,11 @@
 			</div>
 		</div>
 		<!--Scripts -->
+		<script type="text/javascript">
+				$('#login').click(function() {
+					//$("#register").attr("disabled", !this.checked);
+				});
+		</script>
 		<script src="<?php echo base_url(); ?>js/vendor/jquery.js"></script>
 	    <script src="<?php echo base_url(); ?>js/foundation.min.js"></script>
 	    <script>

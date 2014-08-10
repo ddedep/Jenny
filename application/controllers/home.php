@@ -127,6 +127,7 @@ class Home extends CI_Controller {
 		else
 		{
 			$query=$this->User_model->getUser($username);
+			if($query->num_rows()==0) $data['err'] = "Incorrect username/email or password";
 			foreach($query->result_array() as $row)
 			{
 				if($row['password']==$password){

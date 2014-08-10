@@ -22,6 +22,7 @@ class Messages extends CI_Controller {
 		$data['username']=$this->session->userdata('username');
 		$userid = $this->session->userdata('userid');
 		$data['messages']=$this->Messages_model->getInbox($userid);
+		$data['unread']=$this->Messages_model->getUnread($userid)->num_rows();
 		$this->load->view('header',$data);
         $this->load->view('inbox',$data);   
     }

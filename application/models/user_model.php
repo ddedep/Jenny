@@ -39,14 +39,13 @@
 			$this->db->select("*");
 			$this->db->from('users');
 			$this->db->where('userid',$userid);
-			$query=$this->db->get();
+			$quer=$this->db->get();
 			$views=0;
-			foreach ($query->result_array as $row) 
+			foreach ($quer->result_array() as $rowz) 
 			{
-				$views = $row['views'];
-				break;
+				$views = $rowz['views'];
 			}
-			$views = $views+1;
+			$views+=1;
 			//$data = array('views' =>$views);
 			$sql = "UPDATE users set views=? where userid=?";
 			$this->db->query($sql,array($views,$userid));

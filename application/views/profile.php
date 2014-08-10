@@ -20,12 +20,14 @@
 				</div>
 				<div  class="large-10 column">
 					<div class="row">
-						<div class="large-4 column">
-						<div class="panel">
-						<?php
-							echo "<img src=".base_url()."images/".$profile['pic']." style='height:200px;width:200px;'><br/>";
-						?>
-						</div>
+						<div class="large-7 column">
+							<div style="margin-left:60%">
+								<div class="panel">
+								<?php
+									echo "<img src=".base_url()."images/".$profile['pic']." style='height:200px;width:200px;;'><br/>";
+								?>
+								</div>
+							</div>
 						</div>
 						<div class= "large-12 column">
 						<div class="panel">
@@ -34,6 +36,7 @@
 							echo "Email: ".$profile['email']."<br/><br/>";
 							echo "Phone Number: ".$profile['phonenum']."<br/><br/>";
 							echo "Points: ".$profile['points']."<br/><br/>";
+							echo "Profile views: ".$profile['views']."<br/><br/>";
 							if($own){
 							echo "Total Ads: ".($actAds+$exAds)."<br/><br/>";
 							echo "Active Ads: ".$actAds."<br/><br/>";

@@ -14,7 +14,7 @@
 		<link href='http://fonts.googleapis.com/css?family=Rochester' rel='stylesheet' type='text/css' />
 		<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
 		 <script src="<?php echo base_url(); ?>js/vendor/modernizr.js"></script>
-
+		 
 	    
 	</head>
 

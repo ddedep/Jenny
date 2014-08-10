@@ -56,6 +56,17 @@
 			$this->db->order_by("messageid", "desc");
 			return $this->db->get();
 		}
+		public function getUnread($userid)
+		{
+			$this->db->select("*");
+			$this->db->from('messages');
+			$this->db->join('users','users.userid=messages.mfrom');
+			$this->db->where('inboxdeleted',0);
+			$this->db->where('opened',0);
+			$this->db->where('mto',$userid);
+			$this->db->order_by("messageid", "desc");
+			return $this->db->get();
+		}
 		public function getSent($userid)
 		{
 			$this->db->select("*");

@@ -1,5 +1,5 @@
 				<div class="row">
-				<<div class="large-2 column">
+				<div class="large-2 column">
 				<?php if($this->session->userdata('logged_in')):?>
 					<div class="panel">
 						<h5>Menu</h5>
@@ -25,7 +25,7 @@
 						<div class= 'panel'>
 						Title: <a href="<?php echo base_url(); ?>index.php/support/view/<?php echo $row['support_id'];?>"><?php echo $row['title']; ?></a><br/><br/>
 						By: <a href="<?php echo base_url()."index.php/user/view/".$row['userid'] ?>"><?php echo $row['username']; ?></a><br/><br/>
-						On: <?php echo $row['insertedon']; ?><br/><br/>
+						On: <?php echo $row['supportinsertedon']; ?><br/><br/>
 						Comments: <?php echo $comments[$row['support_id']]->num_rows();?>
 						</div><br />
 

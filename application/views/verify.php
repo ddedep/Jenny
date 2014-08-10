@@ -1,4 +1,4 @@
-n
+
 		    	<div class="row">
 				<h1>Please enter the verification code sent to your mobile phone and E-mail</h1>
 			    </div>

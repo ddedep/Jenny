@@ -97,6 +97,7 @@ class user extends CI_Controller {
 						'email' =>$this->session->userdata('email'),
 						'points' =>$row['points'],
 						'userid' =>$row['userid'],
+						'views' =>$row['views'],
 			       );
 					$this->session->set_userdata($newdata);
 					break;
@@ -144,10 +145,12 @@ class user extends CI_Controller {
 					'email' =>$this->session->userdata('email'),
 					'points' => $row['points'],
 					'userid' =>$row['userid'],
+					'views' => $row['views'],
 		       );
 				break;
 			
 		}
+
 		$data['profile']=$newdata;
 		$data['username']=$this->session->userdata('username');
 		$data['hide'] = TRUE;
@@ -171,8 +174,6 @@ class user extends CI_Controller {
 		}
 
 		
-
-
 		$this->load->view('header',$data);
 		$this->load->view('profile',$data);
 	}
