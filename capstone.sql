@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50611
 File Encoding         : 65001
 
-Date: 2014-06-30 01:33:25
+Date: 2014-08-11 09:58:46
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -54,11 +54,49 @@ CREATE TABLE `ads` (
   `issold` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`adid`),
   FULLTEXT KEY `search_index` (`title`,`body`)
-) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=39 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of ads
 -- ----------------------------
+INSERT INTO `ads` VALUES ('1', 'asdasdasd', '1', '1', '123', '30', '', '', 'asdasd', '3', '1', '2014-06-29 19:18:52', '17', '0', '0');
+INSERT INTO `ads` VALUES ('2', 'Hello', '1', '1', '123456', '30', '', null, null, '0', '1', '2014-06-30 07:01:04', '3', '0', '0');
+INSERT INTO `ads` VALUES ('3', 'Hello', '1', '1', '123456', '30', '', null, 'Wazzup!', '1', '1', '2014-06-30 07:01:41', '0', '0', '0');
+INSERT INTO `ads` VALUES ('4', 'Hello', '1', '1', '123456', '30', '', null, 'Wazzup!', '1', '1', '2014-06-30 07:02:41', '0', '0', '0');
+INSERT INTO `ads` VALUES ('5', 'wazzup', '1', '1', '1234', '30', '', null, null, '0', '1', '2014-06-30 07:08:09', '2', '0', '0');
+INSERT INTO `ads` VALUES ('6', 'wazzup', '1', '0', '1234', '30', '', null, 'hello', '1', '0', '2014-06-30 07:08:36', '0', '0', '0');
+INSERT INTO `ads` VALUES ('7', 'wazzup', '1', '0', '1234', '30', '', null, 'hello', '1', '0', '2014-06-30 07:09:09', '0', '0', '0');
+INSERT INTO `ads` VALUES ('8', 'wazzup', '1', '1', '1234', '30', '', 'Abbey_Friends6.jpg', 'hello', '1', '0', '2014-06-30 07:09:52', '27', '0', '1');
+INSERT INTO `ads` VALUES ('9', 'ako gpoge', '1', '0', '12345', '30', '', '0', 'hello po', '1', '0', '2014-06-30 07:10:46', '10', '0', '0');
+INSERT INTO `ads` VALUES ('10', 'pooogay', '1', '0', '1234', '30', '', '0', 'pogi', '1', '0', '2014-06-30 16:27:17', '4', '0', '0');
+INSERT INTO `ads` VALUES ('11', 'hallelujah', '1', '0', '12345', '30', '', 'string2.jpg', 'hallelujah', '1', '0', '2014-06-30 23:24:00', '0', '0', '0');
+INSERT INTO `ads` VALUES ('12', 'hallelujah', '1', '0', '12345', '30', '', 'string3.jpg', 'hallelujah', '1', '0', '2014-06-30 23:25:36', '0', '0', '0');
+INSERT INTO `ads` VALUES ('13', 'hallelujah', '1', '0', '12345', '30', '', 'string4.jpg', 'hallelujah', '1', '0', '2014-06-30 23:27:13', '0', '0', '0');
+INSERT INTO `ads` VALUES ('14', 'bo hoo', '1', '0', '12345', '30', '', 'zxc5.jpg', 'asd', '1', '1', '2014-06-30 23:32:27', '0', '0', '0');
+INSERT INTO `ads` VALUES ('15', 'asdasdasd', '1', '0', '12345', '30', '', 'zxc6.jpg', 'asdadasdasd', '1', '60', '2014-06-30 23:35:54', '0', '0', '0');
+INSERT INTO `ads` VALUES ('16', 'hallelujah', '1', '0', '12345', '30', '', 'qwe2.jpg', 'hallelujah', '1', '63', '2014-06-30 23:36:49', '0', '0', '0');
+INSERT INTO `ads` VALUES ('17', 'hallelujah', '1', '0', '12345', '30', '', 'qwe3.jpg', 'hallelujah', '1', '63', '2014-06-30 23:42:33', '0', '0', '0');
+INSERT INTO `ads` VALUES ('18', 'boohhhooo', '4', '1', '123', '30', '', '', 'asd', '1', '0', '2014-07-01 06:53:46', '13', '0', '0');
+INSERT INTO `ads` VALUES ('19', '*&*(&*', '0', '0', null, '7', null, null, '!@^#%^&@', '0', '0', '2014-07-28 00:24:49', '0', '1', '0');
+INSERT INTO `ads` VALUES ('20', '*&*(&*', '0', '0', null, '7', null, null, '!@^#%^&@', '0', '0', '2014-07-28 00:24:51', '0', '1', '0');
+INSERT INTO `ads` VALUES ('21', '*&*(&*', '0', '0', null, '7', null, null, '!@^#%^&@', '0', '0', '2014-07-28 00:24:51', '0', '1', '0');
+INSERT INTO `ads` VALUES ('22', '*&*(&*', '0', '0', null, '7', null, null, '!@^#%^&@', '0', '0', '2014-07-28 00:24:52', '0', '1', '0');
+INSERT INTO `ads` VALUES ('23', '*&*(&*', '0', '0', null, '7', null, null, '!@^#%^&@', '0', '0', '2014-07-28 00:24:52', '0', '1', '0');
+INSERT INTO `ads` VALUES ('24', '*&*(&*', '0', '0', null, '7', null, null, '!@^#%^&@', '0', '0', '2014-07-28 00:24:52', '0', '1', '0');
+INSERT INTO `ads` VALUES ('25', '*&*(&*', '0', '0', null, '7', null, null, '!@^#%^&@', '0', '0', '2014-07-28 00:24:52', '0', '1', '0');
+INSERT INTO `ads` VALUES ('26', '*&*(&*', '0', '0', null, '7', null, null, '!@^#%^&@', '0', '0', '2014-07-28 00:24:52', '0', '1', '0');
+INSERT INTO `ads` VALUES ('27', '*&*(&*', '0', '0', null, '7', null, null, '!@^#%^&@', '0', '0', '2014-07-28 00:24:53', '0', '1', '0');
+INSERT INTO `ads` VALUES ('28', '*&*(&*', '0', '0', null, '7', null, null, '!@^#%^&@', '0', '0', '2014-07-28 00:24:53', '0', '1', '0');
+INSERT INTO `ads` VALUES ('29', '*&*(&*', '0', '0', null, '7', null, null, '!@^#%^&@', '0', '0', '2014-07-28 00:24:53', '0', '1', '0');
+INSERT INTO `ads` VALUES ('30', '*&*(&*', '0', '0', null, '7', null, null, '!@^#%^&@', '0', '0', '2014-07-28 00:24:53', '0', '1', '0');
+INSERT INTO `ads` VALUES ('31', '*&*(&*', '0', '0', null, '7', null, null, '!@^#%^&@', '0', '0', '2014-07-28 00:24:53', '0', '1', '0');
+INSERT INTO `ads` VALUES ('32', '*&*(&*', '0', '0', null, '7', null, null, '!@^#%^&@', '0', '0', '2014-07-28 00:24:54', '0', '1', '0');
+INSERT INTO `ads` VALUES ('33', '*&*(&*', '0', '0', null, '7', null, null, '!@^#%^&@', '0', '0', '2014-07-28 00:24:54', '0', '1', '0');
+INSERT INTO `ads` VALUES ('34', '*&*(&*', '0', '0', null, '7', null, null, '!@^#%^&@', '0', '0', '2014-07-28 00:24:54', '0', '1', '0');
+INSERT INTO `ads` VALUES ('35', '*&*(&*', '0', '0', null, '7', null, null, '!@^#%^&@', '0', '0', '2014-07-28 00:24:54', '0', '1', '0');
+INSERT INTO `ads` VALUES ('36', '*&*(&*', '0', '0', null, '7', null, null, '!@^#%^&@', '0', '0', '2014-07-28 00:24:54', '0', '1', '0');
+INSERT INTO `ads` VALUES ('37', '*&*(&*', '0', '0', null, '7', null, null, '!@^#%^&@', '0', '0', '2014-07-28 00:24:55', '0', '1', '0');
+INSERT INTO `ads` VALUES ('38', '*&*(&*', '0', '0', null, '7', null, null, '!@^#%^&@', '0', '0', '2014-07-28 00:24:55', '0', '1', '0');
 
 -- ----------------------------
 -- Table structure for `categories`
@@ -115,11 +153,13 @@ CREATE TABLE `comments` (
   PRIMARY KEY (`commentid`),
   KEY `commentowner` (`owner`),
   KEY `thread` (`threadid`)
-) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of comments
 -- ----------------------------
+INSERT INTO `comments` VALUES ('1', 'oo nga eh. laaks ng trip sa buhay', '1', '1', '2014-06-29 19:55:13');
+INSERT INTO `comments` VALUES ('2', 'asdasdasda', '1', '1', '2014-06-29 21:14:18');
 
 -- ----------------------------
 -- Table structure for `favorites`
@@ -133,11 +173,66 @@ CREATE TABLE `favorites` (
   PRIMARY KEY (`favoriteid`),
   KEY `fordid` (`ownerid`),
   KEY `favid` (`favoriteAdid`)
-) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of favorites
 -- ----------------------------
+INSERT INTO `favorites` VALUES ('1', '2', '1', '00:00:00');
+
+-- ----------------------------
+-- Table structure for `images`
+-- ----------------------------
+DROP TABLE IF EXISTS `images`;
+CREATE TABLE `images` (
+  `imageid` int(11) NOT NULL AUTO_INCREMENT,
+  `imagelink` varchar(255) DEFAULT NULL,
+  `ad` int(11) DEFAULT NULL,
+  PRIMARY KEY (`imageid`),
+  KEY `adref` (`ad`)
+) ENGINE=MyISAM AUTO_INCREMENT=20 DEFAULT CHARSET=latin1;
+
+-- ----------------------------
+-- Records of images
+-- ----------------------------
+INSERT INTO `images` VALUES ('1', 'Abbey_Friends2.jpg', '4');
+INSERT INTO `images` VALUES ('2', 'abeey2.jpeg', '4');
+INSERT INTO `images` VALUES ('3', 'Abbey_Friends3.jpg', '5');
+INSERT INTO `images` VALUES ('4', 'abeey3.jpeg', '5');
+INSERT INTO `images` VALUES ('5', 'Abbey_Friends4.jpg', '6');
+INSERT INTO `images` VALUES ('6', 'abeey4.jpeg', '6');
+INSERT INTO `images` VALUES ('7', 'Abbey_Friends5.jpg', '7');
+INSERT INTO `images` VALUES ('8', 'abeey5.jpeg', '7');
+INSERT INTO `images` VALUES ('9', 'Abbey_Friends6.jpg', '8');
+INSERT INTO `images` VALUES ('10', 'abeey6.jpeg', '8');
+INSERT INTO `images` VALUES ('11', 'Abbey_Friends7.jpg', '9');
+INSERT INTO `images` VALUES ('12', 'images.jpg', '10');
+INSERT INTO `images` VALUES ('13', 'string2.jpg', '11');
+INSERT INTO `images` VALUES ('14', 'string3.jpg', '12');
+INSERT INTO `images` VALUES ('15', 'string4.jpg', '13');
+INSERT INTO `images` VALUES ('16', 'zxc5.jpg', '14');
+INSERT INTO `images` VALUES ('17', 'zxc6.jpg', '15');
+INSERT INTO `images` VALUES ('18', 'qwe2.jpg', '16');
+INSERT INTO `images` VALUES ('19', 'qwe3.jpg', '17');
+
+-- ----------------------------
+-- Table structure for `lookingfor`
+-- ----------------------------
+DROP TABLE IF EXISTS `lookingfor`;
+CREATE TABLE `lookingfor` (
+  `lookingid` int(11) NOT NULL AUTO_INCREMENT,
+  `body` varchar(255) NOT NULL,
+  `owner` int(11) NOT NULL,
+  `ischecked` int(11) NOT NULL,
+  `insertedon` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`lookingid`),
+  KEY `user` (`owner`)
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+
+-- ----------------------------
+-- Records of lookingfor
+-- ----------------------------
+INSERT INTO `lookingfor` VALUES ('2', 'panget', '1', '0', '2014-07-01 06:26:23');
 
 -- ----------------------------
 -- Table structure for `messages`
@@ -150,15 +245,20 @@ CREATE TABLE `messages` (
   `mto` int(11) DEFAULT NULL,
   `inboxdeleted` int(11) NOT NULL,
   `sentdeleted` int(11) NOT NULL,
+  `opened` int(11) NOT NULL,
   `senton` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`messageid`),
   KEY `mto` (`mto`),
   KEY `mfrom` (`mfrom`)
-) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of messages
 -- ----------------------------
+INSERT INTO `messages` VALUES ('1', 'asdasdasdasdas', '2', '1', '0', '1', '0', '2014-06-29 21:22:21');
+INSERT INTO `messages` VALUES ('2', 'wazzup bro!', '1', '2', '1', '0', '0', '2014-06-29 22:57:31');
+INSERT INTO `messages` VALUES ('3', 'wazzzup', '1', '2', '0', '0', '0', '2014-06-30 00:23:21');
+INSERT INTO `messages` VALUES ('4', 'hupia', '1', '2', '0', '0', '0', '2014-06-30 23:46:41');
 
 -- ----------------------------
 -- Table structure for `payments`
@@ -171,12 +271,12 @@ CREATE TABLE `payments` (
   `insertedon` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`transactionid`),
   KEY `payer` (`userid`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of payments
 -- ----------------------------
-INSERT INTO `payments` VALUES ('1', '1000001', '1', '2014-06-29 03:11:31');
+INSERT INTO `payments` VALUES ('1', '1000000', '3', '2014-06-30 13:57:31');
 
 -- ----------------------------
 -- Table structure for `persons`
@@ -192,11 +292,15 @@ CREATE TABLE `persons` (
   `picture` varchar(255) NOT NULL,
   `insertedon` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`personid`)
-) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of persons
 -- ----------------------------
+INSERT INTO `persons` VALUES ('1', 'Edep', 'Dexter', 'Delacruz', '1993-10-31', '+639062321440', 'abeey7.jpeg', '2014-06-29 19:17:54');
+INSERT INTO `persons` VALUES ('2', 'asdasd', 'asdasd', 'asdasd', '2000-01-01', '+639062321440', 'Abbey_Friends12.jpg', '2014-06-29 21:20:31');
+INSERT INTO `persons` VALUES ('3', 'asd', 'asd', 'asd', '1914-01-01', '639151973669', 'zxc4.jpg', '2014-06-30 22:32:02');
+INSERT INTO `persons` VALUES ('4', 'Edep', 'Dexter', 'Delacruz', '1914-01-01', '+639062321440', 'default.jpg', '2014-07-01 04:09:24');
 
 -- ----------------------------
 -- Table structure for `provinces`
@@ -325,7 +429,6 @@ CREATE TABLE `regions` (
 -- ----------------------------
 -- Records of regions
 -- ----------------------------
-INSERT INTO `regions` VALUES ('18', 'Region');
 INSERT INTO `regions` VALUES ('1', 'NCR');
 INSERT INTO `regions` VALUES ('2', 'CAR');
 INSERT INTO `regions` VALUES ('3', 'Region I');
@@ -355,11 +458,85 @@ CREATE TABLE `searches` (
   `insertedon` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`searchid`),
   KEY `ownerid` (`owner`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=75 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of searches
 -- ----------------------------
+INSERT INTO `searches` VALUES ('1', 'asdasdasdasd', '1', '2014-06-30 01:43:07');
+INSERT INTO `searches` VALUES ('2', 'asdasd', '1', '2014-06-30 01:43:32');
+INSERT INTO `searches` VALUES ('3', 'asdasd', '1', '2014-06-30 01:48:54');
+INSERT INTO `searches` VALUES ('4', 'asdasdasd ', '1', '2014-06-30 01:49:30');
+INSERT INTO `searches` VALUES ('5', '', '1', '2014-06-30 21:25:39');
+INSERT INTO `searches` VALUES ('6', '0', '1', '2014-06-30 21:26:04');
+INSERT INTO `searches` VALUES ('7', 'hallelujah', '1', '2014-06-30 21:43:28');
+INSERT INTO `searches` VALUES ('8', 'hallelujah', '1', '2014-06-30 21:44:26');
+INSERT INTO `searches` VALUES ('9', 'hallelujah', '1', '2014-06-30 21:45:04');
+INSERT INTO `searches` VALUES ('10', 'hallelujah', '1', '2014-06-30 21:45:15');
+INSERT INTO `searches` VALUES ('11', 'hallelujah', '1', '2014-06-30 21:45:29');
+INSERT INTO `searches` VALUES ('12', 'hallelujah', '1', '2014-06-30 21:45:49');
+INSERT INTO `searches` VALUES ('13', 'hallelujah', '1', '2014-06-30 21:48:05');
+INSERT INTO `searches` VALUES ('14', 'hallelujah', '1', '2014-06-30 21:49:34');
+INSERT INTO `searches` VALUES ('15', 'hallelujah', '1', '2014-06-30 21:49:44');
+INSERT INTO `searches` VALUES ('16', '0', '1', '2014-06-30 21:49:53');
+INSERT INTO `searches` VALUES ('17', '0', '1', '2014-06-30 21:50:15');
+INSERT INTO `searches` VALUES ('18', '0', '1', '2014-06-30 21:50:52');
+INSERT INTO `searches` VALUES ('19', 'hallelujah', '1', '2014-06-30 21:50:58');
+INSERT INTO `searches` VALUES ('20', '', '4', '2014-07-01 04:33:40');
+INSERT INTO `searches` VALUES ('21', 'hello', '4', '2014-07-01 04:39:51');
+INSERT INTO `searches` VALUES ('22', 'pooogay', '4', '2014-07-01 04:40:07');
+INSERT INTO `searches` VALUES ('23', '0', '4', '2014-07-01 04:43:14');
+INSERT INTO `searches` VALUES ('24', 'pooogay', '4', '2014-07-01 04:43:21');
+INSERT INTO `searches` VALUES ('25', 'pooogay', '4', '2014-07-01 04:47:43');
+INSERT INTO `searches` VALUES ('26', 'a', '4', '2014-07-01 04:48:34');
+INSERT INTO `searches` VALUES ('27', 'w', '4', '2014-07-01 04:48:41');
+INSERT INTO `searches` VALUES ('28', 'weeee', '4', '2014-07-01 04:51:29');
+INSERT INTO `searches` VALUES ('29', 'asdasdasd', '1', '2014-07-01 06:26:13');
+INSERT INTO `searches` VALUES ('30', 'panget', '1', '2014-07-01 06:26:20');
+INSERT INTO `searches` VALUES ('31', 'wazzup', '1', '2014-07-01 12:46:35');
+INSERT INTO `searches` VALUES ('32', 'hello', '1', '2014-07-27 00:23:49');
+INSERT INTO `searches` VALUES ('33', 'Hello', '1', '2014-07-27 00:24:12');
+INSERT INTO `searches` VALUES ('34', 'asdasdasd', '1', '2014-07-27 00:24:22');
+INSERT INTO `searches` VALUES ('35', 'asdasdasd', '1', '2014-07-27 00:25:18');
+INSERT INTO `searches` VALUES ('36', '0', '1', '2014-07-27 00:27:29');
+INSERT INTO `searches` VALUES ('37', 'asdasdasd', '1', '2014-07-27 00:27:36');
+INSERT INTO `searches` VALUES ('38', 'asdasdasd', '1', '2014-07-27 00:33:53');
+INSERT INTO `searches` VALUES ('39', '0', '1', '2014-07-27 00:34:22');
+INSERT INTO `searches` VALUES ('40', 'asdasdasd', '1', '2014-07-27 00:34:33');
+INSERT INTO `searches` VALUES ('41', 'asdasdasd', '1', '2014-07-27 00:35:05');
+INSERT INTO `searches` VALUES ('42', '0', '1', '2014-07-27 00:35:22');
+INSERT INTO `searches` VALUES ('43', '0', '1', '2014-07-27 00:38:18');
+INSERT INTO `searches` VALUES ('44', '0', '1', '2014-07-27 00:38:40');
+INSERT INTO `searches` VALUES ('45', '0', '1', '2014-07-27 00:38:44');
+INSERT INTO `searches` VALUES ('46', '0', '1', '2014-07-27 00:39:04');
+INSERT INTO `searches` VALUES ('47', '0', '1', '2014-07-27 00:40:07');
+INSERT INTO `searches` VALUES ('48', '0', '1', '2014-07-27 00:40:36');
+INSERT INTO `searches` VALUES ('49', '0', '1', '2014-07-27 00:41:03');
+INSERT INTO `searches` VALUES ('50', '0', '1', '2014-07-27 00:41:37');
+INSERT INTO `searches` VALUES ('51', '0', '1', '2014-07-27 00:42:13');
+INSERT INTO `searches` VALUES ('52', '0', '1', '2014-07-27 00:42:47');
+INSERT INTO `searches` VALUES ('53', '0', '1', '2014-07-27 00:43:11');
+INSERT INTO `searches` VALUES ('54', '0', '1', '2014-07-27 00:43:28');
+INSERT INTO `searches` VALUES ('55', '0', '1', '2014-07-27 00:44:26');
+INSERT INTO `searches` VALUES ('56', '0', '1', '2014-07-27 00:44:59');
+INSERT INTO `searches` VALUES ('57', '0', '1', '2014-07-27 00:45:32');
+INSERT INTO `searches` VALUES ('58', '0', '1', '2014-07-27 00:45:48');
+INSERT INTO `searches` VALUES ('59', '0', '1', '2014-07-27 00:46:12');
+INSERT INTO `searches` VALUES ('60', '0', '1', '2014-07-27 00:46:21');
+INSERT INTO `searches` VALUES ('61', '0', '1', '2014-07-27 00:46:47');
+INSERT INTO `searches` VALUES ('62', '0', '1', '2014-07-27 00:47:40');
+INSERT INTO `searches` VALUES ('63', '0', '1', '2014-07-27 00:48:08');
+INSERT INTO `searches` VALUES ('64', '0', '1', '2014-07-27 00:48:51');
+INSERT INTO `searches` VALUES ('65', '0', '1', '2014-07-27 00:49:46');
+INSERT INTO `searches` VALUES ('66', '0', '1', '2014-07-27 00:50:11');
+INSERT INTO `searches` VALUES ('67', '0', '1', '2014-07-27 00:50:26');
+INSERT INTO `searches` VALUES ('68', '0', '1', '2014-07-27 00:51:39');
+INSERT INTO `searches` VALUES ('69', '0', '1', '2014-07-27 00:52:10');
+INSERT INTO `searches` VALUES ('70', '0', '1', '2014-07-27 00:53:13');
+INSERT INTO `searches` VALUES ('71', '0', '1', '2014-07-27 00:55:22');
+INSERT INTO `searches` VALUES ('72', 'asdasdasd', '1', '2014-07-27 00:55:34');
+INSERT INTO `searches` VALUES ('73', 'asd', '1', '2014-07-27 00:55:41');
+INSERT INTO `searches` VALUES ('74', 'asdasd', '1', '2014-07-27 00:55:48');
 
 -- ----------------------------
 -- Table structure for `subscriptions`
@@ -373,11 +550,12 @@ CREATE TABLE `subscriptions` (
   PRIMARY KEY (`subscriptionid`),
   KEY `owner` (`subscriber`),
   KEY `subscribee` (`subscribedto`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of subscriptions
 -- ----------------------------
+INSERT INTO `subscriptions` VALUES ('1', '1', '4', '2014-07-27 00:02:05');
 
 -- ----------------------------
 -- Table structure for `support`
@@ -388,13 +566,18 @@ CREATE TABLE `support` (
   `title` text,
   `body` text,
   `owner` int(11) DEFAULT NULL,
+  `supportinsertedon` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`support_id`),
   KEY `support_owner` (`owner`)
-) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of support
 -- ----------------------------
+INSERT INTO `support` VALUES ('1', 'Daming problema ni Jenny', 'whatttt', '1', '2014-07-26 23:42:18');
+INSERT INTO `support` VALUES ('2', 'asdasd', 'asdasdas', '1', '2014-07-26 23:42:18');
+INSERT INTO `support` VALUES ('3', 'Hallo palloasdasd', 'asdasda', '1', '2014-07-26 23:42:18');
+INSERT INTO `support` VALUES ('4', 'una daw oh', 'una ka\r\n', '1', '2014-07-26 23:43:48');
 
 -- ----------------------------
 -- Table structure for `users`
@@ -416,11 +599,14 @@ CREATE TABLE `users` (
   `insertedon` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`userid`),
   KEY `personRef` (`personid`)
-) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of users
 -- ----------------------------
+INSERT INTO `users` VALUES ('1', '1', 'dexkcd', 'anette', 'dexter_edep@yahoo.com', '700', 'UHA', '1', '3980', '1', '0', null, '2014-06-29 19:17:54');
+INSERT INTO `users` VALUES ('2', '2', 'dexter', 'asdasd', 'dexteredep@gmail.com', '0', 'UHA', '1', '8198', '1', '0', null, '2014-06-29 21:20:31');
+INSERT INTO `users` VALUES ('4', '4', 'angel123', 'asdasd', 'pogi@dexkcd.com', '700', 'uha', '11', '5921', '1', '0', null, '2014-07-01 04:09:24');
 
 -- ----------------------------
 -- Table structure for `wishes`
