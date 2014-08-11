@@ -77,6 +77,12 @@
 			</form>
 			<?php endif; ?>
 
+			<?php if($hidefav>0 && $row['owner']!=$userid): echo form_open('index.php/ads/unfavorite'); ?>
+				<input name ="favid" type="hidden" value="<?php echo $row['adid'];?>" />
+				<button type="submit">Unfavorite</button>
+			</form>
+			<?php endif; ?>
+
 			<?php if($isSold==0 && $row['owner']==$userid): echo form_open('index.php/ads/sell'); ?>
 				<input name ="adid" type="hidden" value="<?php echo $row['adid'];?>" />
 				<button type="submit">Mark As Sold</button>

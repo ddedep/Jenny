@@ -61,7 +61,9 @@
 					</form>
 					<?php endif;?>
 					<?php if($subscribed && !$own): ?>
-						<button type="submit" disabled="true">Already Subscribed!</button>
+						<input type="hidden" name = 'userid' value ='<?php echo $profile['userid'];?>'/>
+						<button type="submit">Unsubscribe</button>
+					</form>
 					<?php endif;?>
 					<?php if(!$hide){
 						echo "<a href='".base_url()."index.php/user/edit'><button type='submit'>Edit</button></a>";

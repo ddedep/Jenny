@@ -17,7 +17,7 @@
 			    			<input type="text" name="firstname">
 		    			</div>
 		    			<div class="medium-3 columns">
-			    			<label>Middle Name</label>
+			    			<label>Middle Name<span style="color:red;font-size:20px;visible:false;"> </span></label>
 			    			<input type="text" name="middlename">
 		    			</div>
 		    			<div class="medium-4 columns">
@@ -25,13 +25,12 @@
 			    			<input type="text" name="lastname">	
 		    			</div>
 		    	
-		    	<div class="large-12 columns">
     				<div class="medium-4 columns">
     					<label>Cellphone Number(+639XXXXXXXXX)<span style="color:red;font-size:20px;">*</span></label>
     					<input type="text" name = "phonenumber">
     				</div>
-    			</div>
-    			<div class="medium-9 columns">
+ 
+    			
     				<div class="medium-4 columns">
     					<label>Birthmonth<span style="color:red;font-size:20px;">*</span></label>
     					<select name="month">
@@ -49,7 +48,7 @@
 							<option value="12">December</option>
 						</select>
 					</div>
-					<div class="medium-4 columns">
+					<div class="medium-2 columns">
 						<label>Day<span style="color:red;font-size:20px;">*</span></label>
 						<?php
 						$options = array();
@@ -61,7 +60,7 @@
 						echo form_dropdown('day', $options,'1');
 						?>
 					</div>
-					<div class="medium-3 columns">
+					<div class="medium-2 columns">
 						<label>Year<span style="color:red;font-size:20px;">*</span></label>
 						<?php
 						$option = array();
@@ -75,7 +74,7 @@
 						?>
     					
     				</div>
-    			</div>
+    			
   			
     			
     				<div class="large-12 columns">
@@ -83,27 +82,27 @@
     				<input type="text" name ="address">
     				</div>
     			
-    				<div class="large-6 columns">
-    				<label>Username<span style="color:red;font-size:20px;">*</span></label>
-    				<input type="text" name="username">
+    				<div class="large-7 columns">
+    				<label>Username<span style="color:red;font-size:20px;">*</span><img id="umark" src="<?php echo base_url();?>img/bad_mark.png" /></label>
+    				<input type="text" name="username" id="username">
     				</div>
     			
     			
-    				<div class="large-8 columns">
-    				<label>Email<span style="color:red;font-size:20px;">*</span></label>
-    				<input type="text" name="email">
+    				<div class="large-7 columns">
+    				<label>Email<span style="color:red;font-size:20px;">*</span><img id="emark" src="<?php echo base_url();?>img/bad_mark.png" /></label>
+    				<input type="text" name="email" id="email">
     				</div>
 
     			
     				<div class="large-6 columns">
     				<label>Password(minimum 6 characters)<span style="color:red;font-size:20px;">*</span></label>
-    				<input type="password" name="password">
+    				<input id="pass" type="password" name="password" pattern="(?=^.{6,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$">
     				</div>
     			
     			
     				<div class="large-6 columns">
-    				<label>Confirm Password<span style="color:red;font-size:20px;">*</span></label>
-    				<input type="password" name="passwordconfirm">
+    				<label>Confirm Password<span style="color:red;font-size:20px;">*</span><img id="pmark" src="<?php echo base_url();?>img/bad_mark.png" /></label>
+    				<input id="conf" type="password" name="passwordconfirm" pattern="(?=^.{6,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$">
     				</div>
     				<div class="large-6 columns">
     					<label>upload photo(10 mb max size)</label>
@@ -127,6 +126,8 @@
 		<!--Scripts -->
 			<!-- Terms and Agreements -->
 			<script type="text/javascript">
+				var usernames = ["",<?php foreach ($users->result_array() as $row){ echo '"'.$row['username'].'",';}?>];
+				var emails = ["",<?php foreach ($users->result_array() as $row){ echo '"'.$row['email'].'",';}?>];
 				$('#terms').click(function() {
 					$("#register").attr("disabled", !this.checked);
 				});
@@ -136,7 +137,44 @@
 					url,'popUpWindow','height=700,width=800,left=10,top=10,resizable=yes,scrollbars=yes,toolbar=yes,menubar=no,location=no,directories=no,status=yes')
 			}
 			</script>
-			
+			<script type="text/javascript">
+				$("#conf").change(function(){
+					if($("#conf").val()==$("#pass").val())
+					{
+				    	$("#pmark").attr("src","<?php echo base_url();?>img/good_mark.png");
+				    }
+				    else
+				    {
+				    	$("#pmark").attr("src","<?php echo base_url();?>img/bad_mark.png");
+				    }
+				});
+				$("#username").change(function(){
+
+					for (index = 0; index < usernames.length; ++index) {
+					    if(usernames[index]!=$("#username").val())
+					    {
+					    	$("#umark").attr("src","<?php echo base_url();?>img/good_mark.png");
+					    }
+					    else
+					    {
+					    	$("#umark").attr("src","<?php echo base_url();?>img/bad_mark.png");
+					    }
+					}
+				});
+				$("#email").change(function(){
+
+					for (index = 0; index < emails.length; ++index) {
+					    if(emails[index]!=$("#email").val())
+					    {
+					    	$("#emark").attr("src","<?php echo base_url();?>img/good_mark.png");c
+					    }
+					    else
+					    {
+					    	$("#emark").attr("src","<?php echo base_url();?>img/bad_mark.png")
+					    }
+					}
+				});
+			</script>
 		<script src="<?php echo base_url(); ?>js/vendor/jquery.js"></script>
 	    <script src="<?php echo base_url(); ?>js/foundation.min.js"></script>
 	    <script>

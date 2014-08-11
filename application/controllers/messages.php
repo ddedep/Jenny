@@ -44,6 +44,23 @@ class Messages extends CI_Controller {
     		redirect('index.php/register');
     	}
     }
+     public function view2()
+    {
+    	$messageid= $this->uri->segment(3);
+    	$data['hide'] = FALSE;
+    	if($this->session->userdata('logged_in'))
+    	{
+    		$data['username']=$this->session->userdata('username');
+    		$data['query']=$this->Messages_model->getInboxMessage($messageid,$this->session->userdata('userid'));
+    		$data['query2']=$this->Messages_model->getSentMessage($messageid,$this->session->userdata('userid'));
+    		$this->load->view('header',$data);
+    		$this->load->view('viewMessage2',$data);
+    	}
+    	else
+    	{
+    		redirect('index.php/register');
+    	}
+    }
     public function deleteInbox()
     {
     	$messageid=$this->input->post('messageid');

@@ -130,6 +130,14 @@
             return $this->db->get();
 		}
 
+		public function getAllUsers()
+		{
+			$this->db->select('*'); 
+			$this->db->from('users');
+			$this->db->join('persons','persons.personid = users.personid');
+            return $this->db->get();
+		}
+
 		public function createUser($username,$password,$email,$address,$postalcode,$verify)
 		{	
 			
@@ -146,6 +154,11 @@
 		{
 			$sql = "INSERT into subscriptions (subscriber,subscribedto) VALUES (?,?)";
 			$this->db->query($sql, array($subscriber,$owner));
+		}
+		public function unsubscribe($userid)
+		{
+			$sql = "DELETE FROM subscriptions WHERE subscribedto=? AND subscriber=?";
+			$this->db->query($sql, array($userid,$this->session->userdata('userid')));
 		}
 		public function getUser($username)
 		{

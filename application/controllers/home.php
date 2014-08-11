@@ -92,6 +92,7 @@ class Home extends CI_Controller {
 		$data['username']=$this->session->userdata('username');
 		$data['query'] = $this->ads_model->getfeaturedAds();
 		$data['topAds'] = $this->ads_model->getTop();
+		$data['recent'] = $this->ads_model->getRecentAds();
 		$data['regions'] = $this->ads_model->getRegions();
 		$data['categories'] = $this->ads_model->getCategories();
 		$data['search'] = $this->ads_model->getSearches($this->session->userdata('userid'));

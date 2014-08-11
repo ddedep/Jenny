@@ -9,7 +9,12 @@ class Ads extends CI_Controller {
 		$this->load->model('User_model');
 		$this->load->helper('date');
 	}
-
+	public function unfavorite()
+	{
+		$favoriteid=$this->input->post('favid');
+		$this->ads_model->unfavorite($favoriteid,$this->session->userdata('userid'));
+		redirect("index.php/ads/viewFavorites");
+	}
 	public function comment()
 	{
 

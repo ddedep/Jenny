@@ -67,6 +67,7 @@ class Register extends CI_Controller {
 		if($this->session->userdata('logged_in')){
 			redirect('index.php/home');
 		}
+		$data['users'] = $this->User_model->getAllUsers();
 		//nexmo
 		$this->load->library('nexmo');
         // set response format: xml or json, default json

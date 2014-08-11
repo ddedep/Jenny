@@ -193,6 +193,13 @@ class user extends CI_Controller {
 		$this->load->view('header',$data);
 		$this->load->view('viewsubs',$data);
 	}
+
+	public function unsubscribe()
+	{
+		$userid= $this->uri->segment(3);
+		$this->User_model->unsubscribe($userid);
+		redirect('index.php/user/userSubscription');
+	}
 	public function userSubscription()
 	{
 		$this->load->library('session');

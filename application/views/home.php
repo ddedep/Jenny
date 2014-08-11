@@ -1,4 +1,4 @@
-			<div class="large-1 column" style="width:140px;">
+			<div class="large-3 column" style="width:220px;">
 		    		<div class="panel">
 		    			<label>Recent Searches:</label>
 				    	<?php 
@@ -12,7 +12,10 @@
 				    	} 
 				    	?>
 		    		</div>
-		    	</div>
+		    		
+		   	</div>
+		   	<div>
+		   	
 		    <div class="row">
 			    <!-- Search -->
 			   	<div class="row">
@@ -88,14 +91,14 @@
 				</div>
 		    </div>
 		    <div class="row">
-		    <h1>Top Ads</h1>
+		    	<h1>Top Ads</h1>
 		    	<div class="large-12 columns">
 		    	<?php $count=0; $top=array(); ?>
 		    	<?php foreach ($topAds->result_array() as $toprow){
 		    		$top[$count] = $toprow;
 		    		$count++;
 		    	} ?>
-		    	<?php for ($i=0; $i < 4; $i++):?>
+		    	<?php for ($i=0; $i < 4 && $i<$count; $i++):?>
 		 
 		    			<div class="large-3 columns" style="height:300px; margin:0 auto;">
 		    				<div class="ca-item-main">
@@ -130,6 +133,49 @@
 		    	<?php endfor;?>
 		    	</div>
 		    </div>
+		    <div class="row">
+		    	<h1>Recent Ads</h1>
+		    	<div class="large-12 columns">
+		    	<?php $count=0; $rec=array(); ?>
+		    	<?php foreach ($recent->result_array() as $recrow){
+		    		$rec[$count] = $recrow;
+		    		$count++;
+		    	} ?>
+		    	<?php for ($i=0; $i < 4 &&  $i<$count; $i++):?>
+		 
+		    			<div class="large-3 columns" style="height:300px; margin:0 auto;">
+		    				<div class="ca-item-main">
+		    				<div class="ca-icon" style="width:233px;
+										height:189px;
+										position:relative;
+										margin:0 auto;
+										background:transparent url(<?php echo base_url()."images/".$rec[$i]['imagelink']; ?>) no-repeat center center;">
+							</div>
+							<div class="ca-item">
+								<h4 style="font-weight:bold;"><?php  
+									
+									echo $rec[$i]['title']; 
+								?>
+								</h4>
+								<span>Price:Php <?php echo $rec[$i]['price'];?></span><br/>
+								<span>By:<a href="<?php echo base_url();?>index.php/user/view/<?php echo $rec[$i]['userid'];?>" style="color:blue;"><?php echo $rec[$i]['username'];?></a></span><br/>
+								<a href="<?php echo base_url(); ?>index.php/ads/view/<?php echo $rec[$i]['adid'];?>" style="position: relative;
+										margin-left: 75px;
+										font-weight: bold;
+										background: #ccbda2;
+										text-align: center;
+										color: white;
+										font-family: 'Georgia','Times New Roman',serif;
+										font-style: italic;
+										text-shadow: 1px 1px 1px #897c63;">more...</a>
+							</div>
+							
+							</div>
+		    			</div>
+		    		
+		    	<?php endfor;?>
+		    	</div>
+
 		    <!--footer -->
 		    <div class = "row">
 		    	
