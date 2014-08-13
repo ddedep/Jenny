@@ -7,6 +7,7 @@ class Ads extends CI_Controller {
 		$this->load->helper(array('form','url'));
 		$this->load->model('ads_model');
 		$this->load->model('User_model');
+		$this->load->model('Messages_model');
 		$this->load->helper('date');
 	}
 	public function unfavorite()
@@ -42,6 +43,7 @@ class Ads extends CI_Controller {
 		$data['username']=$this->session->userdata('username');
 		$data['userid'] = $this->session->userdata('userid');
 		$data['message'] = "";
+		$data['unread']=$this->Messages_model->getUnread($data['userid'])->num_rows();
 		if($adID==null){
 			$data['query'] = $this->ads_model->getAdsOfUser($this->session->userdata('userid'));
 			$data['hide'] = FALSE;
@@ -118,7 +120,7 @@ class Ads extends CI_Controller {
 		$data['userid'] = $this->session->userdata('userid');
 		$data['hide'] = FALSE;
 		$data['query'] = $this->ads_model->getWishes($this->session->userdata('userid'));
-		
+		$data['unread']=$this->Messages_model->getUnread($data['userid'])->num_rows();
 		$this->load->view('header',$data);
 		$this->load->view('viewAd4',$data);
 	}
@@ -135,6 +137,7 @@ class Ads extends CI_Controller {
 		$data['username']=$this->session->userdata('username');
 		$data['userid'] = $this->session->userdata('userid');
 		$data['query'] = $this->ads_model->getExpiredAds($this->session->userdata('userid'));
+		$data['unread']=$this->Messages_model->getUnread($data['userid'])->num_rows();
 		$data['hide'] = FALSE;
 		$this->load->view('header',$data);
 		$this->load->view('viewAd',$data);
@@ -145,6 +148,7 @@ class Ads extends CI_Controller {
 		$data['username']=$this->session->userdata('username');
 		$data['userid'] = $this->session->userdata('userid');
 		$data['query'] = $this->ads_model->getSold($this->session->userdata('userid'));
+		$data['unread']=$this->Messages_model->getUnread($data['userid'])->num_rows();
 		$data['hide'] = FALSE;
 		$this->load->view('header',$data);
 		$this->load->view('viewAd',$data);
@@ -153,6 +157,7 @@ class Ads extends CI_Controller {
 	{
 		$data['username']=$this->session->userdata('username');
 		$data['userid'] = $this->session->userdata('userid');
+		$data['unread']=$this->Messages_model->getUnread($data['userid'])->num_rows();
 		$data['hide'] = FALSE;
 		$data['query'] = $this->ads_model->getFavorites($this->session->userdata('userid'));
 		$this->load->view('header',$data);

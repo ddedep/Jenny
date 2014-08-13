@@ -14,7 +14,7 @@
 		    		<?php echo form_open_multipart('index.php/register'); ?>
 		    			<div class="medium-5 columns">
 			    			<label>First Name<span style="color:red;font-size:20px;">*</span></label>
-			    			<input type="text" name="firstname">
+			    			<input type="text" name="firstname" required>
 		    			</div>
 		    			<div class="medium-3 columns">
 			    			<label>Middle Name<span style="color:red;font-size:20px;visible:false;"> </span></label>
@@ -22,12 +22,12 @@
 		    			</div>
 		    			<div class="medium-4 columns">
 			    			<label>Last Name<span style="color:red;font-size:20px;">*</span></label>
-			    			<input type="text" name="lastname">	
+			    			<input type="text" name="lastname" required>	
 		    			</div>
 		    	
     				<div class="medium-4 columns">
     					<label>Cellphone Number(+639XXXXXXXXX)<span style="color:red;font-size:20px;">*</span></label>
-    					<input type="text" name = "phonenumber">
+    					<input type="text" name = "phonenumber" required>
     				</div>
  
     			
@@ -79,30 +79,30 @@
     			
     				<div class="large-12 columns">
     				<label>Address<span style="color:red;font-size:20px;">*</span></label>
-    				<input type="text" name ="address">
+    				<input type="text" name ="address" required>
     				</div>
     			
     				<div class="large-7 columns">
     				<label>Username<span style="color:red;font-size:20px;">*</span><img id="umark" src="<?php echo base_url();?>img/bad_mark.png" /></label>
-    				<input type="text" name="username" id="username">
+    				<input type="text" name="username" id="username" required>
     				</div>
     			
     			
     				<div class="large-7 columns">
     				<label>Email<span style="color:red;font-size:20px;">*</span><img id="emark" src="<?php echo base_url();?>img/bad_mark.png" /></label>
-    				<input type="text" name="email" id="email">
+    				<input type="text" name="email" id="email" required>
     				</div>
 
     			
     				<div class="large-6 columns">
     				<label>Password(minimum 6 characters)<span style="color:red;font-size:20px;">*</span></label>
-    				<input id="pass" type="password" name="password" pattern="(?=^.{6,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$">
+    				<input id="pass" type="password" name="password" pattern="(?=^.{6,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" required>
     				</div>
     			
     			
     				<div class="large-6 columns">
     				<label>Confirm Password<span style="color:red;font-size:20px;">*</span><img id="pmark" src="<?php echo base_url();?>img/bad_mark.png" /></label>
-    				<input id="conf" type="password" name="passwordconfirm" pattern="(?=^.{6,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$">
+    				<input id="conf" type="password" name="passwordconfirm" pattern="(?=^.{6,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" required>
     				</div>
     				<div class="large-6 columns">
     					<label>upload photo(10 mb max size)</label>
@@ -144,7 +144,7 @@
 				    	$("#pmark").attr("src","<?php echo base_url();?>img/good_mark.png");
 				    }
 				    else
-				    {
+				    {	
 				    	$("#pmark").attr("src","<?php echo base_url();?>img/bad_mark.png");
 				    }
 				});

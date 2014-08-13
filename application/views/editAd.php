@@ -71,7 +71,7 @@
 					</div>
 				</div>
 				<input type="hidden" name='duration' value="<?php echo $rowz['duration']?>">
-				<Button type="submit">Submit</Button>
+				<Button type="submit" onclick="return confirm('Are you sure?')">Submit</Button>
 				</form>
 			</div>
 			<?php break;endforeach;endif; ?>

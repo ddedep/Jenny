@@ -110,7 +110,7 @@
     				</div>
     				    				
     				<div class="large-8 columns">
-    					<Button type="submit"> Update! </Button>
+    					<Button type="submit" onclick="return confirm('Are you sure?')"> Update! </Button>
     				</div>
 
     				</form>

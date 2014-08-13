@@ -8,6 +8,7 @@ class user extends CI_Controller {
 		$this->load->helper(array('form','url'));
 		$this->load->model('User_model');
 		$this->load->model('ads_model');
+		$this->load->model('Messages_model');
 	}
 
 	public function email()
@@ -189,6 +190,7 @@ class user extends CI_Controller {
 		$data['hide'] = FALSE;
 		$userid = $this->session->userdata('userid');
 		$data['query']=$this->ads_model->getsubscribedAds($userid);
+		$data['unread']=$this->Messages_model->getUnread($this->session->userdata('userid'))->num_rows();
 		$query = $data['query'];
 		$this->load->view('header',$data);
 		$this->load->view('viewsubs',$data);
@@ -210,6 +212,7 @@ class user extends CI_Controller {
 		$adID= $this->uri->segment(3);
 		$data['hide'] = FALSE;
 		$data['username']=$this->session->userdata('username');
+		$data['unread']=$this->Messages_model->getUnread($this->session->userdata('userid'))->num_rows();
 		$userid = $this->session->userdata('userid');
 		$data['query']=$this->ads_model->getsubscribedUsers($userid);
 		$query = $data['query'];

@@ -24,7 +24,7 @@
 					<input name ='duration'  type='hidden' value=<?php echo $row['duration'];?> />
                     <input name ='adid'      type="hidden" value=<?php echo $row['adid']; ?> />
 					<?php 
-						echo "<button id='Feature' type='submit'>Repost(costs 150 points)</button>";
+						echo "<button id='Feature' type='submit' onclick=\"return confirm('Are you sure?')\">Repost(costs 150 points)</button>";
 					endforeach;
                     ?>
 					</form>

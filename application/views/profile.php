@@ -12,7 +12,6 @@
 						<a href="<?php echo base_url() ?>index.php/ads/viewFavorites">My Favorites</a> <br/><br/>
 						<a href="<?php echo base_url() ?>index.php/globe/charge">Buy Points</a> <br/><br/>
 						<a href="<?php echo base_url() ?>index.php/ads/viewWish">Looking for</a> <br/><br/>
-						<a href="<?php echo base_url(); ?>index.php/messages/compose">Compose message</a><br/><br/>
 						<a href="<?php echo base_url() ?>index.php/messages">Inbox</a> <br/><br/>
 						<a href="<?php echo base_url() ?>index.php/messages/sent">Sent</a> <br/><br/>
 					</div>
@@ -57,12 +56,12 @@
 						echo form_open_multipart('index.php/ads/subscribe');
 					?>
 					<input type="hidden" name = 'userid' value ='<?php echo $profile['userid'];?>'/>
-					<button type="submit">Subscribe</button>
+					<button type="submit" onclick="return confirm('Are you sure?')">Subscribe</button>
 					</form>
 					<?php endif;?>
 					<?php if($subscribed && !$own): ?>
 						<input type="hidden" name = 'userid' value ='<?php echo $profile['userid'];?>'/>
-						<button type="submit">Unsubscribe</button>
+						<button type="submit" onclick="return confirm('Are you sure?')">Unsubscribe</button>
 					</form>
 					<?php endif;?>
 					<?php if(!$hide){

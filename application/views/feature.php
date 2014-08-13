@@ -10,7 +10,6 @@
 						<a href="<?php echo base_url() ?>index.php/ads/viewFavorites">My Favorites</a> <br/><br/>
 						<a href="<?php echo base_url() ?>index.php/globe/charge">Buy Points</a> <br/><br/>
 						<a href="<?php echo base_url() ?>index.php/ads/viewWish">Looking for</a> <br/><br/>
-						<a href="<?php echo base_url(); ?>index.php/messages/compose">Compose message</a><br/><br/>
 						<a href="<?php echo base_url() ?>index.php/messages">Inbox</a> <br/><br/>
 						<a href="<?php echo base_url() ?>index.php/messages/sent">Sent</a> <br/><br/>
 					</div>
@@ -45,7 +44,7 @@
 		<?php 
 		if($row['owner']==$userid && $row['isfeatured']==0){
 
-			echo "<button id='Feature' type='submit'>Feature Ad</button>";
+			echo "<button id='Feature' type='submit'  onclick=\"return confirm('Are you sure?')\">Feature Ad</button>";
 		}
 		else if($row['isfeatured']==1)
 		{
