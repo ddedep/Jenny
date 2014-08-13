@@ -1,4 +1,4 @@
-n
+
 		    	<div class="row">
 				<h1>Please Login and enter the verification code sent to your mobile phone and E-mail</h1>
 			    </div>
@@ -16,6 +16,13 @@ n
 			    	</div>
 			    </div>
 			</div>
+			<div class = "row">
+		    	<div class="large-12 columns">
+			    	<div class="panel">
+			    		<a href="<?php echo base_url();?>index.php/faq/about#about">About</a>&nbsp;|&nbsp;<a href="<?php echo base_url();?>index.php/faq/about#terms">Terms and Conditions</a>&nbsp;|&nbsp;<a href="<?php echo base_url();?>index.php/faq/about#terms">Privacy Policy</a>&nbsp;|&nbsp;<a href="<?php echo base_url();?>index.php/home/contactus">Contact Us</a>&nbsp;|&nbsp;<a href="<?php echo base_url();?>index.php/support">Forum</a>&nbsp;|&nbsp;<a href="<?php echo base_url();?>index.php/faq">FAQ</a>&nbsp;|&nbsp;Copyright 2014 onestopdeal.com.ph
+			    	</div>
+			    </div>
+		   		</div>
 		</div>
 		<!--Scripts -->
 		<script src="<?php echo base_url(); ?>js/vendor/jquery.js"></script>

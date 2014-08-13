@@ -178,8 +178,12 @@
 
 		    <!--footer -->
 		    <div class = "row">
-		    	
-		    </div>
+		    	<div class="large-12 columns">
+			    	<div class="panel">
+			    		<a href="<?php echo base_url();?>index.php/faq/about#about">About</a>&nbsp;|&nbsp;<a href="<?php echo base_url();?>index.php/faq/about#terms">Terms and Conditions</a>&nbsp;|&nbsp;<a href="<?php echo base_url();?>index.php/faq/about#terms">Privacy Policy</a>&nbsp;|&nbsp;<a href="<?php echo base_url();?>index.php/home/contactus">Contact Us</a>&nbsp;|&nbsp;<a href="<?php echo base_url();?>index.php/support">Forum</a>&nbsp;|&nbsp;<a href="<?php echo base_url();?>index.php/faq">FAQ</a>&nbsp;|&nbsp;Copyright 2014 onestopdeal.com.ph
+			    	</div>
+			    </div>
+		   		</div>
 		</div>
 		<!--Scripts -->
 		<script src="http://code.jquery.com/jquery-1.9.1.js"></script>

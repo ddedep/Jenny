@@ -19,6 +19,13 @@ class Faq extends CI_Controller {
 		$this->load->view('header',$data);
 		$this->load->view('faq',$data);
 	}
+	public function about()
+	{
+		$data['username']=$this->session->userdata('username');
+		$data['userid'] = $this->session->userdata('userid');
+		$this->load->view('header',$data);
+		$this->load->view('about',$data);
+	}
 }
 ?>
 

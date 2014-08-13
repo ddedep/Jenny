@@ -33,7 +33,16 @@
 								Title: <?php echo $row['title']?><br/><br/>
 								Expires on: <?php echo $formatted; ?><br/><br/>
 								Price: <?php echo $row['price'] ?> <br/><br/>
-								<a href="<?php echo base_url()?>index.php/ads/view/<?php echo $row['adid'];?>">View Ad</a>
+								<a href="<?php echo base_url(); ?>index.php/ads/view/<?php echo $row['adid'];?>" style="position: relative;
+										margin-left: 75px;
+										font-weight: bold;
+										background: #ccbda2;
+										text-align: center;
+										color: white;
+										font-family: 'Georgia','Times New Roman',serif;
+										font-style: italic;
+										text-shadow: 1px 1px 1px #897c63;">more...</a>
+								
 								</div>
 						
 			        	</div>
@@ -48,7 +57,13 @@
 		        	</div>
 		       		</div>
 		       		</div>
-		        
+		        <div class = "row">
+		    	<div class="large-12 columns">
+			    	<div class="panel">
+			    		<a href="<?php echo base_url();?>index.php/faq/about#about">About</a>&nbsp;|&nbsp;<a href="<?php echo base_url();?>index.php/faq/about#terms">Terms and Conditions</a>&nbsp;|&nbsp;<a href="<?php echo base_url();?>index.php/faq/about#terms">Privacy Policy</a>&nbsp;|&nbsp;<a href="<?php echo base_url();?>index.php/home/contactus">Contact Us</a>&nbsp;|&nbsp;<a href="<?php echo base_url();?>index.php/support">Forum</a>&nbsp;|&nbsp;<a href="<?php echo base_url();?>index.php/faq">FAQ</a>&nbsp;|&nbsp;Copyright 2014 onestopdeal.com.ph
+			    	</div>
+			    </div>
+		   		</div>
 
 		      
 			</div>

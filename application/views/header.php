@@ -28,7 +28,7 @@
 		        	<?php if($username!=NULL) echo "<a href=".base_url()."index.php/user>"."Welcome ".$username."!&nbsp;	&nbsp;</a>"; 
 		        	else{
 		        		echo '<a href="';echo base_url().'index.php/home/login">'."Sign in or Register</a>&nbsp;	&nbsp";
-		        		}  ?>|&nbsp;	&nbsp;<a href="<?php echo base_url();?>index.php/ads">Post an Ad&nbsp;	&nbsp;</a>	|&nbsp;	&nbsp;<a href="<?php echo base_url();?>index.php/support">Forum</a>&nbsp;	&nbsp;|&nbsp;	&nbsp;<a href="<?php echo base_url();?>index.php/faq">FAQ</a>&nbsp;	&nbsp;|&nbsp;	&nbsp;<a href="<?php echo base_url();?>index.php/home/contactUs">Contact Us</a>&nbsp;	&nbsp;|
+		        		}  ?>|&nbsp;	&nbsp;<a href="<?php echo base_url();?>index.php/ads">Post an Ad&nbsp;	&nbsp;</a>|
 		        	<?php	
 			        	if($username==NULL) echo ""; 
 			        	else{
