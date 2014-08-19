@@ -85,6 +85,7 @@ class user extends CI_Controller {
 			$data['soldAds'] = $this->ads_model->getSold($this->session->userdata('userid'))->num_rows();
 			$data['subscribers'] = $this->User_model->getSubscribers($this->session->userdata('userid'));
 			$data['subscribedTo'] = $this->User_model->getSubscriptions($this->session->userdata('userid'));
+			$data['unread']=$this->Messages_model->getUnread($this->session->userdata('userid'))->num_rows();
 			$query=$this->User_model->getAccount($this->session->userdata('userid'));
 			
 			foreach($query->result_array() as $row)
@@ -129,6 +130,7 @@ class user extends CI_Controller {
 		$exAds = $this->ads_model->getExpiredAds($user);
 		$actAds = $this->ads_model->getAdsOfUser($user);
 		$data['actAds'] = $actAds->num_rows();
+		$data['ads'] = $actAds;
 		$data['exAds']= $exAds->num_rows();
 		$query=$this->User_model->getAccount($user);
 		if($user!=$this->session->userdata('userid'));
@@ -176,7 +178,7 @@ class user extends CI_Controller {
 
 		
 		$this->load->view('header',$data);
-		$this->load->view('profile',$data);
+		$this->load->view('profView.php',$data);
 	}
 	public function subscription()
 	{

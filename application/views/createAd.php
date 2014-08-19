@@ -1,9 +1,13 @@
 
-		    <div class="row">
-				<h3>Ad Details</h3>
-				<?php echo validation_errors(); echo $message;?>
-		    		<?php echo form_open_multipart('index.php/ads'); ?>
-
+		    <div class="large-12 column">
+		    	<div class="row">
+		    		
+		    		<div class="small-12 columns">
+					<h1>Ad Details</h1>
+					<?php echo validation_errors(); echo $message;?>
+			    		<?php echo form_open_multipart('index.php/ads'); ?>
+			    	</div>
+		    	</div>
 				<div class="row">
 					<div class="small-6 columns">
     					<label>Category</label>

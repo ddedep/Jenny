@@ -1,6 +1,9 @@
 
 			<div class="large-12 column">
-				<div class="large-2 column">
+				
+				<div  class="large-12 column">
+					<div class="row">
+						<div class="large-2 column">
 				<?php if(!$hide):?>
 					<div class="panel">
 						<h5>Menu</h5>
@@ -12,26 +15,22 @@
 						<a href="<?php echo base_url() ?>index.php/ads/viewFavorites">My Favorites</a> <br/><br/>
 						<a href="<?php echo base_url() ?>index.php/globe/charge">Buy Points</a> <br/><br/>
 						<a href="<?php echo base_url() ?>index.php/ads/viewWish">Looking for</a> <br/><br/>
-						<a href="<?php echo base_url() ?>index.php/messages">Inbox</a> <br/><br/>
+						<a href="<?php echo base_url() ?>index.php/messages">Inbox(<?php echo $unread ?>)</a> <br/><br/>
 						<a href="<?php echo base_url() ?>index.php/messages/sent">Sent</a> <br/><br/>
 					</div>
 				<?php endif;?>
-				</div>
-				<div  class="large-10 column">
-					<div class="row">
-						<div class="large-7 column">
-							<div style="margin-left:60%">
-								<div class="panel">
+					</div>
+						<div class="large-9 column" style="background-color:#f2f2f2;margin-right:5%;">
+								
+								<div class="large-4 column">
 								<?php
-									echo "<img src=".base_url()."images/".$profile['pic']." style='height:200px;width:200px;;'><br/>";
+									echo "<br/><img src=".base_url()."images/".$profile['pic']." style='height:200px;width:200px;'><br/>";
 								?>
 								</div>
-							</div>
-						</div>
-						<div class= "large-12 column">
-						<div class="panel">
-						<?php
-							echo "Name: ".$profile['firstname']." ".$profile['middlename']." ".$profile['lastname']."<br/><br/>";
+								<div class="large-8 column">
+								<?php
+
+							echo "<br/>Name: ".$profile['firstname']." ".$profile['middlename']." ".$profile['lastname']."<br/><br/>";
 							echo "Email: ".$profile['email']."<br/><br/>";
 							echo "Phone Number: ".$profile['phonenum']."<br/><br/>";
 							echo "Points: ".$profile['points']."<br/><br/>";
@@ -42,13 +41,15 @@
 							echo "Expired Ads: ".$exAds."<br/><br/>";
 							echo "Sold Ads: ".$soldAds."<br/><br/>";
 							echo "Total Subscibers: ".$subscribers->num_rows()."<br/><br/>";
-							echo "Total Subsciptions: ".$subscribedTo->num_rows()."<br/><br/>";
+							echo "Total Subsciptions: ".$subscribedTo->num_rows()."<br/><br/><br/><br/><br/>";
 						}
 						?>
+								
 						</div>
 						</div>
 						
 					</div>
+					<div style="margin-left:50%;">
 					<?php if(!$own){
 						echo "<a href='".base_url()."index.php/messages/compose/".$profile['userid']."'><button>Message Me!</button></a>";
 					} ?>
@@ -67,7 +68,7 @@
 					<?php if(!$hide){
 						echo "<a href='".base_url()."index.php/user/edit'><button type='submit'>Edit</button></a>";
 					} ?>
-					
+					</div>
 				</div>
 				<div class = "row">
 		    	<div class="large-12 columns">
