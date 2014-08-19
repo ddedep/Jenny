@@ -49,7 +49,7 @@
 				</div>
 				<div class="large-9 columns">
 		        	<h1>Ads:</h1>
-		        	<div class="large-4 columns"></div>
+		        	
 		        		<?php
 
 
@@ -58,7 +58,8 @@
 								$endDate = strtotime("+".$row['duration']." days",time($startDate));
 								$formatted = date('m/d/Y',$endDate);
 				        ?>
-			      		<div class="large-4 columns">
+				        
+			      		<div class="large-4 column">
 								<div class= 'panel'>
 								<img src="<?php echo base_url(); ?>images/<?php echo$row['imagelink']?>" style='height:200px;width:200px;'><br/>
 								Title: <?php echo $row['title']?><br/><br/>
@@ -77,7 +78,7 @@
 								</div>
 						
 			        	</div>
-			        	<div class="large-4 columns"></div>
+			        	
 			        	<?php
 							endforeach;
 				        ?>

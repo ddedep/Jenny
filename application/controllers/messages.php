@@ -92,6 +92,7 @@ class Messages extends CI_Controller {
 
     public function compose()
     {
+    	$data['users'] = $this->User_model->getAllUsers();
     	$data['hide'] = FALSE;
     	$this->load->library('session');
 		if($this->session->userdata('verified')==0) 

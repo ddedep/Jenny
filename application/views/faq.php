@@ -1,7 +1,9 @@
 
 			    <div class="row">
-				<div class="large-8 column">
 			    	<h1>Frequently Asked Questions</h1>
+			    <div class="large-12 column">
+				<div class="large-8 column"style="margin-left:5%;">
+			    	
 			    		<h3>How to register?</h3><br/>
 						&nbsp;1.	Go to “Sign In or Register” at the top of the OneStopDeal page. <br/>
 						&nbsp;2.	Click “Register” button.<br/>
@@ -39,6 +41,7 @@
 						<h3>How can I upload a video?</h3>
 						&nbsp;Just enter the video link in the field and it would automatically save on your ad.<br/><br/>
 					</div>
+				</div>
 			    </div>
 			    <div class = "row">
 		    	<div class="large-12 columns">

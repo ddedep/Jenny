@@ -88,7 +88,12 @@
 						<input type="text" name ="video">
 					</div>
 				</div>
-				<Button type="submit">Submit</Button>
+				<div class="row">
+					<div class="small-12 columns">
+						<br/><br/><h1><Button type="submit">Submit</Button></h1>
+					</div>
+				
+				</div>
 				</form>
 			</div>
 

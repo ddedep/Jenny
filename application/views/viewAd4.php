@@ -23,13 +23,23 @@
 				        	foreach($query->result_array() as $row):
 				        		
 				        ?>
-			      			<div class="panel">
-			      			<?php echo form_open('index.php/ads/deleteWish')?>
-			      			<span style="font-size:20px"><?php echo $row['body'];?><br/><br/>
-			      			<input type="hidden" name="wishid" value="<?php echo $row['lookingid']; ?>"/>
-			      			<button type="submit">Delete</button>
-			      			</form>
-			      			</span></div><br/><br/>
+			      			
+			      				<div class="large-12 column">
+			      					<div class="panel" style="height:100px;">
+			      					<div class="large-10 column">
+			      						<br/><span style="font-size:20px"><?php echo $row['body'];?></span>
+			      					</div>
+			      					<div class="large-2 column">
+						      			<?php echo form_open('index.php/ads/deleteWish')?>
+						      			
+
+						      			<input type="hidden" name="wishid" value="<?php echo $row['lookingid']; ?>"/>
+						      			<button type="submit">Delete</button>
+						      			</form>
+					      			</div>
+			      					</div>
+			      				</div>
+			      				<br/><br/>
 			        	<?php
 							endforeach;
 				        ?>

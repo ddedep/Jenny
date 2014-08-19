@@ -34,9 +34,9 @@
 					else
 					{
 				?>
-						To: <input type='text' name='recipient' style="width:60%;"></input><br/>
+						To:<img id="umark" src="<?php echo base_url();?>img/bad_mark.png" /> <input id="username" type='text' name='recipient' style="width:60%;" required /><br/>
 						Message: <br/>
-						<textarea name="message" style="height:300px;width:60%"></textarea><br/><br/>
+						<textarea name="message" style="height:300px;width:60%" required></textarea><br/><br/>
 						<button type="submit" style="margin-left:25%">Send</button>
 					<?php }?>
 				</form>
@@ -55,6 +55,23 @@
 	    <script src="<?php echo base_url(); ?>js/foundation.min.js"></script>
 	    <script>
 	      $(document).foundation();
+	    </script>
+	    <script type="text/javascript">
+	    var usernames = ["",<?php foreach ($users->result_array() as $row){ echo '"'.$row['username'].'",';}?>];
+	    $("#username").change(function(){
+	    		
+					for (index = 0; index < usernames.length; ++index) {
+					    if(usernames[index]==$("#username").val())
+					    {
+					    	$("#umark").attr("src","<?php echo base_url();?>img/good_mark.png");
+					    	break;
+					    }
+					    else
+					    {
+					    	$("#umark").attr("src","<?php echo base_url();?>img/bad_mark.png");
+					    }
+					}
+				});
 	    </script>
 	    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
 		<script type="text/javascript" src="js/jquery.easing.1.3.js"></script>

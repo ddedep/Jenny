@@ -1,21 +1,7 @@
  			<div class="row">
  			<div class="large-2 column">
-				<?php if(!$hide):?>
-					<div class="panel">
-						<h5>Menu</h5>
-						<a href="<?php echo base_url() ?>index.php/ads/view">My Ads</a> <br/><br/>
-						<a href="<?php echo base_url() ?>index.php/ads/viewExpired">Expired Ads</a> <br/><br/>
-						<a href="<?php echo base_url() ?>index.php/ads/viewSold">Sold Ads</a> <br/><br/>
-						<a href="<?php echo base_url() ?>index.php/user/userSubscription">Subscription</a> <br/><br/>
-						<a href="<?php echo base_url() ?>index.php/user/subscription">Subscribed Ads</a> <br/><br/>
-						<a href="<?php echo base_url() ?>index.php/ads/viewFavorites">My Favorites</a> <br/><br/>
-						<a href="<?php echo base_url() ?>index.php/globe/charge">Buy Points</a> <br/><br/>
-						<a href="<?php echo base_url() ?>index.php/ads/viewWish">Looking for</a> <br/><br/>
-						<a href="<?php echo base_url() ?>index.php/messages">Inbox(<?php echo $unread ?>)</a> <br/><br/>
-						<a href="<?php echo base_url() ?>index.php/messages/sent">Sent</a> <br/><br/>
-					</div>
-				<?php endif;?>
-				</div>
+				<span style="font-size:1px;">.</span>
+			</div>
  			<div class="large-8 columns" >
  			<?php
  			$owner="";
@@ -70,7 +56,7 @@
 			<?php endif; ?>
 			<?php $isSold = $row['issold'] ?>
 			
-			<?php if($hidefav==0 && $row['owner']!=$userid): echo form_open('index.php/ads/favorite'); ?>
+			<?php if($hidefav==0 && $row['owner']!=$userid && $this->session->userdata('logged_in')): echo form_open('index.php/ads/favorite'); ?>
 				<input name ="favid" type="hidden" value="<?php echo $row['adid'];?>" />
 				<button type="submit">Favorite</button>
 			</form>
@@ -94,7 +80,7 @@
 			</form>
 			<?php endif; ?>
 			<?php
-				if($row['owner']!=$userid):
+				if($row['owner']!=$userid && $this->session->userdata('logged_in')):
 			?>
 				<a href="<?php echo base_url();?>index.php/messages/compose/<?php echo $row['owner'];?>"><button>Message Owner</button></a>
 			<?php
@@ -123,6 +109,9 @@
 			<textarea id='comment'></textarea>
 			<button id='postComment'>Post</button>
 			<?php endif; ?>
+			<?php if(!$this->session->userdata('logged_in')): ?>
+				<h2><span style="color:red;font-size:20px;">*</span>Please Log in to Post a Comment</h2><br/>
+			<?php endif; ?>
 			<div class="row" id='commentArea'>
 				 <?php foreach($comments->result_array() as $comrow):	?>
 				 	<div class="panel">
@@ -132,7 +121,9 @@
 				 	</div>
 				 <?php endforeach; ?>
 		    </div>
+		    <?php if(!$this->session->userdata('logged_in')): ?>
 			<?php echo form_open_multipart('index.php/ads/view/'.$adid); ?>
+				<h1 style="font-size:25px;">Message Owner</h1>
 				<label>Name</label>
 				<input type="text" name="name" />
 				<label>Email</label>
@@ -143,9 +134,9 @@
 				<textarea name="body"></textarea>
 				<input type="hidden" name="to" value="<?php echo $owner ?>"/>
 				<input type="hidden" name="adid" value="<?php echo $adid; ?>" />
-				<button type="submit" >Submit</button> 
+				<br /><button type="submit" >Submit</button> 
 			</form>
-		       
+			<?php  endif; ?>
 		      
 			</div>
 			<div class = "row">

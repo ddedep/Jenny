@@ -26,7 +26,7 @@
 					<div class="large-4 column">
 						<div class="panel">
 							<?php echo "<img src=".base_url()."images/".$row['picture']." style='height:200px;width:200px;'><br/>"; ?>
-							Username:<?php echo $row['username']; ?><br/>
+							Username:<a href="<?php echo base_url();?>index.php/user/view/<?php echo $row['userid']; ?>"><?php echo $row['username']; ?></a><br/>
 							Number of Ads: <?php echo $totalAds[$row['userid']]; ?> <br/>
 							<a href="<?php echo base_url();?>index.php/messages/compose/<?php echo $row['userid']; ?>">Message</a><br/>
 							<a href="<?php echo base_url();?>index.php/user/unsubscribe/<?php echo $row['userid']; ?>">Unsubscribe</a>

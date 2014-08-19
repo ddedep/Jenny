@@ -16,21 +16,23 @@
 					</div>
 				<?php endif;?>
 				</div>
- 			<div class="large-8 columns" >
- 				<?php echo validation_errors(); echo $message;?>
-			<?php echo form_open_multipart('index.php/home/contactUs'); ?>
-				<label>Name</label>
-				<input type="text" name="name" />
-				<label>Email</label>
-				<input type="text" name="email"/>
-				<label>Contact Number</label>
-				<input type="text" name="contact"/>
-				<label>Message</label>
-				<textarea name="body"></textarea>
-				<button type="submit" >Submit</button> 
-			</form>
+ 			<div class="large-12 columns" >
+ 				<h1>Contact Us</h1>
+ 				<div class="large-8 column"style="margin-left: 18%;">
+	 				<?php echo validation_errors(); echo $message;?>
+				<?php echo form_open_multipart('index.php/home/contactUs'); ?>
+					<label>Name</label>
+					<input type="text" name="name" />
+					<label>Email</label>
+					<input type="text" name="email"/>
+					<label>Contact Number</label>
+					<input type="text" name="contact"/>
+					<label>Message</label>
+					<textarea name="body"></textarea>
+					<h1><button type="submit" >Submit</button></h1>
+				</form>
 		       
-		      
+		      </div>
 			</div>
 			<div class="large-4 columns">
 			</div>

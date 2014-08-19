@@ -1,4 +1,4 @@
-			<div class="large-3 column" style="width:220px;">
+			<div class="large-1 column" style="width:140px;">
 		    		<div class="panel">
 		    			<label>Recent Searches:</label>
 				    	<?php 
@@ -19,38 +19,40 @@
 		    <div class="row">
 			    <!-- Search -->
 			   	<div class="row">
-			   		<div class="large-9 columns">
-			   			<?php echo form_open('index.php/ads/search'); ?>
-				   		<div class="large-12 columns">
-					        <input type="text" id ="autocomplete" name="search"  required>
-					    </div>
-					      <div class="large-4 columns">
-						      <select name="category">
-						        <option value="0" selected="selected">Categories</option>
-						        <?php foreach ($categories->result_array() as $row):?>
-						       	 <option value="<?php echo $row['categoryid'];?>"><?php echo $row['categoryname']; ?></option>
-						    	<?php endforeach; ?>
-						      </select>
-					      </div>
-					      <div class="large-4 columns">
-						      <select id= 'regions' name = 'region'>
+			   		<div class="large-12 column">
+				   		<div class="large-9 columns">
+				   			<?php echo form_open('index.php/ads/search'); ?>
+					   		<div class="large-12 columns">
+						        <input type="text" id ="autocomplete" name="search"  required>
+						    </div>
+						      <div class="large-4 columns">
+							      <select name="category">
+							        <option value="0" selected="selected">Categories</option>
+							        <?php foreach ($categories->result_array() as $row):?>
+							       	 <option value="<?php echo $row['categoryid'];?>"><?php echo $row['categoryname']; ?></option>
+							    	<?php endforeach; ?>
+							      </select>
+						      </div>
+						      <div class="large-4 columns">
+							      <select id= 'regions' name = 'region'>
 
-						      	<option value="0" selected="selected">Regions</option>
-						      	<?php foreach ($regions->result_array() as $row):?>
-						       	 <option value="<?php echo $row['regionid'];?>"><?php echo $row['regionname']; ?></option>
-						    	<?php endforeach; ?>
-						      </select>
+							      	<option value="0" selected="selected">Regions</option>
+							      	<?php foreach ($regions->result_array() as $row):?>
+							       	 <option value="<?php echo $row['regionid'];?>"><?php echo $row['regionname']; ?></option>
+							    	<?php endforeach; ?>
+							      </select>
+						      </div>
+						      <div class="large-4 columns">
+							      <select id ='provinces' name='province'>
+							      	<option value="0" selected="selected">Provinces/City</option>
+							      </select>
+						      </div>
 					      </div>
-					      <div class="large-4 columns">
-						      <select id ='provinces' name='province'>
-						      	<option value="0" selected="selected">Provinces/City</option>
-						      </select>
+					       <div class="large-3 columns">
+					      	<button type="submit">Search</button>
 					      </div>
-				      </div>
-				       <div class="large-3 columns">
-				      	<button type="submit">Search</button>
-				      </div>
-				      </form>
+					      </form>
+				  	</div>
 		      	</div>     		      
 		    </div>
 		    <!-- Carousel -->
