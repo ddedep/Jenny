@@ -45,7 +45,7 @@
 				<div class="row">
 					<div class="small-6 columns">
 						<label>Ad Title</label>
-						<input type="text" name="title">
+						<input type="text" name="title" id="title" />
 					</div>
 				</div>
 				<div class="row">
@@ -61,7 +61,7 @@
 				<div class="row">
 					<div class="small-8 columns">
 						<label>Description</label>
-						<textarea name="description"></textarea>
+						<textarea name="description" id="body"></textarea>
 					</div>
 				</div>
 				<div class="row">
@@ -90,7 +90,7 @@
 				</div>
 				<div class="row">
 					<div class="small-12 columns">
-						<br/><br/><h1><Button type="submit">Submit</Button></h1>
+						<br/><br/><h1><Button type="submit" id="submit">Submit</Button></h1>
 					</div>
 				
 				</div>
@@ -108,6 +108,41 @@
 		</div>
 		<!--Scripts -->
 		<script type="text/javascript">
+		var titles = [<?php foreach ($adsList->result_array() as $row){ echo '"'.$row['title'].'",';}?>];
+		var body = [<?php foreach ($adsList->result_array() as $row){ echo '"'.$row['body'].'",';}?>];
+		$("#title").click(function(){
+		//	alert("fak");
+		});
+		$("#title").change(function(){
+			alert($("#title").val());
+			for (index = 0; index < titles.length; ++index) {
+			    if(titles[index]!=$("#title").val())
+			    {
+
+			    	$("#submit").attr("disabled", 'false');
+			    }
+			    else
+			    {
+			    	alert($("#title").value());
+			    	$("#submit").attr("disabled", 'true');
+			    }
+			}
+		});
+		$("#email").change(function(){
+
+			for (index = 0; index < emails.length; ++index) {
+			    if(emails[index]!=$("#email").val())
+			    {
+			    	$("#emark").attr("src","<?php echo base_url();?>img/good_mark.png");c
+			    }
+			    else
+			    {
+			    	$("#emark").attr("src","<?php echo base_url();?>img/bad_mark.png")
+			    }
+			}
+		});
+
+
 		
 			$('#regions').change(function(){
 				var regionName = $('#regions').find(":selected").val();

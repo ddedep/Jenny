@@ -281,6 +281,14 @@
         	$this->db->order_by("insertedon", "desc"); 
         	return $this->db->get();
         }
+        public function searchCat($cat)
+        {
+        	$this->db->select("*");
+        	$this->db->from("ads");
+        	$this->db->join("users", "users.userid=ads.owner");
+        	$this->db->where("categoryid",$cat);
+        	return $this->db->get();
+        }
 		public function searchAds($search, $provinceid, $category,$region)
 		{
 			if($provinceid==0 && $category>0){

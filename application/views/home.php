@@ -1,4 +1,4 @@
-			<div class="large-1 column" style="width:140px;">
+			<div class="large-2 column" style="width:140px;">
 		    		<div class="panel">
 		    			<label>Recent Searches:</label>
 				    	<?php 
@@ -9,6 +9,15 @@
 					    		$count++;
 					    	}
 				    		if($count==5) break;
+				    	} 
+				    	?>
+		    		</div>
+		    		<div class="panel">
+		    			<label>Categories:</label><br/>
+				    	<?php 
+				    	$count=0;
+				    	foreach ($categories->result_array() as $row) {
+				    		echo "<a href='".base_url()."index.php/ads/seachByCat/".$row['categoryid']."''>".$row['categoryname']."</a><br/><br/>";
 				    	} 
 				    	?>
 		    		</div>

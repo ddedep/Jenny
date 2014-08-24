@@ -333,7 +333,21 @@ class Ads extends CI_Controller {
 		$data['query'] = $this->ads_model->getAdsOfUser($this->session->userdata('userid'));
 		redirect('index.php/ads/view');
 	}
+	public function seachByCat()
+	{
+		$category= $this->uri->segment(3);
+		$data['username']=$this->session->userdata('username');
+		$data['userid'] = $this->session->userdata('userid');
+		$data['categories'] = $this->ads_model->getCategories();
+		$data['regions'] = $this->ads_model->getRegions();
+		$data['search'] = $this->ads_model->getSearches($this->session->userdata('userid'));
 
+		$data['hide'] = FALSE;
+		$data['lookingFor'] = TRUE;
+		$data['query']= $this->ads_model->searchCat($category);
+		$this->load->view('header',$data);		
+		$this->load->view('viewAd5',$data);
+	}
 	public function search()
 	{
 		$search= $this->uri->segment(3);
@@ -508,6 +522,7 @@ class Ads extends CI_Controller {
 			$data['categories'] = $this->ads_model->getCategories();
 			$data['username']=$this->session->userdata('username');
 			$data['search'] = $this->ads_model->getSearches($this->session->userdata('userid'));
+			$data['adsList'] = $this->ads_model->getAdsOfUser($this->session->userdata('userid'));
 			$this->form_validation->set_rules('title','title', 'required|xss_clean');
 			$this->form_validation->set_rules('description','description', 'required|xss_clean');
 			$this->form_validation->set_rules('price','price', 'required|xss_clean');
