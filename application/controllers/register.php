@@ -130,7 +130,7 @@ class Register extends CI_Controller {
 		            'text' => 'Welcome to One Stop Deal! Your Verification Code: '.$verify
 		        );
 		        $response = $this->nexmo->send_message($from, $to, $message);
-		        $headers = "From: welcome@onestopdealph.com";
+		        $headers = " From: welcome@onestopdealph.com";
 		        mail($email, 'Thank you for signing up!','Welcome to onestopdealph.com! Your Verification code: '.$verify,$headers);
 			
 				$data['username']=$this->session->userdata('username');
@@ -146,7 +146,7 @@ class Register extends CI_Controller {
 				$verify = rand(1000,9999);
 				$this->User_model->createPerson($firstname,$middlename,$lastname,$phonenum,$dat['file_name'],$birthdate);
 				$this->User_model->createUser($username,$password,$email,$address,$postalcode,$verify);
-				$from = 'dexter';
+				$from = 'OneStopDeal.ph';
 		        $to = ''.$phonenum;
 		        $message = array(
 		            'text' => 'Welcome to One Stop Deal! Your Verification Code: '.$verify
