@@ -1,6 +1,6 @@
 
 			    <div class="row">
-					<div class="large-8 column" style="font-size:20px;">
+					<div class="large-8 column">
 			    	<a name="about"><h1>About</h1></a>
 					OneStopDeal.com is a website customized for Filipinos to buy and sell online. All ads are posted by <br/>our members and we do not involve ourselves in transactions between buyers and sellers. <br/><br/>
 					Membership in, and/or usage of, OneStopDeal.com is voluntary. Using and accessing our site means <br/>that you have read, understood and agreed to all the rules and regulations set by MVY Buy & Sell.<br/><br/>
@@ -36,6 +36,13 @@
 					<br /><br /><a name="disclaimer">5. Disclaimer</a>
 					<br />OneStopDeal.com takes no responsibility from any consequence due to the actions, or lack of actions, you have done using our website’s services. Any content you provide is at your own risk. We make no warranty that no part of our system will be virus-free, uninterrupted, timely, secure, accurate or reliable.
 
+					<h1>PRIVACY POLICY</h1>
+					<br><br>OneStopDeal.com respects each individual’s right to personal privacy.	 
+					<br><br>OneStopDeal.com collects information through our website. We mainly collect our visitor’s name and e-mail address. We collect other information mainly from our registration forms.  All information collected is not mandatory. 
+					<br><br>Information collected by OneStopDeal.com will be used for the purpose of getting in touch with the members. These involved sending notifications about his ads.
+					<br><br>All information offered at our forum, however, becomes public knowledge.
+					<br><br>Members have the option to change their own personal information at any given time. 
+					<br><br>If any problems might arise, we have our customer support tab in which the members may submit their concerns. <br><br>
 					</div>
 
 			    </div>

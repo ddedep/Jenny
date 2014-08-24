@@ -34,12 +34,30 @@
 					      </div>
 				      	</form>
 				    </div>
-					       
+					<div class="large-2 columns">
+						<div class="panel">
+							<h2>Price Range:<h2><br/>
+								<a href="#" id="p250">0-250</a><br/><br/>
+								<a href="#" id="p500">251-500</a><br/><br/>
+								<a href="#" id="p1000">501-1000</a><br/><br/>
+								<a href="#" id="pUp">10001-up</a><br /><br/>
+								<a href="#" id="showAll">All</a><br /><br/>
+						</div>
+						<div class="panel">
+							<h2>Date Range:<h2><br/>
+								<a href="#" id="today">Today</a><br/><br/>
+								<a href="#" id="days">3 Days</a><br/><br/>
+								<a href="#" id="week">Week</a><br/><br/>
+								<a href="#" id="month">Month</a><br /><br/>
+								<a href="#" id="showAll">All</a><br /><br/>
+						</div>
+					</div>
+					<div class="large-10 columns">
 					      	<h1>Ads:</h1>
 					      		<?php if($query->num_rows()==0):
 					      				echo form_open("index.php/ads/addToLookingFor");  
 					      		 ?>
-		      		 		<div class="panel"><span style="font-size:30px;margin-left:40%"><img src="<?php echo base_url(); ?>img/Warning_icon.svg" style="height:50px;" />No ads for <span style="color:red"><?php echo $search; ?></span> yet</span></div> <br/>
+		      		 		<div class="panel"><span style="font-size:30px;margin-left:40%"><img src="<?php echo base_url(); ?>img/Warning_icon.svg" alt="<?php echo base_url(); ?>img/nophoto.jpg" style="height:50px;" />No ads for <span style="color:red"><?php echo $search; ?></span> yet</span></div> <br/>
 		      		 		<input type="hidden" name="search" value="<?php echo $search;?>">
 		      				<div style="margin-left:40%"><button type="submit">Add To Looking For</button></div>
 		      			</form>
@@ -51,17 +69,20 @@
 
 
 				        	foreach($query->result_array() as $row):
-				        		$startDate = $row['insertedon'];
+				        		$startDate = $row['adinsertedon'];
+				        		$date1 = new DateTime();
+				        //		echo $startDate;
+				        		
 								$endDate = strtotime("+".$row['duration']." days",time($startDate));
 								$formatted = date('m/d/Y',$endDate);
 				        ?>
 			      		<div class="large-4 columns">
 								<div class= 'panel'>
-								<img src="<?php echo base_url(); ?>images/<?php echo$row['imagelink']?>" style='height:200px;width:200px;'><br/>
+								<img src="<?php echo base_url(); ?><?php if($row['imagelink']!=''){ echo 'images/'.$row['imagelink'];} else{echo 'img/nophoto.jpg';}?>"style='height:200px;width:200px;'><br/>
 								Title: <?php echo $row['title']?><br/><br/>
 								Owner: <a href="<?php echo base_url()."index.php/user/view/".$row['userid']; ?>"><?php echo $row['username']?></a><br/><br/>
-								
-								Price: <?php echo $row['price'] ?> <br/><br/>
+										<span class="date" style="display: none;"><?php echo $date1->diff(new DateTime($startDate))->d;?></span>
+								Price: <span class="price"><?php echo $row['price'] ?></span> <br/><br/>
 								<a href="<?php echo base_url()?>index.php/ads/view/<?php echo $row['adid'];?>">View Ad</a>
 								</div>
 						
@@ -70,6 +91,7 @@
 							endforeach;
 				        ?>
 		        	</div>
+		        </div>
 		        
 		       </div>
 		      	<div class = "row">
@@ -83,7 +105,97 @@
 		</div>
 		<!--Scripts -->
 		<script type="text/javascript">
-		
+			//price ranges
+			$("#p250").click(function(){
+				$("span.price").each(function(){
+					$(this).parent().hide();
+				});
+				$("span.price").each(function(){
+					if(Number($(this).text())<=250){
+						$(this).parent().show();
+					}
+				});
+			});
+
+			$("#p500").click(function(){
+				$("span.price").each(function(){
+					$(this).parent().hide();
+				});
+				$("span.price").each(function(){
+					if(Number($(this).text())<=500 && Number($(this).text())>250){
+						$(this).parent().show();
+					}
+				});
+			});
+			$("#p1000").click(function(){
+				$("span.price").each(function(){
+					$(this).parent().hide();
+				});
+				$("span.price").each(function(){
+					if(Number($(this).text())<=1000 && Number($(this).text())>500){
+						$(this).parent().show();
+					}
+				});
+			});
+			$("#pUp").click(function(){
+				$("span.price").each(function(){
+					$(this).parent().hide();
+				});
+				$("span.price").each(function(){
+					if(Number($(this).text())>1000){
+						$(this).parent().show();
+					}
+				});
+			});
+			//date range
+			$("#today").click(function(){
+				$("span.date").each(function(){
+					$(this).parent().hide();
+				});
+				$("span.date").each(function(){
+					if(Number($(this).text())<=1){
+						$(this).parent().show();
+					}
+				});
+			});
+
+			$("#days").click(function(){
+				$("span.date").each(function(){
+					$(this).parent().hide();
+				});
+				$("span.date").each(function(){
+					if(Number($(this).text())<=3){
+						$(this).parent().show();
+					}
+				});
+			});
+			$("#week").click(function(){
+				$("span.date").each(function(){
+					$(this).parent().hide();
+				});
+				$("span.date").each(function(){
+					if(Number($(this).text())<=7){
+						$(this).parent().show();
+					}
+				});
+			});
+			$("#Month").click(function(){
+				$("span.date").each(function(){
+					$(this).parent().hide();
+				});
+				$("span.date").each(function(){
+					if(Number($(this).text())<=30){
+						$(this).parent().show();
+					}
+				});
+			});
+			$("#showAll").click(function(){
+				$("span").each(function(){
+					$(this).parent().show();
+				});
+			});
+
+			//regions
 			$('#regions').change(function(){
 				var regionName = $('#regions').find(":selected").val();
 		//	alert(regionName);
