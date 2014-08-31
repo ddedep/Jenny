@@ -22,7 +22,7 @@ class Messages extends CI_Controller {
 		$data['username']=$this->session->userdata('username');
 		$userid = $this->session->userdata('userid');
 		$data['messages']=$this->Messages_model->getInbox($userid);
-		$data['unread']=$this->Messages_model->getUnread($userid)->num_rows();
+		$data['unread']=$this->Messages_model->getUnread($this->session->userdata('userid'))->num_rows();
 		$this->load->view('header',$data);
         $this->load->view('inbox',$data);   
     }
@@ -33,6 +33,7 @@ class Messages extends CI_Controller {
     	$data['hide'] = FALSE;
     	if($this->session->userdata('logged_in'))
     	{
+		$data['unread']=$this->Messages_model->getUnread($this->session->userdata('userid'))->num_rows();
     		$data['username']=$this->session->userdata('username');
     		$data['query']=$this->Messages_model->getInboxMessage($messageid,$this->session->userdata('userid'));
     		$data['query2']=$this->Messages_model->getSentMessage($messageid,$this->session->userdata('userid'));

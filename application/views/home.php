@@ -12,7 +12,7 @@
 				    	} 
 				    	?>
 		    		</div>
-		    		<div class="panel">
+		    	<!--	<div class="panel">
 		    			<label>Categories:</label><br/>
 				    	<?php 
 				    	$count=0;
@@ -20,15 +20,15 @@
 				    		echo "<a href='".base_url()."index.php/ads/seachByCat/".$row['categoryid']."''>".$row['categoryname']."</a><br/><br/>";
 				    	} 
 				    	?>
-		    		</div>
+		    		</div>-->
 		    		
 		   	</div>
-		   	<div>
+		   
 		   	
 		    <div class="row">
 			    <!-- Search -->
 			   	<div class="row">
-			   		<div class="large-12 column">
+			   		<div class="large-10 column">
 				   		<div class="large-9 columns">
 				   			<?php echo form_open('index.php/ads/search'); ?>
 					   		<div class="large-12 columns">
@@ -65,9 +65,9 @@
 		      	</div>     		      
 		    </div>
 		    <!-- Carousel -->
-		    <div class = "row">
-		    	
-		    	<div class="large-12">
+		    
+		  <div class="row" >
+		    	<div class="large-10 columns">
 				    <div class="container">
 						<h1>Featured Ads</h1>
 						<div id="ca-container" class="ca-container">

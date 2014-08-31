@@ -36,15 +36,15 @@
 				    </div>
 					<div class="large-2 columns">
 						<div class="panel">
-							<h2>Price Range:<h2><br/>
-								<a href="#" id="p250">0-250</a><br/><br/>
-								<a href="#" id="p500">251-500</a><br/><br/>
-								<a href="#" id="p1000">501-1000</a><br/><br/>
-								<a href="#" id="pUp">10001-up</a><br /><br/>
+							<h2>Price Range:</h2><br/>
+								<a href="#" id="p250">Php 0-250</a><br/><br/>
+								<a href="#" id="p500">Php 251-500</a><br/><br/>
+								<a href="#" id="p1000">Php 501-1000</a><br/><br/>
+								<a href="#" id="pUp">Php 10001-up</a><br /><br/>
 								<a href="#" id="showAll">All</a><br /><br/>
 						</div>
 						<div class="panel">
-							<h2>Date Range:<h2><br/>
+							<h2>Date Range:</h2><br/>
 								<a href="#" id="today">Today</a><br/><br/>
 								<a href="#" id="days">3 Days</a><br/><br/>
 								<a href="#" id="week">Week</a><br/><br/>
@@ -57,7 +57,7 @@
 					      		<?php if($query->num_rows()==0):
 					      				echo form_open("index.php/ads/addToLookingFor");  
 					      		 ?>
-		      		 		<div class="panel"><span style="font-size:30px;margin-left:40%"><img src="<?php echo base_url(); ?>img/Warning_icon.svg" alt="<?php echo base_url(); ?>img/nophoto.jpg" style="height:50px;" />No ads for <span style="color:red"><?php echo $search; ?></span> yet</span></div> <br/>
+		      		 		<div class="panel"><span style="font-size:30px;margin-left:40%"><img src="<?php echo base_url(); ?>img/Warning_icon.svg"  style="height:51px;" />No ads for <span style="color:red"><?php echo $search; ?></span> yet</span></div> <br/>
 		      		 		<input type="hidden" name="search" value="<?php echo $search;?>">
 		      				<div style="margin-left:40%"><button type="submit">Add To Looking For</button></div>
 		      			</form>

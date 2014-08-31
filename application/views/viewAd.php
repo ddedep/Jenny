@@ -23,7 +23,7 @@
 
 
 				        	foreach($query->result_array() as $row):
-				        		$startDate = $row['insertedon'];
+				        		$startDate = $row['adinsertedon'];
 								$endDate = strtotime("+".$row['duration']." days",time($startDate));
 								$formatted = date('m/d/Y',$endDate);
 				        ?>

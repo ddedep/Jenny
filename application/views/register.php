@@ -12,15 +12,15 @@
 		    <div class = "row">
 		    	<div class ="large-12 columns">
 		    		<?php echo form_open_multipart('index.php/register'); ?>
-		    			<div class="medium-5 columns">
+		    			<div class="medium-4 columns">
 			    			<label>First Name<span style="color:red;font-size:20px;">*</span></label>
 			    			<input type="text" name="firstname" required>
 		    			</div>
-		    			<div class="medium-3 columns">
+		    			<div class="medium-2 columns">
 			    			<label>Middle Name<span style="color:red;font-size:20px;visible:false;"> </span></label>
 			    			<input type="text" name="middlename">
 		    			</div>
-		    			<div class="medium-4 columns">
+		    			<div class="medium-6 columns">
 			    			<label>Last Name<span style="color:red;font-size:20px;">*</span></label>
 			    			<input type="text" name="lastname" required>	
 		    			</div>
@@ -115,11 +115,15 @@
     				
     				<div class="large-8 columns">
     					<Button id="register" type="submit" disabled='false'> Register! </Button>
+						
     				</div>
-
+						
     				</form>
 
     			</div>
+				<div class="row">
+    				<div class="large-12 columns"><span style="color:red;font-size:20px;">*</span> = Required</div>
+				</div>
     			<div class = "row">
 		    	<div class="large-12 columns">
 			    	<div class="panel">
@@ -127,7 +131,6 @@
 			    	</div>
 			    </div>
 		   		</div>
-    			<span style="color:red;font-size:20px;">*</span> = Required
 		    </div>
 		</div>
 		<!--Scripts -->
