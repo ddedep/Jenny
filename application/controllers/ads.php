@@ -34,7 +34,7 @@ class Ads extends CI_Controller {
 	{
 		$adid=$this->input->post('adid');
 		$this->ads_model->sold($adid);
-		redirect('index.php/ads/view/'.$adid);
+		redirect('index.php/ads/viewSold/'.$adid);
 	}
 	public function view()
 	{
@@ -614,12 +614,22 @@ class Ads extends CI_Controller {
 				}
 				$points = $points+1;
 				$this->User_model->updatePoints($this->session->userdata('username'),$points);
+				$ads=$this->ads_model->getAdsOfUser($this->session->userdata('userid'));
+				$max=0;
+				foreach($ads->result_array() as $row)
+				{
+					if($max<$row['adid'])
+					{
+						$max=$row['adid'];
+					}
+				}
 				$data['message'] ="Ad Created!";
 				$data['username']=$this->session->userdata('username');
 				$data['regions'] = $this->ads_model->getRegions();
 				$data['categories'] = $this->ads_model->getCategories();
 				$this->load->view('header',$data);
 				$this->load->view('createAd',$data);
+				redirect('/index.php/ads/view/'.$max);
 
 			}
 

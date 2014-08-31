@@ -9,9 +9,11 @@
 					<?php
 						echo "<h4>Description</h4>";
 						echo "<div class= 'panel'>";
+						if($row['videolink']!=""){
 						echo '<iframe width="420" height="345"';
 						echo ' src="//www.youtube.com/embed/'.$row['videolink'].'"" frameborder="0">';
 						echo '</iframe><br/>';
+						}
 						echo "<img src=".base_url()."images/".$row['imagelink']." style='height:200px;width:200px;'><br/>";
 						echo "Title: ".$row['title']."<br/><br/>";
 						echo "Duration: ".$row['duration']." Days<br/><br/>";

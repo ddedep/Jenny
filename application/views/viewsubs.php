@@ -29,11 +29,15 @@
 				        ?>
 			      		<div class="large-4 columns">
 								<div class= 'panel'>
-								<img src="<?php echo base_url(); ?>images/<?php echo$row['imagelink']?>" style='height:200px;width:200px;'><br/>
+								<a href="<?php echo base_url()?>index.php/ads/view/<?php echo $row['adid'];?>"><img src="<?php echo base_url(); ?>images/<?php echo$row['imagelink']?>" style='height:200px;width:200px;'></a><br/>
 								Title: <?php echo $row['title']?><br/><br/>
 								Owner: <a href="<?php echo base_url()."index.php/user/view/".$row['userid']; ?>"><?php echo $row['username']?></a><br/><br/>
 								Expires on: <?php echo $formatted; ?><br/><br/>
 								Price: <?php echo $row['price'] ?> <br/><br/>
+								<span>Posted On: <?php
+												$date = new DateTime($row['adinsertedon']);
+												echo $date->format('m-d-Y');
+											 ?></span><br/><br/>
 								<a href="<?php echo base_url()?>index.php/ads/view/<?php echo $row['adid'];?>">View Ad</a>
 								</div>
 						

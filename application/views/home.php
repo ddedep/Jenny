@@ -77,17 +77,21 @@
 								?>
 								<div class="ca-item">
 									<div class="ca-item-main">
-										<div class="ca-icon" style="width:233px;
+										<a href="<?php echo base_url(); ?>index.php/ads/view/<?php echo $row['adid']; ?>"><div class="ca-icon" style="width:233px;
 												height:189px;
 												position:relative;
 												margin:0 auto;
 												background:transparent url(<?php echo base_url()."images/".$row['imagelink']; ?>) no-repeat center center;">
-										</div>
+										</div></a>
 										<h3><?php echo $row['title']; ?></h3>
 										<h4>
+
 											<span>Price:<?php echo $row['price'];?></span>
 											<span>By:<a href="<?php echo base_url();?>index.php/user/view/<?php echo $row['userid'];?>" style="color:blue;"><?php echo $row['username'];?></a></span>
-
+											<span>Posted On: <?php
+												$date1 = new DateTime($row['adinsertedon']);
+												echo $date1->format('m-d-Y');
+											 ?></span>
 										</h4>
 											<a href="<?php echo base_url(); ?>index.php/ads/view/<?php echo $row['adid']; ?>" class="ca-more">more...</a>
 									</div>
@@ -111,14 +115,14 @@
 		    	} ?>
 		    	<?php for ($i=0; $i < 4 && $i<$count; $i++):?>
 		 
-		    			<div class="large-3 columns" style="height:300px; margin:0 auto;">
+		    			<div class="large-3 columns" style="height:320px; margin:0 auto;">
 		    				<div class="ca-item-main">
-		    				<div class="ca-icon" style="width:233px;
+		    				<a href="<?php echo base_url(); ?>index.php/ads/view/<?php echo $top[$i]['adid'];?>"><div class="ca-icon" style="width:233px;
 										height:189px;
 										position:relative;
 										margin:0 auto;
 										background:transparent url(<?php echo base_url()."images/".$top[$i]['imagelink']; ?>) no-repeat center center;">
-							</div>
+							</div></a>
 							<div class="ca-item">
 								<h4 style="font-weight:bold;"><?php  
 									
@@ -127,6 +131,11 @@
 								</h4>
 								<span>Price:Php <?php echo $top[$i]['price'];?></span><br/>
 								<span>By:<a href="<?php echo base_url();?>index.php/user/view/<?php echo $top[$i]['userid'];?>" style="color:blue;"><?php echo $top[$i]['username'];?></a></span><br/>
+								<span>Posted On: <?php
+												$date2 = new DateTime($top[$i]['adinsertedon']);
+												echo $date2->format('m-d-Y');
+												//$top[$i]['adinsertedon'];
+											 ?></span><br/>
 								<a href="<?php echo base_url(); ?>index.php/ads/view/<?php echo $top[$i]['adid'];?>" style="position: relative;
 										margin-left: 75px;
 										font-weight: bold;
@@ -154,14 +163,15 @@
 		    	} ?>
 		    	<?php for ($i=0; $i < 4 &&  $i<$count; $i++):?>
 		 
-		    			<div class="large-3 columns" style="height:300px; margin:0 auto;">
+		    			<div class="large-3 columns" style="height:320px; margin:0 auto;">
 		    				<div class="ca-item-main">
-		    				<div class="ca-icon" style="width:233px;
+		    				<a href="<?php echo base_url(); ?>index.php/ads/view/<?php echo $rec[$i]['adid'];?>"><div class="ca-icon" style="width:233px;
 										height:189px;
 										position:relative;
 										margin:0 auto;
 										background:transparent url(<?php echo base_url()."images/".$rec[$i]['imagelink']; ?>) no-repeat center center;">
-							</div>
+							</div></a>
+		    				
 							<div class="ca-item">
 								<h4 style="font-weight:bold;"><?php  
 									
@@ -170,6 +180,10 @@
 								</h4>
 								<span>Price:Php <?php echo $rec[$i]['price'];?></span><br/>
 								<span>By:<a href="<?php echo base_url();?>index.php/user/view/<?php echo $rec[$i]['userid'];?>" style="color:blue;"><?php echo $rec[$i]['username'];?></a></span><br/>
+								<span>Posted On: <?php
+												$date = new DateTime($rec[$i]['adinsertedon']);
+												echo $date->format('m-d-Y');
+											 ?></span><br/>
 								<a href="<?php echo base_url(); ?>index.php/ads/view/<?php echo $rec[$i]['adid'];?>" style="position: relative;
 										margin-left: 75px;
 										font-weight: bold;

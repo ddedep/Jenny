@@ -19,7 +19,7 @@
 					echo ' src="//www.youtube.com/embed/'.$row['videolink'].'"" frameborder="0">';
 					echo '</iframe><br/>';
 				}
-				echo "<img src=".base_url()."images/".$row['imagelink']." style='height:200px;width:200px;'><br/>";
+				echo "<a href='<?php echo base_url()?>index.php/ads/view/".$row['adid']."><img src=".base_url()."images/".$row['imagelink']." style='height:200px;width:200px;'></a><br/>";
 				echo "Images:<br/>";
 				foreach ($images->result_array() as $rowk) {
 					echo "<img src=".base_url()."images/".$rowk['imagelink']." style='height:200px;width:200px;'>";
@@ -27,6 +27,8 @@
 				echo "<br/>Title: ".$row['title']."<br/><br/>";
 				if($row['owner']!=$userid):
 			 		echo "Posted by: <a href='".base_url()."index.php/user/view/".$row['owner']."'>".$row['username']."</a><br/><br/>";
+			 		echo "Email: <a href='".base_url()."index.php/user/view/".$row['owner']."'>".$row['email']."</a><br/><br/>";
+			 		echo "Contact Number: <a href='".base_url()."index.php/user/view/".$row['owner']."'>".$row['phonenum']."</a><br/><br/>";
 				endif;
 				
 
@@ -36,10 +38,13 @@
 
 				$owner = $row['email'];
 
+				$date = new DateTime($row['adinsertedon']);
+											 
 				echo "Expires on: ".$formatted."<br/><br/>";
 				echo "Price: ".$row['price']."<br/><br/>";
 				echo "About: ".$row['body']."<br/><br/>";
 				echo "Total Views: ".$row['view']."<br/><br/>";
+				echo "Posted On: ".$date->format('m-d-Y')."<br/><br/>";
 				echo "</div>";
 				endforeach;
 			?>
@@ -58,13 +63,13 @@
 			
 			<?php if($hidefav==0 && $row['owner']!=$userid && $this->session->userdata('logged_in')): echo form_open('index.php/ads/favorite'); ?>
 				<input name ="favid" type="hidden" value="<?php echo $row['adid'];?>" />
-				<button type="submit">Favorite</button>
+				<button type="submit">Add to Favorites</button>
 			</form>
 			<?php endif; ?>
 
 			<?php if($hidefav>0 && $row['owner']!=$userid): echo form_open('index.php/ads/unfavorite'); ?>
 				<input name ="favid" type="hidden" value="<?php echo $row['adid'];?>" />
-				<button type="submit">Unfavorite</button>
+				<button type="submit">Remove to Favorites</button>
 			</form>
 			<?php endif; ?>
 
@@ -106,7 +111,7 @@
 			?>
 			<?php if($this->session->userdata('logged_in')): ?>
 			<label>Comment</label>
-			<textarea id='comment'></textarea>
+			<textarea id='comment' style="height:150px;"></textarea><br/>
 			<button id='postComment'>Post</button>
 			<?php endif; ?>
 			<?php if(!$this->session->userdata('logged_in')): ?>

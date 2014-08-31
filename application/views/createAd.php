@@ -4,14 +4,15 @@
 		    		
 		    		<div class="small-12 columns">
 					<h1>Ad Details</h1>
-					<?php echo validation_errors(); echo $message;?>
+					<h1><?php echo validation_errors(); echo $message;?></h1>
 			    		<?php echo form_open_multipart('index.php/ads'); ?>
 			    	</div>
 		    	</div>
 				<div class="row">
 					<div class="small-6 columns">
-    					<label>Category</label>
+    					<label>Category<span style="color:red;font-size:20px;">*</span></label>
     					<select name="category">
+    						<option value="0" selected="selected">Categories</option>
 					        <?php foreach ($categories->result_array() as $row):?>
 					       	 <option value="<?php echo $row['categoryid'];?>"><?php echo $row['categoryname']; ?></option>
 					    	<?php endforeach; ?>
@@ -20,8 +21,9 @@
 				</div>
 				<div class="row">
 							<div class="large-4 columns">
-							<label>Regions</label>
+							<label>Regions<span style="color:red;font-size:20px;">*</span></label>
 						      <select id= 'regions'>
+						        <option value="0" selected="selected">Regions</option>
 						      	<?php foreach ($regions->result_array() as $row):?>
 						      	<?php if($row['regionid']==18){ ?>
 						       	 <option value="<?php echo $row['regionid'];?>" selected><?php echo $row['regionname']; ?></option>
@@ -35,8 +37,10 @@
 						      </select>
 					      </div>
 					      <div class="large-4 columns">
-					      		<label>Province/City</label>
+					      		<label>Province/City<span style="color:red;font-size:20px;">*</span></label>
+					      		 
 						      <select id ='provinces' name='provinces'>
+						      <option value="0" selected="selected">Provinces/City</option>
 						      </select>
 					      </div>
 					      <div class="large-4 columns">
@@ -44,29 +48,30 @@
 				</div>
 				<div class="row">
 					<div class="small-6 columns">
-						<label>Ad Title</label>
+						<label>Ad Title<span style="color:red;font-size:20px;">*</span></label>
 						<input type="text" name="title" id="title" />
 					</div>
 				</div>
 				<div class="row">
 					<div class="small-4 columns">
-    					<label>Ad Duration</label>
+    					<label>Ad Duration<span style="color:red;font-size:20px;">*</span></label>
     					<select name="duration">
+    						<option value="0" selected="selected">Duration</option>
 							<option value="7">One Week</option>
 							<option value="15">15 Days</option>
-							<option value="30" selected="selected">30 Days</option>
+							<option value="30">30 Days</option>
 						</select>
     				</div>
 				</div>
 				<div class="row">
 					<div class="small-8 columns">
-						<label>Description</label>
-						<textarea name="description" id="body"></textarea>
+						<label>Description<span style="color:red;font-size:20px;">*</span></label>
+						<textarea name="description" id="body" style="height:200px;"></textarea>
 					</div>
 				</div>
 				<div class="row">
 					<div class="small-6 columns">
-						<label>Price</label>
+						<label>Price<span style="color:red;font-size:20px;">*</span></label>
 						<input type="text" name="price">
 					</div>
 				</div>
@@ -99,6 +104,9 @@
 
 		</div>
 		<div class = "row">
+				
+    			<div class="large-12 columns"><span style="color:red;font-size:20px;">*</span> = Required</div>
+				
 		    	<div class="large-12 columns">
 			    	<div class="panel">
 			    		<a href="<?php echo base_url();?>index.php/faq/about#about">About</a>&nbsp;|&nbsp;<a href="<?php echo base_url();?>index.php/faq/about#terms">Terms and Conditions</a>&nbsp;|&nbsp;<a href="<?php echo base_url();?>index.php/faq/about#terms">Privacy Policy</a>&nbsp;|&nbsp;<a href="<?php echo base_url();?>index.php/home/contactus">Contact Us</a>&nbsp;|&nbsp;<a href="<?php echo base_url();?>index.php/support">Forum</a>&nbsp;|&nbsp;<a href="<?php echo base_url();?>index.php/faq">FAQ</a>&nbsp;|&nbsp;Copyright 2014 onestopdeal.com.ph
@@ -113,8 +121,8 @@
 		$("#title").click(function(){
 		//	alert("fak");
 		});
-		$("#title").change(function(){
-			alert($("#title").val());
+		/*$("#title").change(function(){
+		//	alert($("#title").val());
 			for (index = 0; index < titles.length; ++index) {
 			    if(titles[index]!=$("#title").val())
 			    {
@@ -127,7 +135,7 @@
 			    	$("#submit").attr("disabled", 'true');
 			    }
 			}
-		});
+		});*/
 		$("#email").change(function(){
 
 			for (index = 0; index < emails.length; ++index) {

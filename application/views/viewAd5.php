@@ -41,6 +41,7 @@
 								<a href="#" id="p500">251-500</a><br/><br/>
 								<a href="#" id="p1000">501-1000</a><br/><br/>
 								<a href="#" id="pUp">10001-up</a><br /><br/>
+								Php<input type="text" />-Php<input type="text" /><a href="#" id="range">Go</a><br /><br/>
 								<a href="#" id="showAll">All</a><br /><br/>
 						</div>
 						<div class="panel">
@@ -76,11 +77,15 @@
 				        ?>
 			      		<div class="large-4 columns">
 								<div class= 'panel'>
-								<img src="<?php echo base_url(); ?><?php if($row['imagelink']!=''){ echo 'images/'.$row['imagelink'];} else{echo 'img/nophoto.jpg';}?>"style='height:200px;width:200px;'><br/>
+								<a href="<?php echo base_url()?>index.php/ads/view/<?php echo $row['adid'];?>"><img src="<?php echo base_url(); ?><?php if($row['imagelink']!=''){ echo 'images/'.$row['imagelink'];} else{echo 'img/nophoto.jpg';}?>"style='height:200px;width:200px;'></a><br/>
 								Title: <?php echo $row['title']?><br/><br/>
 								Owner: <a href="<?php echo base_url()."index.php/user/view/".$row['userid']; ?>"><?php echo $row['username']?></a><br/><br/>
 										<span class="date" style="display: none;"><?php echo $date1->diff(new DateTime($startDate))->d;?></span>
 								Price: <span class="price"><?php echo $row['price'] ?></span> <br/><br/>
+								<span>Posted On: <?php
+												$date = new DateTime($row['adinsertedon']);
+												echo $date->format('m-d-Y');
+											 ?></span><br/><br/>
 								<a href="<?php echo base_url()?>index.php/ads/view/<?php echo $row['adid'];?>">View Ad</a>
 								</div>
 						

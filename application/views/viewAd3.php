@@ -34,7 +34,7 @@
 					      </div>
 				      	</form>
 				    </div>
-					<div class="large-2 columns">
+					<div class="large-3 columns">
 						<div class="panel">
 							<h2>Price Range:</h2><br/>
 								<a href="#" id="p250">Php 0-250</a><br/><br/>
@@ -42,6 +42,7 @@
 								<a href="#" id="p1000">Php 501-1000</a><br/><br/>
 								<a href="#" id="pUp">Php 10001-up</a><br /><br/>
 								<a href="#" id="showAll">All</a><br /><br/>
+								<div style="float:left;">Php</div><input id="from" type="text" style="padding:0px;height:20px;width:50px;font-size:10px;margin:0px;float:left;"/><div style="float:left;"> &nbsp to &nbsp</div><input id="to" type="text" style="padding:0px;float:left;height:20px;width:50px;font-size:10px;margin:0px;"/><br/><br/><a href="#"><input id="rangefilter" type="submit" style="height:20px;width:45px;margin-left:50px;font-size:12px;"/></a><br/><br/><br/>
 						</div>
 						<div class="panel">
 							<h2>Date Range:</h2><br/>
@@ -52,7 +53,7 @@
 								<a href="#" id="showAll">All</a><br /><br/>
 						</div>
 					</div>
-					<div class="large-10 columns">
+					<div class="large-9 columns">
 					      	<h1>Ads:</h1>
 					      		<?php if($query->num_rows()==0):
 					      				echo form_open("index.php/ads/addToLookingFor");  
@@ -78,11 +79,16 @@
 				        ?>
 			      		<div class="large-4 columns">
 								<div class= 'panel'>
-								<img src="<?php echo base_url(); ?><?php if($row['imagelink']!=''){ echo 'images/'.$row['imagelink'];} else{echo 'img/nophoto.jpg';}?>"style='height:200px;width:200px;'><br/>
+								<a href="<?php echo base_url()?>index.php/ads/view/<?php echo $row['adid'];?>"><img src="<?php echo base_url(); ?><?php if($row['imagelink']!=''){ echo 'images/'.$row['imagelink'];} else{echo 'img/nophoto.jpg';}?>"style='height:200px;width:200px;'></a><br/>
 								Title: <?php echo $row['title']?><br/><br/>
 								Owner: <a href="<?php echo base_url()."index.php/user/view/".$row['userid']; ?>"><?php echo $row['username']?></a><br/><br/>
 										<span class="date" style="display: none;"><?php echo $date1->diff(new DateTime($startDate))->d;?></span>
 								Price: <span class="price"><?php echo $row['price'] ?></span> <br/><br/>
+								<span>Posted On: <?php
+												$date = new DateTime($row['adinsertedon']);
+												echo $date->format('m-d-Y');
+											 ?></span><br/><br/>
+							
 								<a href="<?php echo base_url()?>index.php/ads/view/<?php echo $row['adid'];?>">View Ad</a>
 								</div>
 						
@@ -143,6 +149,17 @@
 				});
 				$("span.price").each(function(){
 					if(Number($(this).text())>1000){
+						$(this).parent().show();
+					}
+				});
+			});
+			$("#rangefilter").click(function(){
+				
+				$("span.price").each(function(){
+					$(this).parent().hide();
+				});
+				$("span.price").each(function(){
+					if(Number($(this).text())>=Number($("#from").val()) && Number($("#to").val())>=Number($(this).text())){
 						$(this).parent().show();
 					}
 				});

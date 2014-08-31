@@ -59,7 +59,7 @@
     					?>
 					</div>
 					<div class="medium-4 columns">
-						<label>Day</label>
+						<label><span style="font-size:1px;">.</span></label>
 						<?php
 						$options = array();
 						for($i=1;$i<=31;$i++)
@@ -71,7 +71,7 @@
 						?>
 					</div>
 					<div class="medium-3 columns">
-						<label>Year</label>
+						<label><span style="font-size:1px;">.</span></label>
 						<?php
 						$option = array();
 						for($i=0;$i<=84;$i++)
@@ -86,10 +86,7 @@
     				</div>
     			</div>
 
-    				<div class="medium-4 columns">
-    					<label>Postal Code</label>
-    					<input type="text" name ="postalcode" value="<?php echo $row['postalcode']; ?>">
-    				</div>
+    				
     				
     			
     			

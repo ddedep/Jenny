@@ -26,14 +26,15 @@
 		    			</div>
 		    	
     				<div class="medium-4 columns">
-    					<label>Cellphone Number(+639XXXXXXXXX)<span style="color:red;font-size:20px;">*</span></label>
+    					<label>Cellphone Number(+639XXXXXXXXX)<span style="color:red;font-size:15px;">*</span></label>
     					<input type="text" name = "phonenumber" required>
     				</div>
  
     			
     				<div class="medium-4 columns">
-    					<label>Birthmonth<span style="color:red;font-size:20px;">*</span></label>
+    					<label>Birtdate<span style="color:red;font-size:15px;">*</span></label>
     					<select name="month">
+    						<option value="0">Month</option>
 							<option value="1">January</option>
 							<option value="2">February</option>
 							<option value="3">March</option>
@@ -49,28 +50,31 @@
 						</select>
 					</div>
 					<div class="medium-2 columns">
-						<label>Day<span style="color:red;font-size:20px;">*</span></label>
+						<label><span style="font-size:1px;">.</span></label>
+						
 						<?php
 						$options = array();
+						$options[0] = 'day';
 						for($i=1;$i<=31;$i++)
 						{
 							$options[''.$i] = $i;
 						}
 
-						echo form_dropdown('day', $options,'1');
+						echo form_dropdown('day', $options,'0');
 						?>
 					</div>
 					<div class="medium-2 columns">
-						<label>Year<span style="color:red;font-size:20px;">*</span></label>
+						<label><span style="font-size:1px;">*</span></label>
+						
 						<?php
 						$option = array();
-						for($i=0;$i<=84;$i++)
+						$option[0] = 'Year';
+						for($i=1;$i<=83;$i++)
 						{
-							$option[''.$i+1914] = $i+1914;
+							$option[''.$i+1913] = $i+1914;
 						}
-						$selected = array('1998');
 
-						echo form_dropdown('year', $option,'2000');
+						echo form_dropdown('year', $option,'0');
 						?>
     					
     				</div>
@@ -95,7 +99,7 @@
 
     			
     				<div class="large-6 columns">
-    				<label>Password(minimum 6 characters)<span style="color:red;font-size:20px;">*</span></label>
+    				<label>Password (minimum 6 characters with capital letter,small letter and special character)<span style="color:red;font-size:20px;">*</span></label>
     				<input id="pass" type="password" name="password" pattern="(?=^.{6,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" required>
     				</div>
     			
@@ -109,8 +113,10 @@
 						<input type="file" name="userfile" size="20" />
     				</div>
     				<div class="large-8 columns">
-    					<input type="checkbox" id='terms'/> I agree to the
-    					<a href="JavaScript:newPopup('<?php echo base_url();?>index.php/register/terms');" style="color:Blue;">Terms and Agreements</a>
+    				<input type="checkbox" id='terms' style="width:10px"> 
+    					<label for="terms">I agree to the
+    					<a href="JavaScript:newPopup('<?php echo base_url();?>index.php/register/terms');" style="color:Blue;">Terms and Agreements</a></label>
+    					
     				</div>
     				
     				<div class="large-8 columns">
