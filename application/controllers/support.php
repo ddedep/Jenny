@@ -43,10 +43,12 @@ class Support extends CI_Controller {
 		$supportID= $this->uri->segment(3);
 		$data['hide'] = FALSE;
 		$this->load->library('session');
+		if($this->session->userdata('logged_in')){
 		if($this->session->userdata('verified')==0) 
 		{
 			redirect('index.php/register/verify');
 		}
+	}
 		$userid = $this->session->userdata('userid');
 		$data['username']=$this->session->userdata('username');
 		$data['userid'] = $userid;

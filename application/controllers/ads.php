@@ -230,8 +230,7 @@ class Ads extends CI_Controller {
 			$data['message'] ="150 Points Deducted";
 			$query=$this->ads_model->getAd($adID);
 			$data['query'] = $query;
-			$this->load->view('header',$data);
-			$this->load->view('repost',$data);
+			redirect('index.php/ads/view/'.$adID);
 		}
 	}
 	public function featureThis()
@@ -266,6 +265,7 @@ class Ads extends CI_Controller {
 				$data['message'] ="300 Points Deducted";
 				$query=$this->ads_model->getAd($adID);
 				$data['query'] = $query;
+				redirect('index.php/ads/view/'.$adID);
 			}
 			else
 			{
@@ -308,8 +308,7 @@ class Ads extends CI_Controller {
 			$data['message'] ="120 Points Deducted";
 			$query=$this->ads_model->getAd($adID);
 			$data['query'] = $query;
-			$this->load->view('header',$data);
-			$this->load->view('extend',$data);
+			redirect("index.php/ads/view/".$adID);
 		}
     }
 	
@@ -367,7 +366,14 @@ class Ads extends CI_Controller {
 			$data['search'] =$search;
 			$data['query']= $this->ads_model->searchAds($search,$province,$category,$region);
 			if($this->session->userdata('logged_in')){
-				$this->ads_model->addSearch($data['userid'],$search);
+				$searches=$this->ads_model->getSearches($this->session->userdata('userid'));
+				$flag=1;
+				foreach ($searches->result_array() as $row) {
+					if($search==$row['searchbody']) $flag=0;
+				}
+				if($flag==1){
+					$this->ads_model->addSearch($data['userid'],$search);
+				}
 			}
 		}
 		else
@@ -382,8 +388,23 @@ class Ads extends CI_Controller {
 	}
 	public function addToLookingFor()
 	{
-		$userid = $this->session->userdata('userid');
 		$body = $this->input->post('search');
+		$this->session->set_userdata('lookingfor',$body);
+		$this->session->set_userdata('look','true');
+		if(!$this->session->userdata('logged_in'))
+		{
+			redirect('index.php/home/login');
+		}
+		$userid = $this->session->userdata('userid');
+		
+		$wishes=$this->ads_model->getWishes($userid);
+		foreach ($wishes->result_array() as $row) {
+			if($row['body']==$body)
+			{
+				redirect('index.php/ads/viewWish');
+				break;
+			}
+		}
 		$this->ads_model->addLookingFor($userid,$body);
 		redirect('index.php/ads/viewWish');
 	}
@@ -413,8 +434,8 @@ class Ads extends CI_Controller {
 				$data['username']=$this->session->userdata('username');
 				$query=$this->ads_model->getAd($adID);
 				$data['query'] =$query;
-				$this->form_validation->set_rules('title','title', 'required|xss_clean');
-				$this->form_validation->set_rules('description','description', 'required|xss_clean');
+				$this->form_validation->set_rules('title','title', 'required|xss_clean|max_length[23]');
+				$this->form_validation->set_rules('description','description', 'required|xss_clean|max_length[23]');
 				$this->form_validation->set_rules('price','price', 'required|xss_clean');
 				$categoryid=$this->input->post('category');
 				$cityid=$this->input->post('city');
@@ -458,7 +479,7 @@ class Ads extends CI_Controller {
 					{
 						$error = array('error' => $this->upload->display_errors());
 
-						$image = "default.jpg";
+						$image = "nophoto.jpg";
 						$this->ads_model->EditAd($adID,$title,$userid,$duration,$price,$video,$image,$body,$categoryid,$cityid);
 						$data['message'] ="Ad not Edited! ".$error['error'];
 						$data['username']=$this->session->userdata('username');
@@ -523,8 +544,8 @@ class Ads extends CI_Controller {
 			$data['username']=$this->session->userdata('username');
 			$data['search'] = $this->ads_model->getSearches($this->session->userdata('userid'));
 			$data['adsList'] = $this->ads_model->getAdsOfUser($this->session->userdata('userid'));
-			$this->form_validation->set_rules('title','title', 'required|xss_clean');
-			$this->form_validation->set_rules('description','description', 'required|xss_clean');
+			$this->form_validation->set_rules('title','title', 'required|max_length[23]|xss_clean');
+			$this->form_validation->set_rules('description','description', 'required|xss_clean|max_length[23]');
 			$this->form_validation->set_rules('price','price', 'required|xss_clean');
 			$categoryid=$this->input->post('category');
 			$cityid=$this->input->post('provinces');

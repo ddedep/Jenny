@@ -1,5 +1,5 @@
 			<div class="row">
- 			<div class="large-8 columns">
+ 			<div class="large-12 columns">
  				<?php if($this->session->userdata('logged_in')): ?>
 		      <a href="<?php echo base_url()?>index.php/support/createSupport"><button>Create Thread</button></a>
 		     	<?php endif ?>
@@ -11,9 +11,14 @@
 							On: <?php echo $row['insertedon']; ?><br/><br/>
 						</div><br />
 			<?php endforeach; ?>
+			<?php if(!$this->session->userdata('logged_in')): ?>
+				
+
+				<a href="<?php echo base_url();?>index.php/home/login/<?php echo $row['support_id']; ?>"><button>Comment</button></a>
+			<?php endif;?>
 			<?php if($this->session->userdata('logged_in')): ?>
 			<label>Comment</label>
-			<textarea id='comment'></textarea>
+			<textarea id='comment' style="height:100px;"></textarea><br/>
 			<button id='postComment'>Post</button>
 			<?php endif; ?>
 			<div class="row" id='commentArea'>

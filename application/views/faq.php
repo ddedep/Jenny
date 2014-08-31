@@ -1,9 +1,9 @@
 
 			    <div class="row">
-			    	<h1>Frequently Asked Questions</h1>
+			    	<h1 style="font-size:30px;">Frequently Asked Questions</h1>
 			    <div class="large-12 column">
 				<div class="large-8 column"style="margin-left:5%;">
-			    	
+			    	<span style="font-size:16px;">
 			    		<h3>How to register?</h3><br/>
 						&nbsp;1.	Go to “Sign In or Register” at the top of the OneStopDeal page. <br/>
 						&nbsp;2.	Click “Register” button.<br/>
@@ -40,6 +40,7 @@
 						&nbsp;If you find a seller that is selling fake items or determined that an ad is using fraudulent identity, please report the ad to Customer Service so we can take action and investigate the concern.<br/><br/>
 						<h3>How can I upload a video?</h3>
 						&nbsp;Just enter the video link in the field and it would automatically save on your ad.<br/><br/>
+						</span>
 					</div>
 				</div>
 			    </div>

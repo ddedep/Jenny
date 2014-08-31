@@ -19,8 +19,14 @@
 					echo ' src="//www.youtube.com/embed/'.$row['videolink'].'"" frameborder="0">';
 					echo '</iframe><br/>';
 				}
-				echo "<a href='<?php echo base_url()?>index.php/ads/view/".$row['adid']."><img src=".base_url()."images/".$row['imagelink']." style='height:200px;width:200px;'></a><br/>";
-				echo "Images:<br/>";
+				echo "Images:<br/><br/><br/>";
+				if($row['imagelink']=="")
+				{
+					echo "<a href='".base_url()."index.php/ads/view/".$row['adid']."'><img src='".base_url()."img/nophoto.jpg' style='height:200px;width:200px;'></a><br/>";
+				}
+				else
+				echo "<a href='".base_url()."index.php/ads/view/".$row['adid']."'><img src='".base_url()."images/".$row['imagelink']."' style='height:200px;width:200px;'></img></a><br/>";
+				
 				foreach ($images->result_array() as $rowk) {
 					echo "<img src=".base_url()."images/".$rowk['imagelink']." style='height:200px;width:200px;'>";
 				}
@@ -49,15 +55,15 @@
 				endforeach;
 			?>
 			
-			<?php if($row['owner']==$userid && $row['isexpired']!=1): ?>
+			<?php if($row['owner']==$userid && $row['isexpired']!=1 && $row['issold']!=1  && $row['isfeatured']==0):?>
 			<a href="<?php echo base_url();?>index.php/ads/feature/<?php echo $row['adid'];?>"><button>Feature This Ad!</button></a>
 			<?php endif; ?>
            
-            <?php if($row['owner']==$userid && $row['isexpired']!=1): ?>
+            <?php if($row['owner']==$userid && $row['isexpired']!=1 && $row['issold']!=1): ?>
 			<a href="<?php echo base_url();?>index.php/ads/extend/<?php echo $row['adid'];?>"><button>Extend Duration</button></a>
 			<?php endif; ?>
-            <?php if($row['owner']==$userid && $row['isexpired']==1): ?>
-			<a href="<?php echo base_url();?>index.php/ads/repost/<?php echo $row['adid'];?>"><button>Repost</button></a>
+            <?php if($row['owner']==$userid && ($row['isexpired']==1 || $row['issold']==1)): ?>
+			<a href="<?php echo base_url();?>index.php/ads/repost/<?php echo $row['adid'];?>"><button>Repost</button></a>&nbsp &nbsp &nbsp &nbsp
 			<?php endif; ?>
 			<?php $isSold = $row['issold'] ?>
 			
@@ -92,7 +98,7 @@
 				endif;
 			?>
 			<?php
-				if($row['owner']==$userid):
+				if($row['owner']==$userid && $row['issold']!=1):
 			?>
 				<a href="<?php echo base_url();?>index.php/ads/edit/<?php echo $row['adid'];?>"><button>Edit</button></a>
 			<?php
@@ -100,7 +106,7 @@
 			?>
 
 			<?php
-				if($row['owner']==$userid):
+				if($row['owner']==$userid && $row['issold']!=1):
 				echo form_open('index.php/ads/delete');
 			?>
 				<input name ="owner" type="hidden" value="<?php echo $row['adid'];?>" />
@@ -111,7 +117,7 @@
 			?>
 			<?php if($this->session->userdata('logged_in')): ?>
 			<label>Comment</label>
-			<textarea id='comment' style="height:150px;"></textarea><br/>
+			<textarea id='comment' style="height:150px;" required></textarea><br/>
 			<button id='postComment'>Post</button>
 			<?php endif; ?>
 			<?php if(!$this->session->userdata('logged_in')): ?>
@@ -160,6 +166,12 @@
 		//	var time = $.now();
 			$('#postComment').click(function(){
 			//	alert(body);
+			if($('#comment').val() == '')
+			{
+			      alert('Comment can not be left blank!');
+			 }
+			 else
+			 {
 			   $.post( "<?php echo base_url();?>index.php/ads/comment", {adid:<?php echo $row['adid'];?>, body:$('#comment').val()} ).done(function( data ) {
 				//alert( "Data Loaded: " + data );
 				if(data=='added') alert('oheayh');
@@ -170,6 +182,7 @@
 					$('#comment').attr('value','');
 				}
 				});
+			}
 		});
 		</script>
 		<script src="<?php echo base_url(); ?>js/vendor/jquery.js"></script>

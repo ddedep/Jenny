@@ -47,9 +47,9 @@
 					      </div>
 				</div>
 				<div class="row">
-					<div class="small-6 columns">
+					<div class="small-3 columns">
 						<label>Ad Title<span style="color:red;font-size:20px;">*</span></label>
-						<input type="text" name="title" id="title" />
+						<input type="text" name="title" id="title" maxlength="30" />
 					</div>
 				</div>
 				<div class="row">

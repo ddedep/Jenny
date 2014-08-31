@@ -39,9 +39,9 @@
 		}
 	    public function repostAd($adID)
 		{
-			$data = array('duration'=>30,'isexpired'=>0);
+			$data = array('duration'=>30,'isexpired'=>0,'issold'=>0);
 			$this->db->where('adid', $adID);
-            $this->db->set('insertedon','NOW()',FALSE);
+            $this->db->set('adinsertedon','NOW()',FALSE);
 			$this->db->update('ads', $data);
 		}
 		public function featureAd($adID)
@@ -103,7 +103,6 @@
 		{	
 			$data = array('title'=>$title,
 							'owner'=>$userid,
-							'isFeatured'=>0,
 							'duration'=>$duration,
 							'price' => $price,
 							'videolink' => $video,
@@ -156,6 +155,7 @@
    			 $this->db->join('users', 'users.userid = ads.owner');
     		 $this->db->where('subscriber',$userid);
     		 $this->db->where('ads.isExpired',0);
+    		 $this->db->where('ads.isSold',0);
             return $this->db->get();
 		}
 		public function getsubscribedUsers($userid)
@@ -187,6 +187,7 @@
 			$this->db->select('*'); 
 			$this->db->from('lookingfor');
 			$this->db->where('owner',$userid);
+			$this->db->order_by('lookingid', 'desc');
 			return $this->db->get();
 		}
 

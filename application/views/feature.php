@@ -1,21 +1,5 @@
-			<div class="large-2 column">
-				<?php if(!$hide):?>
-					<div class="panel">
-						<h5>Menu</h5>
-						<a href="<?php echo base_url() ?>index.php/ads/view">My Ads</a> <br/><br/>
-						<a href="<?php echo base_url() ?>index.php/ads/viewExpired">Expired Ads</a> <br/><br/>
-						<a href="<?php echo base_url() ?>index.php/ads/viewSold">Sold Ads</a> <br/><br/>
-						<a href="<?php echo base_url() ?>index.php/user/userSubscription">Subscription</a> <br/><br/>
-						<a href="<?php echo base_url() ?>index.php/user/subscription">Subscribed Ads</a> <br/><br/>
-						<a href="<?php echo base_url() ?>index.php/ads/viewFavorites">My Favorites</a> <br/><br/>
-						<a href="<?php echo base_url() ?>index.php/globe/charge">Buy Points</a> <br/><br/>
-						<a href="<?php echo base_url() ?>index.php/ads/viewWish">Looking for</a> <br/><br/>
-						<a href="<?php echo base_url() ?>index.php/messages">Inbox</a> <br/><br/>
-						<a href="<?php echo base_url() ?>index.php/messages/sent">Sent</a> <br/><br/>
-					</div>
-				<?php endif;?>
-				</div>
-  		<div class="large-8 column">
+			<div class="row">
+  		<div class="large-6 column" style="margin-left: 30%;">
     	<?php
     	echo $message;
     	foreach($query->result_array() as $row):
@@ -30,7 +14,14 @@
 				echo ' src="//www.youtube.com/embed/'.$row['videolink'].'"" frameborder="0">';
 				echo '</iframe><br/>';
 			}
+			if($row['imagelink']!="")
+			{
 			echo "<img src=".base_url()."images/".$row['imagelink']." style='height:200px;width:200px;'><br/>";
+			}
+			else
+			{
+				echo "<img src='".base_url()."img/nophoto.jpg' style='height:200px;width:200px;'><br/>";
+			}
 			echo "Title: ".$row['title']."<br/><br/>";
 			echo "Duration: ".$row['duration']." Days<br/><br/>";
 			echo "Price: ".$row['price']."<br/><br/>";
@@ -44,7 +35,7 @@
 		<?php 
 		if($row['owner']==$userid && $row['isfeatured']==0){
 
-			echo "<button id='Feature' type='submit'  onclick=\"return confirm('Are you sure?')\">Feature Ad</button>";
+			echo "<button id='Feature' type='submit'  onclick=\"return confirm('Are you sure?(costs 300 points)')\">Feature Ad</button>";
 		}
 		else if($row['isfeatured']==1)
 		{
@@ -53,6 +44,7 @@
 		else redirect('index.php'); 
 		?>
 		</form>
+		</div>
 		<div class = "row">
 		    	<div class="large-12 columns">
 			    	<div class="panel">

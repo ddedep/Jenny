@@ -27,9 +27,16 @@
 								}
 								?>
 									<?php if(!$own){
-										echo "<a href='".base_url()."index.php/messages/compose/".$profile['userid']."'><button>Message Me!</button></a>";
+										if($this->session->userdata('logged_in'))
+										{
+											echo "<a href='".base_url()."index.php/messages/compose/".$profile['userid']."'><button>Message Me!</button></a>";
+										}
+										else
+										{
+											echo "<a href='".base_url()."index.php/messages/compose/".$profile['userid']."'><button>Message Me!</button></a>";
+										}
 									} ?>
-									<?php if(!$subscribed && !$own):
+									<?php if(!$subscribed && !$own && $this->session->userdata('logged_in')):
 										echo form_open_multipart('index.php/ads/subscribe');
 									?>
 									<input type="hidden" name = 'userid' value ='<?php echo $profile['userid'];?>'/>

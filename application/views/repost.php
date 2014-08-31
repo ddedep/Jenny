@@ -1,33 +1,38 @@
-
+				<div class="row">
+					<div class="large-6 columns" style='margin-left: 30%;'>
+					<h1><?php echo $message;?></h1>
 		        	<?php
-		        	echo $message;
+		        		
 		        	foreach($query->result_array() as $row):
 					
-						echo "<h1>".$row['title']."</h1>";
 					?>
 					<?php
+					if($row['videolink']!=""){
 						echo "<h4>Description</h4>";
 						echo "<div class= 'panel'>";
 						echo '<iframe width="420" height="345"';
 						echo ' src="//www.youtube.com/embed/'.$row['videolink'].'"" frameborder="0">';
-						echo '</iframe><br/>';
+						echo '</iframe><br/>';}
 						echo "<img src=".base_url()."images/".$row['imagelink']." style='height:200px;width:200px;'><br/>";
+						if($row['imagelink'])
 						echo "Title: ".$row['title']."<br/><br/>";
 						echo "Duration: ".$row['duration']." Days<br/><br/>";
 						echo "Price: ".$row['price']."<br/><br/>";
 						echo "About: ".$row['body']."<br/><br/>";
 						echo "Total Views: ".$row['view']."<br/><br/>";
-						echo "</div>";
+						
 						
 					?>
 					<?php echo form_open('index.php/ads/repostThis'); ?>
 					<input name ='duration'  type='hidden' value=<?php echo $row['duration'];?> />
                     <input name ='adid'      type="hidden" value=<?php echo $row['adid']; ?> />
 					<?php 
-						echo "<button id='Feature' type='submit' onclick=\"return confirm('Are you sure?')\">Repost(costs 150 points)</button>";
+						echo "<button id='Feature' type='submit' onclick=\"return confirm('Are you sure?(costs 150 points)')\">Repost</button>";
 					endforeach;
                     ?>
 					</form>
+					</div>
+					</div>
 					<div class = "row">
 		    	<div class="large-12 columns">
 			    	<div class="panel">

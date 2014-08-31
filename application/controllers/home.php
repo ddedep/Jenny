@@ -102,6 +102,8 @@ class Home extends CI_Controller {
 	}
 	public function login()
 	{
+		$supportID= $this->uri->segment(3);
+		$data['forumid'] = $supportID;
 		$this->load->library('form_validation');
 		$this->load->library('session');
 		$this->form_validation->set_rules('username','username', 'required|xss_clean');
@@ -141,8 +143,45 @@ class Home extends CI_Controller {
 			                'verified'	=> $row['isVerified'],
 			                'points'	=> $row['points'],
 			       );
-					$this->session->set_userdata($newdata);
-					redirect('/index.php/user');
+					if($this->session->userdata('look')=='true')
+					{
+						$this->session->set_userdata($newdata);
+						$this->session->unset_userdata('look');
+						$userid = $newdata['userid'];
+		
+						$wishes=$this->ads_model->getWishes($userid);
+						foreach ($wishes->result_array() as $row) {
+							if($row['body']==$this->session->userdata('lookingfor'))
+							{
+								redirect('index.php/ads/viewWish');
+								break;
+							}
+						}
+						$this->ads_model->addLookingFor($newdata['userid'],$this->session->userdata('lookingfor'));
+						redirect('/index.php/ads/viewWish');
+					}
+					else if($this->session->userdata('message')>0)
+					{
+						$this->session->set_userdata($newdata);
+						redirect('index.php/messages/compose/'.$this->session->userdata('message'));
+					}
+					else
+					{
+						
+
+						if($this->input->post('forum')>0)
+						{
+							$this->session->set_userdata($newdata);
+							redirect('index.php/support/view/'.$this->input->post('forum'));
+						}
+						else{
+							$this->session->set_userdata($newdata);
+							redirect('/index.php/user');
+						}
+					}
+					
+
+					
 				}
 				else
 				{

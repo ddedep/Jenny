@@ -17,7 +17,7 @@
 					</div>
 				<?php endif;?>
 				</div>
-			<div class="large-9 column">
+			<div class="large-10 column">
 	        	<h1>Subscribed to:</h1>
 	      
 	        	<?php
@@ -47,6 +47,18 @@
 			</div>
 			<div class = "row">
 		    	<div class="large-12 columns">
+		    	<br />
+				<br />
+				<br />
+				<br />
+				<br />
+				<br />
+				<br />
+				<br />
+				<br />
+				<br />
+				<br />
+				<br />
 			    	<div class="panel">
 			    		<a href="<?php echo base_url();?>index.php/faq/about#about">About</a>&nbsp;|&nbsp;<a href="<?php echo base_url();?>index.php/faq/about#terms">Terms and Conditions</a>&nbsp;|&nbsp;<a href="<?php echo base_url();?>index.php/faq/about#terms">Privacy Policy</a>&nbsp;|&nbsp;<a href="<?php echo base_url();?>index.php/home/contactus">Contact Us</a>&nbsp;|&nbsp;<a href="<?php echo base_url();?>index.php/support">Forum</a>&nbsp;|&nbsp;<a href="<?php echo base_url();?>index.php/faq">FAQ</a>&nbsp;|&nbsp;Copyright 2014 onestopdeal.com.ph
 			    	</div>

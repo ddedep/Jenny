@@ -1,7 +1,7 @@
 <html>
 <body>
-
-<b>ABOUT</b>
+<span style="font-size:30px;">
+<bstyle="font-size:30px;">ABOUT</b>
 
 <br><br>OneStopDeal.com is a website customized for Filipinos to buy and sell online. All ads are posted by our members and we do not involve ourselves in transactions between buyers and sellers.
 
@@ -65,6 +65,6 @@ Members have the option to change their own personal information at any given ti
 
 If any problems might arise, we have our customer support tab in which the members may submit their concerns. <br><br>
 
-
+</span>
 </body>
 </html>

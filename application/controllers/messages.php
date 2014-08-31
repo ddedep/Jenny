@@ -93,8 +93,14 @@ class Messages extends CI_Controller {
 
     public function compose()
     {
+    	$userid= $this->uri->segment(3);
     	$data['users'] = $this->User_model->getAllUsers();
     	$data['hide'] = FALSE;
+    	if(!$this->session->userdata('logged_in'))
+    	{
+    		$this->session->set_userdata('message',$userid);
+    		redirect('index.php/home/login');
+    	}
     	$this->load->library('session');
 		if($this->session->userdata('verified')==0) 
 		{
@@ -102,7 +108,7 @@ class Messages extends CI_Controller {
 		}
     	$this->load->library('form_validation');
 		$this->load->library('session');
-    	$userid= $this->uri->segment(3);
+    	
     	$data['query'] = $this->User_model->getAccount($userid);
     	$data['Message'] = "";
     	$this->form_validation->set_rules('message','message', 'required|xss_clean');

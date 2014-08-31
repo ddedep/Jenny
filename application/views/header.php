@@ -15,7 +15,12 @@
 		<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
 		 <script src="<?php echo base_url(); ?>js/vendor/modernizr.js"></script>
 		 
-	    
+	    <style type="text/css">
+	    	 div.titles {
+			    overflow: visible;
+			}
+
+	    </style>
 	</head>
 
 	<body>
@@ -28,13 +33,16 @@
 		        	<?php if($username!=NULL) echo "<a href=".base_url()."index.php/user>"."Welcome ".$username."!&nbsp;	&nbsp;</a>"; 
 		        	else{
 		        		echo '<a href="';echo base_url().'index.php/home/login">'."Sign in or Register</a>&nbsp;	&nbsp";
-		        		}  ?>|&nbsp;	&nbsp;<a href="<?php echo base_url();?>index.php/ads">Post an Ad&nbsp;	&nbsp;</a>|
+		        		}  ?>|&nbsp;	&nbsp;<a href="<?php echo base_url();?>index.php/ads">Post an Ad&nbsp;	&nbsp;</a>
+		        	<span style="margin-left:500px;">
+		        	
 		        	<?php	
 			        	if($username==NULL) echo ""; 
 			        	else{
-			        		echo '<a href="';echo base_url().'index.php/logout">'."logout</a>&nbsp;	&nbsp";
+			        		echo '<a href="';echo base_url().'index.php/logout">'."<img src='".base_url()."img/logout.png' style='height:50px;' />Logout</a>&nbsp;	&nbsp";
 			        		}
 		        	?>
+		        	</span>
 		        </div>
 		      </div>
 		    </div>

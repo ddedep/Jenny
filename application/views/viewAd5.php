@@ -34,18 +34,18 @@
 					      </div>
 				      	</form>
 				    </div>
-					<div class="large-2 columns">
+					<div class="large-3 columns">
 						<div class="panel">
-							<h2>Price Range:<h2><br/>
-								<a href="#" id="p250">0-250</a><br/><br/>
-								<a href="#" id="p500">251-500</a><br/><br/>
-								<a href="#" id="p1000">501-1000</a><br/><br/>
-								<a href="#" id="pUp">10001-up</a><br /><br/>
-								Php<input type="text" />-Php<input type="text" /><a href="#" id="range">Go</a><br /><br/>
+							<h2>Price Range:</h2><br/>
+								<a href="#" id="p250">Php 0-250</a><br/><br/>
+								<a href="#" id="p500">Php 251-500</a><br/><br/>
+								<a href="#" id="p1000">Php 501-1000</a><br/><br/>
+								<a href="#" id="pUp">Php 10001-up</a><br /><br/>
 								<a href="#" id="showAll">All</a><br /><br/>
+								<div style="float:left;">Php</div><input id="from" type="text" style="padding:0px;height:20px;width:50px;font-size:10px;margin:0px;float:left;"/><div style="float:left;"> &nbsp to &nbsp</div><input id="to" type="text" style="padding:0px;float:left;height:20px;width:50px;font-size:10px;margin:0px;"/><br/><br/><a href="#"><input id="rangefilter" type="submit" style="height:20px;width:45px;margin-left:50px;font-size:12px;"/></a><br/><br/><br/>
 						</div>
 						<div class="panel">
-							<h2>Date Range:<h2><br/>
+							<h2>Date Range:</h2><br/>
 								<a href="#" id="today">Today</a><br/><br/>
 								<a href="#" id="days">3 Days</a><br/><br/>
 								<a href="#" id="week">Week</a><br/><br/>
@@ -53,7 +53,7 @@
 								<a href="#" id="showAll">All</a><br /><br/>
 						</div>
 					</div>
-					<div class="large-10 columns">
+					<div class="large-9 columns">
 					      	<h1>Ads:</h1>
 					      		<?php if($query->num_rows()==0):
 					      				echo form_open("index.php/ads/addToLookingFor");  
@@ -146,6 +146,17 @@
 				});
 				$("span.price").each(function(){
 					if(Number($(this).text())>1000){
+						$(this).parent().show();
+					}
+				});
+			});
+			$("#rangefilter").click(function(){
+				
+				$("span.price").each(function(){
+					$(this).parent().hide();
+				});
+				$("span.price").each(function(){
+					if(Number($(this).text())>=Number($("#from").val()) && Number($("#to").val())>=Number($(this).text())){
 						$(this).parent().show();
 					}
 				});

@@ -27,7 +27,7 @@
 					<input name ='duration'  type='hidden' value=<?php echo $row['duration'];?> />
                     <input name ='adid'      type="hidden" value=<?php echo $row['adid']; ?> />
 					<?php 
-						echo "<button id='Feature' type='submit' onclick=\"return confirm('Are you sure?')\">Extend Ad Duration(costs 120 points)</button>";
+						echo "<button id='Feature' type='submit' onclick=\"return confirm('Are you sure?(costs 120 points)')\">Extend Ad Duration</button>";
 					endforeach;
                     ?>
 					</form>

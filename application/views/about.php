@@ -1,11 +1,11 @@
 
 			    <div class="row">
-					<div class="large-8 column">
-			    	<a name="about"><h1>About</h1></a>
+					<div class="large-8 column"><span style="font-size:16px;">
+			    	<a name="about"><h1 style="font-size:30px;">About</h1></a>
 					OneStopDeal.com is a website customized for Filipinos to buy and sell online. All ads are posted by <br/>our members and we do not involve ourselves in transactions between buyers and sellers. <br/><br/>
 					Membership in, and/or usage of, OneStopDeal.com is voluntary. Using and accessing our site means <br/>that you have read, understood and agreed to all the rules and regulations set by MVY Buy & Sell.<br/><br/>
 
-					<a name="rules"><h1>General Rules</h1></a>
+					<a name="rules"><h1 style="font-size:30px;">General Rules</h1></a>
 					OneStopDeal.com is a buy and sell website that serves as a channel to both buyers and sellers to find<br/> and make their own deal. This is a community-based system that allows users to control their account<br/> and moderate as well the post of other members. Forums for different issues are available for all<br/> account owners in order to alert other users for dealers who are not trustworthy or they think is in<br/> violation of any of the rules and policies set by the OneStopDeal.com administrators.<br/><br/> 
 					Membership registration in OneStopDeal.com is not forced. All the members of the website<br/> voluntarily created their own accounts and therefor it means that they have read, understood and<br/> agreed to the rules and policies of the website including the all amendments, additions, revisions, etc.,<br/> which the administrators can modify anytime.<br/><br/> 
 					OneStopDeal.com is an open to all website and promotes safe advertising. In order to achieve and<br/> sustain this goal of the website, all the information to be specified in the website must follow the rules<br/> below. OneStopDeal.com has the right to suspend or delete any accounts, advertisements, forum,<br/> comments, etc., that would violate any of these conditions:<br/><br/> 
@@ -17,7 +17,7 @@
 					* No reference and at the same time no replicas of an original item protected by copyright or any form of ownership is allowed. <br/>
 					Note: Anything that the OneStopDeal.com administrators consider as violation can lead to rightful punishments.<br/><br/><br/>
 
-					<a name="terms"><h1>Terms of Use</h1></a>
+					<a name="terms"><h1 style="font-size:30px;">Terms of Use</h1></a>
 					<br /><br />1.	Acceptance of Terms of Use and Agreement
 					Using and accessing OneStopDeal.com (“our website”) means that you have read, understood and agreed to follow these Terms of Use. Terms of Use may change time to time with or without prior notice to its users.
 
@@ -36,7 +36,7 @@
 					<br /><br /><a name="disclaimer">5. Disclaimer</a>
 					<br />OneStopDeal.com takes no responsibility from any consequence due to the actions, or lack of actions, you have done using our website’s services. Any content you provide is at your own risk. We make no warranty that no part of our system will be virus-free, uninterrupted, timely, secure, accurate or reliable.
 
-					<h1>PRIVACY POLICY</h1>
+					<h1 style="font-size:30px;">Privacy Policy</h1>
 					<br><br>OneStopDeal.com respects each individual’s right to personal privacy.	 
 					<br><br>OneStopDeal.com collects information through our website. We mainly collect our visitor’s name and e-mail address. We collect other information mainly from our registration forms.  All information collected is not mandatory. 
 					<br><br>Information collected by OneStopDeal.com will be used for the purpose of getting in touch with the members. These involved sending notifications about his ads.
@@ -44,7 +44,7 @@
 					<br><br>Members have the option to change their own personal information at any given time. 
 					<br><br>If any problems might arise, we have our customer support tab in which the members may submit their concerns. <br><br>
 					</div>
-
+					</span>
 			    </div>
 			    <div class = "row">
 		    	<div class="large-12 columns">

@@ -12,7 +12,7 @@
 				    	} 
 				    	?>
 		    		</div>
-		    	<!--	<div class="panel">
+		    		<div class="panel">
 		    			<label>Categories:</label><br/>
 				    	<?php 
 				    	$count=0;
@@ -20,12 +20,12 @@
 				    		echo "<a href='".base_url()."index.php/ads/seachByCat/".$row['categoryid']."''>".$row['categoryname']."</a><br/><br/>";
 				    	} 
 				    	?>
-		    		</div>-->
+		    		</div>
 		    		
 		   	</div>
 		   
 		   	
-		    <div class="row">
+		    <div class="large-10 columns">
 			    <!-- Search -->
 			   	<div class="row">
 			   		<div class="large-10 column">
@@ -83,7 +83,7 @@
 												margin:0 auto;
 												background:transparent url(<?php echo base_url()."images/".$row['imagelink']; ?>) no-repeat center center;">
 										</div></a>
-										<h3><?php echo $row['title']; ?></h3>
+										<div class="titles"><h3><?php echo $row['title']; ?></h3></div>
 										<h4>
 
 											<span>Price:<?php echo $row['price'];?></span>
@@ -124,11 +124,11 @@
 										background:transparent url(<?php echo base_url()."images/".$top[$i]['imagelink']; ?>) no-repeat center center;">
 							</div></a>
 							<div class="ca-item">
-								<h4 style="font-weight:bold;"><?php  
+								<div class="titles"><h4 style="font-weight:bold;"><?php  
 									
 									echo $top[$i]['title']; 
 								?>
-								</h4>
+								</h4></div>
 								<span>Price:Php <?php echo $top[$i]['price'];?></span><br/>
 								<span>By:<a href="<?php echo base_url();?>index.php/user/view/<?php echo $top[$i]['userid'];?>" style="color:blue;"><?php echo $top[$i]['username'];?></a></span><br/>
 								<span>Posted On: <?php
@@ -173,11 +173,11 @@
 							</div></a>
 		    				
 							<div class="ca-item">
-								<h4 style="font-weight:bold;"><?php  
+								<div class="titles"><h4 style="font-weight:bold;"><?php  
 									
 									echo $rec[$i]['title']; 
 								?>
-								</h4>
+								</h4></div>
 								<span>Price:Php <?php echo $rec[$i]['price'];?></span><br/>
 								<span>By:<a href="<?php echo base_url();?>index.php/user/view/<?php echo $rec[$i]['userid'];?>" style="color:blue;"><?php echo $rec[$i]['username'];?></a></span><br/>
 								<span>Posted On: <?php

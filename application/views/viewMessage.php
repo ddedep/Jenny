@@ -19,7 +19,7 @@
 				<div class="large-8 column">
 					<?php foreach ($query->result_array() as $row): ?>
 						<div class="panel">
-						From: <?php echo $row['username']; ?> <br/>
+						From: <a href="<?php echo base_url();?>index.php/user/view/<?php echo $row['userid']; ?>"><?php echo $row['username']; ?></a> <br/>
 						Message: <?php echo $row['body']; ?> <br/>
 						<?php echo $row['senton']; ?><br/><br/>
 						<a href="<?php echo base_url();?>index.php/messages/compose/<?php echo $row['userid']; ?>">Reply</a>
@@ -35,6 +35,18 @@
 		</div>
 		<div class = "row">
 		    	<div class="large-12 columns">
+		    	<br />
+				<br />
+				<br />
+				<br />
+				<br />
+				<br />
+				<br />
+				<br />
+				<br />
+				<br />
+				<br />
+				<br />
 			    	<div class="panel">
 			    		<a href="<?php echo base_url();?>index.php/faq/about#about">About</a>&nbsp;|&nbsp;<a href="<?php echo base_url();?>index.php/faq/about#terms">Terms and Conditions</a>&nbsp;|&nbsp;<a href="<?php echo base_url();?>index.php/faq/about#terms">Privacy Policy</a>&nbsp;|&nbsp;<a href="<?php echo base_url();?>index.php/home/contactus">Contact Us</a>&nbsp;|&nbsp;<a href="<?php echo base_url();?>index.php/support">Forum</a>&nbsp;|&nbsp;<a href="<?php echo base_url();?>index.php/faq">FAQ</a>&nbsp;|&nbsp;Copyright 2014 onestopdeal.com.ph
 			    	</div>
