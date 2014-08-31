@@ -58,7 +58,7 @@
 					      		<?php if($query->num_rows()==0):
 					      				echo form_open("index.php/ads/addToLookingFor");  
 					      		 ?>
-		      		 		<div class="panel"><span style="font-size:30px;margin-left:40%"><img src="<?php echo base_url(); ?>img/Warning_icon.svg"  style="height:51px;" />No ads for <span style="color:red"><?php echo $search; ?></span> yet</span></div> <br/>
+		      		 		<div class="panel"><span style="font-size:30px;margin-left:40%"><img src="<?php echo base_url(); ?>images/Warning_sign.png"  style="height:51px;" />No ads for <span style="color:red"><?php echo $search; ?></span> yet</span></div> <br/>
 		      		 		<input type="hidden" name="search" value="<?php echo $search;?>">
 		      				<div style="margin-left:40%"><button type="submit">Add To Looking For</button></div>
 		      			</form>
