@@ -435,7 +435,7 @@ class Ads extends CI_Controller {
 				$query=$this->ads_model->getAd($adID);
 				$data['query'] =$query;
 				$this->form_validation->set_rules('title','title', 'required|xss_clean|max_length[23]');
-				$this->form_validation->set_rules('description','description', 'required|xss_clean|max_length[23]');
+				$this->form_validation->set_rules('description','description', 'required|xss_clean');
 				$this->form_validation->set_rules('price','price', 'required|xss_clean');
 				$categoryid=$this->input->post('category');
 				$cityid=$this->input->post('city');
@@ -545,7 +545,7 @@ class Ads extends CI_Controller {
 			$data['search'] = $this->ads_model->getSearches($this->session->userdata('userid'));
 			$data['adsList'] = $this->ads_model->getAdsOfUser($this->session->userdata('userid'));
 			$this->form_validation->set_rules('title','title', 'required|max_length[23]|xss_clean');
-			$this->form_validation->set_rules('description','description', 'required|xss_clean|max_length[23]');
+			$this->form_validation->set_rules('description','description', 'required|xss_clean');
 			$this->form_validation->set_rules('price','price', 'required|xss_clean');
 			$categoryid=$this->input->post('category');
 			$cityid=$this->input->post('provinces');
