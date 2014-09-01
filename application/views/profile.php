@@ -72,9 +72,12 @@
 					</div>
 				</div>
 
-				<div class = "row">
-		    	<div class="large-12 columns">
+				<div class = "row"style="margin-bottom:0;">
+		    	<div class="large-12 columns"style="margin-bottom:0;">
 		    	<br />
+				<br />
+				<br />
+				<br />
 				<br />
 				<br />
 				<br />
@@ -85,7 +88,7 @@
 			    	</div>
 			    </div>
 		   		</div>
-			</div>
+			
 		</div>
 		<!--Scripts -->
 		<script src="<?php echo base_url(); ?>js/vendor/jquery.js"></script>
