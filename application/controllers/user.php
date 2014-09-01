@@ -145,7 +145,7 @@ class user extends CI_Controller {
 					'middlename' => $row['middlename'],
 					'phonenum' => $row['phonenum'],
 					'pic' =>$row['picture'],
-					'email' =>$this->session->userdata('email'),
+					'email' =>$row['email'],
 					'points' => $row['points'],
 					'userid' =>$row['userid'],
 					'views' => $row['views'],
