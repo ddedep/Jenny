@@ -4,6 +4,18 @@
 		"selected_items":
 		[
 			[
+				"st",
+				"style	Tag"
+			],
+			[
+				"view",
+				"view"
+			],
+			[
+				"colum",
+				"columns"
+			],
+			[
 				"text",
 				"textarea	Tag"
 			],
@@ -232,18 +244,93 @@
 	"buffers":
 	[
 		{
-			"file": "application/views/viewAd5.php",
+			"file": "application/views/inbox.php",
 			"settings":
 			{
-				"buffer_size": 8164,
+				"buffer_size": 3295,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "application/views/viewAd3.php",
+			"file": "application/views/profView.php",
 			"settings":
 			{
-				"buffer_size": 8550,
+				"buffer_size": 4952,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "application/controllers/messages.php",
+			"settings":
+			{
+				"buffer_size": 4860,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "application/views/sent.php",
+			"settings":
+			{
+				"buffer_size": 3096,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"contents": "\n		    <div class=\"row\">\n		    	<div class=\"large-12 columns\">\n		    	<div class=\"panel\">\n					<h1>Register With Us</h1>\n					<?php echo $err;?>\n					<?php echo validation_errors(); ?>	\n				</div>\n		    	</div>\n				\n			</div>\n		    <div class = \"row\">\n		    	<div class =\"large-12 columns\">\n		    		<?php echo form_open_multipart('index.php/register'); ?>\n		    			<div class=\"medium-4 columns\">\n			    			<label>First Name<span style=\"color:red;font-size:20px;\">*</span></label>\n			    			<input type=\"text\" name=\"firstname\" required>\n		    			</div>\n		    			<div class=\"medium-2 columns\">\n			    			<label>Middle Name<span style=\"color:red;font-size:20px;visible:false;\"> </span></label>\n			    			<input type=\"text\" name=\"middlename\">\n		    			</div>\n		    			<div class=\"medium-6 columns\">\n			    			<label>Last Name<span style=\"color:red;font-size:20px;\">*</span></label>\n			    			<input type=\"text\" name=\"lastname\" required>	\n		    			</div>\n		    	\n    				<div class=\"medium-4 columns\">\n    					<label>Cellphone Number(+639XXXXXXXXX)<span style=\"color:red;font-size:15px;\">*</span></label>\n    					<input type=\"text\" name = \"phonenumber\" required>\n    				</div>\n \n    			\n    				<div class=\"medium-4 columns\">\n    					<label>Birtdate<span style=\"color:red;font-size:15px;\">*</span></label>\n    					<select name=\"month\">\n    						<option value=\"0\">Month</option>\n							<option value=\"1\">January</option>\n							<option value=\"2\">February</option>\n							<option value=\"3\">March</option>\n							<option value=\"4\">April</option>\n							<option value=\"5\">May</option>\n							<option value=\"6\">June</option>\n							<option value=\"7\">July</option>\n							<option value=\"8\">August</option>\n							<option value=\"9\">September</option>\n							<option value=\"10\">October</option>\n							<option value=\"11\">November</option>\n							<option value=\"12\">December</option>\n						</select>\n					</div>\n					<div class=\"medium-2 columns\">\n						<label><span style=\"font-size:1px;\">.</span></label>\n						\n						<?php\n						$options = array();\n						$options[0] = 'day';\n						for($i=1;$i<=31;$i++)\n						{\n							$options[''.$i] = $i;\n						}\n\n						echo form_dropdown('day', $options,'0');\n						?>\n					</div>\n					<div class=\"medium-2 columns\">\n						<label><span style=\"font-size:1px;\">*</span></label>\n						\n						<?php\n						$option = array();\n						$option[0] = 'Year';\n						for($i=1;$i<=83;$i++)\n						{\n							$option[''.$i+1913] = $i+1914;\n						}\n\n						echo form_dropdown('year', $option,'0');\n						?>\n    					\n    				</div>\n    			\n  			\n    			\n    				<div class=\"large-12 columns\">\n    				<label>Address<span style=\"color:red;font-size:20px;\">*</span></label>\n    				<input type=\"text\" name =\"address\" required>\n    				</div>\n    			\n    				<div class=\"large-7 columns\">\n    				<label>Username<span style=\"color:red;font-size:20px;\">*</span><img id=\"umark\" src=\"<?php echo base_url();?>img/bad_mark.png\" /></label>\n    				<input type=\"text\" name=\"username\" id=\"username\"  required>\n    				</div>\n    			\n    			\n    				<div class=\"large-7 columns\">\n    				<label>Email<span style=\"color:red;font-size:20px;\">*</span><img id=\"emark\" src=\"<?php echo base_url();?>img/bad_mark.png\" /></label>\n    				<input type=\"text\" name=\"email\" id=\"email\" required>\n    				</div>\n\n    			\n    				<div class=\"large-6 columns\">\n    				<label>Password (minimum 6 characters with capital letter,small letter and special character)<span style=\"color:red;font-size:20px;\">*</span></label>\n    				<input id=\"pass\" type=\"password\" name=\"password\" pattern=\"(?=^.{6,}$)((?=.*\\d)|(?=.*\\W+))(?![.\\n])(?=.*[A-Z])(?=.*[a-z]).*$\" required>\n    				</div>\n    			\n    			\n    				<div class=\"large-6 columns\">\n    				<label>Confirm Password<span style=\"color:red;font-size:20px;\">*</span><img id=\"pmark\" src=\"<?php echo base_url();?>img/bad_mark.png\" /></label>\n    				<input id=\"conf\" type=\"password\" name=\"passwordconfirm\" pattern=\"(?=^.{6,}$)((?=.*\\d)|(?=.*\\W+))(?![.\\n])(?=.*[A-Z])(?=.*[a-z]).*$\" required>\n    				</div>\n    				<div class=\"large-6 columns\">\n    					<label>upload photo(10 mb max size)</label>\n						<input type=\"file\" name=\"userfile\" size=\"20\" />\n    				</div>\n    				<div class=\"large-8 columns\">\n    				<input type=\"checkbox\" id='terms' style=\"width:10px\"> \n    					<label for=\"terms\">I agree to the\n    					<a href=\"JavaScript:newPopup('<?php echo base_url();?>index.php/register/terms');\" style=\"color:Blue;\">Terms and Agreements</a></label>\n    					\n    				</div>\n    				\n    				<div class=\"large-8 columns\">\n    					<Button id=\"register\" type=\"submit\" disabled='false'> Register! </Button>\n						\n    				</div>\n						\n    				</form>\n\n    			</div>\n				<div class=\"row\">\n    				<div class=\"large-12 columns\"><span style=\"color:red;font-size:20px;\">*</span> = Required</div>\n				</div>\n    			<div class = \"row\">\n		    	<div class=\"large-12 columns\">\n			    	<div class=\"panel\">\n			    		<a href=\"<?php echo base_url();?>index.php/faq/about#about\">About</a>&nbsp;|&nbsp;<a href=\"<?php echo base_url();?>index.php/faq/about#terms\">Terms and Conditions</a>&nbsp;|&nbsp;<a href=\"<?php echo base_url();?>index.php/faq/about#terms\">Privacy Policy</a>&nbsp;|&nbsp;<a href=\"<?php echo base_url();?>index.php/home/contactus\">Contact Us</a>&nbsp;|&nbsp;<a href=\"<?php echo base_url();?>index.php/support\">Forum</a>&nbsp;|&nbsp;<a href=\"<?php echo base_url();?>index.php/faq\">FAQ</a>&nbsp;|&nbsp;Copyright 2014 onestopdeal.com.ph\n			    	</div>\n			    </div>\n		   		</div>\n		    </div>\n		</div>\n		<!--Scripts -->\n			<!-- Terms and Agreements -->\n			<script type=\"text/javascript\">\n				var usernames = [\"\",<?php foreach ($users->result_array() as $row){ echo '\"'.$row['username'].'\",';}?>];\n				var emails = [\"\",<?php foreach ($users->result_array() as $row){ echo '\"'.$row['email'].'\",';}?>];\n				$('#terms').click(function() {\n					$(\"#register\").attr(\"disabled\", !this.checked);\n				});\n			// Popup window code\n			function newPopup(url) {\n				popupWindow = window.open(\n					url,'popUpWindow','height=700,width=800,left=10,top=10,resizable=yes,scrollbars=yes,toolbar=yes,menubar=no,location=no,directories=no,status=yes')\n			}\n			</script>\n			<script type=\"text/javascript\">\n				$(\"#conf\").change(function(){\n					if($(\"#conf\").val()==$(\"#pass\").val())\n					{\n				    	$(\"#pmark\").attr(\"src\",\"<?php echo base_url();?>img/good_mark.png\");\n				    }\n				    else\n				    {	\n				    	$(\"#pmark\").attr(\"src\",\"<?php echo base_url();?>img/bad_mark.png\");\n				    }\n				});\n				$(\"#username\").change(function(){\n\n					for (index = 0; index < usernames.length; ++index) {\n					    if(usernames[index]!=$(\"#username\").val())\n					    {\n					    	$(\"#umark\").attr(\"src\",\"<?php echo base_url();?>img/good_mark.png\");\n					    }\n					    else\n					    {\n					    	$(\"#umark\").attr(\"src\",\"<?php echo base_url();?>img/bad_mark.png\");\n					    }\n					}\n				});\n				$(\"#email\").change(function(){\n\n					for (index = 0; index < emails.length; ++index) {\n					    if(emails[index]!=$(\"#email\").val())\n					    {\n					    	$(\"#emark\").attr(\"src\",\"<?php echo base_url();?>img/good_mark.png\");c\n					    }\n					    else\n					    {\n					    	$(\"#emark\").attr(\"src\",\"<?php echo base_url();?>img/bad_mark.png\")\n					    }\n					}\n				});\n			</script>\n		<script src=\"<?php echo base_url(); ?>js/vendor/jquery.js\"></script>\n	    <script src=\"<?php echo base_url(); ?>js/foundation.min.js\"></script>\n	    <script>\n	      $(document).foundation();\n	    </script>\n	    <script type=\"text/javascript\" src=\"http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js\"></script>\n		<script type=\"text/javascript\" src=\"js/jquery.easing.1.3.js\"></script>\n		<!-- the jScrollPane script -->\n		<script type=\"text/javascript\" src=\"js/jquery.mousewheel.js\"></script>\n		<script type=\"text/javascript\" src=\"js/jquery.contentcarousel.js\"></script>\n		<script type=\"text/javascript\">\n			$('#ca-container').contentcarousel();\n		</script>\n	</body>\n</html>\n",
+			"file": "application/views/register.php",
+			"file_size": 7950,
+			"file_write_time": 130539613256278838,
+			"settings":
+			{
+				"buffer_size": 7951,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "application/views/createAd.php",
+			"settings":
+			{
+				"buffer_size": 6675,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "application/controllers/ads.php",
+			"settings":
+			{
+				"buffer_size": 21848,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "application/views/header.php",
+			"settings":
+			{
+				"buffer_size": 2202,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "application/views/home.php",
+			"settings":
+			{
+				"buffer_size": 10762,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "application/views/viewAd2.php",
+			"settings":
+			{
+				"buffer_size": 8417,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "application/views/support2.php",
+			"settings":
+			{
+				"buffer_size": 3599,
 				"line_ending": "Unix"
 			}
 		}
@@ -280,29 +367,45 @@
 	},
 	"file_history":
 	[
+		"/C/cygwin64/home/dededep/Jenny/application/controllers/register.php",
+		"/C/cygwin64/home/dededep/Jenny/application/controllers/home.php",
 		"/C/cygwin64/home/dededep/Jenny/application/views/login.php",
-		"/C/cygwin64/home/dededep/Jenny/application/views/editUser.php",
-		"/C/cygwin64/home/dededep/Jenny/application/views/extend.php",
-		"/C/cygwin64/home/dededep/Jenny/application/controllers/ads.php",
-		"/C/cygwin64/home/dededep/Jenny/application/views/register.php",
-		"/C/cygwin64/home/dededep/Jenny/application/views/createAd.php",
-		"/C/cygwin64/home/dededep/Jenny/application/views/viewAd5.php",
-		"/C/cygwin64/home/dededep/Jenny/application/views/home.php",
+		"/C/cygwin64/home/dededep/Jenny/application/views/profile.php",
 		"/C/cygwin64/home/dededep/Jenny/application/models/ads_model.php",
+		"/C/cygwin64/home/dededep/Jenny/application/views/viewMessage.php",
+		"/C/cygwin64/home/dededep/Jenny/application/views/viewAd4.php",
+		"/C/cygwin64/home/dededep/Jenny/application/views/extend.php",
+		"/C/cygwin64/home/dededep/Jenny/application/views/feature.php",
 		"/C/cygwin64/home/dededep/Jenny/application/views/viewAd3.php",
+		"/C/cygwin64/home/dededep/Jenny/application/views/header.php",
+		"/C/cygwin64/home/dededep/Jenny/application/views/home.php",
+		"/C/cygwin64/home/dededep/Jenny/application/views/support2.php",
+		"/C/cygwin64/home/dededep/Jenny/application/controllers/support.php",
+		"/C/cygwin64/home/dededep/Jenny/application/views/faq.php",
+		"/C/cygwin64/home/dededep/Jenny/application/views/viewMessage2.php",
+		"/C/cygwin64/home/dededep/Jenny/application/views/repost.php",
 		"/C/cygwin64/home/dededep/Jenny/application/views/viewAd2.php",
-		"/C/cygwin64/home/dededep/Jenny/getting-started.html",
-		"/C/cygwin64/home/dededep/Jenny/images/ImageAttribution.txt",
 		"/C/cygwin64/home/dededep/Jenny/application/views/viewAd.php",
 		"/C/cygwin64/home/dededep/Jenny/application/views/viewsubs.php",
+		"/C/cygwin64/home/dededep/Jenny/application/views/viewusersubs.php",
+		"/C/cygwin64/home/dededep/Jenny/application/controllers/ads.php",
+		"/C/cygwin64/home/dededep/Jenny/application/views/viewAd5.php",
+		"/C/cygwin64/home/dededep/Jenny/application/views/about.php",
+		"/C/cygwin64/home/dededep/Jenny/application/views/profView.php",
+		"/C/cygwin64/home/dededep/Jenny/application/views/inbox.php",
+		"/C/cygwin64/home/dededep/Jenny/application/views/sent.php",
+		"/C/cygwin64/home/dededep/Jenny/application/views/terms.php",
+		"/C/cygwin64/home/dededep/Jenny/application/views/editUser.php",
+		"/C/cygwin64/home/dededep/Jenny/application/views/register.php",
+		"/C/cygwin64/home/dededep/Jenny/application/views/createAd.php",
+		"/C/cygwin64/home/dededep/Jenny/getting-started.html",
+		"/C/cygwin64/home/dededep/Jenny/images/ImageAttribution.txt",
 		"/C/Users/dededep/AppData/Local/Temp/Not Done.txt",
 		"/C/cygwin64/home/dededep/Jenny/application/config/doctypes.php",
 		"/C/cygwin64/home/dededep/Jenny/application/config/database.php",
 		"/C/Users/dededep/Dropbox/Vuewin Share/VPS.txt",
 		"/C/Users/dededep/Dropbox/yggdrasil/VPS.txt",
 		"/C/cygwin64/home/dededep/Jenny/capstone.sql",
-		"/C/cygwin64/home/dededep/Jenny/application/views/header.php",
-		"/C/cygwin64/home/dededep/Jenny/application/views/inbox.php",
 		"/C/cygwin64/home/dededep/Jenny/application/controllers/messages.php",
 		"/C/cygwin64/home/dededep/Jenny/application/models/messages_model.php",
 		"/C/Users/dededep/Downloads/To Do.txt",
@@ -311,26 +414,16 @@
 		"/C/cygwin64/home/dededep/Jenny/application/controllers/user.php",
 		"/C/cygwin64/home/dededep/Jenny/application/views/verify.php",
 		"/C/cygwin64/home/dededep/Jenny/application/models/support_model.php",
-		"/C/cygwin64/home/dededep/Jenny/application/controllers/home.php",
 		"/C/cygwin64/home/dededep/Jenny/css/style.css",
 		"/C/cygwin64/home/dededep/Jenny/application/views/support.php",
-		"/C/cygwin64/home/dededep/Jenny/application/views/profile.php",
 		"/C/cygwin64/home/dededep/Jenny/application/views/composeMessage.php",
-		"/C/cygwin64/home/dededep/Jenny/application/views/faq.php",
 		"/C/Users/dededep/AppData/Local/Temp/New-1.txt",
-		"/C/cygwin64/home/dededep/Jenny/application/views/viewusersubs.php",
 		"/C/Users/dededep/Desktop/archive/sub.txt",
 		"/C/Users/dededep/Desktop/archive/asd.sql",
 		"/C/Users/dededep/AppData/Local/Temp/BIG NAMES-1.txt",
 		"/C/Users/dededep/AppData/Local/Temp/Notification Contents.txt",
-		"/C/cygwin64/home/dededep/Jenny/application/views/viewAd4.php",
 		"/C/cygwin64/home/dededep/Jenny/application/views/contact.php",
 		"/C/cygwin64/home/dededep/Jenny/application/views/subscription.php",
-		"/C/cygwin64/home/dededep/Jenny/application/views/feature.php",
-		"/C/cygwin64/home/dededep/Jenny/application/views/sent.php",
-		"/C/cygwin64/home/dededep/Jenny/application/views/support2.php",
-		"/C/cygwin64/home/dededep/Jenny/application/views/viewMessage.php",
-		"/C/cygwin64/home/dededep/Jenny/application/controllers/register.php",
 		"/C/cygwin64/home/dededep/Jenny/application/views/editAd.php",
 		"/C/cygwin64/home/dededep/Jenny/application/views/forget.php",
 		"/C/cygwin64/home/dededep/Jenny/lookingfor.sql",
@@ -340,7 +433,6 @@
 		"/C/cygwin64/home/dededep/Jenny/application/controllers/globe.php",
 		"/C/cygwin64/home/dededep/Jenny/application/views/createSupport.php",
 		"/C/cygwin64/home/dededep/Jenny/application/controllers/faq.php",
-		"/C/cygwin64/home/dededep/Jenny/application/controllers/support.php",
 		"/C/Users/dededep/AppData/Local/Temp/important.txt",
 		"/C/cygwin64/home/dededep/Jenny/application/views/payflow_demo.php",
 		"/C/Users/dededep/Documents/GitHub/api/PHP/test/index.php",
@@ -364,7 +456,6 @@
 		"/C/xampp2/mysql/bin/mysql_secure_installation.pl",
 		"/C/cygwin64/home/dededep/Jenny/application/controllers/Ads.php",
 		"/C/Users/dededep/Documents/GitHub/Jenny/application/views/register.php",
-		"/C/cygwin64/home/dededep/Jenny/application/views/repost.php",
 		"/C/cygwin64/home/dededep/Jenny/application/views/notfound.php",
 		"/C/cygwin64/home/dededep/Jenny/application/views/admin.php",
 		"/C/cygwin64/home/dededep/Jenny/application/views/footer.php",
@@ -403,11 +494,7 @@
 		"/C/Users/dededep/Documents/GitHub/Jenny/application/controllers/faq.php",
 		"/C/Users/dededep/Documents/GitHub/Jenny/application/views/faq.php",
 		"/C/Users/dededep/Documents/GitHub/Jenny/application/views/terms.php",
-		"/C/Users/dededep/Documents/GitHub/Jenny/application/controllers/register.php",
-		"/C/Users/dededep/Documents/GitHub/Jenny/application/models/support_model.php",
-		"/C/Users/dededep/Documents/GitHub/Jenny/capstone.sql",
-		"/C/Users/dededep/AppData/Local/Temp/form.php",
-		"/C/Users/dededep/AppData/Local/Temp/onestopdeal.html"
+		"/C/Users/dededep/Documents/GitHub/Jenny/application/controllers/register.php"
 	],
 	"find":
 	{
@@ -425,6 +512,14 @@
 		"case_sensitive": true,
 		"find_history":
 		[
+			"viewWish",
+			"lookingF",
+			"view",
+			"edit",
+			"images",
+			"search",
+			"searcg",
+			"searc",
 			"getAds",
 			"getAd",
 			"this->User_model->addView",
@@ -535,24 +630,24 @@
 	"groups":
 	[
 		{
-			"selected": 1,
+			"selected": 4,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "application/views/viewAd5.php",
+					"file": "application/views/inbox.php",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 8164,
+						"buffer_size": 3295,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1839,
-								1750
+								1957,
+								1957
 							]
 						],
 						"settings":
@@ -561,27 +656,27 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 315.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 1,
+					"stack_index": 10,
 					"type": "text"
 				},
 				{
 					"buffer": 1,
-					"file": "application/views/viewAd3.php",
+					"file": "application/views/profView.php",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 8550,
+						"buffer_size": 4952,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1949,
-								1949
+								1557,
+								1557
 							]
 						],
 						"settings":
@@ -589,11 +684,270 @@
 							"syntax": "Packages/PHP/PHP.tmLanguage",
 							"translate_tabs_to_spaces": false
 						},
-						"translation.x": 497.0,
-						"translation.y": 450.0,
+						"translation.x": 159.0,
+						"translation.y": 225.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 9,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "application/controllers/messages.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 4860,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								3335,
+								3335
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.tmLanguage"
+						},
+						"translation.x": -0.0,
+						"translation.y": 1305.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 7,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "application/views/sent.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 3096,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1767,
+								1767
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 8,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "application/views/register.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 7951,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2999,
+								2999
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.tmLanguage"
+						},
+						"translation.x": 121.0,
+						"translation.y": 1035.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "application/views/createAd.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 6675,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1948,
+								1948
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "application/controllers/ads.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 21848,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								14302,
+								14302
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 4233.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "application/views/header.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2202,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1133,
+								1133
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 8,
+					"file": "application/views/home.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 10762,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								6777,
+								6777
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 1350.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 9,
+					"file": "application/views/viewAd2.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 8417,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								7712,
+								7712
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 2295.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
+					"type": "text"
+				},
+				{
+					"buffer": 10,
+					"file": "application/views/support2.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 3599,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2298,
+								2388
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 495.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 6,
 					"type": "text"
 				}
 			]
