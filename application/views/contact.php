@@ -28,7 +28,7 @@
 					<label>Contact Number</label>
 					<input type="text" name="contact"/>
 					<label>Message</label>
-					<textarea name="body"></textarea>
+					<textarea name="body" style="height:250px;"></textarea>
 					<h1><button type="submit" >Submit</button></h1>
 				</form>
 		       
