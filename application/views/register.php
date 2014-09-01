@@ -87,7 +87,7 @@
     				</div>
     			
     				<div class="large-7 columns">
-    				<label>Username<span style="color:red;font-size:20px;">*</span><img id="umark" src="<?php echo base_url();?>img/bad_mark.png" /></label>
+    				<label>Username(Minimum 6 characters)<span style="color:red;font-size:20px;">*</span><img id="umark" src="<?php echo base_url();?>img/bad_mark.png" /></label>
     				<input type="text" name="username" id="username" required>
     				</div>
     			
@@ -165,16 +165,28 @@
 				    }
 				});
 				$("#username").change(function(){
+					if($("#username").val().length>=6)
+					{
+					    	
+						for (index = 0; index < usernames.length; ++index) {
+						//	alert(usernames[index]);
 
-					for (index = 0; index < usernames.length; ++index) {
-					    if(usernames[index]!=$("#username").val())
-					    {
-					    	$("#umark").attr("src","<?php echo base_url();?>img/good_mark.png");
-					    }
-					    else
-					    {
-					    	$("#umark").attr("src","<?php echo base_url();?>img/bad_mark.png");
-					    }
+						    if(usernames[index]!=$("#username").val())
+						    {
+						    	$("#umark").attr("src","<?php echo base_url();?>img/good_mark.png");
+						    }
+						    
+						    else
+						    {
+						    //	alert(usernames[index]);
+						    	$("#umark").attr("src","<?php echo base_url();?>img/bad_mark.png");
+						    	break;
+						    }
+						}
+					}
+					else
+					{
+						$("#umark").attr("src","<?php echo base_url();?>img/bad_mark.png");
 					}
 				});
 				$("#email").change(function(){
