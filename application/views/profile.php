@@ -34,7 +34,7 @@
 							echo "Email: ".$profile['email']."<br/><br/>";
 							echo "Phone Number: ".$profile['phonenum']."<br/><br/>";
 							echo "Points: ".$profile['points']."<br/><br/>";
-							echo "Profile views: ".$profile['views']."<br/><br/>asdasd";
+							echo "Profile views: ".$profile['views']."<br/><br/>";
 							if($own){
 								echo $this->session->userdata('comment');
 							echo "Total Ads: ".($actAds+$exAds)."<br/><br/>";
