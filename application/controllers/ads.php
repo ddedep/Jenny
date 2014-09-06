@@ -464,7 +464,7 @@ class Ads extends CI_Controller {
 				$userid = $this->session->userdata('userid');
 
 				$config['upload_path'] = './images/';
-				$config['allowed_types'] = 'gif|jpg|png|jpeg';
+				$config['allowed_types'] = 'gif|jpg|png|jpeg|jpe';
 				$config['max_size']	= '10000';
 				$config['max_width']  = '1024';
 				$config['max_height']  = '768';
@@ -472,7 +472,7 @@ class Ads extends CI_Controller {
 				$this->load->library('upload', $config);
 				$this->upload->initialize(array(
 			            "upload_path"   => "./images/",
-			            'allowed_types' => 'gif|jpg|png|jpeg',
+			            'allowed_types' => 'gif|jpg|png|jpeg|jpe',
 						'max_size'	=>'10000',
 						'max_width' => '10000',
 						'max_height'  => '10000'
