@@ -10,14 +10,14 @@
 					<div class="row">
 						<div class="small-6 columns">
 							<label>Support Title</label>
-							<input type="text" name="title">
+							<input type="text" name="title" required>
 						</div>
 					</div>
 					
 					<div class="row">
 						<div class="small-8 columns">
 							<label>Body</label>
-							<textarea name="body" style="height:300px;"></textarea>
+							<textarea name="body" style="height:300px;" required></textarea>
 						</div>
 					</div>
 					<br/><h1><button type="submit">Submit</button></h1>
