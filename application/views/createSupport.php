@@ -17,7 +17,7 @@
 					<div class="row">
 						<div class="small-8 columns">
 							<label>Body</label>
-							<textarea name="body"></textarea>
+							<textarea name="body" style="height:300px;"></textarea>
 						</div>
 					</div>
 					<br/><h1><button type="submit">Submit</button></h1>
