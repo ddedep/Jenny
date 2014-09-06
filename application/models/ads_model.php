@@ -84,8 +84,6 @@
 			$this->db->select_max("adid");
 			$this->db->from("ads");
 			$this->db->where("owner",$userid);
-			$this->db->where("issold",0);
-			$this->db->where("isexpired",1);
 			$q =$this->db->get();
 			foreach ($q->result_array() as $row) {
 				return $row['adid'];
@@ -245,6 +243,8 @@
 			$this->db->from('ads');
 			$this->db->join('users','users.userid=ads.owner','left');
 			$this->db->order_by('adid', 'desc');
+			$this->db->where("issold",0);
+			$this->db->where("isexpired",0);
 			return $this->db->get();
 		}
 		public function getAdsOfUser($id)
