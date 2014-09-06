@@ -25,7 +25,7 @@
 			echo "Title: ".$row['title']."<br/><br/>";
 			echo "Duration: ".$row['duration']." Days<br/><br/>";
 			echo "Price: ".$row['price']."<br/><br/>";
-			echo "About: ".$row['body']."<br/><br/>";
+			echo  $this->typography->nl2br_except_pre($row['body']);
 			echo "Total Views: ".$row['view']."<br/><br/>";
 			echo "</div>";
 			endforeach;
