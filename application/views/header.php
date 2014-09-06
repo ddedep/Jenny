@@ -26,10 +26,9 @@
 	<body>
 		<div class= "large-12 columns">
 			<!-- header -->
-			
 			<div class="row">
 		      <div class="large-12 columns">
-		       <div class = 'panel' style="font-size:15px;">
+		       <div class = 'panel' style="font-size:14px;">
 		       <a href="<?php echo base_url();?>"><img src="<?php echo base_url(); ?>img/logo.png" style="height:50px"></a>
 		        	<?php if($username!=NULL) echo "<a href=".base_url()."index.php/user>"."Welcome ".$username."!&nbsp;	&nbsp;</a>"; 
 		        	else{
