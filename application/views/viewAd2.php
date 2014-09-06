@@ -20,15 +20,16 @@
 					echo '</iframe><br/>';
 				}
 				echo "Images:<br/><br/><br/>";
-				if($row['imagelink']=="")
+				if($row['imagelink1']=="")
 				{
-					echo "<a href='".base_url()."index.php/ads/view/".$row['adid']."'><img src='".base_url()."img/nophoto.jpg' style='height:200px;width:200px;'></a><br/>";
+					echo "<a href='".base_url()."index.php/ads/view/".$row['adid']."'><img src='".base_url()."img/nophoto.jpg' style='height:200px;width:200px;'></a><br/><br/><br/>";
 				}
 				else
-				echo "<a href='".base_url()."index.php/ads/view/".$row['adid']."'><img src='".base_url()."images/".$row['imagelink']."' style='height:200px;width:200px;'></img></a><br/>";
+				echo "<a href='".base_url()."index.php/ads/view/".$row['adid']."'><img src='".base_url()."images/".$row['imagelink1']."' style='height:200px;width:200px;'></img></a><br/><br/><br/>";
 				
-				foreach ($images->result_array() as $rowk) {
-					echo "<img src=".base_url()."images/".$rowk['imagelink']." style='height:200px;width:200px;'>";
+				for($i=1;$i<=6;$i++) {
+					if($row['imagelink'.$i]!="") echo "<img src=".base_url()."images/".$row['imagelink'.$i]." style='height:200px;width:200px;'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+					if($i%2==0) echo "<br/><br/><br/>";
 				}
 				echo "<br/>Title: ".$row['title']."<br/><br/>";
 				if($row['owner']!=$userid):

@@ -67,10 +67,16 @@
 			$this->db->where("ad",$adid);
 			return $this->db->get();
 		}
-		public function upload_photo($imagelink,$adid)
+		public function upload_photo($image,$adid)
 		{
-			$sql = "INSERT INTO images(imagelink,ad) VALUES(?,?)";
-			$this->db->query($sql,array($imagelink,$adid));
+			$sql = "UPDATE ads SET imagelink1=?,imagelink2=?,imagelink3=?,imagelink4=?,imagelink5=?,imagelink6=? WHERE adid=?";
+			$this->db->query($sql,array($image[0],$image[1],$image[2],$image[3],$image[4],$image[5],$adid));
+		}
+
+		public function upload_photo2($image,$adid,$k)
+		{
+			$sql = "UPDATE ads SET imagelink".($k+1)."=? WHERE adid=?";
+			$this->db->query($sql,array($image,$adid,$k));
 		}
 
 		public function getLatest($userid)
@@ -88,30 +94,29 @@
 			$sql = "INSERT INTO adcomment(body,owner,adid) VALUES (?,?,?)";
 			$this->db->query($sql,array($body,$owner,$adid));
 		}
-		public function CreateAd($title,$userid,$duration,$price,$video,$image,$body,$categoryid,$provinceid)
+		public function CreateAd($title,$userid,$duration,$price,$video,$body,$categoryid,$provinceid)
 		{	
-			$sql = "INSERT into ads (title,owner,isFeatured,duration,price,videolink,imagelink,body,categoryid,provinceid) VALUES (?,?,?,?,?,?,?,?,?,?)";
+			$sql = "INSERT into ads (title,owner,isFeatured,duration,price,videolink,body,categoryid,provinceid) VALUES (?,?,?,?,?,?,?,?,?)";
 			
-			$this->db->query($sql, array($title,$userid,0,$duration,$price,$video,$image,$body,$categoryid,$provinceid));
+			$this->db->query($sql, array($title,$userid,0,$duration,$price,$video,$body,$categoryid,$provinceid));
 		}
 		public function adViewed($adid)
 		{
 			$sql ="UPDATE ads SET view = view + 1 WHERE adid=?";
 			$this->db->query($sql,array($adid));
 		}
-		public function EditAd($adID,$title,$userid,$duration,$price,$video,$imagelink,$body,$categoryid,$cityid)
+		public function EditAd($adID,$title,$userid,$duration,$price,$video,$body,$categoryid,$cityid)
 		{	
 			$data = array('title'=>$title,
 							'owner'=>$userid,
 							'duration'=>$duration,
 							'price' => $price,
 							'videolink' => $video,
-							'imagelink' =>$imagelink,
 							'body' =>$body,
 							'categoryid' =>$categoryid,
 							'provinceid' => $cityid);
-			$this->db->where('adid', $adID);
-			$this->db->update('ads', $data);
+			$sql = "UPDATE ads SET title=?,owner=?,duration=?,price=?,videolink=?,body=?,categoryid=?,provinceid=? WHERE adid=?";
+			return $this->db->query($sql,array($title,$userid,$duration,$price,$video,$body,$categoryid,$cityid,$adID));
 		}
 		public function delete($adid)
 		{

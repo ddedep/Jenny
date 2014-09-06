@@ -2,11 +2,12 @@
 		    	<?php if($query->num_rows()>0): 
 				foreach($query->result_array() as $rowz):
 				?>
+
 				<div class="row">
 				<h3>Ad Details</h3>
-				<?php echo validation_errors(); //echo $message;?>
-		    		<?php echo form_open_multipart('index.php/ads/edit/'.$adID); ?>
-
+				<?php echo validation_errors(); echo $message;?>
+		    		<?php echo form_open_multipart('index.php/ads/edit'); ?>
+<input type="hidden" name="adID" value="<?php echo $adID; ?>" >
 				<div class="row">
 					<div class="small-6 columns">
     					<label>Category</label>
@@ -54,13 +55,13 @@
 				<div class="row">
 					<div class="small-6 columns">
 						<label>image</label>
-    					<label>upload photo</label>
-						<input type="file" name="files[]" />
-			            <input type="file" name="files[]" />
-			            <input type="file" name="files[]" />
-			            <input type="file" name="files[]" />
-			            <input type="file" name="files[]" />
-			            <input type="file" name="files[]" />
+    					<label>upload photos</label>
+						<input type="file" name="userfile[]" />
+			            <input type="file" name="userfile[]" />
+			            <input type="file" name="userfile[]" />
+			            <input type="file" name="userfile[]" />
+			            <input type="file" name="userfile[]" />
+			            <input type="file" name="userfile[]" />
 			 
 					</div>
 				</div>

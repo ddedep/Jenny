@@ -81,7 +81,7 @@
 												height:189px;
 												position:relative;
 												margin:0 auto;
-												background:transparent url(<?php echo base_url()."images/".$row['imagelink']; ?>) no-repeat center center;">
+												background:transparent url(<?php echo base_url()."images/";if($row['imagelink1']!=""){echo $row['imagelink1'];}else{echo 'nophoto.jpg';}?>) no-repeat center center;">
 										</div></a>
 										<div class="titles"><h3><?php echo $row['title']; ?></h3></div>
 										<h4>
@@ -121,7 +121,7 @@
 										height:189px;
 										position:relative;
 										margin:0 auto;
-										background:transparent url(<?php echo base_url()."images/".$top[$i]['imagelink']; ?>) no-repeat center center;">
+										background:transparent url(<?php echo base_url()."images/"; if($top[$i]['imagelink1']!=""){echo $top[$i]['imagelink1'];}else{echo 'nophoto.jpg';}; ?>) no-repeat center center;">
 							</div></a>
 							<div class="ca-item">
 								<div class="titles"><h4 style="font-weight:bold;"><?php  
@@ -169,7 +169,7 @@
 										height:189px;
 										position:relative;
 										margin:0 auto;
-										background:transparent url(<?php echo base_url()."images/".$rec[$i]['imagelink']; ?>) no-repeat center center;">
+										background:transparent url(<?php echo base_url()."images/"; if($rec[$i]['imagelink1']!=""){echo $rec[$i]['imagelink1'];} else{echo 'nophoto.jpg';} ?>) no-repeat center center;">
 							</div></a>
 		    				
 							<div class="ca-item">

@@ -14,9 +14,9 @@
 				echo ' src="//www.youtube.com/embed/'.$row['videolink'].'"" frameborder="0">';
 				echo '</iframe><br/>';
 			}
-			if($row['imagelink']!="")
+			if($row['imagelink1']!="")
 			{
-			echo "<img src=".base_url()."images/".$row['imagelink']." style='height:200px;width:200px;'><br/>";
+			echo "<img src=".base_url()."images/".$row['imagelink1']." style='height:200px;width:200px;'><br/>";
 			}
 			else
 			{

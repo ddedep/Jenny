@@ -416,6 +416,18 @@ class Ads extends CI_Controller {
 		$this->User_model->subscribe($owner,$subscriber);
 		redirect('index.php/user');
 	}
+	private function set_upload_options()
+	{   
+	//  upload an image options
+	    $config = array();
+	    $config['upload_path'] = './Images/';
+	    $config['allowed_types'] = 'gif|jpg|png';
+	    $config['max_size']      = '0';
+	    $config['overwrite']     = FALSE;
+
+
+	    return $config;
+	}
 	public function edit()
 	{
 		$data['hide'] = FALSE;
@@ -429,7 +441,8 @@ class Ads extends CI_Controller {
 		}
 		$adID= $this->uri->segment(3);
 		$data['adID'] = $adID;
-		if($adID!=null){
+		$args=$this->input->post('adID');
+		if(true){
 			if($this->session->userdata('logged_in')){
 				$data['username']=$this->session->userdata('username');
 				$query=$this->ads_model->getAd($adID);
@@ -461,58 +474,56 @@ class Ads extends CI_Controller {
 			            "upload_path"   => "./images/",
 			            'allowed_types' => 'gif|jpg|png|jpeg',
 						'max_size'	=>'10000',
-						'max_width' => '1024',
-						'max_height'  => '768'
+						'max_width' => '10000',
+						'max_height'  => '10000'
 						));
-			        				if($this->form_validation->run()==FALSE){
+			       	if($this->form_validation->run()==FALSE){
 					$data['message'] ="";
 					$data['username']=$this->session->userdata('username');
 					$this->load->view('header',$data);
 					$this->load->view('editAd',$data);
-				}
+					}
 				else
 				{
-					
+					$latest = $this->input->post('adID');
+					$files = $_FILES;
+					$image=array();
+				    $cpt = count($_FILES['userfile']['name']);
+				    for($i=0; $i<$cpt; $i++)
+				    {
 
-			        //Perform upload.
-					if ( ! $this->upload->do_multi_upload("files"))
-					{
-						$error = array('error' => $this->upload->display_errors());
+				        $_FILES['userfile']['name']= $files['userfile']['name'][$i];
+				        $_FILES['userfile']['type']= $files['userfile']['type'][$i];
+				        $_FILES['userfile']['tmp_name']= $files['userfile']['tmp_name'][$i];
+				        $_FILES['userfile']['error']= $files['userfile']['error'][$i];
+				        $_FILES['userfile']['size']= $files['userfile']['size'][$i];    
+				        $image[$i] = $_FILES['userfile']['name'];
 
-						$image = "nophoto.jpg";
-						$this->ads_model->EditAd($adID,$title,$userid,$duration,$price,$video,$image,$body,$categoryid,$cityid);
-						$data['message'] ="Ad not Edited! ".$error['error'];
-						$data['username']=$this->session->userdata('username');
-						$data['adID'] = $adID;
-						$this->load->view('header',$data);
-						$this->load->view('editAd',$data);
-					}
-					else
-					{
+				        if($image[$i]!=""){
+					        $this->ads_model->upload_photo2($image[$i],$latest,$i);
+					    }
+					    $this->upload->initialize($this->set_upload_options());
+					    $this->upload->do_upload();
 
-						$dat= $this->upload->get_multi_upload_data();
-						$image="";
-						foreach ($dat as $row) {
-							$image=$row['file_name'];
-							break;
-						}
+
+				    }
 
 						$userz=$this->User_model->getUser($this->session->userdata('username'));
-						$latest = $adID;
-						foreach ($dat as $row) {
-							$this->ads_model->upload_photo($row['file_name'],$latest);
-						}
+						
+						
+						
+							
 						
 						$data['query'] =$query;
-						$image = $dat['file_name'];
+						
 						$data['adID'] = $adID;
-						$this->ads_model->EditAd($adID,$title,$userid,$duration,$price,$video,$image,$body,$categoryid,$cityid);
+						$this->ads_model->EditAd($adID,$title,$userid,$duration,$price,$video,$body,$categoryid,$cityid);
 						$data['message'] ="Ad Edited!";
 						$data['username']=$this->session->userdata('username');
 						$this->load->view('header',$data);
 						$this->load->view('editAd',$data);
+						redirect("index.php/ads/view/".$adID);
 						
-					}
 					
 				}
 
@@ -522,10 +533,7 @@ class Ads extends CI_Controller {
 				redirect("index.php/register");
 			}
 		}
-		else
-		{
-			redirect("index.php/ads/view");
-		}
+		
 	
 	}
 	public function index() // create ad
@@ -570,8 +578,8 @@ class Ads extends CI_Controller {
            		"upload_path"   => "./images/",
            		'allowed_types' => 'gif|jpg|png|jpeg|jpe',
 				'max_size'	=> '10000',
-				'max_width' => '1024',
-				'max_height'  => '768',
+				'max_width' => '10000',
+				'max_height'  => '10000',
         	));
 			
 			if($this->form_validation->run()==FALSE){
@@ -593,17 +601,18 @@ class Ads extends CI_Controller {
 					
 				}
 				$dat= $this->upload->get_multi_upload_data();
-				$image="";
+				$image= array();
+				$ind=0;
 				foreach ($dat as $row) {
-					$image=$row['file_name'];
-					break;
+					$image[$ind]=$row['file_name'];
+					$ind++;
 				}
 
-				$this->ads_model->CreateAd($title,$userid,$duration,$price,$video,$image,$body,$categoryid,$cityid);
+				$this->ads_model->CreateAd($title,$userid,$duration,$price,$video,$body,$categoryid,$cityid);
 				$userz=$this->User_model->getUser($this->session->userdata('username'));
 				$latest = $this->ads_model->getLatest($this->session->userdata('userid'));
 				foreach ($dat as $row) {
-					$this->ads_model->upload_photo($row['file_name'],$latest);
+					$this->ads_model->upload_photo($image,$latest);
 				}
 				$points=0;
 				foreach ($userz->result_array() as $row) {

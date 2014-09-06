@@ -26,6 +26,7 @@
 	<body>
 		<div class= "large-12 columns">
 			<!-- header -->
+			
 			<div class="row">
 		      <div class="large-12 columns">
 		       <div class = 'panel' style="font-size:15px;">

@@ -14,7 +14,7 @@
 						echo ' src="//www.youtube.com/embed/'.$row['videolink'].'"" frameborder="0">';
 						echo '</iframe><br/>';
 						}
-						echo "<img src=".base_url()."images/".$row['imagelink']." style='height:200px;width:200px;'><br/>";
+						echo "<img src=".base_url()."images/".$row['imagelink1']." style='height:200px;width:200px;'><br/>";
 						echo "Title: ".$row['title']."<br/><br/>";
 						echo "Duration: ".$row['duration']." Days<br/><br/>";
 						echo "Price: ".$row['price']."<br/><br/>";
