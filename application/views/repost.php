@@ -26,8 +26,13 @@
 					<?php echo form_open('index.php/ads/repostThis'); ?>
 					<input name ='duration'  type='hidden' value=<?php echo $row['duration'];?> />
                     <input name ='adid'      type="hidden" value=<?php echo $row['adid']; ?> />
+                    <select name="length">
+						<option value='7'>1 week(200 points)</option>
+						<option value='15'>15 days(300 points)</option>
+						<option value='30'>30 days(350 points)</option>
+					</select>
 					<?php 
-						echo "<button id='Feature' type='submit' onclick=\"return confirm('Are you sure?(costs 150 points)')\">Repost</button>";
+						echo "<button id='Feature' type='submit' onclick=\"return confirm('Are you sure?')\">Repost</button>";
 					endforeach;
                     ?>
 					</form>

@@ -32,10 +32,15 @@
 		?>
 		<?php echo form_open('index.php/ads/featureThis'); ?>
 		<input name ='adid' type="hidden" value=<?php echo $row['adid'] ?> />
+		<select name="length">
+			<option value='7'>1 week(300 points)</option>
+			<option value='15'>15 days(400 points)</option>
+			<option value='39'>30 days(500 points)</option>
+		</select>
 		<?php 
 		if($row['owner']==$userid && $row['isfeatured']==0){
 
-			echo "<button id='Feature' type='submit'  onclick=\"return confirm('Are you sure?(costs 300 points)')\">Feature Ad</button>";
+			echo "<button id='Feature' type='submit'  onclick=\"return confirm('Are you sure?')\">Feature Ad</button>";
 		}
 		else if($row['isfeatured']==1)
 		{

@@ -30,23 +30,23 @@
 			$sql = "UPDATE ads SET issold=1 WHERE adid=?";
 			$this->db->query($sql,array($adid));
 		}
-		public function extendAd($adID,$duration)
+		public function extendAd($adID,$duration,$ad)
 		{
-            $duration = $duration +30;
+            $duration = $duration +$ad;
 			$data = array('duration'=>$duration);
 			$this->db->where('adid', $adID);
 			$this->db->update('ads', $data);
 		}
-	    public function repostAd($adID)
+	    public function repostAd($adID,$length)
 		{
-			$data = array('duration'=>30,'isexpired'=>0,'issold'=>0);
+			$data = array('duration'=>$length,'isexpired'=>0,'issold'=>0);
 			$this->db->where('adid', $adID);
             $this->db->set('adinsertedon','NOW()',FALSE);
 			$this->db->update('ads', $data);
 		}
-		public function featureAd($adID)
+		public function featureAd($adID,$length)
 		{
-			$data = array('isfeatured'=>1);
+			$data = array('isfeatured'=>1,'featureddate'=>'NOW()','featuredlength'=>$length);
 			$this->db->where('adid', $adID);
 			$this->db->update('ads', $data);
 		}

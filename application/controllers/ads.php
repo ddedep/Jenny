@@ -215,30 +215,75 @@ class Ads extends CI_Controller {
 			$points= $row['points'];
 			break;
 		}
-		if($points<150){
-			$data['message'] ="Not Enough Points";
-			$query=$this->ads_model->getAd($adID);
-			$data['query'] = $query;
-			$this->load->view('header',$data);
-			$this->load->view('repost',$data);
-		}
-		else
+		if($length==7)
 		{
+			if($points<200){
+				$data['message'] ="Not Enough Points";
+				$query=$this->ads_model->getAd($adID);
+				$data['query'] = $query;
+				$this->load->view('header',$data);
+				$this->load->view('repost',$data);
+			}
+			else
+			{
 
-			$points = $points-150;
-			$this->ads_model->repostAd($adID);
-			$this->User_model->updatePoints($this->session->userdata('username'),$points);
-			$data['message'] ="150 Points Deducted";
-			$query=$this->ads_model->getAd($adID);
-			$data['query'] = $query;
-			redirect('index.php/ads/view/'.$adID);
+				$points = $points-200;
+				$this->ads_model->repostAd($adID,$length);
+				$this->User_model->updatePoints($this->session->userdata('username'),$points);
+				$data['message'] ="150 Points Deducted";
+				$query=$this->ads_model->getAd($adID);
+				$data['query'] = $query;
+				redirect('index.php/ads/view/'.$adID);
+			}
+		}
+		if($length==15)
+		{
+			if($points<300){
+				$data['message'] ="Not Enough Points";
+				$query=$this->ads_model->getAd($adID);
+				$data['query'] = $query;
+				$this->load->view('header',$data);
+				$this->load->view('repost',$data);
+			}
+			else
+			{
+
+				$points = $points-300;
+				$this->ads_model->repostAd($adID,$length);
+				$this->User_model->updatePoints($this->session->userdata('username'),$points);
+				$data['message'] ="150 Points Deducted";
+				$query=$this->ads_model->getAd($adID);
+				$data['query'] = $query;
+				redirect('index.php/ads/view/'.$adID);
+			}
+		}
+		if($length==30)
+		{
+			if($points<350){
+				$data['message'] ="Not Enough Points";
+				$query=$this->ads_model->getAd($adID);
+				$data['query'] = $query;
+				$this->load->view('header',$data);
+				$this->load->view('repost',$data);
+			}
+			else
+			{
+
+				$points = $points-350;
+				$this->ads_model->repostAd($adID,$length);
+				$this->User_model->updatePoints($this->session->userdata('username'),$points);
+				$data['message'] ="150 Points Deducted";
+				$query=$this->ads_model->getAd($adID);
+				$data['query'] = $query;
+				redirect('index.php/ads/view/'.$adID);
+			}
 		}
 	}
 	public function featureThis()
 	{
 		$data['hide'] = FALSE;
 		$adID=$this->input->post('adid');
-				
+		$length = $this->input->post('length');
 		$data['username']=$this->session->userdata('username');
 		$data['userid'] = $this->session->userdata('userid');
 		$query=$this->ads_model->getAd($adID);
@@ -249,34 +294,101 @@ class Ads extends CI_Controller {
 			$points= $row['points'];
 			break;
 		}
-		if($points<300){
-			$data['message'] ="Not Enough Points";
-			$query=$this->ads_model->getAd($adID);
-			$data['query'] = $query;
-			$this->load->view('header',$data);
-			$this->load->view('feature',$data);
-		}
-		else
+		if($length==7)
 		{
-			if($this->ads_model->getFeaturedAds()->num_rows()<30)
-			{
-				$points = $points-300;
-				$this->ads_model->featureAd($adID);
-				$this->User_model->updatePoints($this->session->userdata('username'),$points);
-				$data['message'] ="300 Points Deducted";
+			if($points<300){
+				$data['message'] ="Not Enough Points";
 				$query=$this->ads_model->getAd($adID);
 				$data['query'] = $query;
-				redirect('index.php/ads/view/'.$adID);
+				$this->load->view('header',$data);
+				$this->load->view('feature',$data);
 			}
 			else
 			{
+				if($this->ads_model->getFeaturedAds()->num_rows()<30)
+				{
+					$points = $points-300;
+					$this->ads_model->featureAd($adID,$length);
+					$this->User_model->updatePoints($this->session->userdata('username'),$points);
+					$data['message'] ="300 Points Deducted";
+					$query=$this->ads_model->getAd($adID);
+					$data['query'] = $query;
+					redirect('index.php/ads/view/'.$adID);
+				}
+				else
+				{
+					$query=$this->ads_model->getAd($adID);
+					$data['query'] = $query;
+					$data['message'] = "Maximum Featured Ads on Display";
+				}
+				$this->load->view('header',$data);
+				$this->load->view('feature',$data);
+
+			}
+		}
+		if($length==15)
+		{
+			if($points<400){
+				$data['message'] ="Not Enough Points";
 				$query=$this->ads_model->getAd($adID);
 				$data['query'] = $query;
-				$data['message'] = "Maximum Featured Ads on Display";
+				$this->load->view('header',$data);
+				$this->load->view('feature',$data);
 			}
-			$this->load->view('header',$data);
-			$this->load->view('feature',$data);
+			else
+			{
+				if($this->ads_model->getFeaturedAds()->num_rows()<30)
+				{
+					$points = $points-400;
+					$this->ads_model->featureAd($adID,$length);
+					$this->User_model->updatePoints($this->session->userdata('username'),$points);
+					$data['message'] ="400 Points Deducted";
+					$query=$this->ads_model->getAd($adID);
+					$data['query'] = $query;
+					redirect('index.php/ads/view/'.$adID);
+				}
+				else
+				{
+					$query=$this->ads_model->getAd($adID);
+					$data['query'] = $query;
+					$data['message'] = "Maximum Featured Ads on Display";
+				}
+				$this->load->view('header',$data);
+				$this->load->view('feature',$data);
 
+			}
+		}
+		if($length==30)
+		{
+			if($points<500){
+				$data['message'] ="Not Enough Points";
+				$query=$this->ads_model->getAd($adID);
+				$data['query'] = $query;
+				$this->load->view('header',$data);
+				$this->load->view('feature',$data);
+			}
+			else
+			{
+				if($this->ads_model->getFeaturedAds()->num_rows()<30)
+				{
+					$points = $points-500;
+					$this->ads_model->featureAd($adID,$length);
+					$this->User_model->updatePoints($this->session->userdata('username'),$points);
+					$data['message'] ="500 Points Deducted";
+					$query=$this->ads_model->getAd($adID);
+					$data['query'] = $query;
+					redirect('index.php/ads/view/'.$adID);
+				}
+				else
+				{
+					$query=$this->ads_model->getAd($adID);
+					$data['query'] = $query;
+					$data['message'] = "Maximum Featured Ads on Display";
+				}
+				$this->load->view('header',$data);
+				$this->load->view('feature',$data);
+
+			}
 		}
 	}
 
@@ -287,6 +399,7 @@ class Ads extends CI_Controller {
         $data['username']=$this->session->userdata('username');
 		$data['userid'] = $this->session->userdata('userid');
 		$query=$this->ads_model->getAd($adID);
+		$length= $this->input->post('length');
 		$data['query'] = $query;
 		$user=$this->User_model->getUser($this->session->userdata('username'));
 		$points=0;
@@ -294,22 +407,65 @@ class Ads extends CI_Controller {
 			$points= $row['points'];
 			break;
 		}
-		if($points<120){
-			$data['message'] ="Not Enough Points";
-			$query=$this->ads_model->getAd($adID);
-			$data['query'] = $query;
-			$this->load->view('header',$data);
-			$this->load->view('extend',$data);
-		}
-		else
+		if($length==7)
 		{
-			$points = $points-120;
-			$this->ads_model->extendAd($adID,$duration);
-			$this->User_model->updatePoints($this->session->userdata('username'),$points);
-			$data['message'] ="120 Points Deducted";
-			$query=$this->ads_model->getAd($adID);
-			$data['query'] = $query;
-			redirect("index.php/ads/view/".$adID);
+			if($points<100){
+				$data['message'] ="Not Enough Points";
+				$query=$this->ads_model->getAd($adID);
+				$data['query'] = $query;
+				$this->load->view('header',$data);
+				$this->load->view('extend',$data);
+			}
+			else
+			{
+				$points = $points-100;
+				$this->ads_model->extendAd($adID,$duration,$length);
+				$this->User_model->updatePoints($this->session->userdata('username'),$points);
+				$data['message'] ="100 Points Deducted";
+				$query=$this->ads_model->getAd($adID);
+				$data['query'] = $query;
+				redirect("index.php/ads/view/".$adID);
+			}
+		}
+		if($length==15)
+		{
+			if($points<150){
+				$data['message'] ="Not Enough Points";
+				$query=$this->ads_model->getAd($adID);
+				$data['query'] = $query;
+				$this->load->view('header',$data);
+				$this->load->view('extend',$data);
+			}
+			else
+			{
+				$points = $points-150;
+				$this->ads_model->extendAd($adID,$duration,$length);
+				$this->User_model->updatePoints($this->session->userdata('username'),$points);
+				$data['message'] ="150 Points Deducted";
+				$query=$this->ads_model->getAd($adID);
+				$data['query'] = $query;
+				redirect("index.php/ads/view/".$adID);
+			}
+		}
+		if($length==30)
+		{
+			if($points<200){
+				$data['message'] ="Not Enough Points";
+				$query=$this->ads_model->getAd($adID);
+				$data['query'] = $query;
+				$this->load->view('header',$data);
+				$this->load->view('extend',$data);
+			}
+			else
+			{
+				$points = $points-200;
+				$this->ads_model->extendAd($adID,$duration,$length);
+				$this->User_model->updatePoints($this->session->userdata('username'),$points);
+				$data['message'] ="200 Points Deducted";
+				$query=$this->ads_model->getAd($adID);
+				$data['query'] = $query;
+				redirect("index.php/ads/view/".$adID);
+			}
 		}
     }
 	
