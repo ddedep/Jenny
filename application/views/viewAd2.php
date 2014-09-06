@@ -43,7 +43,9 @@
 											 
 				echo "Expires on: ".$formatted."<br/><br/>";
 				echo "Price: ".$row['price']."<br/><br/>";
-				echo "About: ".$row['body']."<br/><br/>";
+				echo "About: ";
+				echo  $this->typography->nl2br_except_pre($row['body']);
+				echo "<br/><br/>";
 				echo "Total Views: ".$row['view']."<br/><br/>";
 				echo "Posted On: ".$date->format('m-d-Y')."<br/><br/>";
 				echo "</div>";

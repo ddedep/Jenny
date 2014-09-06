@@ -9,6 +9,7 @@ class Ads extends CI_Controller {
 		$this->load->model('User_model');
 		$this->load->model('Messages_model');
 		$this->load->helper('date');
+		$this->load->library('typography');
 	}
 	public function unfavorite()
 	{
