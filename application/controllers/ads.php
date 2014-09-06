@@ -489,7 +489,8 @@ class Ads extends CI_Controller {
 					$files = $_FILES;
 					$image=array();
 				    $cpt = count($_FILES['userfile']['name']);
-				    for($i=0; $i<$cpt; $i++)
+				    $counter=0;
+				     for($i=0; $i<$cpt; $i++)
 				    {
 
 				        $_FILES['userfile']['name']= $files['userfile']['name'][$i];
@@ -499,14 +500,34 @@ class Ads extends CI_Controller {
 				        $_FILES['userfile']['size']= $files['userfile']['size'][$i];    
 				        $image[$i] = $_FILES['userfile']['name'];
 
-				        if($image[$i]!=""){
-					        $this->ads_model->upload_photo2($image[$i],$latest,$i);
-					    }
-					    $this->upload->initialize($this->set_upload_options());
-					    $this->upload->do_upload();
+				        if($image[$i]!="")
+					     {
+					     	$counter++;
+					     }
 
 
 				    }
+				    if($counter>0)
+				    {
+					    for($i=0; $i<$cpt; $i++)
+					    {
+
+					        $_FILES['userfile']['name']= $files['userfile']['name'][$i];
+					        $_FILES['userfile']['type']= $files['userfile']['type'][$i];
+					        $_FILES['userfile']['tmp_name']= $files['userfile']['tmp_name'][$i];
+					        $_FILES['userfile']['error']= $files['userfile']['error'][$i];
+					        $_FILES['userfile']['size']= $files['userfile']['size'][$i];    
+					        $image[$i] = $_FILES['userfile']['name'];
+
+					        
+						     $this->ads_model->upload_photo2($image[$i],$latest,$i);
+						    
+						    $this->upload->initialize($this->set_upload_options());
+						    $this->upload->do_upload();
+
+
+					    }
+					}
 
 						$userz=$this->User_model->getUser($this->session->userdata('username'));
 						
@@ -517,7 +538,7 @@ class Ads extends CI_Controller {
 						$data['query'] =$query;
 						
 						$data['adID'] = $adID;
-						$this->ads_model->EditAd($adID,$title,$userid,$duration,$price,$video,$body,$categoryid,$cityid);
+						$this->ads_model->EditAd($latest,$title,$userid,$duration,$price,$video,$body,$categoryid,$cityid);
 						$data['message'] ="Ad Edited!";
 						$data['username']=$this->session->userdata('username');
 						$this->load->view('header',$data);
