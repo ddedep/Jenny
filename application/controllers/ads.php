@@ -807,8 +807,8 @@ class Ads extends CI_Controller {
 					$q = $this->ads_model->lookAt($row['body'],$latest);
 					if($q->num_rows()>0)
 					{
-						$mess="dexter";
-						$from = 'dexter';
+						$mess="onestopdealph";
+						$from = 'onestopdealph';
 				        $to = ''.$row['phonenum'];
 				        $message = array(
 				            'text' => 'An item from your wish list with the title '.$title.' is now available in the website. Please check your email for the link'
