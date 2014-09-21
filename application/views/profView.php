@@ -68,7 +68,7 @@
 				        
 			      		<div class="large-4 column">
 								<div class= 'panel'>
-								<img src="<?php echo base_url(); ?>images/<?php echo$row['imagelink']?>" style='height:200px;width:200px;'><br/>
+								<img src="<?php echo base_url(); ?>images/<?php if($row['imagelink1']!=""){echo$row['imagelink1'];}else{echo 'nophoto.jpg';}?>" style='height:200px;width:200px;'><br/>
 								Title: <?php echo $row['title']?><br/><br/>
 								Expires on: <?php echo $formatted; ?><br/><br/>
 								Price: <?php echo $row['price'] ?> <br/><br/>
@@ -87,7 +87,7 @@
 			        	</div>
 			        	
 			        	<?php
-							endforeach;
+				endforeach;
 				        ?>
 
 		        	</div>
