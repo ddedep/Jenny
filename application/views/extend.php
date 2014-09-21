@@ -14,7 +14,10 @@
 						echo ' src="//www.youtube.com/embed/'.$row['videolink'].'"" frameborder="0">';
 						echo '</iframe><br/>';
 						}
-						echo "<img src=".base_url()."images/".$row['imagelink1']." style='height:200px;width:200px;'><br/>";
+						if($row['imagelink1']!="")
+							echo "<img src='".base_url()."images/".$row['imagelink1']."' style='height:200px;width:200px;'><br/>";
+						else
+							echo "<img src='".base_url()."images/nophoto.jpg' style='height:200px;width:200px;'><br/>";
 						echo "Title: ".$row['title']."<br/><br/>";
 						echo "Duration: ".$row['duration']." Days<br/><br/>";
 						echo "Price: ".$row['price']."<br/><br/>";
