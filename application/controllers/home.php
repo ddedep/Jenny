@@ -32,8 +32,14 @@ class Home extends CI_Controller {
 			$to="dexteredep@gmail.com";
 			$message = "Contact Us: \n\nName: ".$name."\n"."Email: ".$email."\n"."Contact number: ".$contact."\n\n"."Message: ".$body."\n";
 			$headers = "From: messages@onestopdealph.com";
-			mail($to,"Somebody Sent you a Message on onestopdealph.com", $message,$headers);
-			$data['message'] = "Message Sent!";
+			if(mail($to,"Somebody Sent you a Message on onestopdealph.com", $message,$headers))
+			{
+				$data['message'] = "Message Sent!";
+			}
+			else
+			{
+				$data['message'] = "Message Not Sent!";
+			}
 			
 		}
 		$this->load->view('header',$data);
