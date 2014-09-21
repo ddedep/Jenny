@@ -78,11 +78,7 @@
 								$formatted = date('m/d/Y',$endDate);
 				        ?>
 			      		<div class="large-4 columns">
-<<<<<<< HEAD
 								<div class= 'panel' style="overflow:hidden;">
-=======
-								<div class= 'panel'>
->>>>>>> df51579938e4e21e924f190b1d8d513fa48d63b4
 								<a href="<?php echo base_url()?>index.php/ads/view/<?php echo $row['adid'];?>"><img src="<?php echo base_url(); ?><?php if($row['imagelink1']!=''){ echo 'images/'.$row['imagelink1'];} else{echo 'img/nophoto.jpg';}?>"style='height:200px;width:200px;'></a><br/>
 								Title: <?php echo $row['title']?><br/><br/>
 								Owner: <a href="<?php echo base_url()."index.php/user/view/".$row['userid']; ?>"><?php echo $row['username']?></a><br/><br/>

@@ -29,17 +29,11 @@ class Home extends CI_Controller {
 			$email = $this->input->post('email');
 			$contact = $this->input->post('contact');
 			$body = $this->input->post('body');
-			$to="dexteredep@gmail.com";
+			$to="OneStopDealph@gmail.com";
 			$message = "Contact Us: \n\nName: ".$name."\n"."Email: ".$email."\n"."Contact number: ".$contact."\n\n"."Message: ".$body."\n";
 			$headers = "From: messages@onestopdealph.com";
-			if(mail($to,"Somebody Sent you a Message on onestopdealph.com", $message,$headers))
-			{
-				$data['message'] = "Message Sent!";
-			}
-			else
-			{
-				$data['message'] = "Message Not Sent! ".print_r(error_get_last());
-			}
+			mail($to,"Somebody Sent you a Message on onestopdealph.com", $message,$headers);
+			$data['message'] = "Message Sent!";
 			
 		}
 		$this->load->view('header',$data);
