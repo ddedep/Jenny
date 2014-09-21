@@ -4,7 +4,16 @@
  			<?php if($this->session->userdata('logged_in')):?>
 		      <a href="<?php echo base_url()?>index.php/support/createSupport"><button>Create Thread</button></a>
 		     <?php endif; ?>
-		      <?php foreach($query->result_array() as $row):	?>
+
+		      <?php 
+		      if($query->num_rows()==0):     
+		      ?>
+		  	<div class='panel' style="font-size:30px;">
+		  	No Thread to be Displayed		  	
+		  	</div>
+		  	<?php endif;?>
+		      <?php
+		      foreach($query->result_array() as $row):	?>
 						<div class= 'panel'>
 						Title: <a href="<?php echo base_url(); ?>index.php/support/view/<?php echo $row['support_id'];?>"><?php echo $row['title']; ?></a><br/><br/>
 						By: <a href="<?php echo base_url()."index.php/user/view/".$row['userid'] ?>"><?php echo $row['username']; ?></a><br/><br/>
@@ -29,10 +38,7 @@
 		    	<br/>
 		    	<br/>
 		    	<br/>
-
-		    	<br/>
-
-		    	<br/>
+<br/>
 		    	<br/>
 		    	<br/>
 		    	<br/>
@@ -46,6 +52,19 @@
 		    	<br/>
 
 		    	<br/>
+		    	<br/>
+		    	<br/>
+		    	<br/>
+		    	<br/>
+		    	<br/>
+		    	<br/>
+		    	<br/>
+		    	<br/>
+		    	<br/>
+		    	<br/>
+		    	<br/>
+
+		    	<br/>
 
 		    	<br/>
 		    	<br/>
@@ -56,8 +75,8 @@
 		    	<br/>
 		    	<br/>
 		    	<br/>
-			    	<div class="panel" style="margin-bottom:0px;">
-			    		<a href="<?php echo base_url();?>index.php/faq/about#about">About</a>&nbsp;|&nbsp;<a href="<?php echo base_url();?>index.php/faq/about#terms">Terms and Conditions</a>&nbsp;|&nbsp;<a href="<?php echo base_url();?>index.php/faq/about#terms">Privacy Policy</a>&nbsp;|&nbsp;<a href="<?php echo base_url();?>index.php/home/contactus">Contact Us</a>&nbsp;|&nbsp;<a href="<?php echo base_url();?>index.php/support">Forum</a>&nbsp;|&nbsp;<a href="<?php echo base_url();?>index.php/faq">FAQ</a>&nbsp;|&nbsp;Copyright 2014 onestopdeal.com.ph
+			    	<div class="panel" style="margin-bottom:0;">
+			    		<a href="<?php echo base_url();?>index.php/faq/about#about">About</a>&nbsp;|&nbsp;<a href="<?php echo base_url();?>index.php/faq/about#terms">Terms and Conditions</a>&nbsp;|&nbsp;<a href="<?php echo base_url();?>index.php/faq/about#privacy">Privacy Policy</a>&nbsp;|&nbsp;<a href="<?php echo base_url();?>index.php/home/contactus">Contact Us</a>&nbsp;|&nbsp;<a href="<?php echo base_url();?>index.php/support">Forum</a>&nbsp;|&nbsp;<a href="<?php echo base_url();?>index.php/faq">FAQ</a>&nbsp;|&nbsp;Copyright 2014 onestopdeal.com.ph
 			    	</div>
 			    </div>
 		   		</div>

@@ -36,20 +36,21 @@
 					<br /><br /><a name="disclaimer">5. Disclaimer</a>
 					<br />OneStopDeal.com takes no responsibility from any consequence due to the actions, or lack of actions, you have done using our website’s services. Any content you provide is at your own risk. We make no warranty that no part of our system will be virus-free, uninterrupted, timely, secure, accurate or reliable.
 
-					<h1 style="font-size:30px;">Privacy Policy</h1>
+					<a name="privacy"><h1 style="font-size:30px;">Privacy Policy</h1></a>
 					<br><br>OneStopDeal.com respects each individual’s right to personal privacy.	 
 					<br><br>OneStopDeal.com collects information through our website. We mainly collect our visitor’s name and e-mail address. We collect other information mainly from our registration forms.  All information collected is not mandatory. 
 					<br><br>Information collected by OneStopDeal.com will be used for the purpose of getting in touch with the members. These involved sending notifications about his ads.
 					<br><br>All information offered at our forum, however, becomes public knowledge.
 					<br><br>Members have the option to change their own personal information at any given time. 
 					<br><br>If any problems might arise, we have our customer support tab in which the members may submit their concerns. <br><br>
+					<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 					</div>
 					</span>
 			    </div>
 			    <div class = "row">
 		    	<div class="large-12 columns">
 			    	<div class="panel" style="margin-bottom:0;">
-			    		<a href="<?php echo base_url();?>index.php/faq/about#about">About</a>&nbsp;|&nbsp;<a href="<?php echo base_url();?>index.php/faq/about#terms">Terms and Conditions</a>&nbsp;|&nbsp;<a href="<?php echo base_url();?>index.php/faq/about#terms">Privacy Policy</a>&nbsp;|&nbsp;<a href="<?php echo base_url();?>index.php/home/contactus">Contact Us</a>&nbsp;|&nbsp;<a href="<?php echo base_url();?>index.php/support">Forum</a>&nbsp;|&nbsp;<a href="<?php echo base_url();?>index.php/faq">FAQ</a>&nbsp;|&nbsp;Copyright 2014 onestopdeal.com.ph
+			    		<a href="<?php echo base_url();?>index.php/faq/about#about">About</a>&nbsp;|&nbsp;<a href="<?php echo base_url();?>index.php/faq/about#terms">Terms and Conditions</a>&nbsp;|&nbsp;<a href="<?php echo base_url();?>index.php/faq/about#privacy">Privacy Policy</a>&nbsp;|&nbsp;<a href="<?php echo base_url();?>index.php/home/contactus">Contact Us</a>&nbsp;|&nbsp;<a href="<?php echo base_url();?>index.php/support">Forum</a>&nbsp;|&nbsp;<a href="<?php echo base_url();?>index.php/faq">FAQ</a>&nbsp;|&nbsp;Copyright 2014 onestopdeal.com.ph
 			    	</div>
 			    </div>
 		   		</div>

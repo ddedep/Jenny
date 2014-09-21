@@ -29,7 +29,7 @@ class Home extends CI_Controller {
 			$email = $this->input->post('email');
 			$contact = $this->input->post('contact');
 			$body = $this->input->post('body');
-			$to="OneStopDealph@gmail.com";
+			$to="dexteredep@gmail.com";
 			$message = "Contact Us: \n\nName: ".$name."\n"."Email: ".$email."\n"."Contact number: ".$contact."\n\n"."Message: ".$body."\n";
 			$headers = "From: messages@onestopdealph.com";
 			mail($to,"Somebody Sent you a Message on onestopdealph.com", $message,$headers);

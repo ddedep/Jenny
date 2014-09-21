@@ -17,8 +17,11 @@
 				    	<?php 
 				    	$count=0;
 				    	foreach ($categories->result_array() as $row) {
-				    		echo "<a href='".base_url()."index.php/ads/seachByCat/".$row['categoryid']."''>".$row['categoryname']."</a><br/><br/>";
-				    	} 
+				    		if($row['categoryid']!=9)
+				    			echo "<a href='".base_url()."index.php/ads/seachByCat/".$row['categoryid']."''>".$row['categoryname']."</a><br/><br/>";
+
+				    	}
+				    	echo "<a href='".base_url()."index.php/ads/seachByCat/9'>Others</a><br/><br/>"; 
 				    	?>
 		    		</div>
 		    		
@@ -75,15 +78,16 @@
 								<?php
 									foreach($query->result_array() as $row):
 								?>
-								<div class="ca-item">
-									<div class="ca-item-main">
+								<div class="ca-item" style="overflow:hidden;">
+									<div class="ca-item-main" style="overflow:hidden;">
 										<a href="<?php echo base_url(); ?>index.php/ads/view/<?php echo $row['adid']; ?>"><div class="ca-icon" style="width:233px;
 												height:189px;
 												position:relative;
 												margin:0 auto;
+												overflow:visible;
 												background:transparent url(<?php echo base_url()."images/";if($row['imagelink1']!=""){echo $row['imagelink1'];}else{echo 'nophoto.jpg';}?>) no-repeat center center;">
 										</div></a>
-										<div class="titles"><h3><?php echo $row['title']; ?></h3></div>
+										<div class="titles" style="overflow:hidden;"><h3><?php echo $row['title']; ?></h3></div>
 										<h4>
 
 											<span>Price:<?php echo $row['price'];?></span>
@@ -123,7 +127,7 @@
 										margin:0 auto;
 										background:transparent url(<?php echo base_url()."images/"; if($top[$i]['imagelink1']!=""){echo $top[$i]['imagelink1'];}else{echo 'nophoto.jpg';}; ?>) no-repeat center center;">
 							</div></a>
-							<div class="ca-item">
+							<div class="ca-item" style="overflow:hidden;">
 								<div class="titles"><h4 style="font-weight:bold;"><?php  
 									
 									echo $top[$i]['title']; 
@@ -205,7 +209,7 @@
 		    <div class = "row">
 		    	<div class="large-12 columns">
 			    	<div class="panel" style="margin-bottom:0;">
-			    		<a href="<?php echo base_url();?>index.php/faq/about#about">About</a>&nbsp;|&nbsp;<a href="<?php echo base_url();?>index.php/faq/about#terms">Terms and Conditions</a>&nbsp;|&nbsp;<a href="<?php echo base_url();?>index.php/faq/about#terms">Privacy Policy</a>&nbsp;|&nbsp;<a href="<?php echo base_url();?>index.php/home/contactus">Contact Us</a>&nbsp;|&nbsp;<a href="<?php echo base_url();?>index.php/support">Forum</a>&nbsp;|&nbsp;<a href="<?php echo base_url();?>index.php/faq">FAQ</a>&nbsp;|&nbsp;Copyright 2014 onestopdeal.com.ph
+			    		<a href="<?php echo base_url();?>index.php/faq/about#about">About</a>&nbsp;|&nbsp;<a href="<?php echo base_url();?>index.php/faq/about#terms">Terms and Conditions</a>&nbsp;|&nbsp;<a href="<?php echo base_url();?>index.php/faq/about#privacy">Privacy Policy</a>&nbsp;|&nbsp;<a href="<?php echo base_url();?>index.php/home/contactus">Contact Us</a>&nbsp;|&nbsp;<a href="<?php echo base_url();?>index.php/support">Forum</a>&nbsp;|&nbsp;<a href="<?php echo base_url();?>index.php/faq">FAQ</a>&nbsp;|&nbsp;Copyright 2014 onestopdeal.com.ph
 			    	</div>
 			    </div>
 		   		</div>

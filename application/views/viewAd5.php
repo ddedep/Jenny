@@ -58,7 +58,7 @@
 					      		<?php if($query->num_rows()==0):
 					      				echo form_open("index.php/ads/addToLookingFor");  
 					      		 ?>
-		      		 		<div class="panel"><span style="font-size:30px;margin-left:40%"><img src="<?php echo base_url(); ?>img/Warning_icon.svg" alt="<?php echo base_url(); ?>img/nophoto.jpg" style="height:50px;" />No ads to Display</span></div> <br/>
+		      		 		<div class="panel"><span style="font-size:30px;margin-left:40%"><img src="<?php echo base_url(); ?>images/Warning_sign.png" alt="<?php echo base_url(); ?>img/nophoto.jpg" style="height:50px;" />No ads to Display</span></div> <br/>
 		      			</form>
 
 		      		<?php 
@@ -76,8 +76,8 @@
 								$formatted = date('m/d/Y',$endDate);
 				        ?>
 			      		<div class="large-4 columns">
-								<div class= 'panel'>
-								<a href="<?php echo base_url()?>index.php/ads/view/<?php echo $row['adid'];?>"><img src="<?php echo base_url(); ?><?php if($row['imagelink']!=''){ echo 'images/'.$row['imagelink'];} else{echo 'img/nophoto.jpg';}?>"style='height:200px;width:200px;'></a><br/>
+								<div class= 'panel' style="overflow:hidden;">
+								<a href="<?php echo base_url()?>index.php/ads/view/<?php echo $row['adid'];?>"><img src="<?php echo base_url(); ?><?php if($row['imagelink1']!=''){ echo 'images/'.$row['imagelink1'];} else{echo 'img/nophoto.jpg';}?>"style='height:200px;width:200px;'></a><br/>
 								Title: <?php echo $row['title']?><br/><br/>
 								Owner: <a href="<?php echo base_url()."index.php/user/view/".$row['userid']; ?>"><?php echo $row['username']?></a><br/><br/>
 										<span class="date" style="display: none;"><?php echo $date1->diff(new DateTime($startDate))->d;?></span>
@@ -100,7 +100,7 @@
 		      	<div class = "row">
 		    	<div class="large-12 columns">
 			    	<div class="panel" style="margin-bottom:0;">
-			    		<a href="<?php echo base_url();?>index.php/faq/about#about">About</a>&nbsp;|&nbsp;<a href="<?php echo base_url();?>index.php/faq/about#terms">Terms and Conditions</a>&nbsp;|&nbsp;<a href="<?php echo base_url();?>index.php/faq/about#terms">Privacy Policy</a>&nbsp;|&nbsp;<a href="<?php echo base_url();?>index.php/home/contactus">Contact Us</a>&nbsp;|&nbsp;<a href="<?php echo base_url();?>index.php/support">Forum</a>&nbsp;|&nbsp;<a href="<?php echo base_url();?>index.php/faq">FAQ</a>&nbsp;|&nbsp;Copyright 2014 onestopdeal.com.ph
+			    		<a href="<?php echo base_url();?>index.php/faq/about#about">About</a>&nbsp;|&nbsp;<a href="<?php echo base_url();?>index.php/faq/about#terms">Terms and Conditions</a>&nbsp;|&nbsp;<a href="<?php echo base_url();?>index.php/faq/about#privacy">Privacy Policy</a>&nbsp;|&nbsp;<a href="<?php echo base_url();?>index.php/home/contactus">Contact Us</a>&nbsp;|&nbsp;<a href="<?php echo base_url();?>index.php/support">Forum</a>&nbsp;|&nbsp;<a href="<?php echo base_url();?>index.php/faq">FAQ</a>&nbsp;|&nbsp;Copyright 2014 onestopdeal.com.ph
 			    	</div>
 			    </div>
 		   		</div>

@@ -28,7 +28,7 @@
 								$formatted = date('m/d/Y',$endDate);
 				        ?>
 			      		<div class="large-4 columns">
-								<div class= 'panel'>
+								<div class= 'panel'style="overflow:hidden;">
 								<a href="<?php echo base_url()?>index.php/ads/view/<?php echo $row['adid'];?>"><img src="<?php echo base_url(); ?>images/<?php if($row['imagelink1']!=""){echo $row['imagelink1'];}else{echo "nophoto.jpg";}?>" style='height:200px;width:200px;'></a><br/>
 								Title: <?php echo $row['title']?><br/><br/>
 								Expires on: <?php echo $formatted; ?><br/><br/>
@@ -82,7 +82,7 @@
 				<br />
 				<br />
 			    	<div class="panel" style="margin-bottom:0;">
-			    		<a href="<?php echo base_url();?>index.php/faq/about#about">About</a>&nbsp;|&nbsp;<a href="<?php echo base_url();?>index.php/faq/about#terms">Terms and Conditions</a>&nbsp;|&nbsp;<a href="<?php echo base_url();?>index.php/faq/about#terms">Privacy Policy</a>&nbsp;|&nbsp;<a href="<?php echo base_url();?>index.php/home/contactus">Contact Us</a>&nbsp;|&nbsp;<a href="<?php echo base_url();?>index.php/support">Forum</a>&nbsp;|&nbsp;<a href="<?php echo base_url();?>index.php/faq">FAQ</a>&nbsp;|&nbsp;Copyright 2014 onestopdeal.com.ph
+			    		<a href="<?php echo base_url();?>index.php/faq/about#about">About</a>&nbsp;|&nbsp;<a href="<?php echo base_url();?>index.php/faq/about#terms">Terms and Conditions</a>&nbsp;|&nbsp;<a href="<?php echo base_url();?>index.php/faq/about#privacy">Privacy Policy</a>&nbsp;|&nbsp;<a href="<?php echo base_url();?>index.php/home/contactus">Contact Us</a>&nbsp;|&nbsp;<a href="<?php echo base_url();?>index.php/support">Forum</a>&nbsp;|&nbsp;<a href="<?php echo base_url();?>index.php/faq">FAQ</a>&nbsp;|&nbsp;Copyright 2014 onestopdeal.com.ph
 			    	</div>
 			    </div>
 		   		</div>
