@@ -204,7 +204,7 @@ class Ads extends CI_Controller {
     public function repostThis()
 	{
 		$adID=$this->input->post('adid');
-		$length= $this->input->post('duration');
+		$length= $this->input->post('length');
 		$data['username']=$this->session->userdata('username');
 		$data['userid'] = $this->session->userdata('userid');
 		$query=$this->ads_model->getAd($adID);
