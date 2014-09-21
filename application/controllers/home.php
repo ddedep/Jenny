@@ -38,7 +38,7 @@ class Home extends CI_Controller {
 			}
 			else
 			{
-				$data['message'] = "Message Not Sent! ".error_get_last();
+				$data['message'] = "Message Not Sent! ".print_r(error_get_last());
 			}
 			
 		}
